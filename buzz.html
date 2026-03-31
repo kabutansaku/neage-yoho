@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>値上げ家計ダメージ計算機 | 値上げ予報</title>
+<meta name="description" content="あなたの家計が値上げでいくら損するか計算。円安・食品高騰で年間負担増を即計算。駆け込みチェックリストつき。">
+<meta property="og:title" content="値上げ家計ダメージ計算機">
+<meta property="og:description" content="うちの家計、年間○万円の負担増…。今すぐ計算して備えよう。">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700;900&family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#002B80;--red:#c0392b;--amber:#d97706;--green:#059669;
+  --paper:#fff;--surface:#f8fafc;--border:#e2e8f0;
+  --t1:#1e293b;--t2:#64748b;--t3:#94a3b8;
+}
+body{font-family:'Noto Sans JP',sans-serif;background:#f1f5f9;color:var(--t1);font-size:14px;line-height:1.7;overflow-x:hidden}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+
+/* ── Header ── */
+.hdr{background:var(--navy);border-bottom:3px solid #facc15;padding:11px 0}
+.hdr-inner{display:flex;align-items:center;justify-content:space-between}
+.hdr-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.hdr-logo-icon{background:#facc15;border-radius:7px;width:30px;height:30px;display:flex;align-items:center;justify-content:center}
+.hdr-logo-text{font-family:'Noto Serif JP',serif;font-size:15px;font-weight:900;color:#fff}
+.hdr-back{font-size:11px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .15s}
+.hdr-back:hover{color:#facc15}
+
+/* ── Hero ── */
+.hero{background:var(--navy);padding:32px 0 28px;color:#fff;text-align:center}
+.hero-eyebrow{display:inline-block;background:#facc15;color:var(--navy);font-size:10px;font-weight:700;padding:3px 12px;border-radius:4px;margin-bottom:14px;letter-spacing:.06em}
+.hero-h{font-family:'Noto Serif JP',serif;font-size:28px;font-weight:900;line-height:1.3;margin-bottom:10px}
+.hero-h span{color:#facc15}
+.hero-desc{font-size:12px;color:rgba(255,255,255,.6);line-height:1.8;max-width:480px;margin:0 auto}
+
+/* ── Section ── */
+.sec{padding:28px 0}
+.sec-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;padding:3px 10px;border-radius:4px;margin-bottom:12px;letter-spacing:.06em}
+.sec-badge.red{background:#fee2e2;color:#991b1b}
+.sec-badge.blue{background:#dbeafe;color:#1e40af}
+.sec-badge.green{background:#d1fae5;color:#065f46}
+.sec-h{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:700;margin-bottom:6px}
+.sec-sub{font-size:12px;color:var(--t2);margin-bottom:20px;line-height:1.7}
+
+/* ── 計算機 ── */
+.calc-card{background:var(--paper);border:0.5px solid var(--border);border-radius:14px;padding:24px;margin-bottom:0}
+.input-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.input-block{}
+.input-label{font-size:11px;color:var(--t2);margin-bottom:5px;display:flex;align-items:center;gap:5px;font-weight:500}
+.input-label .tip{font-size:9px;background:var(--surface);border:0.5px solid var(--border);border-radius:3px;padding:1px 5px;color:var(--t3)}
+.input-row{display:flex;align-items:center;gap:8px}
+.calc-input{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:15px;font-weight:500;color:var(--t1);font-family:'DM Mono',monospace;outline:none;transition:border-color .2s;text-align:right}
+.calc-input:focus{border-color:var(--navy)}
+.input-unit{font-size:12px;color:var(--t2);flex-shrink:0;font-weight:500}
+.calc-btn{width:100%;background:linear-gradient(135deg,var(--red),#9b2219);color:#fff;border:none;border-radius:10px;padding:14px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Noto Sans JP',sans-serif;letter-spacing:.04em;transition:opacity .15s;margin-bottom:16px}
+.calc-btn:hover{opacity:.88}
+
+/* ── 結果 ── */
+.result-box{background:linear-gradient(135deg,#0d1b4b,#1a0840);border-radius:12px;padding:24px;color:#fff;display:none}
+.result-box.show{display:block;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.result-top{text-align:center;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.1)}
+.result-lbl{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:6px;letter-spacing:.05em}
+.result-num{font-family:'DM Mono',monospace;font-size:54px;font-weight:500;color:#f87171;line-height:1}
+.result-unit{font-size:16px;color:rgba(255,255,255,.5);margin-left:4px}
+.result-monthly{font-size:14px;color:rgba(255,255,255,.5);margin-top:6px}
+.result-monthly span{color:#fb923c;font-family:'DM Mono',monospace;font-weight:500}
+.result-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px}
+.result-item{background:rgba(255,255,255,.06);border-radius:8px;padding:12px;text-align:center}
+.result-item-lbl{font-size:9px;color:rgba(255,255,255,.45);margin-bottom:5px;letter-spacing:.05em}
+.result-item-val{font-family:'DM Mono',monospace;font-size:16px;color:#fff;font-weight:500}
+.result-item-sub{font-size:9px;color:rgba(255,255,255,.35);margin-top:2px}
+.result-msg{background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.25);border-radius:8px;padding:12px 14px;font-size:12px;color:#fca5a5;line-height:1.7;margin-bottom:16px}
+.share-row{display:flex;gap:8px;flex-wrap:wrap}
+.share-btn{flex:1;min-width:120px;border:none;border-radius:8px;padding:10px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:opacity .15s;letter-spacing:.03em}
+.share-btn:hover{opacity:.85}
+.share-x{background:#000;color:#fff}
+.share-copy{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)!important}
+.share-line{background:#06c755;color:#fff}
+
+/* ── チェックリスト ── */
+.cl-card{background:var(--paper);border:0.5px solid var(--border);border-radius:14px;overflow:hidden}
+.cl-head{background:var(--navy);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.cl-head-title{font-size:15px;font-weight:700;color:#fff}
+.cl-head-actions{display:flex;gap:8px}
+.cl-action-btn{background:rgba(255,255,255,.12);border:0.5px solid rgba(255,255,255,.2);border-radius:6px;padding:6px 14px;font-size:11px;color:#fff;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:background .15s;white-space:nowrap}
+.cl-action-btn:hover{background:rgba(255,255,255,.22)}
+.cl-progress{background:rgba(0,0,0,.2);height:5px}
+.cl-progress-bar{height:100%;background:#facc15;transition:width .4s ease;width:0%}
+.cl-progress-txt{padding:8px 20px;font-size:10px;color:var(--t2);background:#f8fafc;border-bottom:0.5px solid var(--border)}
+.cl-cat{border-bottom:0.5px solid var(--border)}
+.cl-cat:last-child{border-bottom:none}
+.cl-cat-hdr{padding:12px 20px;font-size:11px;font-weight:700;letter-spacing:.06em;background:var(--surface);color:var(--t2);display:flex;align-items:center;gap:8px}
+.cl-item{display:flex;align-items:flex-start;gap:12px;padding:12px 20px;border-bottom:0.5px solid var(--border);cursor:pointer;transition:background .15s}
+.cl-item:last-child{border-bottom:none}
+.cl-item:hover{background:#fafbff}
+.cl-item.done{background:#f0fdf4}
+.cl-check{width:20px;height:20px;border-radius:5px;border:2px solid var(--border);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.cl-item.done .cl-check{background:var(--green);border-color:var(--green)}
+.cl-check-mark{opacity:0;transition:opacity .15s}
+.cl-item.done .cl-check-mark{opacity:1}
+.cl-item-body{flex:1;min-width:0}
+.cl-item-name{font-size:13px;font-weight:700;color:var(--t1);margin-bottom:2px;transition:color .15s}
+.cl-item.done .cl-item-name{color:var(--t3);text-decoration:line-through}
+.cl-item-reason{font-size:11px;color:var(--t2);line-height:1.5}
+.cl-item-badge{flex-shrink:0;margin-top:2px}
+.urgency{font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;letter-spacing:.05em}
+.urg-high{background:#fee2e2;color:#991b1b}
+.urg-mid{background:#fef3c7;color:#92400e}
+.urg-low{background:#f0fdf4;color:#065f46}
+.cl-done-msg{text-align:center;padding:20px;background:#f0fdf4;font-size:13px;font-weight:700;color:var(--green);display:none}
+.cl-done-msg.show{display:block}
+.print-note{font-size:10px;color:var(--t3);text-align:center;margin-top:8px}
+
+/* ── SNS投稿まとめ ── */
+.ugc-intro{background:var(--paper);border:0.5px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
+.ugc-intro-h{font-size:14px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.ugc-tag-big{font-family:'DM Mono',monospace;font-size:18px;font-weight:500;color:var(--t3);background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:8px 16px;display:inline-block;margin:10px 0;letter-spacing:.02em}
+.ugc-intro-desc{font-size:12px;color:var(--t2);line-height:1.7}
+.ugc-share-box{background:linear-gradient(135deg,#0d1b4b,#1a0840);border-radius:12px;padding:20px;margin-bottom:16px;color:#fff}
+.ugc-share-h{font-size:13px;font-weight:700;margin-bottom:8px;color:#a78bfa}
+.ugc-copy-area{background:rgba(255,255,255,.07);border:0.5px solid rgba(255,255,255,.12);border-radius:8px;padding:12px 14px;font-size:12px;line-height:1.9;color:rgba(255,255,255,.8);margin-bottom:10px;cursor:pointer;transition:background .15s}
+.ugc-copy-area:hover{background:rgba(255,255,255,.1)}
+.ugc-share-btns{display:flex;gap:8px;flex-wrap:wrap}
+.ugc-btn{flex:1;min-width:110px;border:none;border-radius:7px;padding:9px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:opacity .15s;letter-spacing:.03em}
+.ugc-btn:hover{opacity:.85}
+.ugc-btn-x{background:#000;color:#fff}
+.ugc-btn-copy{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)!important}
+.ugc-posts{display:grid;gap:12px}
+.ugc-post{background:var(--paper);border:0.5px solid var(--border);border-radius:10px;padding:16px;transition:box-shadow .15s}
+.ugc-post:hover{box-shadow:2px 2px 0 var(--navy)}
+.ugc-post-hdr{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ugc-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;font-weight:700;color:#fff}
+.ugc-name{font-size:13px;font-weight:700;color:var(--t1)}
+.ugc-handle{font-size:11px;color:var(--t2)}
+.ugc-text{font-size:13px;line-height:1.7;color:var(--t1);margin-bottom:8px}
+.ugc-tag{color:var(--navy);font-weight:700}
+.ugc-meta{font-size:10px;color:var(--t3)}
+.ugc-placeholder{background:var(--surface);border:1px dashed var(--border);border-radius:10px;padding:24px;text-align:center}
+.ugc-placeholder-h{font-size:14px;font-weight:700;color:var(--t2);margin-bottom:6px}
+.ugc-placeholder-sub{font-size:12px;color:var(--t3);line-height:1.7}
+
+/* ── Aff section ── */
+.aff-sec{background:var(--paper);border:0.5px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
+.aff-sec-h{font-size:14px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.aff-items{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.aff-item{background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:12px;display:flex;align-items:flex-start;gap:10px;text-decoration:none;transition:all .2s}
+.aff-item:hover{border-color:var(--red);background:#fff;box-shadow:2px 2px 0 var(--red)}
+.aff-item-icon{font-size:24px;flex-shrink:0}
+.aff-item-body{}
+.aff-item-name{font-size:12px;font-weight:700;color:var(--t1);margin-bottom:3px}
+.aff-item-sub{font-size:10px;color:var(--t2);line-height:1.4}
+.aff-item-cta{font-size:10px;color:var(--red);font-weight:700;margin-top:5px}
+.aff-note{font-size:10px;color:var(--t3);margin-top:10px;text-align:center}
+
+/* ── Footer ── */
+.ftr{background:var(--navy);color:rgba(255,255,255,.4);text-align:center;padding:24px 16px;font-size:11px;line-height:1.9;margin-top:40px}
+.ftr-logo{font-family:'Noto Serif JP',serif;font-size:16px;color:#fff;font-weight:900;margin-bottom:6px}
+
+@media(max-width:500px){
+  .input-grid{grid-template-columns:1fr}
+  .result-grid{grid-template-columns:1fr 1fr}
+  .result-num{font-size:40px}
+  .aff-items{grid-template-columns:1fr}
+  .hero-h{font-size:22px}
+}
+@media print{
+  .hdr,.hero,.sec:not(.cl-sec),.ftr,#calc-sec,#ugc-sec,.cl-head-actions,.cl-action-btn,.print-note,#aff-sec{display:none!important}
+  .cl-card{border:none;box-shadow:none}
+  body{background:#fff;font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="wrap hdr-inner">
+    <a class="hdr-logo" href="index.html">
+      <div class="hdr-logo-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#002B80" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      </div>
+      <span class="hdr-logo-text">値上げ予報</span>
+    </a>
+    <a class="hdr-back" href="index.html">← トップに戻る</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">🧮 話題のツール</div>
+    <h1 class="hero-h">値上げで、うちの家計<br><span>年間いくら損する？</span></h1>
+    <p class="hero-desc">家族構成と月の支出を入力するだけ。円安・原材料高騰による年間負担増を即計算。結果をXでシェアしよう。</p>
+  </div>
+</section>
+
+<!-- ─── STEP1: 計算機 ─── -->
+<div class="wrap" id="calc-sec">
+<div class="sec">
+  <div class="sec-badge red">🧮 STEP 1</div>
+  <h2 class="sec-h">家計ダメージ計算機</h2>
+  <p class="sec-sub">現在の月支出を入力してください。値上げ予測データをもとに年間の負担増を算出します。</p>
+  <div class="calc-card">
+    <div class="input-grid">
+      <div class="input-block">
+        <div class="input-label">食費（月）<span class="tip">外食含む</span></div>
+        <div class="input-row"><input class="calc-input" type="number" id="i-food" value="60000" min="0" max="999999"><span class="input-unit">円</span></div>
+      </div>
+      <div class="input-block">
+        <div class="input-label">日用品費（月）<span class="tip">洗剤・消耗品</span></div>
+        <div class="input-row"><input class="calc-input" type="number" id="i-daily" value="15000" min="0" max="999999"><span class="input-unit">円</span></div>
+      </div>
+      <div class="input-block">
+        <div class="input-label">光熱費（月）<span class="tip">電気・ガス・水道</span></div>
+        <div class="input-row"><input class="calc-input" type="number" id="i-energy" value="20000" min="0" max="999999"><span class="input-unit">円</span></div>
+      </div>
+      <div class="input-block">
+        <div class="input-label">その他（月）<span class="tip">外食・ペット等</span></div>
+        <div class="input-row"><input class="calc-input" type="number" id="i-other" value="10000" min="0" max="999999"><span class="input-unit">円</span></div>
+      </div>
+    </div>
+    <div class="input-block" style="margin-bottom:20px">
+      <div class="input-label">家族構成</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <label style="display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer"><input type="radio" name="family" value="1" id="f1"> 1人暮らし</label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer"><input type="radio" name="family" value="2" id="f2" checked> 2人（カップル・夫婦）</label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer"><input type="radio" name="family" value="3" id="f3"> 3〜4人（子育て世帯）</label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer"><input type="radio" name="family" value="4" id="f4"> 5人以上</label>
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calc()">🧮 今すぐ計算する</button>
+
+    <!-- 結果 -->
+    <div class="result-box" id="result-box">
+      <div class="result-top">
+        <div class="result-lbl">あなたの家計への年間負担増（推計）</div>
+        <div>
+          <span class="result-num" id="r-annual">0</span>
+          <span class="result-unit">万円</span>
+        </div>
+        <div class="result-monthly">月あたり <span id="r-monthly">0</span> 円の負担増</div>
+      </div>
+      <div class="result-grid">
+        <div class="result-item">
+          <div class="result-item-lbl">食費負担増</div>
+          <div class="result-item-val" id="r-food">0</div>
+          <div class="result-item-sub">年間（推計）</div>
+        </div>
+        <div class="result-item">
+          <div class="result-item-lbl">日用品負担増</div>
+          <div class="result-item-val" id="r-daily">0</div>
+          <div class="result-item-sub">年間（推計）</div>
+        </div>
+        <div class="result-item">
+          <div class="result-item-lbl">光熱費負担増</div>
+          <div class="result-item-val" id="r-energy">0</div>
+          <div class="result-item-sub">年間（推計）</div>
+        </div>
+      </div>
+      <div class="result-msg" id="r-msg"></div>
+      <div class="share-row">
+        <button class="share-btn share-x" onclick="shareX()">𝕏 ポストする</button>
+        <button class="share-btn share-copy" onclick="copySummary()">📋 コピー</button>
+        <button class="share-btn share-line" onclick="shareLine()">📲 LINEで共有</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ─── STEP2: チェックリスト ─── -->
+<div class="wrap cl-sec" id="cl-sec">
+<div class="sec">
+  <div class="sec-badge blue">✅ STEP 2</div>
+  <h2 class="sec-h">駆け込み買いチェックリスト</h2>
+  <p class="sec-sub">値上げ前に今月中に確保すべき商品リスト。チェックしながら買い物に使えます。印刷もできます。</p>
+  <div class="cl-card">
+    <div class="cl-head">
+      <div class="cl-head-title">📋 値上げ前 備蓄チェックリスト</div>
+      <div class="cl-head-actions">
+        <button class="cl-action-btn" onclick="resetAll()">リセット</button>
+        <button class="cl-action-btn" onclick="window.print()">🖨 印刷</button>
+      </div>
+    </div>
+    <div class="cl-progress"><div class="cl-progress-bar" id="cl-bar"></div></div>
+    <div class="cl-progress-txt" id="cl-progress-txt">0 / 15 完了</div>
+    <div id="cl-list"></div>
+    <div class="cl-done-msg" id="cl-done">🎉 全部チェック完了！備蓄万全です！</div>
+  </div>
+  <div class="print-note">※ 印刷ボタンでチェックリストだけを印刷できます</div>
+</div>
+</div>
+
+<!-- ─── アフィリエイト ─── -->
+<div class="wrap" id="aff-sec">
+<div class="aff-sec">
+  <div class="aff-sec-h">🛒 今すぐまとめ買いするなら</div>
+  <div class="aff-items">
+    <a class="aff-item" href="#" onclick="affClick('pasta');return false;">
+      <div class="aff-item-icon">🍝</div>
+      <div class="aff-item-body">
+        <div class="aff-item-name">パスタ・乾麺 まとめ買い</div>
+        <div class="aff-item-sub">小麦+4.2%で4月値上げ確定。保存2年</div>
+        <div class="aff-item-cta">Amazonで確認 →</div>
+      </div>
+    </a>
+    <a class="aff-item" href="#" onclick="affClick('detergent');return false;">
+      <div class="aff-item-icon">🧴</div>
+      <div class="aff-item-body">
+        <div class="aff-item-name">液体洗剤 大容量セット</div>
+        <div class="aff-item-sub">5月値上げ前に大容量詰め替えを</div>
+        <div class="aff-item-cta">楽天でまとめ買い →</div>
+      </div>
+    </a>
+    <a class="aff-item" href="#" onclick="affClick('diaper');return false;">
+      <div class="aff-item-icon">👶</div>
+      <div class="aff-item-body">
+        <div class="aff-item-name">紙おむつ ケース買い</div>
+        <div class="aff-item-sub">6〜9%値上げ予測。ケース単位がお得</div>
+        <div class="aff-item-cta">Amazonで確認 →</div>
+      </div>
+    </a>
+    <a class="aff-item" href="#" onclick="affClick('oil');return false;">
+      <div class="aff-item-icon">🍶</div>
+      <div class="aff-item-body">
+        <div class="aff-item-name">食用油 1L×6本セット</div>
+        <div class="aff-item-sub">大豆相場高騰で10〜15%値上げ見込み</div>
+        <div class="aff-item-cta">Amazonで確認 →</div>
+      </div>
+    </a>
+  </div>
+  <div class="aff-note">※ アフィリエイトリンク（PR）。価格は変動することがあります。</div>
+</div>
+</div>
+
+<!-- ─── STEP3: SNS投稿まとめ ─── -->
+<div class="wrap" id="ugc-sec">
+<div class="sec">
+  <div class="sec-badge green">📱 STEP 3</div>
+  <h2 class="sec-h">#値上げ前に買った 投稿でシェア</h2>
+  <p class="sec-sub">みんなの備蓄・節約体験をシェアしよう。計算結果やチェックリストと一緒に投稿してください。</p>
+
+  <div class="ugc-intro">
+    <div class="ugc-intro-h">📣 このハッシュタグで投稿してください</div>
+    <div class="ugc-tag-big">#値上げ前に買った</div>
+    <div class="ugc-intro-desc">投稿するとこのページに掲載されます（随時更新）。「うちは◯万円の負担増だった」「◯を大量買いした」など、あなたの体験をシェアしてください。</div>
+  </div>
+
+  <div class="ugc-share-box">
+    <div class="ugc-share-h">✍️ 投稿テンプレート（クリックでコピー）</div>
+    <div class="ugc-copy-area" id="ugc-template" onclick="copyTemplate()">
+値上げ家計ダメージ計算したら年間【　　】万円の負担増だった😱
+
+対策として今月は
+・パスタ2kg買い溜め
+・洗剤を大容量にチェンジ
+・おむつをケースで購入
+
+みなさんも計算してみて👇
+https://あなたのURL/buzz.html
+
+#値上げ前に買った #値上げ予報 #家計防衛
+    </div>
+    <div class="ugc-share-btns">
+      <button class="ugc-btn ugc-btn-x" onclick="postToX()">𝕏 このままポストする</button>
+      <button class="ugc-btn ugc-btn-copy" onclick="copyTemplate()">📋 テキストをコピー</button>
+    </div>
+  </div>
+
+  <!-- 投稿サンプル（実際はX埋め込みやスクリーンショットを使う） -->
+  <div class="ugc-posts" id="ugc-posts">
+    <div class="ugc-post">
+      <div class="ugc-post-hdr">
+        <div class="ugc-avatar" style="background:#e11d48">主</div>
+        <div><div class="ugc-name">主婦のミキ</div><div class="ugc-handle">@miki_kakei</div></div>
+      </div>
+      <div class="ugc-text">計算機やったら年間<strong>24万円</strong>の負担増で震えてる😱 パスタとトイレットペーパー爆買いしてきた！ <span class="ugc-tag">#値上げ前に買った</span> <span class="ugc-tag">#値上げ予報</span></div>
+      <div class="ugc-meta">❤️ 342 &nbsp; 🔁 128 &nbsp; 2026年4月1日</div>
+    </div>
+    <div class="ugc-post">
+      <div class="ugc-post-hdr">
+        <div class="ugc-avatar" style="background:#0ea5e9">節</div>
+        <div><div class="ugc-name">節約ブロガー田中</div><div class="ugc-handle">@tanaka_setsuyaku</div></div>
+      </div>
+      <div class="ugc-text">値上げ前に洗剤まとめ買い完了✅ コストコで詰め替え用を4個購入。年間8,000円の節約になる計算。チェックリストが便利すぎた <span class="ugc-tag">#値上げ前に買った</span></div>
+      <div class="ugc-meta">❤️ 215 &nbsp; 🔁 89 &nbsp; 2026年3月30日</div>
+    </div>
+    <div class="ugc-post">
+      <div class="ugc-post-hdr">
+        <div class="ugc-avatar" style="background:#7c3aed">パ</div>
+        <div><div class="ugc-name">パパの家計管理</div><div class="ugc-handle">@papa_kakei</div></div>
+      </div>
+      <div class="ugc-text">3人家族で年間<strong>18万円</strong>の負担増という計算結果に慌てて行動。おむつケース買い・食用油6本・缶詰30個購入完了💪 <span class="ugc-tag">#値上げ前に買った</span> <span class="ugc-tag">#家計防衛</span></div>
+      <div class="ugc-meta">❤️ 189 &nbsp; 🔁 76 &nbsp; 2026年3月29日</div>
+    </div>
+  </div>
+
+  <div style="margin-top:16px;background:var(--surface);border:0.5px solid var(--border);border-radius:10px;padding:16px;font-size:12px;color:var(--t2);line-height:1.8">
+    <strong style="color:var(--t1);display:block;margin-bottom:4px">💡 本番運用でのSNS投稿埋め込みについて</strong>
+    X（旧Twitter）の埋め込みウィジェットを使うと、ハッシュタグ投稿をリアルタイムで表示できます。管理画面から「注目投稿のスクリーンショット」を手動で差し替えるだけでも十分な効果があります。
+  </div>
+</div>
+</div>
+
+<footer class="ftr">
+  <div class="ftr-logo">値上げ予報</div>
+  <div>© 2026 値上げ予報 | <a href="index.html" style="color:rgba(255,255,255,.4)">トップへ戻る</a></div>
+  <div style="margin-top:8px;font-size:10px;color:#334155">※ 計算結果は値上げ予測データをもとにした推計です。実際の負担増は異なる場合があります。</div>
+</footer>
+
+<script>
+// ─── 為替レートを読み込む ───────────────────
+let currentFx = 151.80;
+(async()=>{
+  try{
+    const r=await fetch('fx-data.json?v='+Date.now());
+    const d=await r.json();
+    currentFx=parseFloat(d.rate);
+  }catch(e){
+    try{
+      const r=await fetch('https://open.er-api.com/v6/latest/USD',{signal:AbortSignal.timeout(4000)});
+      const d=await r.json();
+      if(d.result==='success') currentFx=Math.round(d.rates.JPY*100)/100;
+    }catch(e2){}
+  }
+})();
+
+// ─── 値上げ率モデル ──────────────────────────
+// 為替レートに応じて動的に計算
+function calcRates(fx){
+  const fxFactor = Math.max(0, (fx - 130) / 30); // 130円を基準に
+  return {
+    food:   0.06 + fxFactor * 0.06,  // 6〜12%
+    daily:  0.07 + fxFactor * 0.05,  // 7〜12%
+    energy: 0.05 + fxFactor * 0.08,  // 5〜13%
+    other:  0.04 + fxFactor * 0.04,  // 4〜8%
+  };
+}
+
+// ─── 計算実行 ────────────────────────────────
+let calcResult = null;
+function calc(){
+  const food   = parseInt(document.getElementById('i-food').value)   || 0;
+  const daily  = parseInt(document.getElementById('i-daily').value)  || 0;
+  const energy = parseInt(document.getElementById('i-energy').value) || 0;
+  const other  = parseInt(document.getElementById('i-other').value)  || 0;
+  const family = parseInt(document.querySelector('input[name="family"]:checked')?.value || 2);
+
+  const rates = calcRates(currentFx);
+  const dFood   = Math.round(food   * rates.food   * 12);
+  const dDaily  = Math.round(daily  * rates.daily  * 12);
+  const dEnergy = Math.round(energy * rates.energy * 12);
+  const dOther  = Math.round(other  * rates.other  * 12);
+  const total   = dFood + dDaily + dEnergy + dOther;
+  const monthly = Math.round(total / 12);
+  const annualMan = (total / 10000).toFixed(1);
+
+  calcResult = { total, monthly, dFood, dDaily, dEnergy, annualMan, family, food, daily, energy };
+
+  document.getElementById('r-annual').textContent  = annualMan;
+  document.getElementById('r-monthly').textContent = monthly.toLocaleString();
+  document.getElementById('r-food').textContent    = '¥'+dFood.toLocaleString();
+  document.getElementById('r-daily').textContent   = '¥'+dDaily.toLocaleString();
+  document.getElementById('r-energy').textContent  = '¥'+dEnergy.toLocaleString();
+
+  const msgs = {
+    low:  `月支出${(food+daily+energy+other).toLocaleString()}円の家計では、年間${annualMan}万円の負担増が見込まれます。早めの備蓄で数万円節約できます。`,
+    mid:  `年間${annualMan}万円の負担増は深刻です。今月中に備蓄を始めると値上げ後より${Math.round(total*0.4/10000)}万円以上お得になります。`,
+    high: `年間${annualMan}万円超の負担増！家族が多い分、今すぐ行動するほど節約効果が大きくなります。チェックリストで今日から備えてください。`,
+  };
+  const level = total < 100000 ? 'low' : total < 200000 ? 'mid' : 'high';
+  document.getElementById('r-msg').textContent = msgs[level];
+
+  // 投稿テンプレートを結果で更新
+  const tpl = document.getElementById('ugc-template');
+  tpl.textContent = `値上げ家計ダメージ計算したら年間${annualMan}万円の負担増だった😱\n\n対策として今月は\n・パスタ2kg買い溜め\n・洗剤を大容量にチェンジ\n・${family>=3?'おむつをケースで購入':'缶詰30個確保'}\n\nみなさんも計算してみて👇\nhttps://あなたのURL/buzz.html\n\n#値上げ前に買った #値上げ予報 #家計防衛`;
+
+  document.getElementById('result-box').classList.add('show');
+  document.getElementById('result-box').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ─── シェア ─────────────────────────────────
+function getShareText(){
+  if(!calcResult) return '値上げ家計ダメージ計算機で試してみた！ #値上げ前に買った #値上げ予報';
+  return `値上げ計算したら年間${calcResult.annualMan}万円の負担増だった😱\n食費+${Math.round(calcResult.dFood/10000*10)/10}万/日用品+${Math.round(calcResult.dDaily/10000*10)/10}万/光熱費+${Math.round(calcResult.dEnergy/10000*10)/10}万\n\n#値上げ前に買った #値上げ予報\nhttps://あなたのURL/buzz.html`;
+}
+function shareX(){
+  const txt=encodeURIComponent(getShareText());
+  window.open(`https://twitter.com/intent/tweet?text=${txt}`,'_blank');
+}
+function shareLine(){
+  const txt=encodeURIComponent(getShareText());
+  window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(location.href)}&text=${txt}`,'_blank');
+}
+function copySummary(){
+  navigator.clipboard.writeText(getShareText()).then(()=>showToast('コピーしました！'));
+}
+function copyTemplate(){
+  const txt=document.getElementById('ugc-template').textContent;
+  navigator.clipboard.writeText(txt).then(()=>showToast('テンプレートをコピーしました！'));
+}
+function postToX(){
+  const txt=encodeURIComponent(document.getElementById('ugc-template').textContent);
+  window.open(`https://twitter.com/intent/tweet?text=${txt}`,'_blank');
+}
+
+// ─── チェックリストデータ ────────────────────
+const CL_DATA = [
+  { cat:'🍝 食品（保存食）', items:[
+    {id:'c1', name:'パスタ・乾麺', reason:'小麦+4.2%で4月値上げ確定。2〜3kgの買い溜めが理想。', urg:'high'},
+    {id:'c2', name:'インスタントラーメン・カップ麺', reason:'主要5社が4月に同時改定。まとめてケース買い。', urg:'high'},
+    {id:'c3', name:'食用油（サラダ油・ごま油）', reason:'大豆相場高騰で5月に10〜15%値上げ予測。', urg:'high'},
+    {id:'c4', name:'缶詰（ツナ・サバ・コーン）', reason:'輸送コスト上昇で継続的値上げ傾向。5年保存可能。', urg:'mid'},
+    {id:'c5', name:'レトルトカレー・パウチ食品', reason:'原材料高騰の第2波が6月以降に予測。', urg:'mid'},
+  ]},
+  { cat:'🧴 日用品・消耗品', items:[
+    {id:'c6', name:'液体洗剤（大容量詰め替え）', reason:'石油由来原料高騰で5月値上げ予定。1年以上保存可。', urg:'high'},
+    {id:'c7', name:'シャンプー・リンス（詰め替え）', reason:'同じく石油由来原料の影響。詰め替え用が割安。', urg:'mid'},
+    {id:'c8', name:'ティッシュ・トイレットペーパー', reason:'パルプ相場+5.4%。箱買い・ケース買いで備蓄。', urg:'high'},
+    {id:'c9', name:'紙おむつ・生理用品', reason:'原材料＋物流費の二重上昇で6〜9%値上げへ。', urg:'high'},
+    {id:'c10', name:'歯磨き粉・石けん', reason:'輸送コスト上昇の影響。まとめ買いで割安に。', urg:'low'},
+  ]},
+  { cat:'⚡ 光熱費対策', items:[
+    {id:'c11', name:'LED電球への交換', reason:'電気代補助縮小で実質値上げ。省エネ化が急務。', urg:'mid'},
+    {id:'c12', name:'節電タップ・省エネグッズ', reason:'電気代対策の基本。今が最安値帯の可能性。', urg:'mid'},
+  ]},
+  { cat:'🛒 戦略的まとめ買い', items:[
+    {id:'c13', name:'業務スーパー・コストコで大量購入', reason:'単価が通常の30〜50%安。まとめ買いの聖地。', urg:'mid'},
+    {id:'c14', name:'Amazonの「定期おトク便」に切り替え', reason:'最大15%OFF。値上げ後も価格を固定できる場合がある。', urg:'low'},
+    {id:'c15', name:'プライベートブランド商品に切り替え', reason:'同品質でNB比20〜40%安。値上げ影響を最小化。', urg:'low'},
+  ]},
+];
+
+let checked = new Set(JSON.parse(localStorage.getItem('cl-checked')||'[]'));
+
+function renderCL(){
+  let html = '';
+  CL_DATA.forEach(cat=>{
+    html += `<div class="cl-cat"><div class="cl-cat-hdr"><span>${cat.cat}</span></div>`;
+    cat.items.forEach(item=>{
+      const done = checked.has(item.id);
+      const urgMap = {high:'urg-high',mid:'urg-mid',low:'urg-low'};
+      const urgLbl = {high:'今月中',mid:'来月まで',low:'余裕あり'};
+      html += `<div class="cl-item${done?' done':''}" id="item-${item.id}" onclick="toggle('${item.id}')">
+        <div class="cl-check">
+          <svg class="cl-check-mark" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="cl-item-body">
+          <div class="cl-item-name">${item.name}</div>
+          <div class="cl-item-reason">${item.reason}</div>
+        </div>
+        <div class="cl-item-badge"><span class="urgency ${urgMap[item.urg]}">${urgLbl[item.urg]}</span></div>
+      </div>`;
+    });
+    html += '</div>';
+  });
+  document.getElementById('cl-list').innerHTML = html;
+  updateProgress();
+}
+
+function toggle(id){
+  if(checked.has(id)) checked.delete(id); else checked.add(id);
+  localStorage.setItem('cl-checked', JSON.stringify([...checked]));
+  const el = document.getElementById('item-'+id);
+  el.classList.toggle('done', checked.has(id));
+  updateProgress();
+}
+
+function updateProgress(){
+  const total = CL_DATA.reduce((s,c)=>s+c.items.length,0);
+  const done  = checked.size;
+  const pct   = Math.round(done/total*100);
+  document.getElementById('cl-bar').style.width = pct+'%';
+  document.getElementById('cl-progress-txt').textContent = `${done} / ${total} 完了（${pct}%）`;
+  document.getElementById('cl-done').classList.toggle('show', done===total);
+}
+
+function resetAll(){
+  if(!confirm('チェックをすべてリセットしますか？'))return;
+  checked.clear();
+  localStorage.removeItem('cl-checked');
+  renderCL();
+}
+
+// ─── アフィリエイトクリック ──────────────────
+function affClick(product){
+  // 実際のASPリンクに差し替えてください
+  alert(`【PR】${product}のアフィリエイトリンクへ移動します。\nAmazonアソシエイト等の承認済みリンクに差し替えてください。`);
+}
+
+// ─── トースト ────────────────────────────────
+function showToast(msg){
+  const el = document.createElement('div');
+  el.textContent = msg;
+  el.style.cssText='position:fixed;bottom:20px;right:20px;background:#1e293b;color:#f1f5f9;padding:10px 18px;border-radius:8px;font-size:13px;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.3);animation:fadeUp .3s ease';
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),2200);
+}
+
+// ─── 初期化 ──────────────────────────────────
+renderCL();
+</script>
+</body>
+</html>
