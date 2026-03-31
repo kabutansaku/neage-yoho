@@ -314,6 +314,21 @@ async function loadArticles(){
 }
 
 loadFx();loadArticles();
+  // stats.json から数値を自動読み込み
+async function loadStats(){
+  try{
+    const r = await fetch('stats.json?v='+Date.now());
+    const d = await r.json();
+    // 数値を更新
+    const items = document.querySelector('.hstat-num');
+    const all   = document.querySelectorAll('.hstat-num');
+    if(all[0]) all[0].textContent = Number(d.items).toLocaleString();
+    if(all[1]) all[1].textContent = d.labor_pct + '%';
+    if(all[2]) all[2].textContent = '+' + d.food_rate + '%';
+    if(all[3]) all[3].textContent = d.predict_score + '点';
+  }catch(e){ console.log('stats未生成', e); }
+}
+loadStats();
 </script>
 </body>
 </html>
