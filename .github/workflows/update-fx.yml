@@ -1,0 +1,48 @@
+name: 為替レート 毎日更新
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-fx:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 為替レートを取得
+        run: |
+          RESPONSE=$(curl -sf "https://open.er-api.com/v6/latest/USD" || echo "")
+          if [ -z "$RESPONSE" ]; then
+            RESPONSE=$(curl -sf "https://api.frankfurter.dev/v2/rates?base=USD&quotes=JPY" || echo "")
+            if [ -z "$RESPONSE" ]; then exit 0; fi
+            RATE=$(echo "$RESPONSE" | python3 -c "import sys,json; d=json.load(sys.stdin); print(round(d[0]['rate'],2))" 2>/dev/null || echo "")
+            SOURCE="Frankfurter"
+          else
+            RATE=$(echo "$RESPONSE" | python3 -c "import sys,json; d=json.load(sys.stdin); print(round(d['rates']['JPY'],2))" 2>/dev/null || echo "")
+            SOURCE="ExchangeRate-API"
+          fi
+          if [ -z "$RATE" ]; then exit 0; fi
+          JST=$(TZ='Asia/Tokyo' date '+%Y年%m月%d日 %H:%M JST')
+          UTC=$(date -u '+%Y-%m-%dT%H:%M:%SZ')
+          cat > fx-data.json << EOF
+          {
+            "rate": $RATE,
+            "source": "$SOURCE",
+            "updated_utc": "$UTC",
+            "updated_jst": "$JST"
+          }
+          EOF
+
+      - name: コミット＆プッシュ
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add fx-data.json
+          git diff --cached --quiet && exit 0
+          git commit -m "🔄 為替レート自動更新 $(TZ='Asia/Tokyo' date '+%Y-%m-%d')"
+          git push
