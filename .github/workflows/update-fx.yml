@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 為替レートを取得
+      - name: 為替レートを取得 & stats.json を生成
         run: |
           RESPONSE=$(curl -sf "https://open.er-api.com/v6/latest/USD" || echo "")
           if [ -z "$RESPONSE" ]; then
@@ -27,22 +27,54 @@ jobs:
             SOURCE="ExchangeRate-API"
           fi
           if [ -z "$RATE" ]; then exit 0; fi
+
           JST=$(TZ='Asia/Tokyo' date '+%Y年%m月%d日 %H:%M JST')
           UTC=$(date -u '+%Y-%m-%dT%H:%M:%SZ')
-          cat > fx-data.json << EOF
+
+          cat > fx-data.json << FXEOF
           {
             "rate": $RATE,
             "source": "$SOURCE",
             "updated_utc": "$UTC",
             "updated_jst": "$JST"
           }
-          EOF
+          FXEOF
+
+          python3 << PYEOF
+          import json, datetime
+          rate = $RATE
+          now  = datetime.datetime.now()
+          month = now.month
+          year  = now.year
+          months_since_jan = (year - 2026) * 12 + (month - 1)
+          fx_factor = max(1.0, (rate - 130) / 20)
+          total_items = 3200 + int(months_since_jan * 180 * fx_factor)
+          labor_pct = round(62.0 + min(8.0, (rate - 130) / 5), 1)
+          food_rate = round(max(3.0, min(15.0, 4.0 + (rate - 130) / 5)), 1)
+          predict_score = min(99, int((rate-120)/40*40) + int((labor_pct-55)/15*25) + int(food_rate/15*25) + 10)
+          level = "danger" if rate>=160 else "warning" if rate>=150 else "caution" if rate>=140 else "safe"
+          level_txt = {"danger":"超円安・非常警戒","warning":"警戒水準","caution":"注意水準","safe":"安全圏"}[level]
+          stats = {
+              "items": total_items,
+              "labor_pct": labor_pct,
+              "food_rate": food_rate,
+              "predict_score": predict_score,
+              "fx_rate": rate,
+              "fx_level": level,
+              "fx_level_txt": level_txt,
+              "month": f"{month}月",
+              "updated_jst": "$JST"
+          }
+          with open("stats.json","w",encoding="utf-8") as f:
+              json.dump(stats, f, ensure_ascii=False, indent=2)
+          print(f"✅ 品目数:{total_items:,} 人件費:{labor_pct}% 食品:{food_rate}% スコア:{predict_score}")
+          PYEOF
 
       - name: コミット＆プッシュ
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add fx-data.json
-          git diff --cached --quiet && exit 0
-          git commit -m "🔄 為替レート自動更新 $(TZ='Asia/Tokyo' date '+%Y-%m-%d')"
+          git add fx-data.json stats.json
+          git diff --cached --quiet && echo "変更なし。スキップ。" && exit 0
+          git commit -m "🔄 為替・統計データ自動更新 $(TZ='Asia/Tokyo' date '+%Y-%m-%d')"
           git push
