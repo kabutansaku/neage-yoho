@@ -1,11 +1,11 @@
 {
-  "items": 3734,
-  "labor_pct": 67.9,
-  "food_rate": 9.9,
+  "items": 3983,
+  "labor_pct": 67.8,
+  "food_rate": 9.8,
   "predict_score": 86,
-  "fx_rate": 159.68,
+  "fx_rate": 159.0,
   "fx_level": "warning",
   "fx_level_txt": "警戒水準",
-  "month": "3月",
-  "updated_jst": "2026年03月31日 22:30 JST"
+  "month": "4月",
+  "updated_jst": "2026年04月01日 15:12 JST"
 }
