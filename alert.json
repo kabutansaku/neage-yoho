@@ -1,104 +1,106 @@
-name: 値上げアラート自動更新
-
-on:
-  schedule:
-    - cron: '0 0 * * *'
-  workflow_dispatch:
-
-jobs:
-  update-alerts:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Generate alert.json with Claude AI
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: |
-          python3 - << 'PYEOF'
-          import json, urllib.request, datetime, os
-
-          today = datetime.date.today()
-
-          prompt = f"""あなたは日本の物価・値上げ動向の専門アナリストです。
-{today.year}年{today.month}月時点の最新情報をもとに、今月・来月に値上がりが確定または予測される品目を10件リストアップしてください。
-
-以下のJSON形式のみで出力してください（前後にテキスト不要）：
-
-{{
-  "updated": "{today.strftime('%Y年%-m月%-d日')} 09:00",
-  "source": "農林水産省・消費者庁・各社IR・為替データ",
+{
+  "updated": "2026年4月1日 09:00",
+  "source": "農水省・消費者庁・各社IR・為替データ",
   "alerts": [
-    {{
+    {
       "id": 1,
       "level": "critical",
-      "category": "カテゴリ名",
-      "cat_icon": "絵文字",
-      "name": "品目名（具体的に）",
-      "brands": "対象メーカー（カンマ区切り）",
-      "date": "値上げ実施日または予定",
+      "category": "食品・飲料",
+      "cat_icon": "🍱",
+      "name": "パン・小麦製品全般",
+      "brands": "山崎パン・フジパン・敷島製パン",
+      "date": "2026年4月8日",
       "rate_min": 8,
       "rate_max": 12,
-      "cause": "値上げ原因（具体的に）",
-      "action": "推奨アクション",
+      "cause": "小麦先物+14%・円安152円が直撃",
+      "action": "冷凍保存で今すぐ備蓄",
       "action_url": "#",
       "confidence": 5,
-      "tags": ["タグ1"],
-      "sub_items": [
-        {{
-          "name": "具体的な商品名（購入できる単位で）",
-          "shops": [
-            {{"nm": "Amazon",  "price": 2480, "url": "#"}},
-            {{"nm": "楽天",    "price": 2580, "url": "#"}},
-            {{"nm": "Yahoo!",  "price": 2650, "url": "#"}}
-          ]
-        }}
+      "tags": [
+        "食品",
+        "小麦",
+        "備蓄推奨"
       ]
-    }}
+    },
+    {
+      "id": 2,
+      "level": "critical",
+      "category": "PC・デジタル",
+      "cat_icon": "💻",
+      "name": "PC・GPU・メモリ全般",
+      "brands": "ASUS・MSI・Kingston・Samsung",
+      "date": "2026年4月以降 継続上昇",
+      "rate_min": 15,
+      "rate_max": 25,
+      "cause": "半導体需要急増+円安で二重高騰",
+      "action": "今月中の購入を強く推奨",
+      "action_url": "#",
+      "confidence": 5,
+      "tags": [
+        "デジタル",
+        "半導体",
+        "即購入推奨"
+      ]
+    },
+    {
+      "id": 3,
+      "level": "warn",
+      "category": "日用品",
+      "cat_icon": "🧴",
+      "name": "トイレットペーパー・ティッシュ",
+      "brands": "日本製紙クレシア・大王製紙・王子ネピア",
+      "date": "2026年4月15日",
+      "rate_min": 6,
+      "rate_max": 10,
+      "cause": "パルプ相場+5.4%・物流費上昇",
+      "action": "ケース買いでまとめ備蓄",
+      "action_url": "#",
+      "confidence": 5,
+      "tags": [
+        "日用品",
+        "紙製品",
+        "備蓄推奨"
+      ]
+    },
+    {
+      "id": 4,
+      "level": "warn",
+      "category": "エネルギー",
+      "cat_icon": "⚡",
+      "name": "電気料金・都市ガス",
+      "brands": "東京電力・東京ガス・大阪ガス他",
+      "date": "2026年5月検針分から",
+      "rate_min": 5,
+      "rate_max": 8,
+      "cause": "補助金終了+LNG価格上昇",
+      "action": "今すぐ電力会社を乗り換え比較",
+      "action_url": "#",
+      "confidence": 4,
+      "tags": [
+        "エネルギー",
+        "電気",
+        "乗り換え推奨"
+      ]
+    },
+    {
+      "id": 5,
+      "level": "warn",
+      "category": "食品・飲料",
+      "cat_icon": "🍜",
+      "name": "カップ麺・即席麺5社同時値上げ",
+      "brands": "日清・東洋水産・サンヨー食品・エースコック・マルちゃん",
+      "date": "2026年4月1日 確定済み",
+      "rate_min": 10,
+      "rate_max": 15,
+      "cause": "小麦+容器+物流費 三重コスト増",
+      "action": "ケース単位でまとめ買い",
+      "action_url": "#",
+      "confidence": 5,
+      "tags": [
+        "食品",
+        "麺類",
+        "確定済み"
+      ]
+    }
   ]
-}}
-
-levelの基準:
-- critical: 確定済み・緊急・値上がり率10%以上
-- warn: 予測・5〜10%程度
-
-sub_itemsは各アラートにつき2〜3件、実際に購入できる具体的な商品名と想定価格を記載してください。
-10件のアラートを必ず出力してください。"""
-
-          req_data = json.dumps({
-            "model": "claude-sonnet-4-20250514",
-            "max_tokens": 4000,
-            "messages": [{"role": "user", "content": prompt}]
-          }).encode()
-
-          api_key = os.environ.get("ANTHROPIC_API_KEY", "")
-          req = urllib.request.Request(
-            "https://api.anthropic.com/v1/messages",
-            data=req_data,
-            headers={
-              "Content-Type": "application/json",
-              "x-api-key": api_key,
-              "anthropic-version": "2023-06-01"
-            }
-          )
-
-          with urllib.request.urlopen(req) as res:
-            body = json.loads(res.read())
-            text = body["content"][0]["text"].strip()
-            start = text.find("{")
-            end   = text.rfind("}") + 1
-            alert_data = json.loads(text[start:end])
-
-          with open("alert.json", "w", encoding="utf-8") as f:
-            json.dump(alert_data, f, ensure_ascii=False, indent=2)
-
-          print(f"生成完了: {len(alert_data['alerts'])}件")
-          PYEOF
-
-      - name: Commit and push
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add alert.json
-          git diff --cached --quiet || git commit -m "🔄 alert.json 自動更新 $(date +'%Y/%m/%d')"
-          git push
+}
