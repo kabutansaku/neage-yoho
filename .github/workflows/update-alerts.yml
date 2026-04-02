@@ -1,8 +1,8 @@
-name: 値上げアラート自動更新
+name: 値上げアラート毎日自動更新
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * *'  # 毎朝9時(JST)
   workflow_dispatch:
 
 jobs:
@@ -19,11 +19,15 @@ jobs:
           import json, urllib.request, datetime, os
 
           today = datetime.date.today()
+          month = today.month
+          year  = today.year
 
           prompt = f"""あなたは日本の物価・値上げ動向の専門アナリストです。
-{today.year}年{today.month}月時点の最新情報をもとに、今月・来月に値上がりが確定または予測される品目を10件リストアップしてください。
+{year}年{month}月{today.day}日時点の最新情報をもとに、今月・来月に値上がりが確定または予測される品目を10件リストアップしてください。
 
-以下のJSON形式のみで出力してください（前後にテキスト不要）：
+重要：中項目と小項目を必ず含めてください。中項目は値上がり率が高い順に3件、小項目は具体的な購入できる商品を2〜3件記載してください。
+
+以下のJSON形式のみで出力（前後にテキスト不要）：
 
 {{
   "updated": "{today.strftime('%Y年%-m月%-d日')} 09:00",
@@ -32,25 +36,70 @@ jobs:
     {{
       "id": 1,
       "level": "critical",
-      "category": "カテゴリ名",
-      "cat_icon": "絵文字",
-      "name": "品目名（具体的に）",
-      "brands": "対象メーカー（カンマ区切り）",
-      "date": "値上げ実施日または予定",
+      "category": "食品・飲料",
+      "cat_icon": "🍱",
+      "name": "パン・小麦製品全般",
+      "brands": "山崎パン・フジパン・敷島製パン",
+      "date": "4月8日",
       "rate_min": 8,
       "rate_max": 12,
-      "cause": "値上げ原因（具体的に）",
-      "action": "推奨アクション",
+      "cause": "小麦先物+14%・円安152円が直撃",
+      "action": "冷凍保存で今すぐ備蓄",
       "action_url": "#",
       "confidence": 5,
-      "tags": ["タグ1"],
-      "sub_items": [
+      "tags": ["食品", "備蓄推奨"],
+      "mid_items": [
         {{
-          "name": "具体的な商品名（購入できる単位で）",
-          "shops": [
-            {{"nm": "Amazon",  "price": 2480, "url": "#"}},
-            {{"nm": "楽天",    "price": 2580, "url": "#"}},
-            {{"nm": "Yahoo!",  "price": 2650, "url": "#"}}
+          "name": "食パン・菓子パン",
+          "icon": "🍞",
+          "rate": 12,
+          "sub_items": [
+            {{
+              "name": "山崎食パン 超芳醇 6枚切り×6袋",
+              "shops": [
+                {{"nm": "楽天",   "price": 1280, "url": "#"}},
+                {{"nm": "Amazon", "price": 1350, "url": "#"}},
+                {{"nm": "Yahoo!", "price": 1420, "url": "#"}}
+              ]
+            }},
+            {{
+              "name": "フジパン 菓子パン詰め合わせ 24個",
+              "shops": [
+                {{"nm": "Amazon", "price": 2480, "url": "#"}},
+                {{"nm": "楽天",   "price": 2580, "url": "#"}},
+                {{"nm": "Yahoo!", "price": 2650, "url": "#"}}
+              ]
+            }}
+          ]
+        }},
+        {{
+          "name": "パスタ・麺類",
+          "icon": "🍝",
+          "rate": 10,
+          "sub_items": [
+            {{
+              "name": "ディチェコ スパゲッティ 5kg",
+              "shops": [
+                {{"nm": "Amazon", "price": 2980, "url": "#"}},
+                {{"nm": "楽天",   "price": 3080, "url": "#"}},
+                {{"nm": "Yahoo!", "price": 3150, "url": "#"}}
+              ]
+            }}
+          ]
+        }},
+        {{
+          "name": "カップ麺・即席麺",
+          "icon": "🍜",
+          "rate": 8,
+          "sub_items": [
+            {{
+              "name": "日清カップヌードル 20個セット",
+              "shops": [
+                {{"nm": "Amazon", "price": 2480, "url": "#"}},
+                {{"nm": "楽天",   "price": 2580, "url": "#"}},
+                {{"nm": "Yahoo!", "price": 2650, "url": "#"}}
+              ]
+            }}
           ]
         }}
       ]
@@ -58,16 +107,17 @@ jobs:
   ]
 }}
 
-levelの基準:
-- critical: 確定済み・緊急・値上がり率10%以上
-- warn: 予測・5〜10%程度
-
-sub_itemsは各アラートにつき2〜3件、実際に購入できる具体的な商品名と想定価格を記載してください。
-10件のアラートを必ず出力してください。"""
+注意事項：
+- levelはcritical（確定・10%以上）またはwarn（予測・5〜10%）
+- mid_itemsは値上がり率(rate)の高い順に並べること
+- sub_itemsの商品名は実際に購入できる具体的な商品名にすること
+- 価格は現在の相場に近い値を設定すること
+- 10件のアラートを必ず出力すること
+- 今日の日付 {today.strftime('%Y年%-m月%-d日')} に合わせた最新情報を使うこと"""
 
           req_data = json.dumps({
             "model": "claude-sonnet-4-20250514",
-            "max_tokens": 4000,
+            "max_tokens": 6000,
             "messages": [{"role": "user", "content": prompt}]
           }).encode()
 
@@ -89,10 +139,17 @@ sub_itemsは各アラートにつき2〜3件、実際に購入できる具体的
             end   = text.rfind("}") + 1
             alert_data = json.loads(text[start:end])
 
+          # mid_itemsをrate降順にソート
+          for alert in alert_data.get("alerts", []):
+            if "mid_items" in alert:
+              alert["mid_items"].sort(key=lambda x: x.get("rate", 0), reverse=True)
+
           with open("alert.json", "w", encoding="utf-8") as f:
             json.dump(alert_data, f, ensure_ascii=False, indent=2)
 
-          print(f"生成完了: {len(alert_data['alerts'])}件")
+          count = len(alert_data.get("alerts", []))
+          mid_count = sum(len(a.get("mid_items",[])) for a in alert_data.get("alerts",[]))
+          print(f"生成完了: {count}件のアラート、{mid_count}件の中項目")
           PYEOF
 
       - name: Commit and push
@@ -100,5 +157,5 @@ sub_itemsは各アラートにつき2〜3件、実際に購入できる具体的
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add alert.json
-          git diff --cached --quiet || git commit -m "🔄 alert.json 自動更新 $(date +'%Y/%m/%d')"
+          git diff --cached --quiet || git commit -m "🔄 alert.json 自動更新 $(date +'%Y/%m/%d') - 中項目・小項目付き"
           git push
