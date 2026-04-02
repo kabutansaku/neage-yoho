@@ -509,10 +509,10 @@ a{text-decoration:none;color:inherit}
 </header>
 
 <!-- ─── URGENT BANNER ─── -->
-<div class="urgent-banner">
+<div class="urgent-banner" id="urgent-banner">
   <div class="wrap urgent-inner">
-    <span class="urgent-badge">⚡ 緊急警告</span>
-    <span class="urgent-text">円安<strong id="u-rate">---</strong>円台が継続中。現金のまま持ち続けると年間で<strong>購買力が約10%以上目減り</strong>します。今すぐ資産防衛を始めてください。</span>
+    <span class="urgent-badge" id="urgent-badge">⚡ 緊急警告</span>
+    <span class="urgent-text" id="urgent-text">円安<strong id="u-rate">---</strong>円台が継続中。現金のまま持ち続けると年間で<strong>購買力が約10%以上目減り</strong>します。今すぐ資産防衛を始めてください。</span>
   </div>
 </div>
 
@@ -1504,6 +1504,54 @@ document.addEventListener('DOMContentLoaded', function(){
 // ══════════════════════════════════════
 // ヒーロー統計 自動取得
 // ══════════════════════════════════════
+
+// ── 緊急警告バナーを為替レートに応じて自動更新 ──
+function updateUrgentBanner(rate){
+  var badge = document.getElementById('urgent-badge');
+  var text  = document.getElementById('urgent-text');
+  var banner = document.getElementById('urgent-banner');
+  if(!text) return;
+
+  var rateStr = rate.toFixed(2);
+  var msg, badgeText, bgColor;
+
+  if(rate >= 160){
+    // 超円安
+    badgeText = '🚨 超緊急警告';
+    bgColor = 'linear-gradient(90deg,#450a0a,#7f1d1d)';
+    msg = '円安が<strong>' + rateStr + '円台</strong>に突入。2024年以来の超円安水準です。'
+      + '現金資産は急速に目減りしています。<strong>今すぐ資産防衛が必要です。</strong>';
+  } else if(rate >= 155){
+    // 高円安
+    badgeText = '🔴 緊急警告';
+    bgColor = 'linear-gradient(90deg,#7f1d1d,#dc2626)';
+    msg = '円安<strong>' + rateStr + '円台</strong>が継続中。現金のまま持ち続けると年間で'
+      + '<strong>購買力が約10%以上目減り</strong>します。今すぐ資産防衛を始めてください。';
+  } else if(rate >= 150){
+    // 注意
+    badgeText = '⚡ 警戒';
+    bgColor = 'linear-gradient(90deg,#92400e,#d97706)';
+    msg = '円安<strong>' + rateStr + '円台</strong>。150円を超えた円安水準が続いています。'
+      + '<strong>インフレ・物価上昇</strong>に備えた資産防衛を検討しましょう。';
+  } else if(rate >= 145){
+    // 軽度注意
+    badgeText = '📌 注意';
+    bgColor = 'linear-gradient(90deg,#713f12,#ca8a04)';
+    msg = '円安<strong>' + rateStr + '円台</strong>。円の購買力低下が続いています。'
+      + 'NISAや分散投資で<strong>インフレ対策</strong>を始めるタイミングです。';
+  } else {
+    // 比較的落ち着いている
+    badgeText = '📊 為替情報';
+    bgColor = 'linear-gradient(90deg,#1e3a5f,#002B80)';
+    msg = '現在のUSD/JPYは<strong>' + rateStr + '円</strong>。'
+      + '為替変動リスクに備えた<strong>資産の分散</strong>を検討しましょう。';
+  }
+
+  if(badge) badge.textContent = badgeText;
+  if(text)  text.innerHTML = msg;
+  if(banner) banner.style.background = bgColor;
+}
+
 async function loadHeroStats(){
   // ── 1. USD/JPY（fx-data.json から） ──
   try{
@@ -1514,6 +1562,10 @@ async function loadHeroStats(){
       const el = document.getElementById(id);
       if(el) el.textContent = rate;
     });
+
+    // 警告文を為替レートに応じて自動更新
+    updateUrgentBanner(parseFloat(rate));
+
   }catch(e){ console.log('fx取得失敗',e); }
 
   // ── 2. 日経平均・金 騰落率（Yahoo Finance API） ──
