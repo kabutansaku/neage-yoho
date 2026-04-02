@@ -891,71 +891,174 @@ a{text-decoration:none;color:inherit}
 <section class="section" id="furusato">
   <div class="sec-hdr">
     <span class="sec-title">🎁 ふるさと納税で節税</span>
-    
   </div>
-  <p class="sec-sub">値上げで増える支出を、ふるさと納税で取り戻す。2,000円の自己負担で豪華な返礼品＋税金控除。今やらないと損です。</p>
 
-  <div class="furusato-banner">
-    <div class="furu-title">🎁 ふるさと納税で<span>最大40%以上</span>の還元率</div>
-    <div class="furu-desc">給料から引かれる住民税・所得税が控除されるため、実質2,000円で豪華な返礼品がもらえます。値上がりしたお米・肉・魚介類を無料同然で入手できます。インフレ時代の最強節税術です。</div>
-
-    <div class="furu-calc">
-      <div class="furu-calc-title">💰 あなたのふるさと納税 上限額シミュレーター</div>
-      <div class="furu-calc-grid">
-        <div>
-          <div class="furu-inp-lbl">年収（万円）</div>
-          <input class="furu-inp" type="number" id="f-income" value="500" oninput="calcFuru()">
-        </div>
-        <div>
-          <div class="furu-inp-lbl">家族構成</div>
-          <select id="f-family" style="width:100%;background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.2);border-radius:6px;padding:8px 12px;font-size:14px;color:#fff;font-family:'Noto Sans JP',sans-serif" onchange="calcFuru()">
-            <option value="1">独身・共働き</option>
-            <option value="0.9">夫婦（配偶者控除あり）</option>
-            <option value="0.85">夫婦＋子1人</option>
-            <option value="0.8">夫婦＋子2人</option>
-            <option value="0.75">夫婦＋子3人以上</option>
-          </select>
-        </div>
-        <div>
-          <div class="furu-inp-lbl">上限の何%寄付するか</div>
-          <input class="furu-inp" type="number" id="f-pct" value="80" min="10" max="100" oninput="calcFuru()">
-        </div>
-      </div>
-      <div class="furu-result">
-        <div class="furu-result-lbl">推定 ふるさと納税 上限額</div>
-        <div class="furu-result-val" id="furu-limit">¥0</div>
-        <div class="furu-result-sub">実質負担 <strong>¥2,000</strong> で返礼品がもらえます</div>
-      </div>
+  <!-- ── ふるさと納税とは ── -->
+  <div class="card" style="margin-bottom:12px;background:linear-gradient(135deg,#0a1535,#1a2f5e);border:1px solid rgba(250,204,21,.3)">
+    <div style="font-size:15px;font-weight:800;color:#facc15;margin-bottom:12px">💡 ふるさと納税とは？</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.85);line-height:1.9;margin-bottom:14px">
+      自分が選んだ自治体に寄付すると、<strong style="color:#facc15">寄付額から2,000円を引いた全額が税金から控除</strong>される制度です。
+      つまり実質<strong style="color:#facc15">2,000円の負担</strong>で豪華な返礼品がもらえます。
     </div>
-
-    <div class="furu-sites">
-      <div class="furu-site-btn" onclick="affLink('rakuten-furu')">
-        <div class="furu-site-icon">🛒</div>
-        <div class="furu-site-name">楽天ふるさと納税</div>
-        <div class="furu-site-reward">楽天ポイント還元</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+      <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:12px;text-align:center">
+        <div style="font-size:22px;margin-bottom:4px">💰</div>
+        <div style="font-size:11px;font-weight:700;color:#facc15;margin-bottom:4px">自己負担</div>
+        <div style="font-size:20px;font-weight:900;color:#fff">2,000円</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:2px">のみ</div>
       </div>
-      <div class="furu-site-btn" onclick="affLink('furusato-choice')">
-        <div class="furu-site-icon">🎁</div>
-        <div class="furu-site-name">ふるさとチョイス</div>
-        <div class="furu-site-reward">掲載数No.1</div>
+      <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:12px;text-align:center">
+        <div style="font-size:22px;margin-bottom:4px">🎁</div>
+        <div style="font-size:11px;font-weight:700;color:#facc15;margin-bottom:4px">返礼品</div>
+        <div style="font-size:20px;font-weight:900;color:#fff">最大30%</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:2px">相当がもらえる</div>
       </div>
-      <div class="furu-site-btn" onclick="affLink('sanotomo')">
-        <div class="furu-site-icon">🌸</div>
-        <div class="furu-site-name">さとふる</div>
-        <div class="furu-site-reward">申込み最短翌日</div>
+      <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:12px;text-align:center">
+        <div style="font-size:22px;margin-bottom:4px">📋</div>
+        <div style="font-size:11px;font-weight:700;color:#facc15;margin-bottom:4px">手続き</div>
+        <div style="font-size:20px;font-weight:900;color:#fff">ワンスト</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:2px">確定申告不要</div>
       </div>
     </div>
   </div>
 
-  <div style="background:var(--paper);border:0.5px solid var(--border);border-radius:12px;padding:18px;margin-bottom:16px">
-    <div style="font-size:14px;font-weight:700;margin-bottom:12px;color:var(--t1)">🍖 値上がり前に今すぐ確保できる人気返礼品</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px">
-      ${['🍚 新潟産コシヒカリ 20kg','🥩 黒毛和牛 焼肉用 2kg','🦐 天然えび 2kg','🍗 博多地鶏 もも肉 2kg','🐟 本マグロ 中トロ 500g','🍺 クラフトビール 24缶','🧀 熊本阿蘇 チーズ詰合せ','☕ スペシャルティコーヒー'].map(item=>`
-        <div style="background:#fff;border:0.5px solid var(--border);border-radius:8px;padding:10px;font-size:12px;font-weight:500;color:var(--t1)">${item}</div>
-      `).join('')}
+  <!-- ── 値上げ時代に最強な理由 ── -->
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-h">🔥 値上げ時代にふるさと納税が最強な理由</div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:10px;background:#fef2f2;border-radius:8px">
+        <span style="font-size:20px;flex-shrink:0">🍚</span>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#1e293b;margin-bottom:2px">値上がり前にお米・肉・魚を確保</div>
+          <div style="font-size:12px;color:#64748b;line-height:1.6">コシヒカリ20kg・黒毛和牛2kg・マグロなど、値上がりが確実な食品を今の価格で確保できます</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:10px;background:#eff6ff;border-radius:8px">
+        <span style="font-size:20px;flex-shrink:0">💳</span>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#1e293b;margin-bottom:2px">楽天ポイントと二重取りも可能</div>
+          <div style="font-size:12px;color:#64748b;line-height:1.6">楽天ふるさと納税なら楽天ポイントも同時に貯まります。ポイント還元と税控除の両取りができます</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:10px;background:#f0fdf4;border-radius:8px">
+        <span style="font-size:20px;flex-shrink:0">⏰</span>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#1e293b;margin-bottom:2px">年内に申込めば今年の税金が控除</div>
+          <div style="font-size:12px;color:#64748b;line-height:1.6">12月31日までに申込完了すれば今年分の住民税・所得税から控除されます。年末が近いほど急ぐ必要があります</div>
+        </div>
+      </div>
     </div>
-    <div style="margin-top:12px;font-size:11px;color:var(--t2)">※ これらの商品は値上がりが予測されており、ふるさと納税で今のうちに確保することで値上げの影響を回避できます。</div>
   </div>
+
+  <!-- ── シミュレーター ── -->
+  <div class="card" style="margin-bottom:12px;background:linear-gradient(135deg,#0a1535,#1a2f5e);border:1px solid rgba(250,204,21,.2)">
+    <div style="font-size:13px;font-weight:700;color:#facc15;margin-bottom:12px">💰 上限額シミュレーター（目安）</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+      <div>
+        <div style="font-size:11px;color:rgba(255,255,255,.6);margin-bottom:5px">年収（万円）</div>
+        <input style="width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:8px 10px;font-size:14px;color:#fff;font-family:inherit" type="number" id="f-income" value="500" oninput="calcFuru()">
+      </div>
+      <div>
+        <div style="font-size:11px;color:rgba(255,255,255,.6);margin-bottom:5px">家族構成</div>
+        <select id="f-family" style="width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:8px 10px;font-size:13px;color:#fff;font-family:inherit" onchange="calcFuru()">
+          <option value="1">独身・共働き</option>
+          <option value="0.9">夫婦（配偶者控除あり）</option>
+          <option value="0.85">夫婦＋子1人</option>
+          <option value="0.8">夫婦＋子2人</option>
+          <option value="0.75">夫婦＋子3人以上</option>
+        </select>
+      </div>
+    </div>
+    <div style="background:rgba(250,204,21,.1);border:1px solid rgba(250,204,21,.3);border-radius:10px;padding:14px;text-align:center">
+      <div style="font-size:11px;color:rgba(255,255,255,.6);margin-bottom:4px">推定 ふるさと納税 上限額</div>
+      <div style="font-size:32px;font-weight:900;color:#facc15;font-variant-numeric:tabular-nums" id="furu-limit">¥61,000</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:4px">自己負担 <strong style="color:#fff">2,000円</strong> で返礼品がもらえます</div>
+    </div>
+    <div style="font-size:10px;color:rgba(255,255,255,.3);margin-top:8px;line-height:1.6">※ あくまで目安です。正確な控除額は総務省のシミュレーターや税理士にご確認ください</div>
+  </div>
+
+  <!-- ── 人気返礼品 ── -->
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-h">🍖 値上がり前に確保したい人気返礼品</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px">
+      <div style="padding:10px;background:#fef9c3;border-radius:8px;border:1px solid #fde68a">
+        <div style="font-size:16px;margin-bottom:4px">🍚</div>
+        <div style="font-size:12px;font-weight:700;color:#1e293b">新潟産コシヒカリ 20kg</div>
+        <div style="font-size:11px;color:#64748b;margin-top:2px">米不足・値上がり対策に</div>
+      </div>
+      <div style="padding:10px;background:#fef2f2;border-radius:8px;border:1px solid #fca5a5">
+        <div style="font-size:16px;margin-bottom:4px">🥩</div>
+        <div style="font-size:12px;font-weight:700;color:#1e293b">黒毛和牛 焼肉用 2kg</div>
+        <div style="font-size:11px;color:#64748b;margin-top:2px">肉類値上がり前に備蓄</div>
+      </div>
+      <div style="padding:10px;background:#eff6ff;border-radius:8px;border:1px solid #bfdbfe">
+        <div style="font-size:16px;margin-bottom:4px">🦐</div>
+        <div style="font-size:12px;font-weight:700;color:#1e293b">天然えび・ホタテ 2kg</div>
+        <div style="font-size:11px;color:#64748b;margin-top:2px">水産物も値上がり継続中</div>
+      </div>
+      <div style="padding:10px;background:#f0fdf4;border-radius:8px;border:1px solid #86efac">
+        <div style="font-size:16px;margin-bottom:4px">🍺</div>
+        <div style="font-size:12px;font-weight:700;color:#1e293b">クラフトビール 24缶</div>
+        <div style="font-size:11px;color:#64748b;margin-top:2px">酒税・原材料費上昇前に</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── おすすめサイト ── -->
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-h">🏆 おすすめふるさと納税サイト</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:center;gap:12px;padding:12px;background:#fff7ed;border-radius:10px;border:1.5px solid #fed7aa;cursor:pointer" onclick="affLink('rakuten-furu')">
+        <span style="font-size:28px;flex-shrink:0">🛒</span>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:800;color:#1e293b;margin-bottom:2px">楽天ふるさと納税</div>
+          <div style="font-size:11px;color:#64748b">楽天ポイントが貯まる・使える。楽天ユーザーに最適</div>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:#dc2626;background:#fee2e2;padding:3px 8px;border-radius:6px;flex-shrink:0">ポイント還元</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:12px;background:#f0fdf4;border-radius:10px;border:1.5px solid #86efac;cursor:pointer" onclick="affLink('furusato-choice')">
+        <span style="font-size:28px;flex-shrink:0">🎁</span>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:800;color:#1e293b;margin-bottom:2px">ふるさとチョイス</div>
+          <div style="font-size:11px;color:#64748b">掲載自治体・返礼品数No.1。選択肢が最も豊富</div>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:#16a34a;background:#dcfce7;padding:3px 8px;border-radius:6px;flex-shrink:0">掲載数No.1</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:12px;background:#eff6ff;border-radius:10px;border:1.5px solid #bfdbfe;cursor:pointer" onclick="affLink('sanotomo')">
+        <span style="font-size:28px;flex-shrink:0">🌸</span>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:800;color:#1e293b;margin-bottom:2px">さとふる</div>
+          <div style="font-size:11px;color:#64748b">申込から最短翌日発送。すぐ欲しい方に最適</div>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:#2563eb;background:#dbeafe;padding:3px 8px;border-radius:6px;flex-shrink:0">最短翌日</div>
+      </div>
+    </div>
+    <div style="font-size:10px;color:#94a3b8;margin-top:8px">PR：アフィリエイトプログラム参加。リンクから申込いただくと報酬を受け取る場合があります</div>
+  </div>
+
+  <!-- ── 手順 ── -->
+  <div class="card">
+    <div class="card-h">📝 ふるさと納税の手順（5分でできる）</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <div style="width:26px;height:26px;border-radius:50%;background:#002B80;color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div>
+        <div><div style="font-size:13px;font-weight:700;color:#1e293b;margin-bottom:2px">上限額を確認する</div><div style="font-size:12px;color:#64748b">上のシミュレーターで目安を確認</div></div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <div style="width:26px;height:26px;border-radius:50%;background:#002B80;color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div>
+        <div><div style="font-size:13px;font-weight:700;color:#1e293b;margin-bottom:2px">サイトで返礼品を選ぶ</div><div style="font-size:12px;color:#64748b">楽天・チョイス・さとふるから好きな返礼品を選択</div></div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <div style="width:26px;height:26px;border-radius:50%;background:#002B80;color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div>
+        <div><div style="font-size:13px;font-weight:700;color:#1e293b;margin-bottom:2px">ワンストップ特例を申請</div><div style="font-size:12px;color:#64748b">会社員なら確定申告不要。申込時にチェックを入れるだけ</div></div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <div style="width:26px;height:26px;border-radius:50%;background:#002B80;color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0">4</div>
+        <div><div style="font-size:13px;font-weight:700;color:#1e293b;margin-bottom:2px">返礼品を受け取る</div><div style="font-size:12px;color:#64748b">自宅に届いて完了！翌年6月から住民税が控除されます</div></div>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 </div>
