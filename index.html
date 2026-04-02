@@ -3,332 +3,2384 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>値上げ予報 | 家計を守る先読み情報サイト</title>
-<meta name="description" content="円安・原材料高騰から3〜6ヶ月後の値上げをAIが予測。今すぐ備えるべき商品と節約術を毎週更新。">
+<title>値上がり予測ドットコム | 家計を守る先読み情報サイト</title>
+<meta name="description" content="為替・原材料・人件費の先行指標からAIが3〜6ヶ月後の値上げを予測。今すぐ備えるべき商品と節約術を日々更新。">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700;900&family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#002B80;--red:#c0392b;--amber:#d97706;--green:#059669;--paper:#fff;--surface:#f8fafc;--border:#e2e8f0;--t1:#1e293b;--t2:#64748b;--t3:#94a3b8}
-body{font-family:'Noto Sans JP',sans-serif;background:#f1f5f9;color:var(--t1);font-size:14px;line-height:1.7;overflow-x:hidden}
+:root{
+  --navy:#002B80;--red:#c0392b;--amber:#d97706;--green:#059669;--purple:#7c3aed;
+  --paper:#fff;--surface:#f8fafc;--border:#e2e8f0;
+  --t1:#1e293b;--t2:#64748b;--t3:#94a3b8;
+}
+body{font-family:'Noto Sans JP',sans-serif;background:#f1f5f9;color:var(--t1);font-size:15px;line-height:1.7;overflow-x:hidden}
 a{text-decoration:none;color:inherit}
-.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+img{max-width:100%}
 
-/* Header */
-.hdr{background:var(--navy);border-bottom:3px solid #facc15;padding:12px 0;position:sticky;top:0;z-index:100}
-.hdr-inner{display:flex;align-items:center;justify-content:space-between}
-.logo{display:flex;align-items:center;gap:10px;cursor:pointer}
-.logo-icon{background:#facc15;border-radius:8px;width:34px;height:34px;display:flex;align-items:center;justify-content:center}
-.logo-text{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:900;color:#fff}
-.logo-sub{font-size:9px;color:rgba(255,255,255,.45);letter-spacing:.1em}
-.hdr-fx{font-family:'DM Mono',monospace;font-size:13px;color:#facc15;display:flex;align-items:center;gap:6px}
-.hdr-fx-lbl{font-size:10px;color:rgba(255,255,255,.35)}
+/* ─── LAYOUT ─── */
+.container{max-width:1440px;margin:0 auto;padding:0 8px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 
-/* Ticker */
+/* ─── HEADER ─── */
+.hdr{background:var(--navy);border-bottom:3px solid #facc15;position:sticky;top:0;z-index:200}
+.hdr-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;max-width:1440px;margin:0 auto}
+.hdr-logo{display:flex;align-items:center;gap:10px;cursor:pointer}
+.hdr-logo-icon{background:#facc15;border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center}
+.hdr-logo-text{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:900;color:#fff;white-space:nowrap}
+.hdr-logo-sub{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:.1em}
+.hdr-right{display:flex;align-items:center;gap:16px}
+.hdr-fx{font-family:'DM Mono',monospace;font-size:13px;color:#facc15;display:flex;align-items:center;gap:5px}
+.hdr-fx-lbl{font-size:9px;color:rgba(255,255,255,.4)}
+.hdr-nav{display:flex;gap:0}
+.hdr-nav a{color:rgba(255,255,255,.7);font-size:12px;padding:6px 12px;transition:color .15s;cursor:pointer}
+.hdr-nav a:hover{color:#facc15}
+
+/* ─── TICKER ─── */
 .ticker{background:var(--red);overflow:hidden;padding:7px 0;white-space:nowrap}
-.ticker-inner{display:inline-flex;animation:tick 35s linear infinite}
-.ticker-item{display:inline-flex;padding:0 28px;font-size:12px;color:#fff}
+.ticker-inner{display:inline-flex;animation:tick 40s linear infinite}
+.ticker-item{display:inline-flex;padding:0 32px;font-size:12px;color:#fff;gap:8px}
 @keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-/* Hero */
-.hero{background:var(--navy);padding:36px 0 28px;color:#fff}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
-.hero-tag{display:inline-block;background:#facc15;color:var(--navy);font-size:10px;font-weight:700;padding:3px 10px;border-radius:4px;margin-bottom:12px;letter-spacing:.05em}
-.hero-h{font-family:'Noto Serif JP',serif;font-size:30px;font-weight:900;line-height:1.3;margin-bottom:10px}
+/* ─── HERO ─── */
+.hero{background:var(--navy);padding:40px 0 32px;color:#fff}
+.hero-inner{display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:center;max-width:1440px;margin:0 auto;padding:0 8px}
+.hero-tag{display:inline-block;background:#facc15;color:var(--navy);font-size:10px;font-weight:700;padding:3px 12px;border-radius:4px;margin-bottom:14px;letter-spacing:.06em;white-space:nowrap}
+.hero-h{font-family:'Noto Serif JP',serif;font-size:36px;font-weight:900;line-height:1.3;margin-bottom:10px}
 .hero-h span{color:#facc15}
-.hero-desc{font-size:12px;color:rgba(255,255,255,.6);line-height:1.8}
+.hero-desc{font-size:15px;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:0}
 .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.hstat{background:rgba(255,255,255,.07);border:0.5px solid rgba(255,255,255,.1);border-radius:8px;padding:14px}
-.hstat-num{font-family:'DM Mono',monospace;font-size:22px;color:#facc15;line-height:1}
-.hstat-lbl{font-size:10px;color:rgba(255,255,255,.5);margin-top:4px;line-height:1.4}
+.hstat{background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.12);border-radius:10px;padding:14px 16px}
+.hstat-num{font-family:'DM Mono',monospace;font-size:26px;font-weight:500;color:#facc15;line-height:1;transition:all .4s}
+.hstat-lbl{font-size:10px;color:rgba(255,255,255,.5);margin-top:5px;line-height:1.4}
 
-/* FX banner */
-.fx-banner{background:#0a1535;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:16px 20px;margin-top:20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-.fx-rate-big{font-family:'DM Mono',monospace;font-size:42px;font-weight:500;transition:color .4s;line-height:1}
-.fx-unit{font-size:16px;color:#475569;margin-left:2px}
-.fx-info{flex:1;min-width:160px}
-.fx-level-txt{font-size:13px;font-weight:700;margin-bottom:3px}
-.fx-desc-txt{font-size:11px;color:rgba(255,255,255,.5);line-height:1.5}
-.fx-updated{font-size:10px;color:#334155;font-family:'DM Mono',monospace;margin-top:3px}
-.fx-link{font-size:11px;color:#facc15;border:0.5px solid rgba(250,204,21,.3);border-radius:6px;padding:5px 12px;cursor:pointer;white-space:nowrap;transition:background .15s}
-.fx-link:hover{background:rgba(250,204,21,.08)}
-.rate-safe{color:#4ade80}.rate-caution{color:#facc15}.rate-warning{color:#fb923c}.rate-danger{color:#f87171}.rate-crisis{color:#f43f5e}
+/* ─── SECTION ─── */
+.section{padding:28px 0}
+.sec-hdr{display:flex;align-items:center;flex-wrap:wrap;gap:8px;display:flex;align-items:baseline;gap:12px;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--t1)}
+.sec-title{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:700}
 
-/* Alert bar */
-.alert-bar{border-radius:8px;padding:12px 16px;margin-top:14px;display:flex;gap:10px;align-items:flex-start}
-.alert-bar.safe{background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2)}
-.alert-bar.caution{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.2)}
-.alert-bar.warning{background:rgba(251,146,60,.1);border:1px solid rgba(251,146,60,.25)}
-.alert-bar.danger{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3)}
-.alert-bar.crisis{background:rgba(244,63,94,.12);border:1px solid rgba(244,63,94,.35)}
-.ab-icon{font-size:18px;flex-shrink:0;margin-top:1px}
-.ab-title{font-size:13px;font-weight:700;color:#f1f5f9;margin-bottom:2px}
-.ab-desc{font-size:11px;color:rgba(255,255,255,.5);line-height:1.6}
+.sec-link{margin-left:auto;font-size:12px;color:var(--navy);font-weight:500;cursor:pointer}
+.sec-sub{font-size:12px;color:var(--t2);margin-top:-14px;margin-bottom:18px}
 
-/* Main */
-.main{padding:32px 0}
-.sec{margin-bottom:36px}
-.sec-hdr{display:flex;align-items:baseline;gap:10px;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid var(--t1)}
-.sec-title{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:700}
-.sec-en{font-family:'DM Mono',monospace;font-size:10px;color:var(--t3);letter-spacing:.1em}
-.sec-link{margin-left:auto;font-size:11px;color:var(--navy);font-weight:500;cursor:pointer}
+/* ─── ALERT CARDS (刷新版) ─── */
+.alert-meta-row{margin-left:auto;display:flex;align-items:center;gap:10px}
+.alert-updated-txt{font-size:10px;color:var(--t3);font-family:'DM Mono',monospace}
+.alert-loading{padding:20px;text-align:center;color:var(--t2);font-size:14px}
+.alert-source{font-size:10px;color:var(--t3);text-align:right;margin-top:8px}
 
-/* Article cards */
-.art-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-.art-card{background:var(--paper);border:0.5px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:all .2s;display:flex;flex-direction:column}
-.art-card:hover{box-shadow:3px 3px 0 var(--navy);transform:translate(-1px,-1px)}
-.art-thumb{height:96px;display:flex;align-items:center;justify-content:center;font-size:30px;position:relative;flex-shrink:0}
-.art-type-badge{position:absolute;top:8px;left:10px;font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;letter-spacing:.05em}
-.tb-monthly{background:#fef3c7;color:#92400e}
-.tb-ranking{background:#fee2e2;color:#991b1b}
-.tb-fx{background:#dbeafe;color:#1e40af}
-.tb-column{background:#d1fae5;color:#065f46}
-.art-body{padding:14px;flex:1;display:flex;flex-direction:column}
-.art-title{font-size:13px;font-weight:700;line-height:1.5;margin-bottom:6px;color:var(--t1);flex:1}
-.art-desc{font-size:11px;color:var(--t2);line-height:1.6;margin-bottom:10px}
-.art-footer{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:var(--t3);padding-top:8px;border-top:0.5px solid var(--border)}
-.art-footer-fx{color:var(--red);font-family:'DM Mono',monospace}
+.alert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px}
 
-/* Disclosure */
-.aff-disc{background:rgba(192,57,43,.07);border:0.5px solid rgba(192,57,43,.2);border-radius:8px;padding:10px 14px;font-size:10px;color:var(--t2);line-height:1.7;margin-bottom:24px}
-
-/* Footer */
-.ftr{background:var(--navy);color:rgba(255,255,255,.45);padding:32px 0 20px}
-.ftr-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;margin-bottom:24px}
-.ftr-logo{font-family:'Noto Serif JP',serif;font-size:18px;color:#fff;font-weight:900;margin-bottom:8px}
-.ftr-desc{font-size:11px;color:rgba(255,255,255,.35);line-height:1.7}
-.ftr-nav-title{font-size:11px;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:10px;letter-spacing:.05em}
-.ftr-nav a{display:block;font-size:11px;color:rgba(255,255,255,.35);padding:3px 0;cursor:pointer;transition:color .15s}
-.ftr-nav a:hover{color:#facc15}
-.ftr-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:16px;display:flex;justify-content:space-between;font-size:10px;flex-wrap:wrap;gap:8px}
-
-/* NL */
-.nl-card{background:var(--navy);border-radius:10px;padding:16px;margin-bottom:16px}
-.nl-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:5px}
-.nl-desc{font-size:11px;color:rgba(255,255,255,.55);margin-bottom:10px;line-height:1.6}
-.nl-input{width:100%;background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.2);border-radius:6px;padding:9px 12px;font-size:12px;color:#fff;margin-bottom:8px;outline:none;font-family:'Noto Sans JP',sans-serif}
-.nl-input::placeholder{color:rgba(255,255,255,.35)}
-.nl-btn{width:100%;background:var(--red);color:#fff;border:none;border-radius:6px;padding:9px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Noto Sans JP',sans-serif}
-
-/* Empty state */
-.empty{color:var(--t3);font-size:12px;padding:32px;text-align:center;background:var(--paper);border:0.5px dashed var(--border);border-radius:10px}
-
-@media(max-width:640px){
-  .hero-grid{grid-template-columns:1fr}
-  .hero-h{font-size:24px}
-  .ftr-grid{grid-template-columns:1fr}
-  .fx-rate-big{font-size:32px}
+.alert-card{
+  background:#fff;
+  border-radius:12px;
+  border:1.5px solid #e2e8f0;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  transition:box-shadow .18s,transform .18s;
+  cursor:pointer;
 }
+.alert-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+
+/* 上部カラーバー */
+.alert-card-bar{height:5px;width:100%}
+.alert-card.critical .alert-card-bar{background:linear-gradient(90deg,#ef4444,#f87171)}
+.alert-card.warn     .alert-card-bar{background:linear-gradient(90deg,#f59e0b,#fbbf24)}
+
+/* カード内容 */
+.alert-card-body{padding:12px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+
+/* ヘッダー行 */
+.alert-head{display:flex;align-items:center;gap:6px}
+.alert-level-badge{
+  font-size:10px;font-weight:800;padding:2px 8px;border-radius:20px;
+  letter-spacing:.04em;flex-shrink:0;
+}
+.alert-card.critical .alert-level-badge{background:#fef2f2;color:#dc2626;border:1px solid #fca5a5}
+.alert-card.warn     .alert-level-badge{background:#fffbeb;color:#d97706;border:1px solid #fde68a}
+.alert-date-badge{margin-left:auto;font-size:10px;color:#94a3b8;font-family:'DM Mono',monospace;white-space:nowrap}
+
+/* 品目名 */
+.alert-name{font-size:14px;font-weight:700;color:#1e293b;line-height:1.4}
+
+/* 値上がり率・大きく表示 */
+.alert-rate-block{
+  display:flex;align-items:flex-end;gap:8px;
+  padding:10px 14px;border-radius:8px;
+}
+.alert-card.critical .alert-rate-block{background:#fef2f2}
+.alert-card.warn     .alert-rate-block{background:#fffbeb}
+.alert-rate-num{font-size:28px;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.alert-card.critical .alert-rate-num{color:#dc2626}
+.alert-card.warn     .alert-rate-num{color:#d97706}
+.alert-rate-label{font-size:11px;color:#64748b;padding-bottom:3px}
+
+/* 詳細情報 */
+.alert-info{display:flex;flex-direction:column;gap:5px}
+.alert-info-row{display:flex;gap:6px;font-size:12px;line-height:1.5}
+.alert-info-icon{flex-shrink:0;width:16px;text-align:center;font-size:11px;margin-top:1px}
+.alert-info-text{color:#475569}
+
+/* 確度バー */
+.alert-conf-wrap{display:flex;align-items:center;gap:6px}
+.alert-conf-label{font-size:10px;color:#94a3b8}
+.alert-conf-dots{display:flex;gap:3px}
+.alert-conf-dot{width:6px;height:6px;border-radius:50%;background:#e2e8f0}
+.alert-conf-dot.on.crit{background:#ef4444}
+.alert-conf-dot.on.warn{background:#f59e0b}
+
+/* アクションボタン */
+.alert-action-btn{
+  display:block;text-align:center;
+  padding:9px;font-size:12px;font-weight:700;
+  text-decoration:none;border-top:1px solid #f1f5f9;
+  border-radius:0 0 10px 10px;
+  transition:background .15s;
+  margin-top:auto;
+}
+.alert-card.critical .alert-action-btn{color:#dc2626;background:#fef2f2}
+.alert-card.warn     .alert-action-btn{color:#d97706;background:#fffbeb}
+.alert-card.critical .alert-action-btn:hover{background:#fee2e2}
+.alert-card.warn     .alert-action-btn:hover{background:#fef3c7}
+
+@media(max-width:900px){.alert-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.alert-grid{grid-template-columns:1fr}}
+
+/* ── FORECAST DB EMBED ── */
+.main{max-width:1440px;margin:0 auto;padding:12px 8px}
+.breadcrumb{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--t2);margin-bottom:14px;padding:9px 14px;background:var(--paper);border:0.5px solid var(--border);border-radius:8px;flex-wrap:wrap}
+.bc-item{color:var(--navy);cursor:pointer;font-weight:500}.bc-item:hover{text-decoration:underline}
+.bc-sep{color:var(--t3)}.bc-cur{color:var(--t1);font-weight:700}
+.sec-hdr{margin-bottom:12px}
+.sec-title{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:700;margin-bottom:3px}
+.sec-sub{font-size:13px;color:var(--t2)}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:var(--paper);border:0.5px solid var(--border);border-radius:8px;padding:7px 14px;font-size:13px;color:var(--t1);cursor:pointer;margin-bottom:14px;font-family:'Noto Sans JP',sans-serif;transition:all .15s}
+.back-btn:hover{border-color:var(--navy);color:var(--navy)}
+.fade-in{animation:fi .2s ease}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.big-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.big-card{background:var(--paper);border:0.5px solid var(--border);border-radius:12px;padding:14px;cursor:pointer;transition:all .18s}
+.big-card:hover{border-color:var(--navy);box-shadow:2px 2px 0 rgba(0,43,128,.12);transform:translate(-1px,-1px)}
+.big-card:active{transform:scale(.98)}
+.big-top{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.big-icon{font-size:26px;flex-shrink:0}
+.big-name{font-size:14px;font-weight:700;color:var(--t1);line-height:1.3}
+.big-count{font-size:11px;color:var(--t2);margin-top:2px}
+.rise-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.rise-lbl{font-size:10px;color:var(--t2)}
+.rise-max{font-family:'DM Mono',monospace;font-size:16px;font-weight:500}
+.rbar{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:7px}
+.rbar-fill{height:100%;border-radius:3px;transition:width .5s ease}
+.risk-row{display:flex;align-items:center;gap:5px}
+.rbadge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap}
+.rb-h{background:#fee2e2;color:#991b1b}.rb-m{background:#fef3c7;color:#92400e}.rb-l{background:#f0fdf4;color:#166534}
+.arr{margin-left:auto;font-size:14px;color:var(--t3)}
+.mid-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.mid-card{background:var(--paper);border:0.5px solid var(--border);border-radius:12px;padding:14px;cursor:pointer;transition:all .18s}
+.mid-card:hover{border-color:var(--navy);box-shadow:2px 2px 0 rgba(0,43,128,.12);transform:translate(-1px,-1px)}
+.mid-card:active{transform:scale(.98)}
+.mid-top{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.mid-icon{font-size:22px;flex-shrink:0}
+.mid-name{font-size:15px;font-weight:700;color:var(--t1);line-height:1.3}
+.mid-count{font-size:11px;color:var(--t2)}
+.mid-preview{font-size:11px;color:var(--t2);margin-top:7px;line-height:1.6}
+.mid-preview span{display:inline-block;background:var(--surface);border-radius:4px;padding:1px 7px;margin:2px 3px 0 0}
+.product-list{display:flex;flex-direction:column;gap:12px}
+.product-card{background:var(--paper);border:0.5px solid var(--border);border-radius:12px;overflow:hidden}
+.pc-head{padding:14px 16px 12px;border-bottom:0.5px solid var(--border)}
+.pc-name{font-size:15px;font-weight:700;margin-bottom:5px}
+.pc-sub{font-size:12px;color:var(--t2);margin-bottom:10px}
+.pc-bars{display:flex;flex-direction:column;gap:5px}
+.pc-bar-row{display:flex;align-items:center;gap:8px}
+.pc-bar-lbl{font-size:11px;color:var(--t2);width:52px;flex-shrink:0}
+.pc-bar{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.pc-bar-fill{height:100%;border-radius:4px}
+.pc-bar-val{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;width:52px;text-align:right;flex-shrink:0}
+.pc-shops{background:var(--surface);border-top:0.5px solid var(--border)}
+.shop-row{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:0.5px solid var(--border);cursor:pointer;transition:background .1s}
+.shop-row:last-child{border-bottom:none}
+.shop-row:hover{background:#eff6ff}
+.shop-row.cheapest{background:#f0fdf4}
+.slogo{width:82px;flex-shrink:0;display:flex;align-items:center;gap:6px}
+.sicon{width:22px;height:22px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0}
+.si-r{background:#BF0000}.si-y{background:#FF0033}.si-a{background:#FF9900;color:#232f3e}
+.snm{font-size:12px;color:var(--t2)}
+.price-area{flex:1;display:flex;align-items:baseline;gap:4px}
+.sprice{font-size:18px;font-weight:500;font-variant-numeric:tabular-nums}
+.sprice.best{color:#166534;font-weight:700}
+.stax{font-size:11px;color:var(--t3)}
+.cbadge{font-size:9px;font-weight:700;color:#166534;background:#bbf7d0;padding:1px 7px;border-radius:3px}
+.spts{font-size:11px;color:var(--t2);min-width:80px}
+.pts-v{color:#BF0000;font-weight:500}
+.sdel{font-size:11px;color:var(--t3);min-width:64px;text-align:right}
+.buy-btn{background:var(--navy);color:#fff;border:none;border-radius:6px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0;font-family:'Noto Sans JP',sans-serif;white-space:nowrap;transition:background .15s}
+.buy-btn:hover{background:#003399}
+.pr-note{font-size:10px;color:var(--t3);text-align:right;padding:7px 16px;background:var(--surface);border-top:0.5px solid var(--border)}
+
+
+.db-embed-wrap{background:var(--paper,#fff);border:0.5px solid #e2e8f0;border-radius:12px;padding:12px;margin-top:8px}
+
+/* ══════════════════════════════════
+   スマホ レスポンシブ (修正版)
+══════════════════════════════════ */
+@media(max-width:768px){
+  /* ヘッダー */
+  .hdr-nav{display:none}
+  .hdr-inner{padding:8px 10px}
+  .hdr-logo-text{font-size:16px}
+  .hdr-fx{font-size:12px}
+
+  /* ヒーロー */
+  .hero{padding:24px 0 20px}
+  .hero-inner{
+    grid-template-columns:1fr;
+    gap:16px;
+    padding:0 8px;
+  }
+  .hero-h{font-size:26px}
+  .hero-desc{font-size:14px}
+  .hero-stats{grid-template-columns:repeat(2,1fr);gap:8px}
+  .hstat-num{font-size:22px}
+
+  /* 投資バナー */
+  .inv-grid{grid-template-columns:repeat(2,1fr)}
+
+  /* カレンダー */
+
+  /* ランキング */
+  .ranking-wrap{padding:16px}
+
+  /* 先行指標 */
+  .idx-grid{grid-template-columns:repeat(2,1fr)}
+
+  /* ニュース */
+  .news-grid{grid-template-columns:1fr}
+
+  /* コラム */
+  .col-grid{grid-template-columns:1fr}
+
+  /* セクション */
+  .section{padding:16px 8px}
+  .sec-title{font-size:16px}
+
+  /* 全品目DB */
+  .big-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .mid-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+}
+
+@media(max-width:480px){
+  /* ヒーロー */
+  .hero-h{font-size:22px}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .hstat-num{font-size:20px}
+
+  /* 投資バナー */
+  .inv-grid{grid-template-columns:repeat(2,1fr)}
+
+  /* アラート */
+  .alert-grid{grid-template-columns:1fr}
+
+  /* カレンダー */
+
+  /* 全品目DB */
+  .big-grid{grid-template-columns:repeat(2,1fr)}
+  .mid-grid{grid-template-columns:1fr}
+
+  /* 価格比較 */
+  .spts,.sdel{display:none}
+  .sprice{font-size:15px}
+  .main{padding:8px 4px}
+}
+/* ─── CALENDAR ─── */
+.cal-tabs{display:flex;gap:4px;margin-bottom:12px;overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+.cal-tab{
+  padding:6px 14px;font-size:13px;font-weight:600;
+  border:1.5px solid #e2e8f0;border-radius:20px;
+  background:#fff;color:#64748b;cursor:pointer;
+  transition:all .15s;white-space:nowrap;flex-shrink:0;
+}
+.cal-tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.cal-tab:hover:not(.active){border-color:var(--navy);color:var(--navy)}
+
+.cal-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.cal-item{
+  background:#fff;
+  border-radius:10px;
+  border:1px solid #e2e8f0;
+  overflow:hidden;
+  transition:box-shadow .15s,transform .15s;
+  cursor:pointer;
+}
+.cal-item:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.08)}
+
+/* カテゴリ別ヘッダーカラー */
+.cal-item-head{padding:6px 12px;font-size:10px;font-weight:700;letter-spacing:.06em}
+.cal-item.cat-food    .cal-item-head{background:#fef2f2;color:#dc2626}
+.cal-item.cat-daily   .cal-item-head{background:#eff6ff;color:#2563eb}
+.cal-item.cat-energy  .cal-item-head{background:#fffbeb;color:#d97706}
+.cal-item.cat-pc      .cal-item-head{background:#f0fdf4;color:#16a34a}
+.cal-item.cat-kaden   .cal-item-head{background:#faf5ff;color:#7c3aed}
+.cal-item.cat-other   .cal-item-head{background:#f8fafc;color:#475569}
+
+.cal-item-body{padding:8px 10px;display:flex;flex-direction:column;gap:4px}
+.cal-name{font-size:13px;font-weight:700;color:#1e293b;line-height:1.4}
+.cal-sub{font-size:11px;color:#64748b;line-height:1.4}
+
+.cal-rate-row{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
+.cal-rate{
+  font-size:16px;font-weight:800;font-variant-numeric:tabular-nums;
+}
+.cal-item.cat-food   .cal-rate{color:#dc2626}
+.cal-item.cat-daily  .cal-rate{color:#2563eb}
+.cal-item.cat-energy .cal-rate{color:#d97706}
+.cal-item.cat-pc     .cal-rate{color:#16a34a}
+.cal-item.cat-kaden  .cal-rate{color:#7c3aed}
+.cal-item.cat-other  .cal-rate{color:#475569}
+
+.cal-conf{display:flex;gap:2px}
+.cal-conf-dot{width:6px;height:6px;border-radius:50%;background:#e2e8f0}
+.cal-conf-dot.on{background:#94a3b8}
+.cal-item.cat-food   .cal-conf-dot.on{background:#ef4444}
+.cal-item.cat-daily  .cal-conf-dot.on{background:#3b82f6}
+.cal-item.cat-energy .cal-conf-dot.on{background:#f59e0b}
+.cal-item.cat-pc     .cal-conf-dot.on{background:#22c55e}
+.cal-item.cat-kaden  .cal-conf-dot.on{background:#8b5cf6}
+.cal-item.cat-other  .cal-conf-dot.on{background:#94a3b8}
+
+@media(max-width:900px){.cal-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.cal-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:400px){.cal-grid{grid-template-columns:1fr}}
+
+
+/* カレンダー追加カテゴリ色 */
+.cal-item.cat-health  .cal-item-head{background:#fdf4ff;color:#a21caf}
+.cal-item.cat-baby    .cal-item-head{background:#fff0f6;color:#db2777}
+.cal-item.cat-pet     .cal-item-head{background:#f0fdf4;color:#15803d}
+.cal-item.cat-kitchen .cal-item-head{background:#fff7ed;color:#ea580c}
+.cal-item.cat-telecom .cal-item-head{background:#eff6ff;color:#1d4ed8}
+
+.cal-item.cat-health  .cal-rate{color:#a21caf}
+.cal-item.cat-baby    .cal-rate{color:#db2777}
+.cal-item.cat-pet     .cal-rate{color:#15803d}
+.cal-item.cat-kitchen .cal-rate{color:#ea580c}
+.cal-item.cat-telecom .cal-rate{color:#1d4ed8}
+
+.cal-item.cat-health  .cal-conf-dot.on{background:#c026d3}
+.cal-item.cat-baby    .cal-conf-dot.on{background:#ec4899}
+.cal-item.cat-pet     .cal-conf-dot.on{background:#22c55e}
+.cal-item.cat-kitchen .cal-conf-dot.on{background:#f97316}
+.cal-item.cat-telecom .cal-conf-dot.on{background:#3b82f6}
+
+
+/* ══ スマホ極限幅 ══ */
+@media(max-width:600px){
+  .container{padding:0 4px}
+  .main{padding:8px 4px}
+  .section{padding:14px 0}
+  .hdr-inner{padding:8px 8px}
+  .hero-inner{padding:0 6px}
+  .sec-hdr{margin-bottom:12px;padding-bottom:8px}
+  .alert-card-body{padding:10px 12px}
+  .cal-item-body{padding:8px 10px}
+  .ranking-wrap{padding:14px 12px}
+  .inv-wrap .inv-inner{padding:16px 10px}
+  .inv-grid{gap:6px}
+  .inv-btn{padding:10px 8px}
+  .inv-btn-name{font-size:11px}
+}
+@media(max-width:400px){
+  .container{padding:0 2px}
+  .hdr-inner{padding:8px 6px}
+  .hero-inner{padding:0 4px}
+}
+/* ─── RANKING ─── */
+.ranking-wrap{border-radius:14px;overflow:hidden}
+.ranking-note{display:none}/* 説明文不要 */
+
+.rank-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+
+.rank-card{
+  background:#fff;
+  border:1.5px solid #e2e8f0;
+  border-radius:12px;
+  overflow:hidden;
+  transition:box-shadow .18s,transform .18s;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+}
+.rank-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+
+/* 順位バッジ色 */
+.rank-card[data-rank="1"],.rank-card[data-rank="2"],.rank-card[data-rank="3"]{border-color:#fbbf24}
+
+/* カードヘッダー */
+.rank-card-head{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 12px;
+  border-bottom:1px solid #f1f5f9;
+  background:#f8fafc;
+}
+.rank-num-badge{
+  width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;flex-shrink:0;
+}
+.rank-num-badge.gold  {background:#fef3c7;color:#d97706;border:1.5px solid #fbbf24}
+.rank-num-badge.silver{background:#f1f5f9;color:#475569;border:1.5px solid #cbd5e1}
+.rank-num-badge.bronze{background:#fef3c7;color:#92400e;border:1.5px solid #fde68a}
+.rank-num-badge.normal{background:#f1f5f9;color:#64748b;border:1.5px solid #e2e8f0}
+.rank-icon-name{display:flex;align-items:center;gap:5px;flex:1;min-width:0}
+.rank-icon{font-size:18px;flex-shrink:0}
+.rank-name{font-size:12px;font-weight:700;color:#1e293b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* 損失額ブロック */
+.rank-loss-block{
+  padding:10px 12px;
+  background:linear-gradient(135deg,#fef2f2 0%,#fff 80%);
+  border-bottom:1px solid #fef2f2;
+}
+.rank-loss-label{font-size:10px;color:#64748b;margin-bottom:2px}
+.rank-loss-amount{
+  font-size:22px;font-weight:900;color:#dc2626;
+  font-variant-numeric:tabular-nums;line-height:1.1;
+}
+.rank-loss-basis{font-size:10px;color:#94a3b8;margin-top:1px}
+
+/* 値上がり率バー */
+.rank-rate-row{display:flex;align-items:center;gap:6px;padding:8px 12px}
+.rank-bar{flex:1;height:6px;background:#f1f5f9;border-radius:3px;overflow:hidden}
+.rank-bar-fill{height:100%;border-radius:3px;transition:width .8s ease}
+.rank-rate-val{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* スコア・緊急度 */
+.rank-meta{display:flex;align-items:center;justify-content:space-between;padding:6px 12px 8px}
+.rank-stars{display:flex;gap:2px}
+.rank-star{font-size:12px;line-height:1}
+.rank-urgency{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap}
+.rank-urgency.urgent{background:#fef2f2;color:#dc2626}
+.rank-urgency.soon  {background:#fffbeb;color:#d97706}
+.rank-urgency.watch {background:#f0fdf4;color:#16a34a}
+
+/* 理由テキスト */
+.rank-reason{
+  font-size:11px;color:#475569;
+  padding:0 12px 10px;line-height:1.5;
+}
+
+/* アクションボタン */
+.rank-btn{
+  display:block;text-align:center;
+  padding:8px 12px;font-size:12px;font-weight:700;
+  background:var(--navy);color:#fff;
+  text-decoration:none;margin-top:auto;
+  transition:background .15s;
+  border:none;cursor:pointer;width:100%;
+}
+.rank-btn:hover{background:#003399}
+
+@media(max-width:600px){
+  .rank-grid{grid-template-columns:1fr}
+  .rank-loss-amount{font-size:20px}
+}
+
+
+/* ── ランキング連動 価格比較 ── */
+.rank-compare-wrap{
+  margin-top:16px;
+  background:#fff;
+  border:1.5px solid #e2e8f0;
+  border-radius:12px;
+  overflow:hidden;
+}
+.rank-compare-hdr{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 16px;
+  background:#f8fafc;
+  border-bottom:1px solid #e2e8f0;
+}
+.rank-compare-title{font-size:14px;font-weight:700;color:#1e293b}
+.rank-compare-hint{font-size:11px;color:#94a3b8;margin-left:auto}
+
+/* 商品比較カード */
+.compare-item{
+  padding:12px 16px;
+  border-bottom:1px solid #f1f5f9;
+}
+.compare-item:last-child{border-bottom:none}
+.cmp-name{font-size:13px;font-weight:700;color:#1e293b;margin-bottom:8px}
+.cmp-rise-badge{display:inline-block;font-size:10px;font-weight:700;
+  padding:1px 7px;border-radius:10px;background:#fef2f2;color:#dc2626;
+  margin-left:6px;vertical-align:middle}
+
+.cmp-shops{display:flex;flex-direction:column;gap:4px}
+.cmp-shop{
+  display:flex;align-items:center;
+  padding:6px 10px;border-radius:8px;
+  border:1px solid #e2e8f0;gap:8px;
+}
+.cmp-shop.best{border-color:#fbbf24;background:#fffbeb}
+.cmp-shop-name{font-size:12px;color:#475569;width:72px;flex-shrink:0}
+.cmp-price{font-size:14px;font-weight:700;color:#1e293b;margin-left:auto}
+.cmp-price.best-price{color:#dc2626}
+.cmp-badge{
+  font-size:10px;font-weight:700;
+  padding:1px 7px;border-radius:8px;
+  background:#fef3c7;color:#d97706;
+  flex-shrink:0;
+}
+.cmp-del{font-size:10px;color:#64748b;flex-shrink:0}
+.aff-disc{font-size:10px;color:#94a3b8;padding:8px 16px;border-top:1px solid #f1f5f9}
+
+/* ランキングカードの選択状態 */
+.rank-card.selected{border-color:var(--navy);box-shadow:0 0 0 2px rgba(0,43,128,.15)}
+
+
+/* ── 今日のおすすめ備蓄品 ── */
+.stockup-wrap{
+  margin-top:16px;
+  background:#fff;
+  border:1.5px solid #e2e8f0;
+  border-radius:12px;
+  overflow:hidden;
+}
+.stockup-hdr{
+  display:flex;align-items:baseline;gap:10px;
+  padding:12px 16px;
+  background:#f8fafc;
+  border-bottom:1px solid #e2e8f0;
+}
+.stockup-title{font-size:15px;font-weight:800;color:#1e293b}
+.stockup-sub{font-size:11px;color:#94a3b8}
+.su-loading,.su-empty{padding:20px;text-align:center;color:#94a3b8;font-size:13px}
+
+/* カテゴリブロック */
+.su-category{border-bottom:1px solid #f1f5f9}
+.su-category:last-child{border-bottom:none}
+
+.su-cat-head{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 16px;
+  font-size:12px;font-weight:700;
+}
+.su-cat-head.su-crit{background:#fef2f2;color:#dc2626}
+.su-cat-head.su-warn{background:#fffbeb;color:#d97706}
+.su-cat-icon{font-size:14px}
+.su-cat-name{font-weight:700}
+.su-cat-rate{
+  font-size:13px;font-weight:800;
+  margin-left:4px;
+}
+.su-cat-date{margin-left:auto;font-size:10px;opacity:.7;font-family:'DM Mono',monospace}
+
+/* 商品アイテム */
+.su-item{padding:10px 16px;border-top:1px solid #f8fafc}
+.su-item-name{font-size:13px;font-weight:700;color:#1e293b;margin-bottom:4px}
+.su-item-reason{font-size:11px;color:#64748b;margin-bottom:8px;line-height:1.5}
+
+/* ショップ比較 */
+.su-shops{display:flex;flex-direction:column;gap:4px}
+.su-shop{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 10px;border-radius:8px;
+  border:1px solid #e2e8f0;
+  text-decoration:none;
+  transition:background .12s;
+}
+.su-shop:hover{background:#f8fafc}
+.su-shop.su-best{border-color:#fbbf24;background:#fffbeb}
+.su-shop.su-best:hover{background:#fef3c7}
+.su-shop-nm{font-size:11px;color:#64748b;width:70px;flex-shrink:0}
+.su-shop-price{font-size:15px;font-weight:800;color:#1e293b;font-variant-numeric:tabular-nums}
+.su-shop.su-best .su-shop-price{color:#dc2626}
+.su-best-badge{
+  font-size:10px;font-weight:700;
+  padding:1px 7px;border-radius:8px;
+  background:#fef3c7;color:#d97706;flex-shrink:0;
+}
+.su-badge{
+  font-size:10px;color:#64748b;
+  margin-left:auto;flex-shrink:0;
+}
+
+
+/* ─── INDICATORS ─── */
+.idx-groups{display:flex;flex-direction:column;gap:12px}
+
+.idx-group{background:#fff;border:1.5px solid #e2e8f0;border-radius:12px;overflow:hidden}
+.idx-group-head{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 14px;
+  background:#f8fafc;border-bottom:1px solid #e2e8f0;
+  font-size:12px;font-weight:700;color:#475569;
+}
+
+.idx-row{
+  display:grid;
+  grid-template-columns:auto 1fr auto auto;
+  align-items:center;gap:10px;
+  padding:10px 14px;
+  border-bottom:1px solid #f8fafc;
+  transition:background .12s;
+}
+.idx-row:last-child{border-bottom:none}
+.idx-row:hover{background:#f8fafc}
+
+.idx-icon{font-size:18px;width:24px;text-align:center;flex-shrink:0}
+.idx-body{min-width:0}
+.idx-name{font-size:12px;font-weight:700;color:#1e293b}
+.idx-impact{font-size:10px;color:#64748b;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* 現在値＋変化率 */
+.idx-vals{text-align:right;flex-shrink:0}
+.idx-val{font-size:13px;font-weight:700;color:#1e293b;font-variant-numeric:tabular-nums}
+.idx-change{font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;display:block;margin-top:1px}
+.idx-change.up  {color:#dc2626}
+.idx-change.down{color:#16a34a}
+.idx-change.flat{color:#94a3b8}
+
+/* 警戒バッジ */
+.idx-badge{
+  font-size:10px;font-weight:700;
+  padding:2px 7px;border-radius:10px;
+  flex-shrink:0;white-space:nowrap;
+}
+.idx-badge.danger{background:#fee2e2;color:#991b1b}
+.idx-badge.warn  {background:#fef3c7;color:#92400e}
+.idx-badge.ok    {background:#f0fdf4;color:#166534}
+.idx-badge.down  {background:#f0fdf4;color:#166534}
+
+/* 転嫁タイムラグ（コンパクト版） */
+/* 転嫁タイムラグ（横スクロール対応） */
+.lag-strip{
+  display:flex;
+  flex-wrap:nowrap;
+  overflow-x:auto;
+  gap:8px;
+  padding:10px 14px;
+  background:#f8fafc;
+  border-top:1px solid #e2e8f0;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.lag-strip::-webkit-scrollbar{display:none}
+.lag-strip-label{font-size:10px;font-weight:700;color:#94a3b8;white-space:nowrap;align-self:center;flex-shrink:0;margin-right:2px}
+.lag-chip{
+  display:flex;align-items:center;gap:5px;
+  flex-shrink:0;
+  background:#fff;
+  border:1px solid #e2e8f0;
+  border-radius:20px;
+  padding:5px 11px;
+  text-decoration:none;
+  transition:border-color .12s;
+}
+.lag-chip:hover{border-color:#94a3b8}
+.lag-chip-icon{font-size:13px;line-height:1}
+.lag-chip-body{display:flex;flex-direction:column;gap:1px}
+.lag-chip-name{font-size:11px;font-weight:700;color:#1e293b;white-space:nowrap}
+.lag-chip-months{font-size:10px;color:#64748b;white-space:nowrap}
+
+
+@media(max-width:600px){
+  .idx-row{grid-template-columns:auto 1fr auto}
+  .idx-badge{display:none}
+  .idx-impact{display:none}
+}
+
+/* ─── NEWS ─── */
+/* フィルタータブ */
+.news-filter{
+  display:flex;gap:6px;overflow-x:auto;
+  flex-wrap:nowrap;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;padding-bottom:4px;
+  margin-bottom:14px;
+}
+.news-filter::-webkit-scrollbar{display:none}
+.news-filter-btn{
+  flex-shrink:0;padding:5px 14px;font-size:12px;font-weight:600;
+  border-radius:20px;border:1.5px solid #e2e8f0;
+  background:#fff;color:#64748b;cursor:pointer;
+  transition:all .15s;white-space:nowrap;
+}
+.news-filter-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.news-filter-btn:hover:not(.active){border-color:var(--navy);color:var(--navy)}
+
+/* グリッド */
+.news-grid{display:flex;flex-direction:column;gap:8px}
+
+/* フィーチャーカード（1位） */
+.news-card-feature{
+  background:#fff;border:1.5px solid #e2e8f0;border-radius:12px;
+  overflow:hidden;transition:box-shadow .18s,transform .18s;cursor:pointer;
+}
+.news-card-feature:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.news-card-feature-body{padding:14px 16px}
+
+/* コンパクトリスト */
+.news-list{
+  background:#fff;border:1.5px solid #e2e8f0;border-radius:12px;
+  overflow:hidden;
+}
+.news-list-item{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:11px 14px;border-bottom:1px solid #f1f5f9;
+  cursor:pointer;transition:background .12s;
+}
+.news-list-item:last-child{border-bottom:none}
+.news-list-item:hover{background:#f8fafc}
+.news-list-num{
+  font-size:11px;font-weight:800;color:#94a3b8;
+  flex-shrink:0;width:18px;padding-top:1px;
+}
+
+/* タグバッジ */
+.news-tag{
+  display:inline-block;font-size:10px;font-weight:700;
+  padding:2px 8px;border-radius:10px;
+  margin-bottom:6px;white-space:nowrap;
+}
+.tag-sokuho{background:#fee2e2;color:#dc2626}
+.tag-kinyu {background:#fef2f2;color:#b91c1c}
+.tag-kaisetsu{background:#eff6ff;color:#2563eb}
+.tag-setsuyaku{background:#f0fdf4;color:#16a34a}
+.tag-bichiku{background:#fef9c3;color:#854d0e}
+.tag-sangyo{background:#f5f3ff;color:#6d28d9}
+.tag-toushi{background:#fff7ed;color:#c2410c}
+.tag-default{background:#f1f5f9;color:#475569}
+
+/* テキスト */
+.news-title-feature{font-size:15px;font-weight:700;color:#1e293b;line-height:1.5;margin-bottom:6px}
+.news-title-list{font-size:13px;font-weight:700;color:#1e293b;line-height:1.4;flex:1}
+.news-body-feature{font-size:12px;color:#64748b;line-height:1.7;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.news-meta{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.news-date-txt{font-size:10px;color:#94a3b8;font-family:'DM Mono',monospace}
+
+/* リスト側メタ */
+.news-list-meta{display:flex;flex-direction:column;flex:1;gap:3px}
+.news-list-tag-date{display:flex;align-items:center;gap:6px;margin-top:3px}
+.news-list-date{font-size:10px;color:#94a3b8;font-family:'DM Mono',monospace}
+
+@media(max-width:600px){
+  .news-title-feature{font-size:14px}
+  .news-card-feature-body{padding:12px 14px}
+  .news-list-item{padding:10px 12px}
+}
+
+/* ══ FOOTER ══ */
+.ftr{
+  background:var(--navy);
+  color:rgba(255,255,255,.75);
+  margin-top:40px;
+}
+.ftr-inner{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:32px;
+  max-width:1440px;
+  margin:0 auto;
+  padding:36px 16px 28px;
+}
+.ftr-logo{
+  font-family:'Noto Serif JP',serif;
+  font-size:16px;font-weight:900;
+  color:#fff;margin-bottom:10px;
+}
+.ftr-desc{
+  font-size:12px;line-height:1.8;
+  color:rgba(255,255,255,.6);
+}
+.ftr-nav h4{
+  font-size:11px;font-weight:700;
+  color:#facc15;letter-spacing:.08em;
+  margin-bottom:10px;text-transform:uppercase;
+}
+.ftr-nav a{
+  display:block;font-size:12px;
+  color:rgba(255,255,255,.6);
+  margin-bottom:7px;cursor:pointer;
+  text-decoration:none;
+  transition:color .15s;
+}
+.ftr-nav a:hover{color:#fff}
+.ftr-bottom{
+  border-top:1px solid rgba(255,255,255,.1);
+  max-width:1440px;margin:0 auto;
+  padding:14px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:6px;
+}
+.ftr-bottom span{font-size:11px;color:rgba(255,255,255,.4)}
+.ftr-disc{text-align:right}
+
+@media(max-width:768px){
+  .ftr-inner{
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+    padding:28px 14px 20px;
+  }
+  .ftr-brand{grid-column:1/-1}
+}
+@media(max-width:480px){
+  .ftr-inner{grid-template-columns:1fr 1fr;gap:20px}
+  .ftr-bottom{flex-direction:column;align-items:flex-start;gap:4px}
+  .ftr-disc{text-align:left}
+}
+
+
+/* ── アラート展開パネル ── */
+.alert-card{cursor:pointer}
+.alert-expand-hint{
+  font-size:11px;font-weight:600;
+  text-align:center;padding:6px 0 2px;
+  border-top:1px solid #f1f5f9;margin-top:4px;
+}
+.alert-card.critical .alert-expand-hint{color:#dc2626}
+.alert-card.warn     .alert-expand-hint{color:#d97706}
+
+.alert-sub-panel{
+  max-height:0;overflow:hidden;
+  transition:max-height .3s ease;
+  border-top:0px solid transparent;
+}
+.alert-sub-panel.open{
+  max-height:600px;
+  border-top:1.5px solid #f1f5f9;
+}
+
+/* 小項目 */
+.alert-sub-item{
+  padding:10px 14px;
+  border-bottom:1px solid #f8fafc;
+}
+.alert-sub-item:last-child{border-bottom:none}
+.alert-sub-name{
+  font-size:12px;font-weight:700;
+  color:#1e293b;margin-bottom:7px;
+}
+.alert-sub-shops{display:flex;flex-direction:column;gap:4px}
+.alert-shop-btn{
+  display:flex;align-items:center;gap:6px;
+  padding:6px 10px;border-radius:8px;
+  border:1px solid #e2e8f0;
+  text-decoration:none;
+  transition:background .12s;
+  cursor:pointer;
+}
+.alert-shop-btn:hover{background:#f8fafc}
+.alert-shop-btn.best{border-color:#fbbf24;background:#fffbeb}
+.alert-shop-btn.best:hover{background:#fef3c7}
+.alert-shop-nm{font-size:11px;color:#64748b;width:56px;flex-shrink:0}
+.alert-shop-price{font-size:14px;font-weight:800;color:#1e293b;font-variant-numeric:tabular-nums}
+.alert-shop-btn.best .alert-shop-price{color:#dc2626}
+.alert-shop-badge{
+  font-size:10px;font-weight:700;
+  padding:1px 6px;border-radius:8px;
+  background:#fef3c7;color:#d97706;
+  flex-shrink:0;margin-left:auto;
+}
+
+/* 展開時のカードスタイル */
+.alert-card.expanded{
+  box-shadow:0 4px 20px rgba(0,0,0,.1);
+}
+.alert-card.critical.expanded{border-color:#fca5a5}
+.alert-card.warn.expanded    {border-color:#fde68a}
+
+/* グリッド: 2列→スマホ1列 */
+@media(max-width:900px){.alert-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.alert-grid{grid-template-columns:1fr}}
+
+
+/* ── アラート展開パネル追加CSS ── */
+.alert-sub-header{
+  padding:10px 14px 6px;
+  font-size:12px;font-weight:700;color:#475569;
+  background:#f8fafc;border-bottom:1px solid #f1f5f9;
+}
+.alert-sub-auto{padding:10px 14px;border-bottom:1px solid #f8fafc}
+
 </style>
 </head>
 <body>
 
+<!-- ─── HEADER ─── -->
 <header class="hdr">
-  <div class="wrap hdr-inner">
-    <div class="logo">
-      <div class="logo-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#002B80" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-      </div>
-      <div><div class="logo-text">値上げ予報</div><div class="logo-sub">NEAGE YOHO</div></div>
+  <div class="hdr-inner">
+    <div class="hdr-logo">
+      <div class="hdr-logo-text">値上がり予測ドットコム</div>
     </div>
-    <div class="hdr-fx"><span class="hdr-fx-lbl">USD/JPY</span><span id="hdr-rate">---</span>円</div>
+    <nav class="hdr-nav">
+      <a onclick="scrollToId('alerts')">アラート</a>
+      <a onclick="scrollToId('calendar')">カレンダー</a>
+      <a onclick="scrollToId('ranking')">ランキング</a>
+      <a onclick="scrollToId('indicators')">指標</a>
+      <a onclick="scrollToId('news')">ニュース</a>
+      <a onclick="scrollToId('forecast-db')">予測DB</a>
+    </nav>
+    <div class="hdr-right">
+      <div class="hdr-fx">
+        <span class="hdr-fx-lbl">USD/JPY</span>
+        <span id="hdr-rate">---</span>円
+      </div>
+    </div>
   </div>
 </header>
 
+<!-- ─── TICKER ─── -->
 <div class="ticker">
-  <div class="ticker-inner">
+  <div class="ticker-inner" id="ticker-inner">
     <span class="ticker-item">🌾 小麦先物 ↑+4.2%</span>
     <span class="ticker-item">💴 USD/JPY <span id="tick-rate">---</span>円</span>
     <span class="ticker-item">🛢 原油WTI $78.4/bbl ↑</span>
     <span class="ticker-item">🫘 大豆先物 ↑+2.8%</span>
     <span class="ticker-item">🍬 砂糖相場 ↑+6.1%</span>
     <span class="ticker-item">🚛 物流コスト ↑+11.2%</span>
-    <span class="ticker-item">👷 人件費由来 66%（過去最高）</span>
+    <span class="ticker-item">👷 人件費由来 <span id="tick-labor">66%</span>（過去最高）</span>
+    <span class="ticker-item">📊 予測スコア <span id="tick-score">--</span>点</span>
     <span class="ticker-item">🌾 小麦先物 ↑+4.2%</span>
     <span class="ticker-item">💴 USD/JPY <span id="tick-rate2">---</span>円</span>
     <span class="ticker-item">🛢 原油WTI $78.4/bbl ↑</span>
     <span class="ticker-item">🫘 大豆先物 ↑+2.8%</span>
     <span class="ticker-item">🍬 砂糖相場 ↑+6.1%</span>
     <span class="ticker-item">🚛 物流コスト ↑+11.2%</span>
-    <span class="ticker-item">👷 人件費由来 66%（過去最高）</span>
+    <span class="ticker-item">👷 人件費由来 <span id="tick-labor2">66%</span>（過去最高）</span>
+    <span class="ticker-item">📊 予測スコア <span id="tick-score2">--</span>点</span>
   </div>
 </div>
 
+<!-- ─── HERO ─── -->
 <section class="hero">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <span class="hero-tag">🔮 3〜6ヶ月先を読む</span>
-        <h1 class="hero-h">値上げを<span>先読み</span>して<br>家計を守る</h1>
-        <p class="hero-desc">原材料・為替・人件費の先行指標から、3〜6ヶ月後の値上げをAIが予測。今すぐ備えるべき商品と節約術を毎週更新。</p>
-      </div>
-      <div class="hero-stats">
-        <div class="hstat"><div class="hstat-num">4,532</div><div class="hstat-lbl">2026年累計<br>値上げ品目数</div></div>
-        <div class="hstat"><div class="hstat-num">66%</div><div class="hstat-lbl">人件費由来の<br>値上げ割合</div></div>
-        <div class="hstat"><div class="hstat-num">+8.3%</div><div class="hstat-lbl">食品平均<br>値上げ率</div></div>
-        <div class="hstat"><div class="hstat-num" style="color:#4ade80">94点</div><div class="hstat-lbl">今月の<br>予測スコア</div></div>
-      </div>
+  <div class="hero-inner">
+    <div>
+      <span class="hero-tag">AIが3〜6ヶ月先を読む</span>
+      <h1 class="hero-h">値上げを<span>先読み</span>して<br>家計を守る</h1>
+      <p class="hero-desc">為替・原材料・人件費の先行指標からAIが3〜6ヶ月後の値上げを予測。<br>今すぐ備えるべき商品と節約術を日々更新。</p>
     </div>
-
-    <div class="fx-banner">
-      <div>
-        <div style="font-size:10px;color:#334155;margin-bottom:3px">USD / JPY</div>
-        <div style="display:flex;align-items:baseline;gap:6px">
-          <span class="fx-rate-big rate-warning" id="fx-rate-big">---</span>
-          <span class="fx-unit">円</span>
-        </div>
-      </div>
-      <div class="fx-info">
-        <div class="fx-level-txt" id="fx-level-txt">読み込み中...</div>
-        <div class="fx-desc-txt" id="fx-desc-txt"></div>
-        <div class="fx-updated" id="fx-updated"></div>
-      </div>
-      <a href="fx-watch.html" class="fx-link">詳細分析を見る →</a>
-    </div>
-
-    <div class="alert-bar warning" id="alert-bar">
-      <span class="ab-icon" id="ab-icon">⏳</span>
-      <div>
-        <div class="ab-title" id="ab-title">データ読み込み中...</div>
-        <div class="ab-desc" id="ab-desc"></div>
-      </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-num" id="stat-items">---</div><div class="hstat-lbl">2026年累計<br>値上げ品目数</div></div>
+      <div class="hstat"><div class="hstat-num" id="stat-labor">---%</div><div class="hstat-lbl">人件費由来の<br>値上げ割合（過去最高）</div></div>
+      <div class="hstat"><div class="hstat-num" id="stat-food">+---%</div><div class="hstat-lbl">食品平均<br>値上げ率（前年比）</div></div>
+      <div class="hstat"><div class="hstat-num" id="stat-score" style="color:#4ade80">--点</div><div class="hstat-lbl">今月の<br>AI予測スコア</div></div>
     </div>
   </div>
 </section>
 
-<div class="wrap main">
+<!-- 投資・資産防衛バナー -->
+<!-- ══════════════════════════════════════════
+  投資・資産防衛バナー（スマホファースト版）
+  index.htmlの .hero セクション直後に貼り付け
+══════════════════════════════════════════ -->
+<style>
+.inv-wrap{
+  background:linear-gradient(160deg,#0d0030 0%,#002B80 55%,#0a0a2e 100%);
+  border-top:1px solid rgba(250,204,21,.25);
+  border-bottom:1px solid rgba(250,204,21,.15);
+  padding:20px 16px 16px;
+}
+.inv-inner{max-width:1440px;margin:0 auto}
 
-  <div class="sec">
-    <div class="sec-hdr">
-      <span class="sec-title">📰 最新AI生成記事</span>
-      <span class="sec-en">WEEKLY AUTO-GENERATED</span>
-    </div>
-    <div class="art-grid" id="ai-articles">
-      <div class="empty">記事を読み込んでいます...</div>
-    </div>
-  </div>
+/* タイトル行 */
+.inv-title-row{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:16px;flex-wrap:wrap;
+}
+.inv-badge{
+  background:#facc15;color:#002B80;
+  font-size:11px;font-weight:700;
+  padding:4px 12px;border-radius:5px;
+  letter-spacing:.04em;white-space:nowrap;flex-shrink:0;
+}
+.inv-headline{
+  font-size:15px;font-weight:700;color:#fff;line-height:1.4;
+}
+.inv-fx-tag{
+  margin-left:auto;font-size:12px;color:#facc15;
+  font-family:monospace;white-space:nowrap;flex-shrink:0;
+}
 
-  <div class="sec">
-    <div class="sec-hdr">
-      <span class="sec-title">✍️ 家計防衛コラム</span>
-      <span class="sec-en">EDITORIAL COLUMNS</span>
-    </div>
-    <div class="art-grid" id="col-articles">
-      <div class="empty" id="col-empty">コラム記事は管理画面から追加できます</div>
-    </div>
-  </div>
+/* グリッド：スマホ2列 → タブレット3列 → PC6列 */
+.inv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:560px){.inv-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){
+  .inv-grid{grid-template-columns:repeat(6,1fr);gap:12px}
+  .inv-headline{font-size:16px}
+}
 
-  <div class="nl-card">
-    <div class="nl-title">📬 値上げ速報メール</div>
-    <div class="nl-desc">新たな値上げ情報・買い時アラートを毎週月曜に配信。完全無料。</div>
-    <input class="nl-input" type="email" placeholder="メールアドレスを入力">
-    <button class="nl-btn" onclick="alert('メルマガ登録機能は実装予定です')">無料で登録する →</button>
-  </div>
+/* ボタン */
+.inv-btn{
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:14px;
+  padding:18px 10px 14px;
+  min-height:130px;
+  text-decoration:none;
+  transition:background .18s,transform .15s,border-color .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.inv-btn:hover{
+  background:rgba(255,255,255,.16);
+  border-color:rgba(250,204,21,.5);
+  transform:translateY(-2px);
+}
+.inv-btn:active{transform:scale(.97)}
+.inv-btn-icon{font-size:32px;margin-bottom:8px;line-height:1}
+.inv-btn-name{font-size:14px;font-weight:700;color:#fff;margin-bottom:4px;text-align:center;line-height:1.3}
+.inv-btn-sub{font-size:11px;color:rgba(255,255,255,.55);text-align:center;line-height:1.5;margin-bottom:6px}
+.inv-btn-tag{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap}
+.tag-gold{background:#facc15;color:#002B80}
+.tag-green{background:#4ade80;color:#052e16}
+.tag-stable{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8)}
+.tag-purple{background:rgba(167,139,250,.35);color:#c4b5fd}
+.inv-note{margin-top:12px;font-size:10px;color:rgba(255,255,255,.3);text-align:right}
 
-  <div class="aff-disc">
-    PR：当サイトはアフィリエイトプログラムに参加しています。商品リンクから購入いただくと手数料をいただく場合があります。価格・値上げ予測情報はニュース・市場データを基にした参考情報です。
+/* ── forecast DB preview ── */
+.sec-more-btn{margin-left:auto;font-size:13px;color:var(--navy);text-decoration:none;font-weight:600;white-space:nowrap;padding:5px 12px;border:1.5px solid var(--navy);border-radius:20px;transition:all .15s}
+.sec-more-btn:hover{background:var(--navy);color:#fff}
+.db-link-card{display:block;text-decoration:none;background:var(--paper);border:1.5px solid var(--navy);border-radius:12px;padding:18px 20px;transition:all .18s;margin-top:4px}
+.db-link-card:hover{background:#f0f4ff;box-shadow:3px 3px 0 rgba(0,43,128,.12);transform:translate(-1px,-1px)}
+.db-link-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.db-link-nums{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+.db-link-num{font-size:13px;color:var(--t1)}.db-link-num strong{font-size:17px;color:var(--navy);font-weight:800}
+.db-link-sep{color:var(--t3);font-size:12px}
+.db-link-desc{font-size:12px;color:var(--t2)}
+.db-link-btn{flex-shrink:0;background:var(--navy);color:#fff;font-size:13px;font-weight:700;padding:9px 18px;border-radius:20px;white-space:nowrap}
+@media(max-width:600px){.db-link-inner{flex-direction:column;align-items:flex-start}.db-link-btn{align-self:flex-end}}
+
+</style>
+
+<div class="inv-wrap">
+  <div class="inv-inner">
+    <div class="inv-title-row">
+      <span class="inv-badge">💰 資産防衛</span>
+      <span class="inv-headline">値上げで目減りする現金を、今すぐ投資で守る</span>
+      <span class="inv-fx-tag" id="inv-fx-rate"></span>
+    </div>
+    <div class="inv-grid">
+      <a class="inv-btn" href="investment.html#nisa">
+        <div class="inv-btn-icon">📈</div>
+        <div class="inv-btn-name">NISA・投資</div>
+        <div class="inv-btn-sub">口座開設で<br>最大¥30,000</div>
+        <span class="inv-btn-tag tag-gold">高報酬</span>
+      </a>
+      <a class="inv-btn" href="investment.html#furusato">
+        <div class="inv-btn-icon">🎁</div>
+        <div class="inv-btn-name">ふるさと納税</div>
+        <div class="inv-btn-sub">実質2,000円で<br>豪華返礼品</div>
+        <span class="inv-btn-tag tag-green">節税最強</span>
+      </a>
+      <a class="inv-btn" href="investment.html#fx">
+        <div class="inv-btn-icon">💱</div>
+        <div class="inv-btn-name">FX・為替取引</div>
+        <div class="inv-btn-sub">円安を<br>収益に変える</div>
+        <span class="inv-btn-tag tag-gold">高報酬</span>
+      </a>
+      <a class="inv-btn" href="investment.html#crypto">
+        <div class="inv-btn-icon">₿</div>
+        <div class="inv-btn-name">暗号資産</div>
+        <div class="inv-btn-sub">BTC・ETH<br>少額から</div>
+        <span class="inv-btn-tag tag-purple">ハイリスク</span>
+      </a>
+      <a class="inv-btn" href="investment.html#gold">
+        <div class="inv-btn-icon">🥇</div>
+        <div class="inv-btn-name">金・ゴールド</div>
+        <div class="inv-btn-sub">インフレに<br>最も強い資産</div>
+        <span class="inv-btn-tag tag-stable">安定</span>
+      </a>
+      <a class="inv-btn" href="investment.html#realestate">
+        <div class="inv-btn-icon">🏢</div>
+        <div class="inv-btn-name">不動産投資</div>
+        <div class="inv-btn-sub">1万円から<br>REIT・CF</div>
+        <span class="inv-btn-tag tag-stable">安定配当</span>
+      </a>
+    </div>
+    <div class="inv-note">PR：当サイトはアフィリエイトプログラムに参加しています。投資にはリスクがあります。</div>
   </div>
 </div>
 
-<footer class="ftr">
-  <div class="wrap">
-    <div class="ftr-grid">
-      <div><div class="ftr-logo">値上げ予報</div><div class="ftr-desc">原材料・為替・人件費の先行指標から3〜6ヶ月後の値上げをAIが予測。家計防衛情報を毎週更新。</div></div>
-      <div class="ftr-nav"><div class="ftr-nav-title">コンテンツ</div><a>円安ウォッチ</a><a>値上げカレンダー</a><a>駆け込み買い</a><a>家計防衛コラム</a></div>
-      <div class="ftr-nav"><div class="ftr-nav-title">サイト情報</div><a>このサイトについて</a><a>プライバシーポリシー</a><a>アフィリエイト開示</a><a>お問い合わせ</a></div>
+<script>
+(async()=>{
+  try{
+    const r=await fetch('fx-data.json?v='+Date.now());
+    const d=await r.json();
+    const el=document.getElementById('inv-fx-rate');
+    if(el) el.textContent='USD/JPY '+parseFloat(d.rate).toFixed(2)+'円';
+  }catch(e){}
+})();
+</script>
+
+
+
+<!-- ─── MAIN ─── -->
+<main>
+<div class="container">
+
+<!-- ① 今月の値上げアラート -->
+<section class="section" id="alerts">
+  <div class="sec-hdr">
+    <span class="sec-title">⚠️ 今月の値上げアラート</span>
+    <div class="alert-meta-row">
+      <span id="alert-updated" class="alert-updated-txt"></span>
+      <button class="refresh-btn" onclick="refreshAlerts()">🔄 更新</button>
     </div>
-    <div class="ftr-bottom"><span>© 2026 値上げ予報 All rights reserved.</span><span>当サイトの予測情報は参考目的です。</span></div>
+  </div>
+  <div class="alert-grid" id="alert-grid">
+    <div class="alert-loading">⏳ アラートを読み込んでいます...</div>
+  </div>
+  <div class="alert-source" id="alert-source-note"></div>
+</section>
+
+<!-- ② 値上げカレンダー -->
+<section class="section" id="calendar">
+  <div class="sec-hdr">
+    <span class="sec-title">📅 値上げカレンダー</span>
+    
+  </div>
+  
+  <div class="cal-tabs">
+    <button class="cal-tab active" onclick="switchCal(this,'apr')">4月（確定）</button>
+    <button class="cal-tab" onclick="switchCal(this,'may')">5月（確定）</button>
+    <button class="cal-tab" onclick="switchCal(this,'jun')">6月（予測）</button>
+    <button class="cal-tab" onclick="switchCal(this,'jul')">7月（予測）</button>
+    <button class="cal-tab" onclick="switchCal(this,'aug')">8月（予測）</button>
+    <button class="cal-tab" onclick="switchCal(this,'sep')">9月（予測）</button>
+  </div>
+  <div class="cal-grid" id="cal-grid"></div>
+</section>
+
+<!-- ③ 全品目 予測データベース -->
+<section class="section" id="forecast-db">
+  <div class="sec-hdr">
+    <span class="sec-title">📈 全品目 値上がり予測データベース</span>
+  </div>
+  <a href="forecast-db-new.html" class="db-link-card">
+    <div class="db-link-inner">
+      <div class="db-link-left">
+        <div class="db-link-nums">
+          <span class="db-link-num"><strong>23</strong>大カテゴリ</span>
+          <span class="db-link-sep">·</span>
+          <span class="db-link-num"><strong>249</strong>中項目</span>
+          <span class="db-link-sep">·</span>
+          <span class="db-link-num"><strong>683</strong>品目</span>
+        </div>
+        <div class="db-link-desc">4段階ドリルダウン＋楽天 / Amazon / Yahoo! 最安値比較</div>
+      </div>
+      <div class="db-link-btn">詳細を見る →</div>
+    </div>
+  </a>
+</section>
+<section class="section" id="ranking">
+  <div class="sec-hdr">
+    <span class="sec-title">🏆 買いどき解析ランキング <span style="font-size:12px;font-weight:400;color:#64748b">今買わないと損する金額 TOP10</span></span>
+    
+  </div>
+  <div class="ranking-wrap">
+
+    <div id="ranking-list"></div>
+  </div>
+
+  <!-- 今日のおすすめ備蓄品（アラート連動） -->
+  <div class="stockup-wrap">
+    <div class="stockup-hdr">
+      <span class="stockup-title">🛒 今日のおすすめ備蓄品</span>
+      <span class="stockup-sub">値上げアラート連動・最安値比較</span>
+    </div>
+    <div id="stockup-list">
+      <div class="su-loading">読み込み中...</div>
+    </div>
+    <div class="aff-disc">PR：アフィリエイトプログラム参加。リンクからご購入いただくと手数料をいただく場合があります。</div>
+  </div>
+</section>
+
+<!-- ④ 先行指標モニター -->
+<section class="section" id="indicators">
+  <div class="sec-hdr">
+    <span class="sec-title">📊 世界市場 先行指標モニター</span>
+    <button class="refresh-btn" style="margin-left:auto" onclick="refreshIndicators()">🔄 更新</button>
+  </div>
+  <div id="idx-grid"></div>
+</section>
+
+<!-- ⑤ 最新予測 ニュース & 解説 -->
+<section class="section" id="news">
+  <div class="sec-hdr">
+    <span class="sec-title">📰 最新予測 ニュース & 解説</span>
+  </div>
+  <div class="news-filter" id="news-filter"></div>
+  <div id="news-grid"></div>
+</section>
+
+
+
+<!-- ⑦ 全品目 予測データベース -->
+
+
+
+</div><!-- /container -->
+</main>
+
+<footer class="ftr">
+  <div class="ftr-inner">
+    <div class="ftr-brand">
+      <div class="ftr-logo">値上がり予測ドットコム</div>
+      <p class="ftr-desc">為替・原材料・人件費の先行指標からAIが3〜6ヶ月後の値上げを予測。家計防衛情報を日々更新しています。</p>
+    </div>
+    <div class="ftr-nav">
+      <h4>コンテンツ</h4>
+      <a onclick="scrollToId('alerts')">値上げアラート</a>
+      <a onclick="scrollToId('calendar')">値上げカレンダー</a>
+      <a onclick="scrollToId('ranking')">買いどきランキング</a>
+      <a onclick="scrollToId('indicators')">先行指標</a>
+      <a onclick="scrollToId('forecast-db')">予測DB</a>
+    </div>
+    <div class="ftr-nav">
+      <h4>サイト情報</h4>
+      <a href="#">このサイトについて</a>
+      <a href="#">プライバシーポリシー</a>
+      <a href="#">アフィリエイト開示</a>
+      <a href="#">お問い合わせ</a>
+    </div>
+  </div>
+  <div class="ftr-bottom">
+    <span>© 2026 値上がり予測ドットコム All rights reserved.</span>
+    <span class="ftr-disc">当サイトの予測情報は参考目的です。実際の価格変動は異なる場合があります。</span>
   </div>
 </footer>
 
 <script>
-const LEVELS=[
-  {max:130,cls:'safe',   icon:'🟢',label:'安全圏（130円未満）',   desc:'円安の影響は軽微です。'},
-  {max:140,cls:'caution',icon:'🟡',label:'注意水準（130〜140円）', desc:'輸入食品に影響が出始めます。3〜4ヶ月後の価格転嫁に注意。'},
-  {max:150,cls:'warning',icon:'🟠',label:'警戒水準（140〜150円）', desc:'食品・日用品全般に値上げ圧力。今月中の備蓄を推奨します。'},
-  {max:160,cls:'danger', icon:'🔴',label:'危機水準（150〜160円）', desc:'幅広い値上げが3〜6ヶ月後に迫っています。駆け込み買いを強く推奨。'},
-  {max:999,cls:'crisis', icon:'🚨',label:'超円安・非常警戒（160円超）',desc:'過去最高水準。輸入品全般で10〜20%超の値上げが見込まれます。'},
+// ═══════════════════════════════════════
+// データ定義
+// ═══════════════════════════════════════
+
+const CAL_DATA = {
+  apr:[
+    {cat:'食品',cls:'cat-food',name:'食パン・菓子パン各種',sub:'山崎・フジパンなど主要メーカー',rate:'+5〜8%',conf:5},
+    {cat:'食品',cls:'cat-food',name:'マヨネーズ・ドレッシング',sub:'キューピー・味の素など 大豆油高騰',rate:'+7〜10%',conf:5},
+    {cat:'日用品',cls:'cat-daily',name:'紙おむつ・生理用品',sub:'P&G・ユニ・チャーム 原材料＋物流費',rate:'+6〜9%',conf:4},
+    {cat:'エネルギー',cls:'cat-energy',name:'電気・ガス料金',sub:'補助金縮小で実質値上げ',rate:'+3〜5%',conf:4},
+    {cat:'食品',cls:'cat-food',name:'カップ麺・即席麺',sub:'日清・東洋水産 小麦高騰の波及',rate:'+8〜12%',conf:5},
+    {cat:'外食',cls:'cat-food',name:'ファミリーレストラン',sub:'人件費66%が原動力、外食全体に波及',rate:'+5〜15%',conf:3},
+    {cat:'PC',cls:'cat-pc',name:'ゲーミングPC・GPU',sub:'半導体需要増＋円安で価格改定',rate:'+10〜18%',conf:4},
+  ],
+  may:[
+    {cat:'食品',cls:'cat-food',name:'食用油（サラダ・オリーブ）',sub:'大豆・パーム油相場の遅延転嫁',rate:'+10〜15%',conf:4},
+    {cat:'日用品',cls:'cat-daily',name:'洗剤・シャンプー類',sub:'石油由来原料の高騰＋輸送コスト',rate:'+6〜9%',conf:3},
+    {cat:'食品',cls:'cat-food',name:'清涼飲料水・スポーツドリンク',sub:'砂糖・PET樹脂高騰',rate:'+5〜8%',conf:4},
+    {cat:'日用品',cls:'cat-daily',name:'ティッシュ・トイレットペーパー',sub:'パルプ相場+5.4%',rate:'+8〜10%',conf:4},
+    {cat:'健康',cls:'cat-health',name:'サプリメント・栄養ドリンク',sub:'原材料輸入コスト上昇',rate:'+5〜10%',conf:3},
+  ],
+  jun:[
+    {cat:'食品',cls:'cat-food',name:'乳製品・チーズ類',sub:'輸入乳製品の為替影響が遅延転嫁',rate:'+8〜12%',conf:3},
+    {cat:'外食',cls:'cat-food',name:'宅配・デリバリーサービス',sub:'人件費・配送コスト上昇第2波',rate:'+10〜20%',conf:2},
+    {cat:'調理家電',cls:'cat-kitchen',name:'食洗機・電気圧力鍋',sub:'部品コスト増＋円安影響',rate:'+8〜15%',conf:3},
+    {cat:'通信',cls:'cat-telecom',name:'スマホ・タブレット',sub:'半導体不足の再燃懸念',rate:'+5〜12%',conf:2},
+  ],
+  jul:[
+    {cat:'食品',cls:'cat-food',name:'冷凍食品全般',sub:'原油・小麦相場から4〜5ヶ月後に転嫁',rate:'+7〜13%',conf:2},
+    {cat:'育児',cls:'cat-baby',name:'粉ミルク・ベビーフード',sub:'輸入原材料費の上昇',rate:'+5〜10%',conf:2},
+    {cat:'ペット',cls:'cat-pet',name:'ペットフード全般',sub:'穀物・肉類コスト上昇の波及',rate:'+8〜12%',conf:2},
+  ],
+  aug:[
+    {cat:'エネルギー',cls:'cat-energy',name:'電気料金（秋冬向け改定）',sub:'夏ピーク後の料金体系見直し',rate:'未定',conf:1},
+    {cat:'日用品',cls:'cat-daily',name:'紙類全般・文房具',sub:'パルプ高騰第2波転嫁',rate:'+5〜10%',conf:2},
+  ],
+  sep:[
+    {cat:'食品',cls:'cat-food',name:'調味料全般（醤油・みそ）',sub:'大豆・小麦の複合高騰影響',rate:'+6〜11%',conf:2},
+    {cat:'健康',cls:'cat-health',name:'美容・スキンケア用品',sub:'石油系原料高騰の継続',rate:'+5〜9%',conf:1},
+  ]
+};
+
+const RANK_DATA = [
+  {rank:1,icon:'💻',name:'PC・デジタル機器',   cat:'kaden',
+   r4:18.0, spend:150000, score:5, weeks:3,
+   reason:'半導体不足+円安で急騰中。GPU・PCは今が底値'},
+  {rank:2,icon:'🏗',name:'リフォーム・住設備', cat:'reform',
+   r4:16.5, spend:500000, score:5, weeks:2,
+   reason:'建材・工賃が毎月上昇中。着工するなら今月中'},
+  {rank:3,icon:'🍳',name:'調理家電・キッチン', cat:'kaden',
+   r4:15.4, spend:80000,  score:5, weeks:4,
+   reason:'食洗機・炊飯器は4月モデル移行前が最安値'},
+  {rank:4,icon:'🍱',name:'食品・日用消耗品',   cat:'food',
+   r4:13.2, spend:70000,  score:4, weeks:2,
+   reason:'小麦・大豆が高騰。ケース買いで損失を最小化'},
+  {rank:5,icon:'📱',name:'スマートフォン',      cat:'smart',
+   r4:19.5, spend:100000, score:5, weeks:3,
+   reason:'円安直撃。新モデル発表前の今が買い時'},
+  {rank:6,icon:'⚡',name:'エネルギー・インフラ',cat:'energy',
+   r4:11.8, spend:30000,  score:3, weeks:8,
+   reason:'補助金縮小で5月から電気代が実質値上げ'},
+  {rank:7,icon:'👶',name:'赤ちゃん・育児用品', cat:'baby',
+   r4:12.6, spend:40000,  score:4, weeks:3,
+   reason:'おむつ・ミルクが6〜9%値上げ確定済み'},
+  {rank:8,icon:'🐾',name:'ペット用品・フード',  cat:'pet',
+   r4:11.2, spend:15000,  score:3, weeks:6,
+   reason:'輸入フードが円安で値上がり継続中'},
+  {rank:9,icon:'💊',name:'健康・医療・サプリ',  cat:'health',
+   r4:10.8, spend:15000,  score:3, weeks:8,
+   reason:'輸入原料高騰で主要サプリが値上がり予測'},
+  {rank:10,icon:'🚗',name:'自動車・カー用品',   cat:'auto',
+   r4:14.8, spend:50000,  score:4, weeks:5,
+   reason:'タイヤ・バッテリーが合成ゴム高騰で値上げ'},
 ];
-function getLevel(r){return LEVELS.find(l=>r<l.max)||LEVELS[4];}
 
-async function loadFx(){
-  let rate=151.80,updated='初期値',source='';
-  try{
-    const r=await fetch('fx-data.json?v='+Date.now());
-    const d=await r.json();
-    rate=parseFloat(d.rate);updated=d.updated_jst||d.updated_utc;source=d.source||'';
-  }catch(e){
-    try{
-      const r=await fetch('https://open.er-api.com/v6/latest/USD',{signal:AbortSignal.timeout(5000)});
-      const d=await r.json();
-      if(d.result==='success'){rate=Math.round(d.rates.JPY*100)/100;updated='取得: '+new Date().toLocaleTimeString('ja-JP');source='ExchangeRate-API';}
-    }catch(e2){}
-  }
-  const lv=getLevel(rate);
-  ['hdr-rate','tick-rate','tick-rate2'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=rate.toFixed(2);});
-  const re=document.getElementById('fx-rate-big');re.textContent=rate.toFixed(2);re.className='fx-rate-big rate-'+lv.cls;
-  document.getElementById('fx-level-txt').textContent=lv.icon+' '+lv.label;
-  document.getElementById('fx-desc-txt').textContent=lv.desc;
-  document.getElementById('fx-updated').textContent='更新: '+updated+(source?' ('+source+')':'');
-  const bar=document.getElementById('alert-bar');bar.className='alert-bar '+lv.cls;
-  document.getElementById('ab-icon').textContent=lv.icon;
-  document.getElementById('ab-title').textContent=lv.label+' ｜ 現在 '+rate.toFixed(2)+' 円';
-  document.getElementById('ab-desc').textContent=lv.desc;
-}
 
-const THUMBS={monthly_list:{emoji:'📅',bg:'linear-gradient(135deg,#1e3a5f,#2563eb)'},buy_ranking:{emoji:'🛒',bg:'linear-gradient(135deg,#7f1d1d,#c0392b)'},fx_analysis:{emoji:'💴',bg:'linear-gradient(135deg,#1a1040,#4c1d95)'},column:{emoji:'✍️',bg:'linear-gradient(135deg,#052e16,#166534)'}};
-const TYPE_LBL={monthly_list:'値上げ一覧',buy_ranking:'駆け込み買い',fx_analysis:'為替分析',column:'コラム'};
-const TYPE_TC={monthly_list:'tb-monthly',buy_ranking:'tb-ranking',fx_analysis:'tb-fx',column:'tb-column'};
+const COMPARE_DATA = {
+  food:[
+    {name:'日清製粉 強力小麦粉 1kg×5袋',risk:'high',rise:'+12%',shops:[
+      {id:'r',name:'楽天市場',price:2480,pts:'74pt',ptR:'3%',del:'送料無料'},
+      {id:'y',name:'Yahoo!',price:2580,pts:'25pt',ptR:'1%',del:'送料無料'},
+      {id:'a',name:'Amazon',price:2650,pts:'—',ptR:'',del:'翌日配送'},
+    ]},
+    {name:'キューピー マヨネーズ 500g×4本',risk:'high',rise:'+9%',shops:[
+      {id:'a',name:'Amazon',price:1320,pts:'—',ptR:'',del:'翌日配送'},
+      {id:'r',name:'楽天市場',price:1380,pts:'41pt',ptR:'3%',del:'送料無料'},
+      {id:'y',name:'Yahoo!',price:1420,pts:'14pt',ptR:'1%',del:'送料無料'},
+    ]},
+  ],
+  energy:[
+    {name:'カセットガス 250g×24本 イワタニ純正',risk:'high',rise:'+15%',shops:[
+      {id:'a',name:'Amazon',price:3480,pts:'—',ptR:'',del:'翌日配送'},
+      {id:'r',name:'楽天市場',price:3680,pts:'110pt',ptR:'3%',del:'送料無料'},
+      {id:'y',name:'Yahoo!',price:3750,pts:'37pt',ptR:'1%',del:'送料無料'},
+    ]},
+  ],
+  pc:[
+    {name:'ASUS ROG ゲーミングPC RTX4070搭載',risk:'high',rise:'+18%',shops:[
+      {id:'a',name:'Amazon',price:189800,pts:'—',ptR:'',del:'翌日配送'},
+      {id:'r',name:'楽天市場',price:192000,pts:'5760pt',ptR:'3%',del:'送料無料'},
+      {id:'y',name:'Yahoo!',price:195000,pts:'1950pt',ptR:'1%',del:'送料無料'},
+    ]},
+  ],
+  health:[
+    {name:'ザバス ホエイプロテイン 1050g×2個',risk:'mid',rise:'+8%',shops:[
+      {id:'a',name:'Amazon',price:7980,pts:'—',ptR:'',del:'翌日配送'},
+      {id:'r',name:'楽天市場',price:8200,pts:'246pt',ptR:'3%',del:'送料無料'},
+      {id:'y',name:'Yahoo!',price:8450,pts:'84pt',ptR:'1%',del:'送料無料'},
+    ]},
+  ],
+  baby:[
+    {name:'パンパース テープ Mサイズ 198枚×2P',risk:'high',rise:'+9%',shops:[
+      {id:'a',name:'Amazon',price:5480,pts:'—',ptR:'',del:'定期便可'},
+      {id:'r',name:'楽天市場',price:5680,pts:'170pt',ptR:'3%',del:'送料無料'},
+      {id:'y',name:'Yahoo!',price:5850,pts:'58pt',ptR:'1%',del:'送料無料'},
+    ]},
+  ],
+  pet:[
+    {name:'ロイヤルカナン ミニ アダルト 8kg',risk:'mid',rise:'+7%',shops:[
+      {id:'r',name:'楽天市場',price:8980,pts:'269pt',ptR:'3%',del:'送料無料'},
+      {id:'a',name:'Amazon',price:9200,pts:'—',ptR:'',del:'翌日配送'},
+      {id:'y',name:'Yahoo!',price:9500,pts:'95pt',ptR:'1%',del:'送料無料'},
+    ]},
+  ],
+  kitchen:[
+    {name:'パナソニック 食洗機 NP-TZ300',risk:'high',rise:'+14%',shops:[
+      {id:'a',name:'Amazon',price:54800,pts:'—',ptR:'',del:'翌日配送'},
+      {id:'r',name:'楽天市場',price:56000,pts:'1680pt',ptR:'3%',del:'送料無料'},
+      {id:'y',name:'Yahoo!',price:57500,pts:'575pt',ptR:'1%',del:'送料無料'},
+    ]},
+  ],
+  reform:[
+    {name:'リンナイ エコジョーズ給湯器 16号',risk:'high',rise:'+20%',shops:[
+      {id:'r',name:'楽天市場',price:89800,pts:'2694pt',ptR:'3%',del:'工事別途'},
+      {id:'y',name:'Yahoo!',price:92000,pts:'920pt',ptR:'1%',del:'工事別途'},
+      {id:'a',name:'Amazon',price:95000,pts:'—',ptR:'',del:'工事別途'},
+    ]},
+  ],
+  telecom:[
+    {name:'バッファロー WiFi 6E ルーター AX12P',risk:'mid',rise:'+10%',shops:[
+      {id:'a',name:'Amazon',price:24800,pts:'—',ptR:'',del:'翌日配送'},
+      {id:'r',name:'楽天市場',price:25500,pts:'765pt',ptR:'3%',del:'送料無料'},
+      {id:'y',name:'Yahoo!',price:26000,pts:'260pt',ptR:'1%',del:'送料無料'},
+    ]},
+  ],
+  kaden:[
+    {name:'ダイソン V15 Detect コードレス掃除機',risk:'high',rise:'+15%',shops:[
+      {id:'a',name:'Amazon',price:78000,pts:'—',ptR:'',del:'翌日配送'},
+      {id:'r',name:'楽天市場',price:82000,pts:'2460pt',ptR:'3%',del:'送料無料'},
+      {id:'y',name:'Yahoo!',price:85000,pts:'850pt',ptR:'1%',del:'送料無料'},
+    ]},
+    {name:'パナソニック 食洗機 NP-TZ300',risk:'high',rise:'+12%',shops:[
+      {id:'a',name:'Amazon',price:54800,pts:'—',ptR:'',del:'翌日配送'},
+      {id:'r',name:'楽天市場',price:56000,pts:'1680pt',ptR:'3%',del:'送料無料'},
+      {id:'y',name:'Yahoo!',price:57500,pts:'575pt',ptR:'1%',del:'送料無料'},
+    ]},
+  ],
+  smart:[
+    {name:'iPhone 16 256GB',risk:'high',rise:'+19%',shops:[
+      {id:'a',name:'Amazon',price:128000,pts:'—',ptR:'',del:'翌日配送'},
+      {id:'r',name:'楽天市場',price:124800,pts:'3744pt',ptR:'3%',del:'送料無料'},
+      {id:'y',name:'Yahoo!',price:130000,pts:'1300pt',ptR:'1%',del:'送料無料'},
+    ]},
+    {name:'Galaxy S25 Ultra 512GB',risk:'high',rise:'+15%',shops:[
+      {id:'r',name:'楽天市場',price:198000,pts:'5940pt',ptR:'3%',del:'送料無料'},
+      {id:'a',name:'Amazon',price:202000,pts:'—',ptR:'',del:'翌日配送'},
+      {id:'y',name:'Yahoo!',price:205000,pts:'2050pt',ptR:'1%',del:'送料無料'},
+    ]},
+  ],
+  auto:[
+    {name:'BRIDGESTONE タイヤ 195/65R15 4本セット',risk:'high',rise:'+15%',shops:[
+      {id:'r',name:'楽天市場',price:48000,pts:'1440pt',ptR:'3%',del:'送料無料'},
+      {id:'a',name:'Amazon',price:52000,pts:'—',ptR:'',del:'翌日配送'},
+      {id:'y',name:'Yahoo!',price:55000,pts:'550pt',ptR:'1%',del:'送料無料'},
+    ]},
+    {name:'カーバッテリー 55B24L 国産',risk:'high',rise:'+13%',shops:[
+      {id:'a',name:'Amazon',price:8980,pts:'—',ptR:'',del:'翌日配送'},
+      {id:'r',name:'楽天市場',price:9200,pts:'276pt',ptR:'3%',del:'送料無料'},
+      {id:'y',name:'Yahoo!',price:9500,pts:'95pt',ptR:'1%',del:'送料無料'},
+    ]},
+  ],
+};
 
-function buildCard(a){
-  const th=THUMBS[a.type]||THUMBS.column;
-  return `<a class="art-card" href="articles/${a.slug}.html">
-    <div class="art-thumb" style="background:${th.bg}">
-      <span>${th.emoji}</span>
-      <span class="art-type-badge ${TYPE_TC[a.type]||'tb-column'}">${TYPE_LBL[a.type]||a.type}</span>
-    </div>
-    <div class="art-body">
-      <div class="art-title">${a.title}</div>
-      <div class="art-desc">${a.desc||''}</div>
-      <div class="art-footer">
-        <span>${a.date}</span>
-        <span class="art-footer-fx">${a.usdjpy?a.usdjpy+'円':''}</span>
-      </div>
-    </div>
-  </a>`;
-}
+const COMPARE_CATS = [
+  {id:'food',label:'🍱 食品'},
+  {id:'energy',label:'⚡ エネルギー'},
+  {id:'pc',label:'💻 PC'},
+  {id:'health',label:'💊 健康'},
+  {id:'baby',label:'👶 育児'},
+  {id:'pet',label:'🐾 ペット'},
+  {id:'kitchen',label:'🍳 調理家電'},
+  {id:'reform',label:'🏠 リフォーム'},
+  {id:'telecom',label:'📱 通信'},
+];
 
-async function loadArticles(){
-  try{
-    const r=await fetch('articles-index.json?v='+Date.now());
-    const list=await r.json();
-    const ai=list.filter(a=>a.type!=='column');
-    const cols=list.filter(a=>a.type==='column');
-    const aiEl=document.getElementById('ai-articles');
-    aiEl.innerHTML=ai.length?ai.map(buildCard).join(''):'<div class="empty">まだAI生成記事がありません。管理画面から生成してください。</div>';
-    const colEl=document.getElementById('col-articles');
-    const emptyEl=document.getElementById('col-empty');
-    if(cols.length){colEl.innerHTML=cols.map(buildCard).join('');if(emptyEl)emptyEl.remove();}
-  }catch(e){
-    document.getElementById('ai-articles').innerHTML='<div class="empty">articles-index.json が見つかりません。</div>';
-  }
-}
+const IDX_DATA = [
+  {icon:'💴',name:'円/ドル',val:'---',diff:'円安↑',up:true,lag:'2〜3ヶ月',dynamic:'fx'},
+  {icon:'🛢',name:'原油WTI',val:'$78.4',diff:'+2.1%',up:true,lag:'1〜2ヶ月'},
+  {icon:'🌾',name:'輸入小麦',val:'¥38,200',diff:'+4.2%',up:true,lag:'3〜4ヶ月'},
+  {icon:'🫘',name:'大豆先物',val:'¥52,100',diff:'+2.8%',up:true,lag:'3〜4ヶ月'},
+  {icon:'🍬',name:'砂糖相場',val:'+6.1%',diff:'3ヶ月高値',up:true,lag:'3〜5ヶ月'},
+  {icon:'🚛',name:'海上運賃',val:'+11.2%',diff:'前年比',up:true,lag:'3〜5ヶ月'},
+  {icon:'👷',name:'人件費指数',val:'HIGH',diff:'66%',up:true,lag:'即時〜6ヶ月',dynamic:'labor'},
+  {icon:'⚡',name:'電気ガス指数',val:'+4.2%',diff:'補助縮小',up:true,lag:'1〜2ヶ月'},
+  {icon:'🏭',name:'資材容器',val:'+2.8%',diff:'横ばい傾向',up:false,lag:'4〜6ヶ月'},
+  {icon:'📦',name:'物流コスト',val:'+8.5%',diff:'前年比',up:true,lag:'3〜5ヶ月'},
+  {icon:'💻',name:'半導体指数',val:'+5.2%',diff:'需要増',up:true,lag:'2〜4ヶ月'},
+  {icon:'🌽',name:'トウモロコシ',val:'+3.3%',diff:'高値圏',up:true,lag:'3〜4ヶ月'},
+];
 
-loadFx();loadArticles();
-  // stats.json から数値を自動読み込み
+const COMMOD_DATA = [
+  {name:'🌾 小麦先物（シカゴ）',val:'¥38,200/t',diff:'+4.2%',when:'3〜4ヶ月後'},
+  {name:'🫘 大豆先物',val:'¥52,100/t',diff:'+2.8%',when:'3〜4ヶ月後'},
+  {name:'🛢 原油 WTI',val:'$78.4/bbl',diff:'+2.1%',when:'1〜2ヶ月後'},
+  {name:'🍬 砂糖国際相場',val:'+6.1%',diff:'3ヶ月高値',when:'3〜5ヶ月後'},
+  {name:'🌽 トウモロコシ先物',val:'+3.3%',diff:'高値圏',when:'3〜4ヶ月後'},
+  {name:'🫙 パーム油',val:'横ばい',diff:'→ 0%',when:'影響軽微'},
+];
+
+const NEWS_DATA = [
+  {id:1,type:'速報',tagLabel:'速報',tag:'sokuho',title:'円安155円突破。今すぐ確保すべき食品リストを公開',date:'2026/03/15',body:'輸入コストが店頭価格に反映される前に備蓄すべき品目を徹底解説。特に小麦・大豆由来の食品は早急な対応が必要です。'},
+  {id:2,type:'緊急',tagLabel:'緊急',tag:'kinyu',title:'カップ麺5社が4月に同時値上げ。今月中に備蓄を',date:'2026/03/15',body:'主要5社が足並みをそろえて4月から価格改定。8〜12%の値上げとなる見通し。ケース買いが最もコスパが高い。'},
+  {id:3,type:'解説',tagLabel:'解説',tag:'kaisetsu',title:'原材料の先物から予測する4月の価格改定品リスト',date:'2026/03/14',body:'小麦・砂糖の高騰が止まらず、加工食品全般に影響が出ています。先物価格から逆算した予測をまとめました。'},
+  {id:4,type:'節約術',tagLabel:'節約術',tag:'setsuyaku',title:'プライベートブランドに切り替えると年間8万円節約できる理由',date:'2026/03/12',body:'NBからPBへの切り替えで4人家族の食費・日用品費を大幅削減。具体的な商品リストと節約額の計算方法を紹介。'},
+  {id:5,type:'今すぐ備蓄',tagLabel:'今すぐ備蓄',tag:'bichiku',title:'値上げ前の駆け込み買いリスト2026年4月版',date:'2026/03/12',body:'保存が効いて値上げ確実な商品TOP10。パスタ・洗剤・おむつなど今月中に確保すべきものを緊急公開。'},
+  {id:6,type:'解説',tagLabel:'解説',tag:'kaisetsu',title:'原油高の影響が日用品へ。洗剤や容器の価格動向を予測',date:'2026/03/10',body:'プラスチック資材の製造コスト増により、日用品全般の値上げが予測されます。まとめ買いが推奨されます。'},
+  {id:7,type:'業界',tagLabel:'業界',tag:'sangyo',title:'半導体価格の最新推移。今後のPC・スマホ価格の行方',date:'2026/03/10',body:'部品供給の不安定化がもたらす影響を分析。半導体不足は2026年後半に再び深刻化する可能性があります。'},
+  {id:8,type:'節約術',tagLabel:'節約術',tag:'setsuyaku',title:'電気代を月3,000円削減する設定術【2026年版】',date:'2026/03/08',body:'補助金縮小後の電気代を賢く抑える方法。エアコン・冷蔵庫・待機電力の削減で年間3.6万円の節約が可能。'},
+  {id:9,type:'業界',tagLabel:'業界',tag:'sangyo',title:'食品メーカー各社の決算発表が示す「値上げ余力」分析',date:'2026/03/05',body:'主要食品メーカーの原価率・営業利益率の動向から、今後の価格改定余地を機関投資家視点で分析します。'},
+  {id:10,type:'投資・資産防衛',tagLabel:'投資・資産防衛',tag:'toushi',title:'インフレ時代の家計防衛投資術。現金・物資・金融資産の最適配分',date:'2026/03/04',body:'値上げ局面で資産価値を守るための3つの戦略。現金比率の見直し・インフレ連動資産・現物備蓄の組み合わせを解説。'},
+  {id:11,type:'投資・資産防衛',tagLabel:'投資・資産防衛',tag:'toushi',title:'円安が続く場合の資産防衛シナリオ。外貨・金・ETFの活用法',date:'2026/03/02',body:'ドル円160円突破時に備えた家計の資産防衛策。個人でできる為替ヘッジの方法と注意点をわかりやすく解説。'},
+];
+
+
+// ═══════════════════════════════════════
+// 統計・アラート読み込み
+// ═══════════════════════════════════════
 async function loadStats(){
   try{
-    const r = await fetch('stats.json?v='+Date.now());
-    const d = await r.json();
-    // 数値を更新
-    const items = document.querySelector('.hstat-num');
-    const all   = document.querySelectorAll('.hstat-num');
-    if(all[0]) all[0].textContent = Number(d.items).toLocaleString();
-    if(all[1]) all[1].textContent = d.labor_pct + '%';
-    if(all[2]) all[2].textContent = '+' + d.food_rate + '%';
-    if(all[3]) all[3].textContent = d.predict_score + '点';
-  }catch(e){ console.log('stats未生成', e); }
+    const r=await fetch('stats.json?v='+Date.now());
+    const d=await r.json();
+    const map={
+      'stat-score':d.risk_score,
+      'stat-items':d.items_count,
+      'stat-avg':d.avg_rise,
+      'stat-updated':d.updated
+    };
+    Object.entries(map).forEach(([id,val])=>{
+      const el=document.getElementById(id);
+      if(el&&val!=null) el.textContent=val;
+    });
+  }catch(e){console.log('stats.json未取得',e);}
 }
+
+async function loadAlerts(){
+  const grid = document.getElementById('alert-grid');
+  const updEl = document.getElementById('alert-updated');
+  const srcEl = document.getElementById('alert-source-note');
+  try{
+    const r = await fetch('alert.json?v='+Date.now());
+    if(!r.ok) throw new Error('fetch failed');
+    const d = await r.json();
+    if(!d.alerts||!d.alerts.length) throw new Error('no data');
+    renderAlerts(d.alerts);
+    renderStockup(d.alerts);
+    if(updEl && d.updated) updEl.textContent = d.updated+' 更新';
+    if(srcEl && d.source)  srcEl.textContent = '出典: '+d.source;
+  }catch(e){
+    // フォールバック: ハードコードデータ
+    renderAlerts(FALLBACK_ALERTS);
+  renderStockup(FALLBACK_ALERTS);
+    if(updEl) updEl.textContent = '※サンプルデータ表示中';
+  }
+}
+
+
+// ══════════════════════════════════════
+// ★ ASPアフィリエイト設定（承認後ここを変更するだけ）
+// ══════════════════════════════════════
+var AFF = {
+  // 楽天アフィリエイト（承認後: affiliateId を実際のIDに変更）
+  rakuten: {
+    affiliateId: 'XXXXX',  // ← 楽天アフィリエイト承認後に変更
+    // 商品名で検索URLを自動生成
+    url: function(keyword){
+      return 'https://hb.afl.rakuten.co.jp/hgc/' + this.affiliateId + '/?pc='
+        + encodeURIComponent('https://search.rakuten.co.jp/search/mall/' + keyword + '/');
+    }
+  },
+  // Amazon アソシエイト（承認後: tag を実際のIDに変更）
+  amazon: {
+    tag: 'XXXXX-22',  // ← Amazonアソシエイト承認後に変更
+    url: function(keyword){
+      return 'https://www.amazon.co.jp/s?k=' + encodeURIComponent(keyword) + '&tag=' + this.tag;
+    }
+  },
+  // Yahoo!ショッピング（バリューコマース承認後: sid を変更）
+  yahoo: {
+    sid: 'XXXXX',  // ← バリューコマース承認後に変更
+    url: function(keyword){
+      return 'https://ck.jp.ap.valuecommerce.com/servlet/referral?sid=' + this.sid
+        + '&pid=XXXXX&vc_url='
+        + encodeURIComponent('https://shopping.yahoo.co.jp/search?p=' + keyword);
+    }
+  }
+};
+
+// ASPリンクが未設定（XXXXX）の場合は直接検索URLにフォールバック
+function getAffUrl(shop, keyword){
+  try {
+    if(shop === '楽天' || shop === '楽天市場'){
+      var url = AFF.rakuten.url(keyword);
+      return AFF.rakuten.affiliateId === 'XXXXX'
+        ? 'https://search.rakuten.co.jp/search/mall/' + encodeURIComponent(keyword) + '/'
+        : url;
+    }
+    if(shop === 'Amazon'){
+      var url = AFF.amazon.url(keyword);
+      return AFF.amazon.tag === 'XXXXX-22'
+        ? 'https://www.amazon.co.jp/s?k=' + encodeURIComponent(keyword)
+        : url;
+    }
+    if(shop === 'Yahoo!' || shop === 'Yahoo!ショッピング'){
+      var url = AFF.yahoo.url(keyword);
+      return AFF.yahoo.sid === 'XXXXX'
+        ? 'https://shopping.yahoo.co.jp/search?p=' + encodeURIComponent(keyword)
+        : url;
+    }
+  } catch(e){}
+  return '#';
+}
+
+// クリック計測（GA4連携用）
+function trackClick(shop, keyword, price){
+  // Google Analytics 4 イベント送信（設定済みの場合）
+  if(typeof gtag === 'function'){
+    gtag('event', 'aff_click', {
+      'shop': shop,
+      'keyword': keyword,
+      'price': price
+    });
+  }
+  console.log('[AFF]', shop, keyword, price);
+}
+
+function renderAlerts(alerts){
+  var grid = document.getElementById('alert-grid');
+  if(!grid) return;
+
+  var html = '';
+  var shown = alerts.slice(0, 10);
+
+  for(var i=0; i<shown.length; i++){
+    var a = shown[i];
+    var isCrit = a.level === 'critical';
+    var cls = isCrit ? 'critical' : 'warn';
+    var conf = a.confidence || 3;
+    var dots = '';
+    for(var d=0; d<5; d++){
+      dots += '<span class="alert-conf-dot' + (d<conf?' on '+(isCrit?'crit':'warn'):'') + '"></span>';
+    }
+    var rate = (a.rate_min && a.rate_max)
+      ? '+' + a.rate_min + '〜' + a.rate_max + '%'
+      : (a.rate || '+?%');
+
+    html += '<div class="alert-card ' + cls + '" onclick="toggleAlert(this)">';
+    html += '<div class="alert-card-bar"></div>';
+    html += '<div class="alert-card-body">';
+    html += '<div class="alert-head">';
+    html += '<span class="alert-level-badge">' + (isCrit?'🔴 緊急':'🟡 注意') + '</span>';
+    html += '<span style="font-size:11px;color:#64748b">' + (a.cat_icon||'') + (a.category||'') + '</span>';
+    html += '<span class="alert-date-badge">' + (a.date||'') + '</span>';
+    html += '</div>';
+    html += '<div class="alert-name">' + a.name + '</div>';
+    html += '<div class="alert-rate-block">';
+    html += '<span class="alert-rate-num">' + rate + '</span>';
+    html += '<span class="alert-rate-label">値上がり予測</span>';
+    html += '</div>';
+    html += '<div class="alert-info">';
+    if(a.brands) html += '<div class="alert-info-row"><span class="alert-info-icon">🏭</span><span class="alert-info-text">' + a.brands + '</span></div>';
+    if(a.cause)  html += '<div class="alert-info-row"><span class="alert-info-icon">📌</span><span class="alert-info-text">' + a.cause + '</span></div>';
+    html += '</div>';
+    html += '<div class="alert-conf-wrap"><span class="alert-conf-label">確度</span><div class="alert-conf-dots">' + dots + '</div></div>';
+    html += '<div class="alert-expand-hint">🛒 今すぐ買う → ▼</div>';
+    html += '</div>';
+
+    // ── 展開パネル（小項目＋購入ボタン） ──
+    html += '<div class="alert-sub-panel">';
+    html += '<div class="alert-sub-header">📦 値上げ前に買うべき商品</div>';
+
+    var subs = a.sub_items || [];
+    if(subs.length){
+      for(var j=0; j<subs.length; j++){
+        var sub = subs[j];
+        // 価格順にソート
+        var shops = (sub.shops||[]).slice().sort(function(x,y){return x.price-y.price});
+        html += '<div class="alert-sub-item">';
+        html += '<div class="alert-sub-name">' + sub.name + '</div>';
+        html += '<div class="alert-sub-shops">';
+        for(var k=0; k<shops.length; k++){
+          var s = shops[k];
+          // ASPリンク自動生成（urlが#または未設定なら商品名で検索URLを生成）
+          var href = (s.url && s.url !== '#') ? s.url : getAffUrl(s.nm, sub.name);
+          var p = s.price >= 10000
+            ? '¥' + (s.price/10000).toFixed(1) + '万'
+            : s.price > 0 ? '¥' + s.price.toLocaleString() : '確認';
+          var isBest = k === 0;
+          html += '<a href="' + href + '" target="_blank" rel="noopener"';
+          html += ' class="alert-shop-btn' + (isBest?' best':'') + '"';
+          html += ' onclick="event.stopPropagation()">'; // trackClick via delegation
+          html += '<span class="alert-shop-nm">' + s.nm + '</span>';
+          html += '<span class="alert-shop-price">' + p + '</span>';
+          if(isBest) html += '<span class="alert-shop-badge">最安</span>';
+          html += '</a>';
+        }
+        html += '</div></div>';
+      }
+    } else {
+      // sub_itemsがなければカテゴリ名で自動生成
+      var kw = a.name || a.category || '';
+      html += '<div class="alert-sub-auto">';
+      html += '<div class="alert-sub-name">' + kw + ' を検索して購入</div>';
+      html += '<div class="alert-sub-shops">';
+      var autoShops = [
+        {nm:'楽天', shop:'楽天'},
+        {nm:'Amazon', shop:'Amazon'},
+        {nm:'Yahoo!', shop:'Yahoo!'}
+      ];
+      for(var k=0; k<autoShops.length; k++){
+        var href = getAffUrl(autoShops[k].shop, kw);
+        html += '<a href="' + href + '" target="_blank" rel="noopener"';
+        html += ' class="alert-shop-btn' + (k===0?' best':'') + '"';
+          html += ' onclick="event.stopPropagation()">'; // trackClick via delegation
+        html += '<span class="alert-shop-nm">' + autoShops[k].nm + '</span>';
+        html += '<span class="alert-shop-price">検索 →</span>';
+        if(k===0) html += '<span class="alert-shop-badge">おすすめ</span>';
+        html += '</a>';
+      }
+      html += '</div></div>';
+    }
+
+    html += '<div class="aff-disc" style="font-size:10px;padding:8px 14px;border-top:1px solid #f1f5f9">PR：アフィリエイトリンクです</div>';
+    html += '</div></div>';
+  }
+
+  grid.innerHTML = html;
+}
+
+
+function toggleAlert(card){
+  var panel = card.querySelector('.alert-sub-panel');
+  var hint  = card.querySelector('.alert-expand-hint');
+  if(!panel) return;
+  var isOpen = panel.classList.contains('open');
+  // 全部閉じる
+  var allPanels = document.querySelectorAll('.alert-sub-panel');
+  var allHints  = document.querySelectorAll('.alert-expand-hint');
+  var allCards  = document.querySelectorAll('.alert-card');
+  for(var i=0;i<allPanels.length;i++){
+    allPanels[i].classList.remove('open');
+    if(allHints[i]) allHints[i].textContent = '🛒 今すぐ買う商品を見る ▼';
+    if(allCards[i]) allCards[i].classList.remove('expanded');
+  }
+  // 同じカードなら閉じるだけ、違うなら開く
+  if(!isOpen){
+    panel.classList.add('open');
+    card.classList.add('expanded');
+    if(hint) hint.textContent = '▲ 閉じる';
+  }
+}// フォールバックデータ（alert.json未取得時）
+const FALLBACK_ALERTS = [
+  {level:'critical',category:'食品・飲料',cat_icon:'🍱',name:'パン・小麦製品全般',
+   brands:'山崎パン・フジパン・敷島製パン',date:'4月8日',
+   rate_min:8,rate_max:12,cause:'小麦先物+14%・円安152円が直撃',
+   action:'冷凍保存で今すぐ備蓄',action_url:'#',confidence:5,
+   sub_items:[
+     {name:'食パン・菓子パン各種',shops:[{nm:'楽天',price:980,url:'#'},{nm:'Amazon',price:1050,url:'#'},{nm:'Yahoo!',price:1020,url:'#'}]},
+     {name:'パスタ・スパゲッティ 5kg',shops:[{nm:'Amazon',price:2480,url:'#'},{nm:'楽天',price:2580,url:'#'},{nm:'Yahoo!',price:2650,url:'#'}]},
+     {name:'カップ麺 24個セット',shops:[{nm:'Amazon',price:2380,url:'#'},{nm:'楽天',price:2480,url:'#'},{nm:'Yahoo!',price:2550,url:'#'}]},
+   ]},
+  {level:'critical',category:'PC・デジタル',cat_icon:'💻',name:'PC・GPU・メモリ全般',
+   brands:'ASUS・MSI・Kingston・Samsung',date:'4月以降 継続',
+   rate_min:15,rate_max:25,cause:'半導体需要急増+円安で二重高騰',
+   action:'今月中の購入を強く推奨',action_url:'#',confidence:5,
+   sub_items:[
+     {name:'ゲーミングPC RTX4060搭載',shops:[{nm:'Amazon',price:138000,url:'#'},{nm:'楽天',price:142000,url:'#'},{nm:'Yahoo!',price:145000,url:'#'}]},
+     {name:'DDR5メモリー 32GB 2枚組',shops:[{nm:'Amazon',price:14800,url:'#'},{nm:'楽天',price:15200,url:'#'},{nm:'Yahoo!',price:15500,url:'#'}]},
+     {name:'NVMe SSD 2TB',shops:[{nm:'楽天',price:18000,url:'#'},{nm:'Amazon',price:18800,url:'#'},{nm:'Yahoo!',price:19200,url:'#'}]},
+   ]},
+  {level:'warn',category:'日用品',cat_icon:'🧴',name:'トイレットペーパー・ティッシュ',
+   brands:'日本製紙クレシア・大王製紙・王子ネピア',date:'4月15日',
+   rate_min:6,rate_max:10,cause:'パルプ相場+5.4%・物流費上昇',
+   action:'ケース買いでまとめ備蓄',action_url:'#',confidence:5,
+   sub_items:[
+     {name:'トイレットペーパー 12R×8パック',shops:[{nm:'楽天',price:2980,url:'#'},{nm:'Amazon',price:3080,url:'#'},{nm:'Yahoo!',price:3150,url:'#'}]},
+     {name:'ティッシュ 5箱×5セット',shops:[{nm:'Amazon',price:2480,url:'#'},{nm:'楽天',price:2580,url:'#'},{nm:'Yahoo!',price:2650,url:'#'}]},
+     {name:'キッチンペーパー 6R×6セット',shops:[{nm:'楽天',price:2480,url:'#'},{nm:'Amazon',price:2580,url:'#'},{nm:'Yahoo!',price:2650,url:'#'}]},
+   ]},
+  {level:'warn',category:'エネルギー',cat_icon:'⚡',name:'電気料金・都市ガス',
+   brands:'東京電力・東京ガス・大阪ガス他',date:'5月検針分〜',
+   rate_min:5,rate_max:8,cause:'補助金終了+LNG価格上昇',
+   action:'今すぐ電力会社乗り換え比較',action_url:'#',confidence:4,
+   sub_items:[
+     {name:'ポータブル電源 500Wh',shops:[{nm:'楽天',price:38000,url:'#'},{nm:'Amazon',price:40000,url:'#'},{nm:'Yahoo!',price:42000,url:'#'}]},
+     {name:'カセットガス 250g×24本',shops:[{nm:'Amazon',price:3480,url:'#'},{nm:'楽天',price:3680,url:'#'},{nm:'Yahoo!',price:3750,url:'#'}]},
+     {name:'LED電球 100W相当 10個セット',shops:[{nm:'Amazon',price:2480,url:'#'},{nm:'楽天',price:2580,url:'#'},{nm:'Yahoo!',price:2650,url:'#'}]},
+   ]},
+  {level:'critical',category:'食品・飲料',cat_icon:'🍜',name:'カップ麺5社同時値上げ',
+   brands:'日清・東洋水産・サンヨー・エースコック・マルちゃん',date:'4月1日 確定',
+   rate_min:10,rate_max:15,cause:'小麦+容器+物流費 三重コスト増',
+   action:'ケース単位でまとめ買い',action_url:'#',confidence:5,
+   sub_items:[
+     {name:'日清カップヌードル 20個',shops:[{nm:'Amazon',price:2480,url:'#'},{nm:'楽天',price:2580,url:'#'},{nm:'Yahoo!',price:2650,url:'#'}]},
+     {name:'マルちゃん正麺 袋麺 30食',shops:[{nm:'楽天',price:2980,url:'#'},{nm:'Amazon',price:3080,url:'#'},{nm:'Yahoo!',price:3150,url:'#'}]},
+   ]},
+  {level:'warn',category:'家電',cat_icon:'🏠',name:'エアコン・冷蔵庫',
+   brands:'ダイキン・パナソニック・日立・三菱電機',date:'4月〜順次',
+   rate_min:7,rate_max:12,cause:'冷媒・基板コスト上昇+円安',
+   action:'夏前に購入が得策',action_url:'#',confidence:4,
+   sub_items:[
+     {name:'エアコン 10畳用 省エネモデル',shops:[{nm:'Amazon',price:78000,url:'#'},{nm:'楽天',price:82000,url:'#'},{nm:'Yahoo!',price:85000,url:'#'}]},
+     {name:'冷蔵庫 470L 大型',shops:[{nm:'楽天',price:158000,url:'#'},{nm:'Amazon',price:162000,url:'#'},{nm:'Yahoo!',price:165000,url:'#'}]},
+   ]},
+  {level:'warn',category:'調理用油・調味料',cat_icon:'🫒',name:'食用油・マヨネーズ',
+   brands:'日清オイリオ・昭和産業・キューピー',date:'4月20日',
+   rate_min:10,rate_max:15,cause:'大豆・パーム油相場の遅延転嫁',
+   action:'まとめ買いが最も効果的',action_url:'#',confidence:4,
+   sub_items:[
+     {name:'サラダ油 1L×4本',shops:[{nm:'Amazon',price:1280,url:'#'},{nm:'楽天',price:1380,url:'#'},{nm:'Yahoo!',price:1420,url:'#'}]},
+     {name:'マヨネーズ 500g×4本',shops:[{nm:'Amazon',price:1320,url:'#'},{nm:'楽天',price:1380,url:'#'},{nm:'Yahoo!',price:1420,url:'#'}]},
+     {name:'オリーブオイル EXV 500ml×4',shops:[{nm:'Amazon',price:3280,url:'#'},{nm:'楽天',price:3380,url:'#'},{nm:'Yahoo!',price:3450,url:'#'}]},
+   ]},
+  {level:'warn',category:'育児・ベビー',cat_icon:'👶',name:'紙おむつ・ベビー用品',
+   brands:'P&G・ユニ・チャーム・王子ネピア',date:'4月15日',
+   rate_min:6,rate_max:9,cause:'原材料+物流費上昇',
+   action:'1〜2サイズ先まで備蓄推奨',action_url:'#',confidence:5,
+   sub_items:[
+     {name:'パンパース テープ Mサイズ 198枚×2',shops:[{nm:'Amazon',price:5480,url:'#'},{nm:'楽天',price:5680,url:'#'},{nm:'Yahoo!',price:5850,url:'#'}]},
+     {name:'メリーズ パンツ Lサイズ 144枚×2',shops:[{nm:'楽天',price:5280,url:'#'},{nm:'Amazon',price:5480,url:'#'},{nm:'Yahoo!',price:5650,url:'#'}]},
+     {name:'おしりふき 720枚×4パック',shops:[{nm:'楽天',price:2980,url:'#'},{nm:'Amazon',price:3080,url:'#'},{nm:'Yahoo!',price:3150,url:'#'}]},
+   ]},
+  {level:'warn',category:'ペット',cat_icon:'🐾',name:'ペットフード全般',
+   brands:'ロイヤルカナン・ヒルズ・ピュリナ',date:'4月〜5月',
+   rate_min:5,rate_max:10,cause:'輸入原料+円安で継続上昇',
+   action:'2〜3ヶ月分まとめ買い',action_url:'#',confidence:3,
+   sub_items:[
+     {name:'ロイヤルカナン ミニ 8kg',shops:[{nm:'楽天',price:8980,url:'#'},{nm:'Amazon',price:9200,url:'#'},{nm:'Yahoo!',price:9500,url:'#'}]},
+     {name:'ヒルズ サイエンス 10kg',shops:[{nm:'Amazon',price:7980,url:'#'},{nm:'楽天',price:8200,url:'#'},{nm:'Yahoo!',price:8450,url:'#'}]},
+   ]},
+  {level:'warn',category:'健康・サプリ',cat_icon:'💊',name:'プロテイン・サプリメント',
+   brands:'明治・グリコ・ザバス・DHC',date:'5月以降',
+   rate_min:5,rate_max:8,cause:'輸入原料コスト増+容器値上げ',
+   action:'2〜3ヶ月分の在庫確保',action_url:'#',confidence:3,
+   sub_items:[
+     {name:'ザバス ホエイプロテイン 1050g×2',shops:[{nm:'Amazon',price:7980,url:'#'},{nm:'楽天',price:8200,url:'#'},{nm:'Yahoo!',price:8450,url:'#'}]},
+     {name:'DHC マルチビタミン 60日×3袋',shops:[{nm:'楽天',price:2980,url:'#'},{nm:'Amazon',price:3080,url:'#'},{nm:'Yahoo!',price:3150,url:'#'}]},
+   ]},
+];
+// ═══════════════════════════════════════
+// カレンダー
+// ═══════════════════════════════════════
+let currentCalMonth='apr';
+function renderCal(month){
+  currentCalMonth = month;
+  const data = CAL_DATA[month] || [];
+  const grid = document.getElementById('cal-grid');
+  if(!grid) return;
+  grid.innerHTML = data.map(item => {
+    const cls = item.cls || 'cat-other';
+    const conf = item.conf || 3;
+    const dots = Array.from({length:5}, (_,i) =>
+      `<span class="cal-conf-dot${i < conf ? ' on' : ''}"></span>`
+    ).join('');
+    return `<div class="cal-item ${cls}">
+  <div class="cal-item-head">${item.cat}</div>
+  <div class="cal-item-body">
+    <div class="cal-name">${item.name}</div>
+    <div class="cal-sub">${item.sub}</div>
+    <div class="cal-rate-row">
+      <span class="cal-rate">${item.rate}</span>
+      <div class="cal-conf">${dots}</div>
+    </div>
+  </div>
+</div>`;
+  }).join('');
+  document.querySelectorAll('.cal-tab').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.month === month);
+  });
+}
+// ═══════════════════════════════════════
+// ランキング
+// ═══════════════════════════════════════
+function renderRanking(){
+  var wrap = document.getElementById('ranking-list');
+  if(!wrap) return;
+  var html = '<div class="rank-grid">';
+  for(var i=0;i<RANK_DATA.length;i++){
+    var item = RANK_DATA[i];
+    var loss = Math.round(item.spend * item.r4 / 100);
+    var lossStr = loss >= 10000
+      ? '+' + (loss/10000).toFixed(1) + '万円'
+      : '+' + loss.toLocaleString() + '円';
+    var clr = item.r4 >= 15 ? '#dc2626' : item.r4 >= 10 ? '#d97706' : '#16a34a';
+    var pct = Math.min(100, item.r4 / 25 * 100).toFixed(0);
+    var badgeCls = item.rank <= 2 ? 'gold' : item.rank <= 4 ? 'silver' : item.rank <= 6 ? 'bronze' : 'normal';
+    var stars = '★'.repeat(item.score) + '☆'.repeat(5 - item.score);
+    var urgCls  = item.weeks <= 3 ? 'urgent' : item.weeks <= 6 ? 'soon' : 'watch';
+    var urgText = item.weeks <= 3 ? '⏰ 約' + item.weeks + '週間で値上げ'
+                : item.weeks <= 6 ? '📅 約' + item.weeks + '週間後'
+                : '👀 様子見もOK';
+    var spendM = (item.spend/10000).toFixed(0);
+    html += '<div class="rank-card" data-rank="' + item.rank + '">';
+    html += '<div class="rank-card-head">';
+    html += '<div class="rank-num-badge ' + badgeCls + '">' + item.rank + '</div>';
+    html += '<div class="rank-icon-name">';
+    html += '<span class="rank-icon">' + item.icon + '</span>';
+    html += '<span class="rank-name">' + item.name + '</span>';
+    html += '</div></div>';
+    html += '<div class="rank-loss-block">';
+    html += '<div class="rank-loss-label">今買わないと損する金額（4ヶ月後）</div>';
+    html += '<div class="rank-loss-amount">' + lossStr + '</div>';
+    html += '<div class="rank-loss-basis">月' + spendM + '万円の支出が対象</div>';
+    html += '</div>';
+    html += '<div class="rank-rate-row">';
+    html += '<div class="rank-bar"><div class="rank-bar-fill" style="width:' + pct + '%;background:' + clr + '"></div></div>';
+    html += '<span class="rank-rate-val" style="color:' + clr + '">+' + item.r4 + '%</span>';
+    html += '</div>';
+    html += '<div class="rank-meta">';
+    html += '<div class="rank-stars">' + stars + '</div>';
+    html += '<span class="rank-urgency ' + urgCls + '">' + urgText + '</span>';
+    html += '</div>';
+    html += '<div class="rank-reason">' + item.reason + '</div>';
+    html += '<a href="forecast-db-new.html" class="rank-btn">最安値で今すぐ購入 →</a>';
+    html += '</div>';
+  }
+  html += '</div>';
+  wrap.innerHTML = html;
+}// ═══════════════════════════════════════
+// 価格比較タブ
+// ═══════════════════════════════════════
+let currentCompareCat='food';
+function renderCompareTabs(){
+  const wrap=document.getElementById('compare-cat-tabs');
+  if(!wrap) return;
+  const cats=[
+    {id:'food',label:'🍱 食品'},{id:'kaden',label:'🏠 家電'},
+    {id:'pc',label:'💻 PC'},{id:'energy',label:'⚡ エネルギー'},
+    {id:'health',label:'💊 健康'},{id:'daily',label:'🧴 日用品'}
+  ];
+  wrap.innerHTML=cats.map(cat=>`
+    <button class="compare-tab${cat.id===currentCompareCat?' active':''}" onclick="renderCompare('${cat.id}')">${cat.label}</button>`
+  ).join('');
+}
+
+function renderCompare(catId, label){
+  currentCompareCat = catId;
+  var wrap = document.getElementById('compare-list');
+  var titleEl = document.getElementById('rank-compare-title');
+  if(!wrap) return;
+
+  // タイトル更新
+  if(titleEl && label) titleEl.textContent = '💰 ' + label + ' の最安値比較';
+
+  var items = (COMPARE_DATA && COMPARE_DATA[catId]) || [];
+  if(!items.length){
+    wrap.innerHTML = '<div style="padding:20px;text-align:center;color:#94a3b8;font-size:13px">データ準備中</div>';
+    return;
+  }
+  var html = '';
+  for(var i=0;i<items.length;i++){
+    var it = items[i];
+    var shops = it.shops.slice().sort(function(a,b){return a.price-b.price});
+    html += '<div class="compare-item">';
+    html += '<div class="cmp-name">' + it.name;
+    if(it.rise) html += '<span class="cmp-rise-badge">' + it.rise + '</span>';
+    html += '</div>';
+    html += '<div class="cmp-shops">';
+    for(var j=0;j<shops.length;j++){
+      var s = shops[j];
+      html += '<div class="cmp-shop' + (j===0?' best':'') + '">';
+      html += '<span class="cmp-shop-name">' + s.name + '</span>';
+      html += '<span class="cmp-price' + (j===0?' best-price':'') + '">';
+      html += s.price > 0 ? '¥' + s.price.toLocaleString() : '要確認';
+      html += '</span>';
+      if(j===0 && s.price>0) html += '<span class="cmp-badge">最安</span>';
+      if(s.del) html += '<span class="cmp-del">' + s.del + '</span>';
+      html += '</div>';
+    }
+    html += '</div></div>';
+  }
+  wrap.innerHTML = html;
+
+  // 価格比較エリアまでスクロール
+  var wrapEl = document.getElementById('rank-compare-wrap');
+  if(wrapEl) wrapEl.scrollIntoView({behavior:'smooth', block:'nearest'});
+}function renderRanking(){
+  var wrap = document.getElementById('ranking-list');
+  if(!wrap) return;
+  var html = '<div class="rank-grid">';
+  for(var i=0;i<RANK_DATA.length;i++){
+    var item = RANK_DATA[i];
+    var loss = Math.round(item.spend * item.r4 / 100);
+    var lossStr = loss >= 10000
+      ? '+' + (loss/10000).toFixed(1) + '万円'
+      : '+' + loss.toLocaleString() + '円';
+    var clr = item.r4 >= 15 ? '#dc2626' : item.r4 >= 10 ? '#d97706' : '#16a34a';
+    var pct = Math.min(100, item.r4 / 25 * 100).toFixed(0);
+    var badgeCls = item.rank <= 2 ? 'gold' : item.rank <= 4 ? 'silver' : item.rank <= 6 ? 'bronze' : 'normal';
+    var stars = '★'.repeat(item.score) + '☆'.repeat(5 - item.score);
+    var urgCls  = item.weeks <= 3 ? 'urgent' : item.weeks <= 6 ? 'soon' : 'watch';
+    var urgText = item.weeks <= 3 ? '⏰ 約' + item.weeks + '週間で値上げ'
+                : item.weeks <= 6 ? '📅 約' + item.weeks + '週間後'
+                : '👀 様子見もOK';
+    var spendM = (item.spend/10000).toFixed(0);
+    html += '<div class="rank-card" data-rank="' + item.rank + '" data-cat="' + item.cat + '" onclick="selectRankCard(this,\''+item.cat+'\',\''+item.name+'\')">';
+
+    html += '<div class="rank-card-head">';
+    html += '<div class="rank-num-badge ' + badgeCls + '">' + item.rank + '</div>';
+    html += '<div class="rank-icon-name">';
+    html += '<span class="rank-icon">' + item.icon + '</span>';
+    html += '<span class="rank-name">' + item.name + '</span>';
+    html += '</div></div>';
+    html += '<div class="rank-loss-block">';
+    html += '<div class="rank-loss-label">今買わないと損する金額（4ヶ月後）</div>';
+    html += '<div class="rank-loss-amount">' + lossStr + '</div>';
+    html += '<div class="rank-loss-basis">月' + spendM + '万円の支出が対象</div>';
+    html += '</div>';
+    html += '<div class="rank-rate-row">';
+    html += '<div class="rank-bar"><div class="rank-bar-fill" style="width:' + pct + '%;background:' + clr + '"></div></div>';
+    html += '<span class="rank-rate-val" style="color:' + clr + '">+' + item.r4 + '%</span>';
+    html += '</div>';
+    html += '<div class="rank-meta">';
+    html += '<div class="rank-stars">' + stars + '</div>';
+    html += '<span class="rank-urgency ' + urgCls + '">' + urgText + '</span>';
+    html += '</div>';
+    html += '<div class="rank-reason">' + item.reason + '</div>';
+    html += '<button class="rank-btn" onclick="selectRankCard(this,\''+item.cat+'\',\''+item.name+'\')">最安値で今すぐ購入 →</button>';
+    html += '</div>';
+  }
+  html += '</div>';
+  wrap.innerHTML = html;
+}// ═══════════════════════════════════════
+// 価格比較タブ
+// ═══════════════════════════════════════
+currentCompareCat='food';
+function renderCompareTabs(){
+  const wrap=document.getElementById('compare-cat-tabs');
+  if(!wrap) return;
+  const cats=[
+    {id:'food',label:'🍱 食品'},{id:'kaden',label:'🏠 家電'},
+    {id:'pc',label:'💻 PC'},{id:'energy',label:'⚡ エネルギー'},
+    {id:'health',label:'💊 健康'},{id:'daily',label:'🧴 日用品'}
+  ];
+  wrap.innerHTML=cats.map(cat=>`
+    <button class="compare-tab${cat.id===currentCompareCat?' active':''}" onclick="renderCompare('${cat.id}')">${cat.label}</button>`
+  ).join('');
+}
+
+function renderCompare(catId){
+  currentCompareCat=catId;
+  // renderCompareTabs削除;
+  const wrap=document.getElementById('compare-list');
+  if(!wrap) return;
+  const items=COMPARE_DATA&&COMPARE_DATA[catId]||[];
+  if(!items.length){
+    wrap.innerHTML='<div style="padding:20px;text-align:center;color:#94a3b8">データ準備中</div>';
+    return;
+  }
+  wrap.innerHTML=items.map(it=>{
+    const shops=[...it.shops].sort((a,b)=>a.price-b.price);
+    return`<div class="compare-item">
+      <div class="cmp-name">${it.name}</div>
+      ${shops.map((s,i)=>`
+        <div class="cmp-shop${i===0?' best':''}">
+          <span class="cmp-shop-name">${s.name}</span>
+          <span class="cmp-price${i===0?' best-price':''}">${s.price>0?'¥'+s.price.toLocaleString():s.label||'要確認'}</span>
+          ${i===0&&s.price>0?'<span class="cmp-badge">最安</span>':''}
+        </div>`).join('')}
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════
+// 先行指標
+// ═══════════════════════════════════════
+
+// ═══════════════════════════════════════
+// ニュース
+// ═══════════════════════════════════════
+let currentNewsTag='すべて';
+
+// ── ニュースフィルター描画 ──
+function renderNewsFilter(){
+  var wrap = document.getElementById('news-filter');
+  if(!wrap) return;
+  var tags = [
+    {label:'すべて',     val:'すべて'},
+    {label:'🔴 速報',   val:'速報'},
+    {label:'⚡ 緊急',   val:'緊急'},
+    {label:'📖 解説',   val:'解説'},
+    {label:'💡 節約術', val:'節約術'},
+    {label:'🛒 今すぐ備蓄',val:'今すぐ備蓄'},
+    {label:'🏭 業界',   val:'業界'},
+    {label:'💰 投資・資産防衛',val:'投資・資産防衛'},
+  ];
+  var html = '';
+  for(var i=0;i<tags.length;i++){
+    var t = tags[i];
+    var isActive = currentNewsTag === t.val;
+    html += '<button class="news-filter-btn' + (isActive?' active':'') + '"';
+    html += ' onclick="filterNews(this,\'' + t.val + '\')">' + t.label + '</button>';
+  }
+  wrap.innerHTML = html;
+}
+
+// タグ→CSSクラス
+function getTagCls(tag){
+  var map = {sokuho:'tag-sokuho',kinyu:'tag-kinyu',kaisetsu:'tag-kaisetsu',
+             setsuyaku:'tag-setsuyaku',bichiku:'tag-bichiku',sangyo:'tag-sangyo',toushi:'tag-toushi'};
+  return map[tag] || 'tag-default';
+}
+
+// ── ニュース描画 ──
+function renderNews(tag){
+  if(tag) currentNewsTag = tag;
+  renderNewsFilter();
+  var wrap = document.getElementById('news-grid');
+  if(!wrap) return;
+
+  var items = (NEWS_DATA||[]).filter(function(n){
+    return currentNewsTag === 'すべて' || n.tagLabel === currentNewsTag || n.tag === currentNewsTag;
+  });
+
+  if(!items.length){
+    wrap.innerHTML = '<div style="padding:24px;text-align:center;color:#94a3b8">該当記事がありません</div>';
+    return;
+  }
+
+  var html = '';
+  // 1枚目：フィーチャーカード
+  var f = items[0];
+  var fTagCls = getTagCls(f.tag);
+  html += '<div class="news-card-feature">';
+  html += '<div class="news-card-feature-body">';
+  html += '<div class="news-meta">';
+  html += '<span class="news-tag ' + fTagCls + '">' + (f.tagLabel||f.tag) + '</span>';
+  html += '<span class="news-date-txt">' + f.date + '</span>';
+  html += '</div>';
+  html += '<div class="news-title-feature">' + f.title + '</div>';
+  html += '<div class="news-body-feature">' + f.body + '</div>';
+  html += '</div></div>';
+
+  // 2枚目以降：コンパクトリスト
+  if(items.length > 1){
+    html += '<div class="news-list">';
+    for(var i=1; i<items.length; i++){
+      var n = items[i];
+      var tagCls = getTagCls(n.tag);
+      html += '<div class="news-list-item">';
+      html += '<span class="news-list-num">' + (i+1) + '</span>';
+      html += '<div class="news-list-meta">';
+      html += '<div class="news-title-list">' + n.title + '</div>';
+      html += '<div class="news-list-tag-date">';
+      html += '<span class="news-tag ' + tagCls + '">' + (n.tagLabel||n.tag) + '</span>';
+      html += '<span class="news-list-date">' + n.date + '</span>';
+      html += '</div></div></div>';
+    }
+    html += '</div>';
+  }
+
+  wrap.innerHTML = html;
+}
+
+// ── フィルター切り替え ──
+function filterNews(btn, tag){
+  currentNewsTag = tag;
+  renderNews();
+}
+
+// ═══════════════════════════════════════
+// 先行指標・アラート更新ボタン
+// ═══════════════════════════════════════
+function refreshIndicators(){
+  renderIndicators();
+  const btn=document.querySelector('[onclick="refreshIndicators()"]');
+  if(btn){btn.textContent='✅ 更新';setTimeout(()=>btn.textContent='🔄 更新',1500);}
+}
+function refreshAlerts(){
+  loadAlerts();
+}
+
+// ═══════════════════════════════════════
+// 先行指標（idx-grid 対応版）
+// ═══════════════════════════════════════
+function renderIndicators(){
+  var wrap = document.getElementById('idx-grid') || document.getElementById('indicators-grid');
+  if(!wrap) return;
+
+  // 指標データ（グループ別）
+  var groups = [
+    {
+      label: '💱 為替・エネルギー',
+      items: [
+        {icon:'💱', name:'USD/JPY 為替',    val:'149.8円', change:'+2.1%', trend:'up',   impact:'食品・日用品に2〜3ヶ月後転嫁', lag:'2〜3ヶ月後'},
+        {icon:'🛢', name:'WTI 原油',         val:'$78.2',   change:'+1.5%', trend:'up',   impact:'エネルギー・輸送費に1〜2ヶ月後転嫁', lag:'1〜2ヶ月後'},
+        {icon:'🔥', name:'天然ガス（LNG）',   val:'$2.45',   change:'-0.5%', trend:'down', impact:'電気・ガス料金に1〜3ヶ月後転嫁', lag:'1〜3ヶ月後'},
+      ]
+    },
+    {
+      label: '🌾 食品・農産物原材料',
+      items: [
+        {icon:'🌾', name:'小麦先物',   val:'$5.84',  change:'+3.2%',  trend:'up',   impact:'パン・麺類・菓子に3〜4ヶ月後転嫁',   lag:'3〜4ヶ月後'},
+        {icon:'🫘', name:'大豆先物',   val:'$12.1',  change:'+0.8%',  trend:'up',   impact:'植物油・味噌・豆腐に3〜4ヶ月後転嫁',  lag:'3〜4ヶ月後'},
+        {icon:'☕', name:'コーヒー豆', val:'$2.12',  change:'+5.8%',  trend:'up',   impact:'缶コーヒー・カフェに2〜4ヶ月後転嫁',  lag:'2〜4ヶ月後'},
+        {icon:'🍫', name:'カカオ豆',   val:'$8,450', change:'+12.4%', trend:'up',   impact:'チョコ・菓子類に3〜5ヶ月後転嫁',     lag:'3〜5ヶ月後'},
+        {icon:'🍬', name:'砂糖',       val:'$0.232', change:'+2.1%',  trend:'up',   impact:'飲料・菓子に2〜3ヶ月後転嫁',         lag:'2〜3ヶ月後'},
+        {icon:'🌽', name:'コーン',     val:'$4.62',  change:'+0.3%',  trend:'flat', impact:'飼料→肉・乳製品に4〜6ヶ月後転嫁',   lag:'4〜6ヶ月後'},
+      ]
+    },
+    {
+      label: '🔩 工業・紙・パルプ',
+      items: [
+        {icon:'🔩', name:'銅 価格',       val:'$8,920', change:'+2.8%', trend:'up',   impact:'家電・電線・配管に2〜4ヶ月後転嫁', lag:'2〜4ヶ月後'},
+        {icon:'⚙️', name:'アルミニウム',   val:'$2,380', change:'+1.2%', trend:'up',   impact:'缶・車体・家電外装に2〜3ヶ月後転嫁', lag:'2〜3ヶ月後'},
+        {icon:'📄', name:'パルプ',         val:'$890',   change:'+4.1%', trend:'up',   impact:'ティッシュ・トイレットペーパーに2〜3ヶ月後転嫁', lag:'2〜3ヶ月後'},
+        {icon:'🧴', name:'ナフサ（石化）', val:'$680',   change:'+3.5%', trend:'up',   impact:'プラ容器・洗剤に2〜4ヶ月後転嫁', lag:'2〜4ヶ月後'},
+      ]
+    }
+  ];
+
+  function getBadge(change, trend){
+    var n = parseFloat(change);
+    if(trend === 'down') return {cls:'down', txt:'▼ 低下中'};
+    if(n >= 8)  return {cls:'danger', txt:'🔴 高警戒'};
+    if(n >= 3)  return {cls:'warn',   txt:'🟡 注意'};
+    return {cls:'ok', txt:'🟢 安定'};
+  }
+
+  var html = '<div class="idx-groups">';
+  for(var g=0; g<groups.length; g++){
+    var grp = groups[g];
+    html += '<div class="idx-group">';
+    html += '<div class="idx-group-head">' + grp.label + '</div>';
+    for(var i=0; i<grp.items.length; i++){
+      var item = grp.items[i];
+      var badge = getBadge(item.change, item.trend);
+      var chgCls = item.trend === 'up' ? 'up' : item.trend === 'down' ? 'down' : 'flat';
+      var arrow  = item.trend === 'up' ? '▲' : item.trend === 'down' ? '▼' : '→';
+      html += '<div class="idx-row">';
+      html += '<span class="idx-icon">' + item.icon + '</span>';
+      html += '<div class="idx-body">';
+      html += '<div class="idx-name">' + item.name + '</div>';
+      html += '<div class="idx-impact">→ ' + item.impact + '</div>';
+      html += '</div>';
+      html += '<div class="idx-vals">';
+      html += '<span class="idx-val">' + item.val + '</span>';
+      html += '<span class="idx-change ' + chgCls + '">' + arrow + item.change + '</span>';
+      html += '</div>';
+      html += '<span class="idx-badge ' + badge.cls + '">' + badge.txt + '</span>';
+      html += '</div>';
+    }
+    html += '</div>';
+  }
+  html += '</div>';
+
+  // 転嫁タイムラグ（横スクロール）
+  html += '<div class="lag-strip">';
+  html += '<span class="lag-strip-label">値上げまでの時間</span>';
+  var lags = [
+    {icon:'🛢', name:'エネルギー',  months:'1〜2ヶ月後',  hint:'原油→電気代・ガソリン'},
+    {icon:'💱', name:'円安・為替',  months:'2〜3ヶ月後',  hint:'輸入品・食品・家電'},
+    {icon:'📄', name:'紙・パルプ',  months:'2〜3ヶ月後',  hint:'ティッシュ・段ボール'},
+    {icon:'🌾', name:'穀物',        months:'3〜4ヶ月後',  hint:'パン・麺・食用油'},
+    {icon:'🔩', name:'金属・部品',  months:'3〜6ヶ月後',  hint:'家電・自動車・建材'},
+    {icon:'👷', name:'人件費',      months:'即時〜半年',   hint:'外食・サービス業'},
+  ];
+  for(var i=0; i<lags.length; i++){
+    var lg = lags[i];
+    html += '<div class="lag-chip">';
+    html += '<span class="lag-chip-icon">' + lg.icon + '</span>';
+    html += '<div class="lag-chip-body">';
+    html += '<span class="lag-chip-name">' + lg.name + '</span>';
+    html += '<span class="lag-chip-months">' + lg.months + '</span>';
+    html += '</div></div>';
+  }
+  html += '</div>';
+
+  wrap.innerHTML = html;
+}
+
+// ═══════════════════════════════════════
+// スクロール
+// ═══════════════════════════════════════
+// ══════ 備蓄品データ ══════
+const STOCKUP={'食品・飲料':[
+  {name:'カップ麺 大容量セット 24個',reason:'小麦高騰で4月+10〜15%確定。今が底値',shops:[{nm:'Amazon',price:2380,badge:'翌日配送',url:'#'},{nm:'楽天市場',price:2480,badge:'ポイント3%',url:'#'},{nm:'Yahoo!',price:2550,badge:'',url:'#'}]},
+  {name:'サラダ油 1L×4本',reason:'大豆油高騰で+10〜15%。まとめ買い推奨',shops:[{nm:'Amazon',price:1280,badge:'翌日配送',url:'#'},{nm:'楽天市場',price:1380,badge:'ポイント3%',url:'#'},{nm:'Yahoo!',price:1420,badge:'',url:'#'}]},
+  {name:'パスタ 1.7mm 5kg',reason:'小麦高騰直撃。備蓄の定番',shops:[{nm:'Amazon',price:2480,badge:'翌日配送',url:'#'},{nm:'楽天市場',price:2580,badge:'ポイント3%',url:'#'},{nm:'Yahoo!',price:2650,badge:'',url:'#'}]},
+],'日用品':[
+  {name:'トイレットペーパー 12R×8パック',reason:'パルプ高騰で4月+6〜10%。大量備蓄が正解',shops:[{nm:'楽天市場',price:2980,badge:'ポイント3%',url:'#'},{nm:'Amazon',price:3080,badge:'翌日配送',url:'#'},{nm:'Yahoo!',price:3150,badge:'',url:'#'}]},
+  {name:'ティッシュ 5箱×5セット',reason:'同上。まとめ買いで単価を下げる',shops:[{nm:'Amazon',price:2480,badge:'翌日配送',url:'#'},{nm:'楽天市場',price:2580,badge:'ポイント3%',url:'#'},{nm:'Yahoo!',price:2650,badge:'',url:'#'}]},
+  {name:'洗濯洗剤 液体 詰替 大容量×4',reason:'石油系原料高騰で+5〜9%予測',shops:[{nm:'楽天市場',price:3280,badge:'ポイント3%',url:'#'},{nm:'Amazon',price:3380,badge:'翌日配送',url:'#'},{nm:'Yahoo!',price:3450,badge:'',url:'#'}]},
+],'PC・デジタル':[
+  {name:'ゲーミングPC RTX4060搭載',reason:'半導体需要+円安で+15〜25%。今が底値',shops:[{nm:'Amazon',price:138000,badge:'翌日配送',url:'#'},{nm:'楽天市場',price:142000,badge:'ポイント3%',url:'#'},{nm:'Yahoo!',price:145000,badge:'',url:'#'}]},
+  {name:'DDR5メモリー 32GB (2枚組)',reason:'DRAMサイクル上昇入り。早めに確保',shops:[{nm:'Amazon',price:14800,badge:'翌日配送',url:'#'},{nm:'楽天市場',price:15200,badge:'ポイント3%',url:'#'},{nm:'Yahoo!',price:15500,badge:'',url:'#'}]},
+],'エネルギー':[
+  {name:'カセットガス 250g×24本',reason:'補助金終了+LNG高騰で+10〜15%。備蓄兼用',shops:[{nm:'Amazon',price:3480,badge:'翌日配送',url:'#'},{nm:'楽天市場',price:3680,badge:'ポイント3%',url:'#'},{nm:'Yahoo!',price:3750,badge:'',url:'#'}]},
+  {name:'ポータブル電源 500Wh',reason:'リチウム電池コスト上昇で+7〜12%予測',shops:[{nm:'楽天市場',price:38000,badge:'ポイント3%',url:'#'},{nm:'Amazon',price:40000,badge:'翌日配送',url:'#'},{nm:'Yahoo!',price:42000,badge:'',url:'#'}]},
+],'家電':[
+  {name:'パナソニック 食洗機 NP-TZ300',reason:'部品コスト+円安で+8〜12%。今月中がお得',shops:[{nm:'Amazon',price:54800,badge:'翌日配送',url:'#'},{nm:'楽天市場',price:56000,badge:'ポイント3%',url:'#'},{nm:'Yahoo!',price:57500,badge:'',url:'#'}]},
+  {name:'ダイソン V15 Detect コードレス',reason:'部品コスト上昇で+10〜15%予測',shops:[{nm:'Amazon',price:78000,badge:'翌日配送',url:'#'},{nm:'楽天市場',price:82000,badge:'ポイント3%',url:'#'},{nm:'Yahoo!',price:85000,badge:'',url:'#'}]},
+],'スマートフォン':[
+  {name:'iPhone 16 256GB',reason:'円安直撃。新モデル前の今が実質最安値',shops:[{nm:'楽天市場',price:124800,badge:'ポイント3%',url:'#'},{nm:'Amazon',price:128000,badge:'翌日配送',url:'#'},{nm:'Yahoo!',price:130000,badge:'',url:'#'}]},
+],'育児・ベビー':[
+  {name:'パンパース テープ Mサイズ 198枚×2',reason:'6〜9%値上げ確定。多めにストック推奨',shops:[{nm:'Amazon',price:5480,badge:'翌日配送',url:'#'},{nm:'楽天市場',price:5680,badge:'ポイント3%',url:'#'},{nm:'Yahoo!',price:5850,badge:'',url:'#'}]},
+  {name:'おしりふき 720枚×4パック',reason:'素材コスト上昇で+5〜8%',shops:[{nm:'楽天市場',price:2980,badge:'ポイント3%',url:'#'},{nm:'Amazon',price:3080,badge:'翌日配送',url:'#'},{nm:'Yahoo!',price:3150,badge:'',url:'#'}]},
+],'ペット':[
+  {name:'ロイヤルカナン ミニ アダルト 8kg',reason:'穀物+輸送コスト上昇で+5〜11%予測',shops:[{nm:'楽天市場',price:8980,badge:'ポイント3%',url:'#'},{nm:'Amazon',price:9200,badge:'翌日配送',url:'#'},{nm:'Yahoo!',price:9500,badge:'',url:'#'}]},
+]};
+
+function renderStockup(alerts){
+  var wrap=document.getElementById('stockup-list');
+  if(!wrap) return;
+  var topCats=[],seen={};
+  for(var i=0;i<alerts.length;i++){
+    var cat=alerts[i].category;
+    if(!seen[cat]){seen[cat]=true;topCats.push({cat:cat,icon:alerts[i].cat_icon||'',rate:alerts[i].rate_min&&alerts[i].rate_max?'+'+alerts[i].rate_min+'〜'+alerts[i].rate_max+'%':'',date:alerts[i].date||'',level:alerts[i].level||'warn'});}
+    if(topCats.length>=3) break;
+  }
+  var html='';
+  for(var i=0;i<topCats.length;i++){
+    var tc=topCats[i],items=STOCKUP[tc.cat]||[];
+    if(!items.length) continue;
+    var isCrit=tc.level==='critical';
+    html+='<div class="su-category">';
+    html+='<div class="su-cat-head '+(isCrit?'su-crit':'su-warn')+'">';
+    html+='<span class="su-cat-icon">'+tc.icon+'</span>';
+    html+='<span class="su-cat-name">'+tc.cat+'</span>';
+    html+='<span class="su-cat-rate">'+tc.rate+'</span>';
+    if(tc.date) html+='<span class="su-cat-date">'+tc.date+'</span>';
+    html+='</div>';
+    for(var j=0;j<Math.min(items.length,2);j++){
+      var it=items[j],shops=it.shops.slice().sort(function(a,b){return a.price-b.price});
+      html+='<div class="su-item">';
+      html+='<div class="su-item-name">'+it.name+'</div>';
+      html+='<div class="su-item-reason">'+it.reason+'</div>';
+      html+='<div class="su-shops">';
+      for(var k=0;k<shops.length;k++){
+        var s=shops[k];
+        var p=s.price>=10000?'¥'+(s.price/10000).toFixed(1)+'万':'¥'+s.price.toLocaleString();
+        html+='<a href="'+s.url+'" class="su-shop'+(k===0?' su-best':'')+'">';
+        html+='<span class="su-shop-nm">'+s.nm+'</span>';
+        html+='<span class="su-shop-price">'+p+'</span>';
+        if(k===0) html+='<span class="su-best-badge">最安</span>';
+        if(s.badge) html+='<span class="su-badge">'+s.badge+'</span>';
+        html+='</a>';
+      }
+      html+='</div></div>';
+    }
+    html+='</div>';
+  }
+  wrap.innerHTML=html||'<div class="su-empty">データ準備中</div>';
+}
+
+
+// クリック計測（イベント委譲方式）
+document.addEventListener('click', function(e){
+  var btn = e.target.closest('.alert-shop-btn');
+  if(!btn) return;
+  var shop  = btn.dataset.nm   || btn.querySelector('.alert-shop-nm')?.textContent || '';
+  var kw    = btn.dataset.kw   || '';
+  var price = parseInt(btn.dataset.price||0);
+  trackClick(shop, kw, price);
+});
+function scrollToId(id){
+  const el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ═══════════════════════════════════════
+// 初期化
+// ═══════════════════════════════════════
 loadStats();
+loadAlerts();
+renderCal('apr');
+renderRanking();
+// renderCompareTabs削除;
+renderCompare(RANK_DATA[0].cat, RANK_DATA[0].name);
+renderIndicators();
+renderNews();
+
+// ═══════════════════════════════════════
+// スクロール
+// ═══════════════════════════════════════
+function scrollToId(id){
+  const el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ═══════════════════════════════════════
+// 初期化
+// ═══════════════════════════════════════
+loadStats();
+loadAlerts();
+renderCal('apr');
+renderRanking();
+// renderCompareTabs削除;
+renderCompare(RANK_DATA[0].cat, RANK_DATA[0].name);
+renderIndicators();
+renderNews();
+
+
+function selectRankCard(el, catId, label){
+  // 全カードのselectedを解除
+  var cards = document.querySelectorAll('.rank-card');
+  for(var i=0;i<cards.length;i++) cards[i].classList.remove('selected');
+  // クリックされたカードをselected
+  var card = el.closest ? el.closest('.rank-card') : el;
+  if(card) card.classList.add('selected');
+  // 価格比較を更新
+  renderCompare(catId, label);
+}
 </script>
+
+
 </body>
 </html>
