@@ -69,7 +69,7 @@ img{max-width:100%}
 .alert-loading{padding:20px;text-align:center;color:var(--t2);font-size:14px}
 .alert-source{font-size:10px;color:var(--t3);text-align:right;margin-top:8px}
 
-.alert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px}
+.alert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:4px}
 
 .alert-card{
   background:#fff;
@@ -144,7 +144,7 @@ img{max-width:100%}
 .alert-card.critical .alert-action-btn:hover{background:#fee2e2}
 .alert-card.warn     .alert-action-btn:hover{background:#fef3c7}
 
-@media(max-width:900px){.alert-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1100px){.alert-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:700px){.alert-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.alert-grid{grid-template-columns:1fr}}
 
 /* ── FORECAST DB EMBED ── */
@@ -895,7 +895,7 @@ img{max-width:100%}
 .alert-card.warn.expanded    {border-color:#fde68a}
 
 /* グリッド: 2列→スマホ1列 */
-@media(max-width:900px){.alert-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1100px){.alert-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:700px){.alert-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.alert-grid{grid-template-columns:1fr}}
 
 
@@ -1607,7 +1607,7 @@ function renderAlerts(alerts){
   if(!grid) return;
 
   var html = '';
-  var shown = alerts.slice(0, 10);
+  var shown = alerts.slice(0, 12);
 
   for(var i=0; i<shown.length; i++){
     var a = shown[i];
@@ -1814,6 +1814,23 @@ const FALLBACK_ALERTS = [
      {name:'ザバス ホエイプロテイン 1050g×2',shops:[{nm:'Amazon',price:7980,url:'#'},{nm:'楽天',price:8200,url:'#'},{nm:'Yahoo!',price:8450,url:'#'}]},
      {name:'DHC マルチビタミン 60日×3袋',shops:[{nm:'楽天',price:2980,url:'#'},{nm:'Amazon',price:3080,url:'#'},{nm:'Yahoo!',price:3150,url:'#'}]},
    ]},
+,
+  {level:'warn',category:'調理用油・調味料',cat_icon:'🫒',name:'食用油・マヨネーズ全般',
+   brands:'日清オイリオ・昭和産業・キューピー',date:'4月20日',
+   rate_min:10,rate_max:15,cause:'大豆・パーム油相場の遅延転嫁',
+   action:'まとめ買いが最も効果的',action_url:'#',confidence:4,
+   sub_items:[
+     {name:'サラダ油 1L×4本',shops:[{nm:'Amazon',price:1280,url:'#'},{nm:'楽天',price:1380,url:'#'},{nm:'Yahoo!',price:1420,url:'#'}]},
+     {name:'キューピーマヨネーズ 500g×4',shops:[{nm:'Amazon',price:1320,url:'#'},{nm:'楽天',price:1380,url:'#'},{nm:'Yahoo!',price:1420,url:'#'}]},
+   ]},
+  {level:'warn',category:'飲料・コーヒー',cat_icon:'☕',name:'コーヒー・飲料全般',
+   brands:'ネスレ・UCC・キーコーヒー・コカコーラ',date:'5月以降',
+   rate_min:8,rate_max:12,cause:'カカオ豆+12.4%・コーヒー豆+5.8%高騰継続',
+   action:'まとめ買いで今の価格を確保',action_url:'#',confidence:4,
+   sub_items:[
+     {name:'ネスカフェ ゴールドブレンド 瓶×3',shops:[{nm:'Amazon',price:2980,url:'#'},{nm:'楽天',price:3080,url:'#'},{nm:'Yahoo!',price:3150,url:'#'}]},
+     {name:'コカコーラ 500ml×24本',shops:[{nm:'Amazon',price:2480,url:'#'},{nm:'楽天',price:2580,url:'#'},{nm:'Yahoo!',price:2650,url:'#'}]},
+   ]}
 ];
 // ═══════════════════════════════════════
 // カレンダー
