@@ -1555,13 +1555,16 @@ async function loadStats(){
 }
 
 async function loadAlerts(){
-  var grid = document.getElementById('alert-grid');
   var updEl = document.getElementById('alert-updated');
   var srcEl = document.getElementById('alert-source-note');
-
   var alerts = null;
 
-  // alert.jsonを取得
+  // ① CATSデータを先に読み込む
+  if(typeof CATS === 'undefined' || !CATS){
+    await loadCatsData();
+  }
+
+  // ② alert.jsonを取得
   try{
     var r = await fetch('alert.json?v='+Date.now());
     if(r.ok){
@@ -1574,16 +1577,16 @@ async function loadAlerts(){
     }
   }catch(e){ console.log('alert.json取得失敗:', e); }
 
-  // フォールバック
+  // ③ フォールバック
   if(!alerts){
     alerts = FALLBACK_ALERTS;
     if(updEl) updEl.textContent = '※サンプルデータ表示中';
   }
 
+  // ④ レンダリング
   renderAlerts(alerts);
   renderStockup(alerts);
 }
-
 // ══════════════════════════════════════
 // ★ ASPアフィリエイト設定（承認後ここを変更するだけ）
 // ══════════════════════════════════════
@@ -1682,7 +1685,7 @@ var CAT_MAP = {
 
 // CATSデータから該当カテゴリの中項目・小項目を取得してr4降順ソート
 function getSubItemsFromCats(catIds, limit){
-  if(typeof CATS === 'undefined') return [];
+  if(typeof CATS === 'undefined' || !CATS) return [];
   limit = limit || 6;
   var allItems = [];
 
@@ -2502,7 +2505,7 @@ document.addEventListener('DOMContentLoaded', function(){
   renderIndicators();
   renderNews();
   renderNewsFilter();
-  renderSecRanking && renderSecRanking();
+  if(typeof renderSecRanking === "function") renderSecRanking();
 });
 
 // ═══════════════════════════════════════
@@ -2525,7 +2528,7 @@ document.addEventListener('DOMContentLoaded', function(){
   renderIndicators();
   renderNews();
   renderNewsFilter();
-  renderSecRanking && renderSecRanking();
+  if(typeof renderSecRanking === "function") renderSecRanking();
 });
 
 
