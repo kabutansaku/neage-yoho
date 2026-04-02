@@ -2485,14 +2485,17 @@ function scrollToId(id){
 // ═══════════════════════════════════════
 // 初期化
 // ═══════════════════════════════════════
-loadStats();
-loadAlerts();
-renderCal('apr');
-renderRanking();
-// renderCompareTabs削除;
-renderCompare(RANK_DATA[0].cat, RANK_DATA[0].name);
-renderIndicators();
-renderNews();
+document.addEventListener('DOMContentLoaded', function(){
+  loadStats();
+  loadAlerts();
+  renderCal('apr');
+  renderRanking();
+  renderCompare(RANK_DATA[0].cat, RANK_DATA[0].name);
+  renderIndicators();
+  renderNews();
+  renderNewsFilter();
+  renderSecRanking && renderSecRanking();
+});
 
 // ═══════════════════════════════════════
 // スクロール
@@ -2505,14 +2508,17 @@ function scrollToId(id){
 // ═══════════════════════════════════════
 // 初期化
 // ═══════════════════════════════════════
-loadStats();
-loadAlerts();
-renderCal('apr');
-renderRanking();
-// renderCompareTabs削除;
-renderCompare(RANK_DATA[0].cat, RANK_DATA[0].name);
-renderIndicators();
-renderNews();
+document.addEventListener('DOMContentLoaded', function(){
+  loadStats();
+  loadAlerts();
+  renderCal('apr');
+  renderRanking();
+  renderCompare(RANK_DATA[0].cat, RANK_DATA[0].name);
+  renderIndicators();
+  renderNews();
+  renderNewsFilter();
+  renderSecRanking && renderSecRanking();
+});
 
 
 function selectRankCard(el, catId, label){
