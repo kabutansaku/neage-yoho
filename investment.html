@@ -524,9 +524,9 @@ a{text-decoration:none;color:inherit}
     <p class="hero-desc">円安・原材料高騰で家計への負担が増す今こそ、現金の目減りを防ぎ資産を守るアクションが必要です。NISA・FX・ふるさと納税・金投資で家計防衛の次のステージへ。</p>
     <div class="hero-stats">
       <div class="hstat"><div class="hstat-num" id="h-rate">---</div><div class="hstat-lbl">現在の円安水準<br>USD/JPY</div></div>
-      <div class="hstat"><div class="hstat-num">-10%</div><div class="hstat-lbl">現金の実質<br>購買力変化（1年）</div></div>
-      <div class="hstat"><div class="hstat-num">+18%</div><div class="hstat-lbl">日経平均<br>過去1年騰落率</div></div>
-      <div class="hstat"><div class="hstat-num">+15%</div><div class="hstat-lbl">金（ゴールド）<br>過去1年騰落率</div></div>
+      <div class="hstat"><div class="hstat-num" id="h-cpi">---</div><div class="hstat-lbl">現金の実質<br>購買力変化（1年）</div></div>
+      <div class="hstat"><div class="hstat-num" id="h-nikkei">---</div><div class="hstat-lbl">日経平均<br>過去1年騰落率</div></div>
+      <div class="hstat"><div class="hstat-num" id="h-gold">---</div><div class="hstat-lbl">金（ゴールド）<br>過去1年騰落率</div></div>
     </div>
     <div class="hero-cta-row">
       <button class="hero-cta" onclick="scrollTo('nisa')">📈 NISAを始める</button>
@@ -1500,6 +1500,71 @@ function trackAff(affId){
 document.addEventListener('DOMContentLoaded', function(){
   renderSecRanking();
 });
+
+// ══════════════════════════════════════
+// ヒーロー統計 自動取得
+// ══════════════════════════════════════
+async function loadHeroStats(){
+  // ── 1. USD/JPY（fx-data.json から） ──
+  try{
+    const r = await fetch('fx-data.json?v=' + Date.now());
+    const d = await r.json();
+    const rate = parseFloat(d.rate).toFixed(2);
+    ['hdr-rate','h-rate','u-rate','inv-fx-rate'].forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.textContent = rate;
+    });
+  }catch(e){ console.log('fx取得失敗',e); }
+
+  // ── 2. 日経平均・金 騰落率（Yahoo Finance API） ──
+  // CORS回避のためプロキシ経由
+  const symbols = {
+    nikkei: '%5EN225',   // 日経225
+    gold:   'GC%3DF',   // 金先物
+  };
+
+  async function fetchChange(sym, elId){
+    try{
+      const url = 'https://query1.finance.yahoo.com/v8/finance/chart/' + sym
+        + '?range=1y&interval=1mo&cors=true';
+      const r = await fetch(url);
+      const d = await r.json();
+      const closes = d.chart.result[0].indicators.quote[0].close.filter(Boolean);
+      const first = closes[0];
+      const last  = closes[closes.length - 1];
+      const pct   = ((last - first) / first * 100);
+      const sign  = pct >= 0 ? '+' : '';
+      const el = document.getElementById(elId);
+      if(el){
+        el.textContent = sign + pct.toFixed(1) + '%';
+        el.style.color = pct >= 0 ? '#4ade80' : '#f87171';
+      }
+    }catch(e){ console.log(sym + '取得失敗',e); }
+  }
+
+  fetchChange('%5EN225', 'h-nikkei');
+  fetchChange('GC%3DF',  'h-gold');
+
+  // ── 3. 購買力変化（CPIベース推計） ──
+  // 日本のCPI上昇率（直近値：約3%/年）をfx-data.jsonから取得
+  try{
+    const r = await fetch('fx-data.json?v=' + Date.now());
+    const d = await r.json();
+    const cpi = d.cpi_change || -3.0; // fx-data.jsonにcpi_changeがあれば使用
+    const el = document.getElementById('h-cpi');
+    if(el){
+      el.textContent = (cpi >= 0 ? '+' : '') + cpi.toFixed(1) + '%';
+      el.style.color = '#f87171'; // 購買力低下は常に赤
+    }
+  }catch(e){
+    const el = document.getElementById('h-cpi');
+    if(el){ el.textContent = '約-3%'; el.style.color = '#f87171'; }
+  }
+}
+
+// ページ読み込み時に実行
+document.addEventListener('DOMContentLoaded', loadHeroStats);
+
 </script>
 </body>
 </html>
