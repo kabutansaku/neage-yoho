@@ -1555,26 +1555,34 @@ async function loadStats(){
 }
 
 async function loadAlerts(){
-  const grid = document.getElementById('alert-grid');
-  const updEl = document.getElementById('alert-updated');
-  const srcEl = document.getElementById('alert-source-note');
+  var grid = document.getElementById('alert-grid');
+  var updEl = document.getElementById('alert-updated');
+  var srcEl = document.getElementById('alert-source-note');
+
+  var alerts = null;
+
+  // alert.jsonを取得
   try{
-    const r = await fetch('alert.json?v='+Date.now());
-    if(!r.ok) throw new Error('fetch failed');
-    const d = await r.json();
-    if(!d.alerts||!d.alerts.length) throw new Error('no data');
-    renderAlerts(d.alerts);
-    renderStockup(d.alerts);
-    if(updEl && d.updated) updEl.textContent = d.updated+' 更新';
-    if(srcEl && d.source)  srcEl.textContent = '出典: '+d.source;
-  }catch(e){
-    // フォールバック: ハードコードデータ
-    renderAlerts(FALLBACK_ALERTS);
-  renderStockup(FALLBACK_ALERTS);
+    var r = await fetch('alert.json?v='+Date.now());
+    if(r.ok){
+      var d = await r.json();
+      if(d.alerts && d.alerts.length){
+        alerts = d.alerts;
+        if(updEl && d.updated) updEl.textContent = d.updated + ' 更新';
+        if(srcEl && d.source)  srcEl.textContent = '出典: ' + d.source;
+      }
+    }
+  }catch(e){ console.log('alert.json取得失敗:', e); }
+
+  // フォールバック
+  if(!alerts){
+    alerts = FALLBACK_ALERTS;
     if(updEl) updEl.textContent = '※サンプルデータ表示中';
   }
-}
 
+  renderAlerts(alerts);
+  renderStockup(alerts);
+}
 
 // ══════════════════════════════════════
 // ★ ASPアフィリエイト設定（承認後ここを変更するだけ）
