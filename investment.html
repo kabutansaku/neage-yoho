@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投資・資産防衛ガイド | 値上がり予測ドットコム</title>
+<meta name="description" content="円安・インフレ時代の資産防衛。NISA・FX・金・ふるさと納税で値上げに負けない家計を作る方法を徹底解説。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700;900&family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#002B80;--red:#c0392b;--amber:#d97706;--green:#059669;--gold:#b7860b;
+  --purple:#7c3aed;--paper:#fff;--surface:#f8fafc;--border:#e2e8f0;
+  --t1:#1e293b;--t2:#64748b;--t3:#94a3b8;
+}
+body{font-family:'Noto Sans JP',sans-serif;background:#fff;color:var(--t1);font-size:14px;line-height:1.7;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 12px}
+
+/* ─── HEADER ─── */
+.hdr{background:var(--navy);border-bottom:3px solid #facc15;padding:11px 0;position:sticky;top:0;z-index:100}
+.hdr-inner{display:flex;align-items:center;justify-content:space-between}
+.hdr-logo{display:flex;align-items:center;gap:9px}
+.hdr-logo-icon{background:#facc15;border-radius:7px;width:30px;height:30px;display:flex;align-items:center;justify-content:center}
+.hdr-logo-text{font-family:'Noto Serif JP',serif;font-size:15px;font-weight:900;color:#fff}
+.hdr-back{font-size:11px;color:rgba(255,255,255,.5);transition:color .15s}
+.hdr-back:hover{color:#facc15}
+.hdr-fx{font-family:'DM Mono',monospace;font-size:13px;color:#facc15;display:flex;align-items:center;gap:5px}
+.hdr-fx-lbl{font-size:9px;color:rgba(255,255,255,.4)}
+
+/* ─── HERO ─── */
+.hero{background:linear-gradient(135deg,#0a0a2e 0%,#002B80 50%,#1a0050 100%);padding:32px 0 24px;color:#fff;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:rgba(250,204,21,.05);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;border-radius:50%;background:rgba(124,58,237,.08);pointer-events:none}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(250,204,21,.15);border:1px solid rgba(250,204,21,.3);color:#facc15;font-size:10px;font-weight:700;padding:4px 12px;border-radius:4px;margin-bottom:16px;letter-spacing:.08em}
+.hero-h{font-family:'Noto Serif JP',serif;font-size:36px;font-weight:900;line-height:1.3;margin-bottom:12px}
+.hero-h span{color:#facc15}
+.hero-desc{font-size:13px;color:rgba(255,255,255,.7);line-height:1.8;max-width:600px;margin-bottom:24px}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.hstat{background:rgba(255,255,255,.07);border:0.5px solid rgba(255,255,255,.12);border-radius:10px;padding:14px;text-align:center}
+.hstat-num{font-family:'DM Mono',monospace;font-size:22px;font-weight:500;color:#facc15;margin-bottom:4px}
+.hstat-lbl{font-size:10px;color:rgba(255,255,255,.5);line-height:1.4}
+.hero-cta-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hero-cta{background:#facc15;color:var(--navy);border:none;border-radius:8px;padding:12px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:opacity .15s;letter-spacing:.03em;white-space:nowrap;grid-column:1/-1}
+.hero-cta:hover{opacity:.88}
+.hero-cta-sub{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:10px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .15s;text-align:center}
+.hero-cta-sub:hover{background:rgba(255,255,255,.18)}
+
+/* ─── URGENT BANNER ─── */
+.urgent-banner{background:linear-gradient(90deg,#7f1d1d,var(--red));color:#fff;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.urgent-inner{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.urgent-badge{background:rgba(255,255,255,.2);font-size:10px;font-weight:700;padding:3px 10px;border-radius:4px;white-space:nowrap;letter-spacing:.05em}
+.urgent-text{font-size:13px;line-height:1.5}
+.urgent-text strong{color:#facc15}
+
+/* ─── SECTION ─── */
+.section{padding:28px 0}
+.sec-hdr{display:flex;align-items:baseline;gap:12px;margin-bottom:24px;padding-bottom:14px;border-bottom:2px solid var(--border);margin-bottom:16px}
+.sec-title{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:700;line-height:1.4}
+
+.sec-sub{font-size:13px;color:var(--t2);margin-top:-10px;margin-bottom:20px;line-height:1.8}
+
+/* ─── DAMAGE CALC ─── */
+.damage-card{background:linear-gradient(135deg,#0a1535,#1a0840);border-radius:14px;padding:24px;margin-bottom:40px;color:#fff}
+.damage-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px;line-height:1.4}
+.damage-sub{font-size:12px;color:rgba(255,255,255,.6);margin-bottom:18px;line-height:1.6}
+.damage-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:18px}
+.damage-input-block{}
+.damage-lbl{font-size:11px;color:rgba(255,255,255,.6);margin-bottom:5px}
+.damage-inp{width:100%;background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.2);border-radius:7px;padding:9px 12px;font-size:14px;color:#fff;font-family:'DM Mono',monospace;text-align:right}
+.damage-result{background:rgba(248,113,113,.15);border:1px solid rgba(248,113,113,.3);border-radius:10px;padding:16px 20px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px}
+.dr-item{text-align:center}
+.dr-lbl{font-size:10px;color:rgba(255,255,255,.5);margin-bottom:5px}
+.dr-val{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:#f87171}
+.dr-total{text-align:center;padding:14px;background:rgba(248,113,113,.2);border:1px solid rgba(248,113,113,.4);border-radius:8px}
+.dr-total-lbl{font-size:12px;color:rgba(255,255,255,.6);margin-bottom:4px}
+.dr-total-val{font-family:'DM Mono',monospace;font-size:32px;font-weight:500;color:#f87171}
+.dr-total-msg{font-size:12px;color:rgba(255,255,255,.5);margin-top:4px}
+.damage-solution{background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.2);border-radius:8px;padding:12px 16px;font-size:12px;color:rgba(255,255,255,.8);line-height:1.7}
+.damage-solution strong{color:#4ade80}
+
+/* ─── PRODUCT CARDS ─── */
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.product-card{background:var(--paper);border:0.5px solid var(--border);border-radius:12px;overflow:hidden;transition:all .2s}
+.product-card:hover{box-shadow:4px 4px 0 var(--navy);transform:translate(-2px,-2px)}
+.product-card.featured{border:2px solid var(--amber);position:relative}
+.featured-badge{position:absolute;top:12px;right:12px;background:var(--amber);color:#fff;font-size:9px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.05em}
+.pc-thumb{height:100px;display:flex;align-items:center;justify-content:center;font-size:36px;position:relative}
+.pc-body{padding:16px}
+.pc-tag{font-size:9px;font-weight:700;padding:2px 8px;border-radius:3px;display:inline-block;margin-bottom:8px;letter-spacing:.05em}
+.tag-nisa{background:#dbeafe;color:#1e40af}
+.tag-fx{background:#fae8ff;color:#7e22ce}
+.tag-gold{background:#fef3c7;color:#92400e}
+.tag-furusato{background:#d1fae5;color:#065f46}
+.tag-real{background:#fee2e2;color:#991b1b}
+.tag-crypto{background:#f3f4f6;color:#374151}
+.pc-title{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:6px;line-height:1.4}
+.pc-desc{font-size:12px;color:var(--t2);line-height:1.7;margin-bottom:12px}
+.pc-merit{background:var(--surface);border-radius:6px;padding:10px 12px;margin-bottom:12px}
+.pc-merit-title{font-size:10px;font-weight:700;color:var(--green);margin-bottom:5px;letter-spacing:.05em}
+.pc-merit-list{font-size:11px;color:var(--t1);line-height:1.8}
+.pc-merit-list li{margin-left:14px;list-style:disc}
+.pc-reward{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding:8px 12px;background:#fff9db;border:0.5px solid #fde68a;border-radius:6px}
+.pc-reward-lbl{font-size:10px;color:#92400e}
+.pc-reward-val{font-size:14px;font-weight:700;color:#92400e;font-family:'DM Mono',monospace}
+.aff-btn{width:100%;background:var(--navy);color:#fff;border:none;border-radius:8px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Noto Sans JP',sans-serif;letter-spacing:.04em;transition:background .15s}
+.aff-btn:hover{background:#003399}
+.aff-btn.gold{background:linear-gradient(135deg,#b7860b,#d97706)}
+.aff-btn.gold:hover{opacity:.88}
+.aff-btn.purple{background:linear-gradient(135deg,#6d28d9,#7c3aed)}
+.aff-btn.purple:hover{opacity:.88}
+.aff-btn.green{background:var(--green)}
+.aff-btn.green:hover{background:#047857}
+.aff-pr{font-size:9px;color:var(--t3);text-align:center;margin-top:5px}
+
+/* ─── COMPARE TABLE ─── */
+.compare-wrap{background:var(--paper);border:0.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:24px}
+.compare-title{padding:14px 18px;border-bottom:0.5px solid var(--border);font-size:14px;font-weight:700;color:var(--t1);background:var(--surface)}
+.compare-table{width:100%;border-collapse:collapse}
+.compare-table th{font-size:11px;color:var(--t2);text-align:left;padding:10px 16px;border-bottom:1px solid var(--border);font-weight:500;background:var(--surface)}
+.compare-table th.num{text-align:center}
+.compare-table td{padding:12px 16px;border-bottom:0.5px solid var(--border);font-size:13px;vertical-align:middle}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table tr:hover td{background:#fafbff}
+.compare-table tr.recommended td{background:#fffbeb}
+.rec-badge{display:inline-block;font-size:9px;font-weight:700;background:var(--amber);color:#fff;padding:2px 6px;border-radius:3px;margin-left:6px}
+.reward-chip{display:inline-block;font-size:11px;font-weight:700;color:#92400e;background:#fef3c7;padding:2px 8px;border-radius:4px;font-family:'DM Mono',monospace}
+.apply-btn{background:var(--navy);color:#fff;border:none;border-radius:5px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:background .15s;white-space:nowrap}
+.apply-btn:hover{background:#003399}
+
+/* ─── FURUSATO ─── */
+.furusato-banner{background:linear-gradient(135deg,#052e16,#166534);border-radius:14px;padding:24px;color:#fff;margin-bottom:24px}
+.furu-title{font-size:20px;font-weight:700;margin-bottom:8px}
+.furu-title span{color:#4ade80}
+.furu-desc{font-size:13px;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:18px}
+.furu-calc{background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.15);border-radius:10px;padding:16px;margin-bottom:16px}
+.furu-calc-title{font-size:12px;font-weight:700;color:#4ade80;margin-bottom:10px;letter-spacing:.05em}
+.furu-calc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px}
+.furu-inp{width:100%;background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.2);border-radius:6px;padding:8px 12px;font-size:14px;color:#fff;font-family:'DM Mono',monospace}
+.furu-inp-lbl{font-size:10px;color:rgba(255,255,255,.5);margin-bottom:4px}
+.furu-result{background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.3);border-radius:8px;padding:12px 16px;text-align:center}
+.furu-result-lbl{font-size:11px;color:rgba(255,255,255,.6);margin-bottom:4px}
+.furu-result-val{font-family:'DM Mono',monospace;font-size:28px;font-weight:500;color:#4ade80}
+.furu-result-sub{font-size:11px;color:rgba(255,255,255,.5);margin-top:3px}
+.furu-sites{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.furu-site-btn{background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.2);border-radius:8px;padding:10px;text-align:center;cursor:pointer;transition:all .15s;font-family:'Noto Sans JP',sans-serif}
+.furu-site-btn:hover{background:rgba(255,255,255,.2)}
+.furu-site-icon{font-size:22px;margin-bottom:4px}
+.furu-site-name{font-size:12px;font-weight:700;color:#fff}
+.furu-site-reward{font-size:10px;color:rgba(255,255,255,.5);margin-top:2px}
+
+/* ─── FX SECTION ─── */
+.fx-hero{background:linear-gradient(135deg,#1a0050,#4c1d95);border-radius:14px;padding:24px;margin-bottom:24px;color:#fff}
+.fx-rate-display{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
+.fx-rate-num{font-family:'DM Mono',monospace;font-size:48px;font-weight:500;color:#a78bfa}
+.fx-rate-unit{font-size:18px;color:rgba(255,255,255,.5)}
+.fx-rate-diff{font-size:14px;color:#f87171;font-family:'DM Mono',monospace}
+.fx-title{font-size:18px;font-weight:700;margin-bottom:8px}
+.fx-desc{font-size:12px;color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:16px}
+.fx-merit-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.fx-merit-item{background:rgba(255,255,255,.07);border:0.5px solid rgba(255,255,255,.12);border-radius:8px;padding:12px}
+.fx-merit-icon{font-size:20px;margin-bottom:6px}
+.fx-merit-title{font-size:12px;font-weight:700;color:#fff;margin-bottom:3px}
+.fx-merit-desc{font-size:10px;color:rgba(255,255,255,.55);line-height:1.5}
+
+/* ─── NOTICE ─── */
+.notice{background:rgba(192,57,43,.07);border:0.5px solid rgba(192,57,43,.2);border-radius:8px;padding:12px 16px;font-size:11px;color:var(--t2);line-height:1.7;margin-top:12px}
+.notice strong{color:var(--t1)}
+
+/* ─── FOOTER ─── */
+.ftr{background:var(--navy);color:rgba(255,255,255,.45);padding:28px 0;margin-top:40px;font-size:11px;line-height:2;text-align:center}
+.ftr-logo{font-family:'Noto Serif JP',serif;font-size:17px;color:#fff;font-weight:900;margin-bottom:6px}
+
+/* ─── COMPARE TABLE スマホ横スクロール ─── */
+.compare-table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.compare-table-scroll::-webkit-scrollbar{height:3px}
+.compare-table{min-width:520px}
+
+/* ─── RESPONSIVE ─── */
+/* スマホ（〜600px）*/
+@media(max-width:600px){
+  .wrap{padding-left:10px;padding-right:10px}
+  .hero-stats{grid-template-columns:1fr 1fr;gap:6px}
+  .hero-h{font-size:20px;margin-bottom:8px}
+  .hero-desc{font-size:11px;margin-bottom:16px}
+  .hero-cta-row{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .hero-cta{grid-column:1/-1;padding:10px 12px;font-size:13px}
+  .hero-cta-sub{padding:9px 8px;font-size:11px}
+  .hstat{padding:10px 12px}
+  .hstat-num{font-size:20px}
+  .hstat-lbl{font-size:9px}
+  .sec-title{font-size:16px}
+  .sec-sub{font-size:12px}
+  .product-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .pc-body{padding:12px}
+  .pc-title{font-size:13px}
+  .pc-desc{font-size:11px}
+  .pc-merit{padding:8px 10px}
+  .damage-grid{grid-template-columns:1fr}
+  .damage-result{grid-template-columns:1fr 1fr;gap:6px}
+  .dr-total-val{font-size:22px}
+  .furu-calc-grid{grid-template-columns:1fr}
+  .furu-sites{grid-template-columns:1fr 1fr;gap:6px}
+  .furu-site-btn{padding:10px 6px}
+  .fx-merit-grid{grid-template-columns:1fr 1fr}
+  .camp-grid{grid-template-columns:1fr 1fr;gap:6px}
+  .camp-card{padding:10px}
+  .cond-grid{grid-template-columns:1fr 1fr;gap:6px}
+  .cond-btn{padding:10px 8px;gap:8px}
+  .cond-icon{font-size:18px}
+  .cond-name{font-size:12px}
+  .sec-card{width:calc(100vw - 32px)}
+  .cmp-grid{grid-template-columns:1fr}
+  .compare-title{font-size:13px}
+  .section{padding:20px 0}
+}
+/* タブレット（600px〜900px）*/
+@media(min-width:601px) and (max-width:900px){
+  .hero-h{font-size:28px}
+  .product-grid{grid-template-columns:1fr 1fr}
+  .fx-merit-grid{grid-template-columns:1fr 1fr}
+  .sec-card{width:260px}
+}
+
+/* ─── 比較テーブル → カードグリッド（スマホ対応） ─── */
+.cmp-list{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.cmp-card{background:#fff;border:0.5px solid var(--border);border-radius:12px;overflow:hidden;position:relative;transition:box-shadow .15s}
+.cmp-card:hover{box-shadow:2px 2px 0 var(--navy)}
+.cmp-card.rec{border:2px solid var(--amber)}
+.cmp-rec-badge{display:inline-block;background:var(--amber);color:#fff;font-size:10px;font-weight:700;padding:2px 10px;border-radius:0 0 6px 0;letter-spacing:.04em;position:absolute;top:0;left:0}
+/* カード内レイアウト：左（会社名+説明）中（数値3つ）右（ボタン） */
+.cmp-inner{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:0;padding:14px 16px}
+.cmp-left{padding-right:16px;border-right:0.5px solid var(--border)}
+.cmp-name{font-size:17px;font-weight:700;color:var(--t1);margin-bottom:4px;line-height:1.2}
+.cmp-desc{font-size:12px;color:var(--t2);line-height:1.5}
+.cmp-mid{display:flex;gap:0;border-right:0.5px solid var(--border)}
+.cmp-stat{text-align:center;padding:0 16px;min-width:88px}
+.cmp-stat-lbl{font-size:10px;color:var(--t3);margin-bottom:4px;white-space:nowrap}
+.cmp-stat-val{font-size:15px;font-weight:700;color:var(--t1);font-family:'DM Mono',monospace;white-space:nowrap}
+.cmp-stat-val.reward{color:#92400e}
+.cmp-right{padding-left:16px;display:flex;align-items:center;justify-content:center}
+.cmp-open-btn{background:var(--navy);color:#fff;border:none;border-radius:8px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans JP',sans-serif;white-space:nowrap;transition:background .15s;text-align:center;display:block}
+.cmp-open-btn:hover{background:#003399}
+/* スマホ：縦レイアウトに切り替え */
+@media(max-width:640px){
+  .cmp-inner{grid-template-columns:1fr;gap:10px;padding:14px}
+  .cmp-left{padding-right:0;border-right:none;border-bottom:0.5px solid var(--border);padding-bottom:10px}
+  .cmp-mid{border-right:none;justify-content:space-around;padding:0}
+  .cmp-stat{min-width:0;padding:0 8px}
+  .cmp-stat-val{font-size:14px}
+  .cmp-right{padding-left:0}
+  .cmp-open-btn{width:100%;padding:12px}
+}
+
+/* ─── ランキングカルーセル ─── */
+.rank-section{margin-top:24px}
+.rank-sec-title{font-size:17px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.rank-sec-sub{font-size:11px;color:var(--t2);margin-bottom:14px}
+
+/* カテゴリタブ */
+.rank-tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:16px;padding-bottom:2px;-webkit-overflow-scrolling:touch}
+.rank-tabs::-webkit-scrollbar{display:none}
+.rank-tab{flex:none;background:#fff;border:0.5px solid var(--border);border-radius:6px;padding:6px 14px;font-size:12px;color:var(--t2);cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .15s;white-space:nowrap}
+.rank-tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* カルーセルラッパー */
+.carousel-wrap{position:relative}
+.carousel-scroll{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.carousel-scroll::-webkit-scrollbar{display:none}
+
+/* 各カード */
+.sec-card{flex:none;width:min(280px,calc(100vw - 40px));scroll-snap-align:start;background:var(--paper);border:0.5px solid var(--border);border-radius:14px;overflow:hidden;transition:box-shadow .2s;position:relative}
+.sec-card:hover{box-shadow:3px 3px 0 var(--navy)}
+.sec-card.top1{border:2px solid #facc15}
+.sec-card.top2{border:2px solid #94a3b8}
+.sec-card.top3{border:2px solid #d97706}
+
+/* カードヘッダー */
+.sc-head{padding:14px 16px 10px;border-bottom:0.5px solid var(--border);position:relative}
+.sc-rank-badge{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:14px;font-weight:700;color:#fff}
+.rb-1{background:linear-gradient(135deg,#d97706,#facc15);color:#002B80}
+.rb-2{background:linear-gradient(135deg,#64748b,#94a3b8)}
+.rb-3{background:linear-gradient(135deg,#92400e,#d97706)}
+.rb-n{background:var(--border);color:var(--t2)}
+.sc-name{font-size:16px;font-weight:700;color:var(--t1);margin-bottom:4px;padding-right:40px}
+.sc-catch{font-size:11px;color:var(--t2);line-height:1.5;margin-bottom:6px}
+.sc-tags{display:flex;gap:5px;flex-wrap:wrap}
+.sc-tag{font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px}
+.sct-nisa{background:#dbeafe;color:#1e40af}
+.sct-beginner{background:#d1fae5;color:#065f46}
+.sct-point{background:#fae8ff;color:#7e22ce}
+.sct-us{background:#fee2e2;color:#991b1b}
+.sct-tool{background:#fef3c7;color:#92400e}
+
+/* スコアバー */
+.sc-body{padding:12px 16px}
+.sc-score-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.sc-score-lbl{font-size:10px;color:var(--t2);width:70px;flex-shrink:0}
+.sc-score-bar{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.sc-score-fill{height:100%;border-radius:3px;background:var(--navy);transition:width .6s ease}
+.sc-score-num{font-size:10px;font-weight:700;color:var(--navy);width:28px;text-align:right;flex-shrink:0}
+
+/* キャンペーン */
+.sc-campaign{margin:10px 0;background:#fffbeb;border:0.5px solid #fde68a;border-radius:7px;padding:8px 10px}
+.sc-campaign-lbl{font-size:9px;color:#92400e;margin-bottom:2px}
+.sc-campaign-val{font-size:16px;font-weight:700;color:#92400e;font-family:'DM Mono',monospace}
+.sc-campaign-note{font-size:9px;color:#78350f;margin-top:1px}
+
+/* ボタン */
+.sc-btn{display:block;width:100%;background:var(--navy);color:#fff;border:none;border-radius:8px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans JP',sans-serif;text-align:center;letter-spacing:.04em;transition:background .15s;text-decoration:none}
+.sc-btn:hover{background:#003399}
+
+/* スクロールインジケーター */
+.carousel-dots{display:flex;justify-content:center;gap:5px;margin-top:6px}
+.c-dot{width:6px;height:6px;border-radius:50%;background:var(--border);cursor:pointer;transition:all .2s}
+.c-dot.active{background:var(--navy);width:18px;border-radius:3px}
+
+/* キャンペーンカード */
+.camp-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.camp-card{border-radius:10px;padding:14px;cursor:pointer;transition:opacity .15s}
+.camp-card:hover{opacity:.88}
+
+/* 条件検索 */
+.cond-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cond-btn{background:var(--paper);border:0.5px solid var(--border);border-radius:10px;padding:14px 12px;text-align:left;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .15s;display:flex;align-items:center;gap:10px}
+.cond-btn:hover{border-color:var(--navy);background:#eff6ff}
+.cond-icon{font-size:22px;flex-shrink:0}
+.cond-name{font-size:13px;font-weight:700;color:var(--t1);margin-bottom:2px}
+.cond-sub{font-size:10px;color:var(--t2)}
+
+/* コラムリスト */
+.col-item{background:var(--paper);border:0.5px solid var(--border);border-radius:10px;padding:14px;display:flex;gap:12px;align-items:center;cursor:pointer;transition:all .15s;margin-bottom:8px}
+.col-item:hover{border-color:var(--navy);box-shadow:2px 2px 0 var(--navy)}
+.col-item-icon{font-size:28px;flex-shrink:0}
+.col-item-title{font-size:13px;font-weight:700;color:var(--t1);margin-bottom:3px;line-height:1.4}
+.col-item-sub{font-size:11px;color:var(--t2);line-height:1.5}
+.col-item-arrow{font-size:14px;color:var(--navy);flex-shrink:0;margin-left:auto}
+
+@media(max-width:480px){
+  .sec-card{width:calc(100vw - 32px)}
+  .camp-grid{grid-template-columns:1fr 1fr;gap:6px}
+  .cond-grid{grid-template-columns:1fr 1fr;gap:6px}
+  .camp-card{padding:10px}
+}
+
+/* ── NISAセクション ── */
+.nisa-why{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.nisa-why-item{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px 14px;background:#fff;
+  border:1px solid #e2e8f0;border-radius:10px;
+}
+.nisa-why-icon{font-size:22px;flex-shrink:0;margin-top:1px}
+.nisa-why-title{font-size:13px;font-weight:700;color:#1e293b;margin-bottom:3px}
+.nisa-why-body{font-size:12px;color:#64748b;line-height:1.5}
+
+/* シミュレーション */
+.sim-box{
+  background:linear-gradient(135deg,#0a1535,#1a2f5e);
+  border-radius:14px;padding:18px 16px;margin-bottom:16px;
+}
+.sim-title{font-size:13px;font-weight:700;color:#facc15;margin-bottom:14px}
+.sim-rows{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.sim-row{display:flex;align-items:center;gap:10px}
+.sim-yr{font-size:12px;color:rgba(255,255,255,.6);width:44px;flex-shrink:0}
+.sim-bar-wrap{flex:1}
+.sim-bar{
+  height:14px;background:rgba(255,255,255,.08);
+  border-radius:7px;overflow:hidden;min-width:8%;
+  display:flex;
+}
+.sim-bar-invest{height:100%;background:#facc15;border-radius:7px 0 0 7px}
+.sim-val{font-size:13px;font-weight:700;color:#fff;white-space:nowrap;text-align:right;min-width:110px}
+.sim-val small{font-size:10px;font-weight:400;color:rgba(255,255,255,.5);display:block}
+.sim-legend{display:flex;gap:14px;justify-content:flex-end}
+.sim-legend span{font-size:10px;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:4px}
+.sim-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sim-dot.invest{background:#facc15}
+.sim-dot.base{background:rgba(255,255,255,.2)}
+
+/* フィルター */
+.rank-filter-wrap{margin-bottom:12px}
+.rank-filter{
+  display:flex;gap:6px;overflow-x:auto;flex-wrap:nowrap;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px;
+}
+.rank-filter::-webkit-scrollbar{display:none}
+.rank-filter-btn{
+  flex-shrink:0;padding:5px 14px;font-size:12px;font-weight:600;
+  border-radius:20px;border:1.5px solid #e2e8f0;
+  background:#fff;color:#64748b;cursor:pointer;transition:all .15s;
+}
+.rank-filter-btn.active{background:var(--navy,#002B80);color:#fff;border-color:var(--navy,#002B80)}
+.rank-filter-btn:hover:not(.active){border-color:#002B80;color:#002B80}
+
+/* 証券会社ランキングカード */
+.sec-rank-list{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+
+.sec-rank-card{
+  background:#fff;border:1.5px solid #e2e8f0;
+  border-radius:14px;overflow:hidden;
+  transition:box-shadow .18s,transform .18s;
+}
+.sec-rank-card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.08)}
+.sec-rank-card.top1{border-color:#fbbf24}
+.sec-rank-card.top2{border-color:#cbd5e1}
+.sec-rank-card.top3{border-color:#fde68a}
+
+/* ランキングヘッダー */
+.src-head{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 14px;border-bottom:1px solid #f1f5f9;
+}
+.src-rank{
+  width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:900;flex-shrink:0;
+}
+.rank-1{background:#fef3c7;color:#d97706;border:2px solid #fbbf24}
+.rank-2{background:#f1f5f9;color:#475569;border:2px solid #cbd5e1}
+.rank-3{background:#fefce8;color:#92400e;border:2px solid #fde68a}
+.rank-n{background:#f8fafc;color:#94a3b8;border:1.5px solid #e2e8f0}
+.src-name{font-size:15px;font-weight:800;color:#1e293b}
+.src-catch{font-size:11px;color:#64748b;margin-top:2px}
+.src-camp{
+  margin-left:auto;text-align:right;flex-shrink:0;
+}
+.src-camp-val{font-size:14px;font-weight:800;color:#dc2626}
+.src-camp-note{font-size:10px;color:#94a3b8}
+
+/* タグ */
+.src-tags{display:flex;flex-wrap:wrap;gap:4px;padding:8px 14px;border-bottom:1px solid #f8fafc}
+.src-tag{
+  font-size:10px;font-weight:600;padding:2px 8px;
+  border-radius:10px;background:#f1f5f9;color:#475569;
+}
+.sct-nisa{background:#eff6ff;color:#1d4ed8}
+.sct-beginner{background:#f0fdf4;color:#15803d}
+.sct-point{background:#fef9c3;color:#854d0e}
+.sct-us{background:#faf5ff;color:#6d28d9}
+.sct-tool{background:#fff7ed;color:#c2410c}
+
+/* スコアバー */
+.src-scores{padding:10px 14px;border-bottom:1px solid #f8fafc}
+.src-score-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.src-score-row:last-child{margin-bottom:0}
+.src-score-lbl{font-size:10px;color:#64748b;width:48px;flex-shrink:0}
+.src-score-bar{flex:1;height:6px;background:#f1f5f9;border-radius:3px;overflow:hidden}
+.src-score-fill{height:100%;border-radius:3px;transition:width .6s ease}
+.src-score-num{font-size:10px;font-weight:700;color:#1e293b;width:28px;text-align:right;flex-shrink:0}
+
+/* CTAボタン */
+.src-cta{padding:12px 14px;display:flex;gap:8px;align-items:center}
+.src-btn{
+  flex:1;display:block;text-align:center;
+  padding:11px 0;font-size:13px;font-weight:700;
+  border-radius:10px;text-decoration:none;
+  transition:opacity .15s;border:none;cursor:pointer;
+}
+.src-btn.primary{background:var(--navy,#002B80);color:#fff}
+.src-btn.primary:hover{opacity:.85}
+.src-btn.secondary{
+  background:#f8fafc;color:#475569;
+  border:1.5px solid #e2e8f0;font-size:12px;flex:0 0 80px;
+}
+
+/* 口座開設手順 */
+.open-steps{
+  background:#f8fafc;border-radius:12px;
+  padding:16px;margin-top:8px;
+}
+.open-steps-title{font-size:13px;font-weight:700;color:#1e293b;margin-bottom:12px}
+.steps-list{display:flex;flex-direction:column;gap:10px}
+.step-item{display:flex;gap:12px;align-items:flex-start}
+.step-num{
+  width:26px;height:26px;border-radius:50%;
+  background:var(--navy,#002B80);color:#fff;
+  font-size:12px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:1px;
+}
+.step-name{font-size:13px;font-weight:700;color:#1e293b;margin-bottom:2px}
+.step-note{font-size:11px;color:#64748b;line-height:1.5}
+
+@media(max-width:600px){
+  .sim-val{min-width:90px;font-size:12px}
+  .src-camp{display:none}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header class="hdr">
+  <div class="wrap hdr-inner">
+    <div class="hdr-logo">
+      <div class="hdr-logo-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#002B80" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      </div>
+      <span class="hdr-logo-text">値上がり予測ドットコム</span>
+    </div>
+    <div class="hdr-fx">
+      <span class="hdr-fx-lbl">USD/JPY</span>
+      <span id="hdr-rate">---</span>円
+    </div>
+    <a class="hdr-back" href="index.html">← トップへ</a>
+  </div>
+</header>
+
+<!-- ─── URGENT BANNER ─── -->
+<div class="urgent-banner">
+  <div class="wrap urgent-inner">
+    <span class="urgent-badge">⚡ 緊急警告</span>
+    <span class="urgent-text">円安<strong id="u-rate">---</strong>円台が継続中。現金のまま持ち続けると年間で<strong>購買力が約10%以上目減り</strong>します。今すぐ資産防衛を始めてください。</span>
+  </div>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">💰 インフレ・円安時代の資産防衛戦略</div>
+    <h1 class="hero-h">値上げで失う分を<br><span>投資で取り戻す</span>時代へ</h1>
+    <p class="hero-desc">円安・原材料高騰で家計への負担が増す今こそ、現金の目減りを防ぎ資産を守るアクションが必要です。NISA・FX・ふるさと納税・金投資で家計防衛の次のステージへ。</p>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-num" id="h-rate">---</div><div class="hstat-lbl">現在の円安水準<br>USD/JPY</div></div>
+      <div class="hstat"><div class="hstat-num">-10%</div><div class="hstat-lbl">現金の実質<br>購買力変化（1年）</div></div>
+      <div class="hstat"><div class="hstat-num">+18%</div><div class="hstat-lbl">日経平均<br>過去1年騰落率</div></div>
+      <div class="hstat"><div class="hstat-num">+15%</div><div class="hstat-lbl">金（ゴールド）<br>過去1年騰落率</div></div>
+    </div>
+    <div class="hero-cta-row">
+      <button class="hero-cta" onclick="scrollTo('nisa')">📈 NISAを始める</button>
+      <button class="hero-cta-sub" onclick="scrollTo('furusato')">🎁 ふるさと納税で節税</button>
+      <button class="hero-cta-sub" onclick="scrollTo('fx')">💱 FX・為替取引</button>
+      <button class="hero-cta-sub" onclick="scrollTo('crypto')">₿ 暗号資産</button>
+      <button class="hero-cta-sub" onclick="scrollTo('realestate')">🏢 不動産投資</button>
+    </div>
+  </div>
+</section>
+
+<main>
+<div class="wrap" style="padding-left:12px;padding-right:12px">
+
+<!-- ─── 家計ダメージ計算機 ─── -->
+<section class="section" style="padding-top:32px">
+  <div class="damage-card">
+    <div class="damage-title">🧮 値上げによる家計ダメージ vs 投資リターン シミュレーター</div>
+    <div class="damage-sub">月の支出・貯蓄額を入力して、「何もしないと何円損するか」と「投資すると何円増えるか」を比較します。</div>
+    <div class="damage-grid">
+      <div class="damage-input-block">
+        <div class="damage-lbl">食費・日用品の月支出</div>
+        <input class="damage-inp" type="number" id="d-spend" value="80000" oninput="calcDamage()">
+      </div>
+      <div class="damage-input-block">
+        <div class="damage-lbl">月の貯蓄額</div>
+        <input class="damage-inp" type="number" id="d-save" value="50000" oninput="calcDamage()">
+      </div>
+      <div class="damage-input-block">
+        <div class="damage-lbl">想定運用利回り（%）</div>
+        <input class="damage-inp" type="number" id="d-rate" value="5" min="1" max="20" oninput="calcDamage()">
+      </div>
+    </div>
+    <div class="damage-result" id="damage-result">
+      <div class="dr-item"><div class="dr-lbl">値上げによる年間損失</div><div class="dr-val" id="dr-loss">¥0</div></div>
+      <div class="dr-item"><div class="dr-lbl">投資の年間リターン（試算）</div><div class="dr-val" style="color:#4ade80" id="dr-gain">¥0</div></div>
+      <div class="dr-item"><div class="dr-lbl">差し引き（投資で取り戻せる分）</div><div class="dr-val" style="color:#facc15" id="dr-diff">¥0</div></div>
+    </div>
+    <div class="dr-total">
+      <div class="dr-total-lbl">投資しない場合の5年間の実質損失</div>
+      <div class="dr-total-val" id="dr-5yr">¥0</div>
+      <div class="dr-total-msg">※値上げ分の累積 + 現金の機会損失（試算）</div>
+    </div>
+    <div class="damage-solution" style="margin-top:14px">
+      💡 対策：<strong>NISA（月5万円・年5%運用）</strong>なら5年後に約340万円に。同期間の値上げによる損失を上回る試算です。<br>さらに<strong>ふるさと納税</strong>を活用すれば年間数万円の節税効果も加算されます。
+    </div>
+  </div>
+</section>
+
+<!-- ─── NISA・投資信託 ─── -->
+<section class="section" id="nisa">
+  <div class="sec-hdr">
+    <span class="sec-title">📈 NISA・証券口座おすすめランキング</span>
+  </div>
+
+  <!-- ── なぜ今NISAか ── -->
+  <div class="nisa-why">
+    <div class="nisa-why-item">
+      <span class="nisa-why-icon">📉</span>
+      <div>
+        <div class="nisa-why-title">現金を持つだけで目減りする</div>
+        <div class="nisa-why-body">物価が年3%上がると、100万円の価値は10年で74万円相当に</div>
+      </div>
+    </div>
+    <div class="nisa-why-item">
+      <span class="nisa-why-icon">🛡</span>
+      <div>
+        <div class="nisa-why-title">NISAなら利益が全額非課税</div>
+        <div class="nisa-why-body">通常20%の税金がゼロに。1,000万円の運用益も丸ごと手元に残る</div>
+      </div>
+    </div>
+    <div class="nisa-why-item">
+      <span class="nisa-why-icon">⏰</span>
+      <div>
+        <div class="nisa-why-title">始めるのが早いほど有利</div>
+        <div class="nisa-why-body">月3万円・年5%運用で20年後に約2,467万円（元本720万円）</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 複利シミュレーション ── -->
+  <div class="sim-box">
+    <div class="sim-title">💰 月3万円を積み立てた場合（年率5%想定）</div>
+    <div class="sim-rows">
+      <div class="sim-row">
+        <span class="sim-yr">5年後</span>
+        <div class="sim-bar-wrap">
+          <div class="sim-bar" style="width:20%">
+            <div class="sim-bar-invest" style="width:73%"></div>
+          </div>
+        </div>
+        <span class="sim-val">約204万円 <small>元本180万</small></span>
+      </div>
+      <div class="sim-row">
+        <span class="sim-yr">10年後</span>
+        <div class="sim-bar-wrap">
+          <div class="sim-bar" style="width:45%">
+            <div class="sim-bar-invest" style="width:66%"></div>
+          </div>
+        </div>
+        <span class="sim-val">約466万円 <small>元本360万</small></span>
+      </div>
+      <div class="sim-row">
+        <span class="sim-yr">20年後</span>
+        <div class="sim-bar-wrap">
+          <div class="sim-bar" style="width:100%">
+            <div class="sim-bar-invest" style="width:71%"></div>
+          </div>
+        </div>
+        <span class="sim-val">約2,467万円 <small>元本720万</small></span>
+      </div>
+    </div>
+    <div class="sim-legend">
+      <span><span class="sim-dot invest"></span>運用益</span>
+      <span><span class="sim-dot base"></span>元本</span>
+    </div>
+  </div>
+
+  <!-- ── フィルタータブ ── -->
+  <div class="rank-filter-wrap">
+    <div class="rank-filter" id="rank-filter">
+      <button class="rank-filter-btn active" onclick="filterRank(this,'all')">すべて</button>
+      <button class="rank-filter-btn" onclick="filterRank(this,'nisa')">NISA重視</button>
+      <button class="rank-filter-btn" onclick="filterRank(this,'beginner')">初心者向け</button>
+      <button class="rank-filter-btn" onclick="filterRank(this,'point')">ポイント重視</button>
+      <button class="rank-filter-btn" onclick="filterRank(this,'us')">米国株</button>
+    </div>
+  </div>
+
+  <!-- ── 証券会社ランキング ── -->
+  <div class="sec-rank-list" id="sec-rank-list"></div>
+
+  <!-- アフィリエイト免責 -->
+  <div class="aff-disc">PR：当サイトはアフィリエイトプログラムに参加しています。リンクから口座開設いただくと報酬を受け取る場合があります。ランキングは中立的な評価に基づきます。</div>
+
+  <!-- ── 口座開設の手順 ── -->
+  <div class="open-steps">
+    <div class="open-steps-title">📝 口座開設の手順（最短5分〜）</div>
+    <div class="steps-list">
+      <div class="step-item">
+        <span class="step-num">1</span>
+        <div class="step-body">
+          <div class="step-name">公式サイトから申込み</div>
+          <div class="step-note">下のボタンから当サイト経由で申込むと特典あり</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <span class="step-num">2</span>
+        <div class="step-body">
+          <div class="step-name">本人確認書類を提出</div>
+          <div class="step-note">マイナンバーカード or 運転免許証＋マイナンバー通知カード</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <span class="step-num">3</span>
+        <div class="step-body">
+          <div class="step-name">NISA口座を選択</div>
+          <div class="step-note">申込時に「NISA口座を開設する」を選ぶだけ</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <span class="step-num">4</span>
+        <div class="step-body">
+          <div class="step-name">審査完了・入金して投資スタート</div>
+          <div class="step-note">最短翌営業日に口座開設完了。あとは積立設定するだけ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="section" id="fx">
+  <div class="sec-hdr">
+    <span class="sec-title">💱 FX・為替取引</span>
+    
+  </div>
+  <p class="sec-sub">円安が進む今、FXで「円安メリット」を得ることができます。値上げの原因となる為替変動を、収益に変える方法を解説します。</p>
+
+  <div class="fx-hero">
+    <div class="fx-rate-display">
+      <span class="fx-rate-num" id="fx-big">---</span>
+      <span class="fx-rate-unit">円</span>
+      <span class="fx-rate-diff">円安傾向</span>
+    </div>
+    <div class="fx-title">この円安を「収益機会」に変えるFX取引</div>
+    <div class="fx-desc">円安が進むと輸入品が値上がりしますが、FXでドル円ロングポジションを持つことで、円安の恩恵を受けることができます。ただし、FX取引には大きなリスクがあります。</div>
+    <div class="fx-merit-grid">
+      <div class="fx-merit-item"><div class="fx-merit-icon">📊</div><div class="fx-merit-title">為替差益を狙える</div><div class="fx-merit-desc">円安が進む局面でドル保有・ドル買いポジションを持つことで差益を得られる可能性</div></div>
+      <div class="fx-merit-item"><div class="fx-merit-icon">⏰</div><div class="fx-merit-title">24時間取引可能</div><div class="fx-merit-desc">世界の為替市場は24時間動いており、仕事の合間や就寝前でも取引可能</div></div>
+      <div class="fx-merit-item"><div class="fx-merit-icon">💹</div><div class="fx-merit-title">スワップポイント</div><div class="fx-merit-desc">高金利通貨を保有するとスワップポイント（金利差収入）が毎日付与される</div></div>
+      <div class="fx-merit-item"><div class="fx-merit-icon">🔢</div><div class="fx-merit-title">少額から始められる</div><div class="fx-merit-desc">1,000通貨単位（約1万円）から取引可能。デモ口座で練習してから本番へ</div></div>
+    </div>
+  </div>
+
+  <div class="compare-wrap">
+    <div class="compare-title">💱 FX会社 比較（口座開設ボーナスあり）</div>
+    <div class="compare-table-scroll"><table class="compare-table">
+      <thead>
+        <tr>
+          <th>FX会社</th>
+          <th>特徴</th>
+          <th class="num">ドル円スプレッド</th>
+          <th class="num">開設ボーナス</th>
+          <th>開設</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="recommended">
+          <td><strong>GMOクリック証券</strong><span class="rec-badge">おすすめ</span></td>
+          <td>業界最狭水準スプレッド。取引ツールが使いやすい</td>
+          <td style="text-align:center;font-family:'DM Mono',monospace">0.2銭</td>
+          <td style="text-align:center"><span class="reward-chip">¥20,000</span></td>
+          <td><button class="apply-btn" onclick="affLink('gmo-fx')">無料開設 →</button></td>
+        </tr>
+        <tr class="recommended">
+          <td><strong>DMM FX</strong><span class="rec-badge">初心者向け</span></td>
+          <td>サポート充実。初心者に優しいUI。デモ口座あり</td>
+          <td style="text-align:center;font-family:'DM Mono',monospace">0.2銭</td>
+          <td style="text-align:center"><span class="reward-chip">¥20,000</span></td>
+          <td><button class="apply-btn" onclick="affLink('dmm-fx')">無料開設 →</button></td>
+        </tr>
+        <tr>
+          <td><strong>SBI FXトレード</strong></td>
+          <td>1通貨から取引可能。超少額で練習できる</td>
+          <td style="text-align:center;font-family:'DM Mono',monospace">0.18銭</td>
+          <td style="text-align:center"><span class="reward-chip">¥10,000</span></td>
+          <td><button class="apply-btn" onclick="affLink('sbi-fx')">無料開設 →</button></td>
+        </tr>
+        <tr>
+          <td><strong>外為どっとコム</strong></td>
+          <td>老舗FX会社。スワップポイントが高め</td>
+          <td style="text-align:center;font-family:'DM Mono',monospace">0.2銭</td>
+          <td style="text-align:center"><span class="reward-chip">¥30,000</span></td>
+          <td><button class="apply-btn" onclick="affLink('gaitame')">無料開設 →</button></td>
+        </tr>
+      </tbody>
+    </table></div>
+  <div class="notice"><strong>⚠️ FX取引のリスク警告：</strong>FX取引はレバレッジ取引であり、投資元本を超える損失が生じるリスクがあります。特に初心者は少額・低レバレッジから始め、十分に仕組みを理解してから取引してください。当サイトは投資助言業者ではありません。</div>
+</section>
+
+<!-- ─── 金（ゴールド） ─── -->
+<section class="section" id="gold">
+  <div class="sec-hdr">
+    <span class="sec-title">🥇 金（ゴールド）投資</span>
+    
+  </div>
+  <p class="sec-sub">インフレに最も強い資産の一つ。円安・地政学リスク・物価上昇の局面で金価格は上昇しやすく、今まさに注目されています。</p>
+
+  <div class="product-grid">
+    <div class="product-card featured">
+      <span class="featured-badge">インフレヘッジ</span>
+      <div class="pc-thumb" style="background:linear-gradient(135deg,#412402,#b7860b)">🥇</div>
+      <div class="pc-body">
+        <span class="pc-tag tag-gold">金・貴金属</span>
+        <div class="pc-title">田中貴金属 純金積立</div>
+        <div class="pc-desc">月3,000円から始められる純金積立。過去1年で+15%の実績。円安・インフレ局面での資産防衛に最適。</div>
+        <div class="pc-merit">
+          <div class="pc-merit-title">✅ 金投資のメリット</div>
+          <ul class="pc-merit-list">
+            <li>インフレ・円安に強い</li>
+            <li>株式と逆相関で分散効果</li>
+            <li>世界共通の資産・有事の金</li>
+          </ul>
+        </div>
+        <button class="aff-btn gold" onclick="affLink('tanaka-gold')">田中貴金属で純金積立を始める →</button>
+        <div class="aff-pr">※アフィリエイトリンク（PR）</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="pc-thumb" style="background:linear-gradient(135deg,#1a1a00,#4a3600)">📊</div>
+      <div class="pc-body">
+        <span class="pc-tag tag-gold">金ETF</span>
+        <div class="pc-title">金ETF（SPDR Gold Shares等）</div>
+        <div class="pc-desc">証券口座があればすぐに投資可能な金ETF。現物保管の手間なく金価格に連動した投資ができます。</div>
+        <div class="pc-merit">
+          <div class="pc-merit-title">✅ ETFのメリット</div>
+          <ul class="pc-merit-list">
+            <li>証券口座から即座に購入</li>
+            <li>保管コストが現物より低い</li>
+            <li>流動性が高く売りやすい</li>
+          </ul>
+        </div>
+        <button class="aff-btn gold" onclick="affLink('sbi')">SBI証券で金ETFを購入 →</button>
+        <div class="aff-pr">※アフィリエイトリンク（PR）。元本保証なし。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ふるさと納税 ─── -->
+<section class="section" id="furusato">
+  <div class="sec-hdr">
+    <span class="sec-title">🎁 ふるさと納税で節税</span>
+    
+  </div>
+  <p class="sec-sub">値上げで増える支出を、ふるさと納税で取り戻す。2,000円の自己負担で豪華な返礼品＋税金控除。今やらないと損です。</p>
+
+  <div class="furusato-banner">
+    <div class="furu-title">🎁 ふるさと納税で<span>最大40%以上</span>の還元率</div>
+    <div class="furu-desc">給料から引かれる住民税・所得税が控除されるため、実質2,000円で豪華な返礼品がもらえます。値上がりしたお米・肉・魚介類を無料同然で入手できます。インフレ時代の最強節税術です。</div>
+
+    <div class="furu-calc">
+      <div class="furu-calc-title">💰 あなたのふるさと納税 上限額シミュレーター</div>
+      <div class="furu-calc-grid">
+        <div>
+          <div class="furu-inp-lbl">年収（万円）</div>
+          <input class="furu-inp" type="number" id="f-income" value="500" oninput="calcFuru()">
+        </div>
+        <div>
+          <div class="furu-inp-lbl">家族構成</div>
+          <select id="f-family" style="width:100%;background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.2);border-radius:6px;padding:8px 12px;font-size:14px;color:#fff;font-family:'Noto Sans JP',sans-serif" onchange="calcFuru()">
+            <option value="1">独身・共働き</option>
+            <option value="0.9">夫婦（配偶者控除あり）</option>
+            <option value="0.85">夫婦＋子1人</option>
+            <option value="0.8">夫婦＋子2人</option>
+            <option value="0.75">夫婦＋子3人以上</option>
+          </select>
+        </div>
+        <div>
+          <div class="furu-inp-lbl">上限の何%寄付するか</div>
+          <input class="furu-inp" type="number" id="f-pct" value="80" min="10" max="100" oninput="calcFuru()">
+        </div>
+      </div>
+      <div class="furu-result">
+        <div class="furu-result-lbl">推定 ふるさと納税 上限額</div>
+        <div class="furu-result-val" id="furu-limit">¥0</div>
+        <div class="furu-result-sub">実質負担 <strong>¥2,000</strong> で返礼品がもらえます</div>
+      </div>
+    </div>
+
+    <div class="furu-sites">
+      <div class="furu-site-btn" onclick="affLink('rakuten-furu')">
+        <div class="furu-site-icon">🛒</div>
+        <div class="furu-site-name">楽天ふるさと納税</div>
+        <div class="furu-site-reward">楽天ポイント還元</div>
+      </div>
+      <div class="furu-site-btn" onclick="affLink('furusato-choice')">
+        <div class="furu-site-icon">🎁</div>
+        <div class="furu-site-name">ふるさとチョイス</div>
+        <div class="furu-site-reward">掲載数No.1</div>
+      </div>
+      <div class="furu-site-btn" onclick="affLink('sanotomo')">
+        <div class="furu-site-icon">🌸</div>
+        <div class="furu-site-name">さとふる</div>
+        <div class="furu-site-reward">申込み最短翌日</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--paper);border:0.5px solid var(--border);border-radius:12px;padding:18px;margin-bottom:16px">
+    <div style="font-size:14px;font-weight:700;margin-bottom:12px;color:var(--t1)">🍖 値上がり前に今すぐ確保できる人気返礼品</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px">
+      ${['🍚 新潟産コシヒカリ 20kg','🥩 黒毛和牛 焼肉用 2kg','🦐 天然えび 2kg','🍗 博多地鶏 もも肉 2kg','🐟 本マグロ 中トロ 500g','🍺 クラフトビール 24缶','🧀 熊本阿蘇 チーズ詰合せ','☕ スペシャルティコーヒー'].map(item=>`
+        <div style="background:#fff;border:0.5px solid var(--border);border-radius:8px;padding:10px;font-size:12px;font-weight:500;color:var(--t1)">${item}</div>
+      `).join('')}
+    </div>
+    <div style="margin-top:12px;font-size:11px;color:var(--t2)">※ これらの商品は値上がりが予測されており、ふるさと納税で今のうちに確保することで値上げの影響を回避できます。</div>
+  </div>
+</section>
+
+</div>
+</main>
+
+<!-- ─── 暗号資産・ビットコイン ─── -->
+<section class="section" id="crypto">
+  <div class="sec-hdr">
+    <span class="sec-title">₿ 暗号資産・ビットコイン</span>
+    
+  </div>
+  <p class="sec-sub">「デジタルゴールド」とも呼ばれるビットコイン。法定通貨の価値が下がるインフレ局面で注目される分散投資先。少額から始められ、円安ヘッジにもなります。</p>
+  <div style="background:linear-gradient(135deg,#0d0d1a,#1a1440);border-radius:14px;padding:24px;margin-bottom:20px;color:#fff">
+    <div style="font-size:15px;font-weight:700;margin-bottom:12px">₿ ビットコインが「インフレヘッジ」になる3つの理由</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+      <div style="background:rgba(255,255,255,.06);border:0.5px solid rgba(255,255,255,.1);border-radius:8px;padding:12px">
+        <div style="font-size:20px;margin-bottom:6px">🔒</div>
+        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:4px">発行上限2,100万枚</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.55);line-height:1.5">無限に刷れる法定通貨と違い、供給量が固定。インフレに構造的に強い</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border:0.5px solid rgba(255,255,255,.1);border-radius:8px;padding:12px">
+        <div style="font-size:20px;margin-bottom:6px">🌍</div>
+        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:4px">国境・通貨に依存しない</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.55);line-height:1.5">円安が進んでもBTC/ドル建て資産として保有することで為替リスクを分散できる</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border:0.5px solid rgba(255,255,255,.1);border-radius:8px;padding:12px">
+        <div style="font-size:20px;margin-bottom:6px">📈</div>
+        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:4px">機関投資家が参入済み</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.55);line-height:1.5">BTC ETF承認で主要金融機関が正式参入。投機から資産クラスへの転換が進む</div>
+      </div>
+    </div>
+  </div>
+  <div class="compare-wrap">
+    <div class="compare-title">₿ 暗号資産取引所 比較（口座開設ボーナスあり）</div>
+    <div class="compare-table-scroll"><table class="compare-table">
+      <thead><tr><th>取引所</th><th>特徴</th><th class="num">取扱通貨</th><th class="num">開設特典</th><th>開設</th></tr></thead>
+      <tbody>
+        <tr class="recommended">
+          <td><strong>コインチェック</strong><span class="rec-badge">初心者向け</span></td>
+          <td>国内最大級。アプリが使いやすく初心者に最適。500円から購入可能</td>
+          <td style="text-align:center;font-family:'DM Mono',monospace">30種類+</td>
+          <td style="text-align:center"><span class="reward-chip">¥3,000相当</span></td>
+          <td><button class="apply-btn" onclick="affLink('coincheck')">無料開設 →</button></td>
+        </tr>
+        <tr class="recommended">
+          <td><strong>GMOコイン</strong><span class="rec-badge">手数料無料</span></td>
+          <td>現物取引手数料無料。レバレッジ取引対応。大手GMOグループ運営</td>
+          <td style="text-align:center;font-family:'DM Mono',monospace">26種類+</td>
+          <td style="text-align:center"><span class="reward-chip">¥5,000相当</span></td>
+          <td><button class="apply-btn" onclick="affLink('gmo-coin')">無料開設 →</button></td>
+        </tr>
+        <tr>
+          <td><strong>bitFlyer</strong></td>
+          <td>取引量国内No.1実績。セキュリティ最高水準。ビットコイン投資に特化</td>
+          <td style="text-align:center;font-family:'DM Mono',monospace">20種類+</td>
+          <td style="text-align:center"><span class="reward-chip">¥1,500相当</span></td>
+          <td><button class="apply-btn" onclick="affLink('bitflyer')">無料開設 →</button></td>
+        </tr>
+        <tr>
+          <td><strong>Binance Japan</strong></td>
+          <td>世界最大手の日本版。豊富な通貨ペア。上級者向け</td>
+          <td style="text-align:center;font-family:'DM Mono',monospace">40種類+</td>
+          <td style="text-align:center"><span class="reward-chip">¥5,000相当</span></td>
+          <td><button class="apply-btn" onclick="affLink('binance-jp')">無料開設 →</button></td>
+        </tr>
+      </tbody>
+    </table></div>
+  <div class="notice"><strong>⚠️ 暗号資産のリスク：</strong>価格変動が非常に大きく、短期間で大幅に値下がりする可能性があります。余剰資金の5〜10%以内での運用を推奨します。元本保証はありません。</div>
+</section>
+
+<!-- ─── 不動産投資 ─── -->
+<section class="section" id="realestate">
+  <div class="sec-hdr">
+    <span class="sec-title">🏢 不動産投資入門</span>
+    
+  </div>
+  <p class="sec-sub">物価上昇局面では不動産価格・家賃も上昇します。「インフレに強い資産」として不動産投資が再注目。1万円から始められるREIT・クラウドファンディングも選択肢です。</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+    <div style="background:linear-gradient(135deg,#1a0a00,#7c2d12);border-radius:12px;padding:20px;color:#fff">
+      <div style="font-size:24px;margin-bottom:8px">🏢</div>
+      <div style="font-size:14px;font-weight:700;margin-bottom:6px">REIT（不動産投資信託）</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:12px">証券口座があれば株と同じように購入可能。物件を直接買わずに不動産に投資できる初心者向けの入口。配当利回り3〜5%が平均的。</div>
+      <div style="background:rgba(255,255,255,.1);border-radius:6px;padding:10px;font-size:11px;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:12px">✅ 1万円台から投資可能<br>✅ 毎月〜四半期の配当あり<br>✅ 物件管理不要・完全パッシブ</div>
+      <button class="aff-btn" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3)" onclick="affLink('sbi')">SBI証券でREITを購入 →</button>
+    </div>
+    <div style="background:linear-gradient(135deg,#0a1a0a,#14532d);border-radius:12px;padding:20px;color:#fff">
+      <div style="font-size:24px;margin-bottom:8px">🌐</div>
+      <div style="font-size:14px;font-weight:700;margin-bottom:6px">不動産クラウドファンディング</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:12px">1万円から実物不動産に間接投資。プロが物件選定・管理をすべて代行。インフレに強い実物資産への参加が可能。</div>
+      <div style="background:rgba(255,255,255,.1);border-radius:6px;padding:10px;font-size:11px;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:12px">✅ 1万円から参加可能<br>✅ 想定利回り4〜8%<br>✅ 物件選定・管理はプロに任せる</div>
+      <button class="aff-btn green" onclick="affLink('creal')">CREAL（クリアル）で始める →</button>
+    </div>
+  </div>
+  <div class="product-grid">
+    <div class="product-card featured">
+      <span class="featured-badge">初心者向け</span>
+      <div class="pc-thumb" style="background:linear-gradient(135deg,#1a1a1a,#374151)">🏢</div>
+      <div class="pc-body">
+        <span class="pc-tag tag-real">不動産CF</span>
+        <div class="pc-title">CREAL（クリアル）不動産クラウドファンディング</div>
+        <div class="pc-desc">1万円から都心の優良不動産に投資可能。想定利回り4〜6%。プロが物件選定から管理まで代行するため物件オーナーになる必要なし。</div>
+        <div class="pc-merit">
+          <div class="pc-merit-title">✅ インフレ時代に不動産投資が有効な理由</div>
+          <ul class="pc-merit-list">
+            <li>物価上昇に連動して資産価値・家賃が上がりやすい</li>
+            <li>現物資産なので通貨価値下落に強い</li>
+            <li>定期的なインカムゲイン（配当）を得られる</li>
+          </ul>
+        </div>
+        <button class="aff-btn" onclick="affLink('creal')">CREALで無料登録する →</button>
+        <div class="aff-pr">※アフィリエイトリンク（PR）。元本保証なし。</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="pc-thumb" style="background:linear-gradient(135deg,#0a1a2e,#1e3a5f)">📊</div>
+      <div class="pc-body">
+        <span class="pc-tag tag-real">REIT</span>
+        <div class="pc-title">J-REIT（国内不動産投資信託）</div>
+        <div class="pc-desc">東京証券取引所上場の不動産投資信託。物流施設・オフィス・住居など様々なタイプがあり、証券口座から手軽に投資可能。NISAの成長投資枠でも購入できます。</div>
+        <div class="pc-merit">
+          <div class="pc-merit-title">✅ J-REITの特徴</div>
+          <ul class="pc-merit-list">
+            <li>平均配当利回り約3.5〜4.5%</li>
+            <li>物流REITはECの成長で安定需要</li>
+            <li>NISAの成長投資枠でも購入可能</li>
+          </ul>
+        </div>
+        <button class="aff-btn" onclick="affLink('sbi')">SBI証券でJ-REITを購入 →</button>
+        <div class="aff-pr">※アフィリエイトリンク（PR）。元本保証なし。</div>
+      </div>
+    </div>
+  </div>
+  <div class="notice"><strong>不動産投資のリスク：</strong>不動産クラウドファンディングを含む不動産投資は、空室リスク・価格下落リスク・元本割れリスクがあります。余剰資金での運用を推奨します。</div>
+</section>
+
+<footer class="ftr">
+  <div class="ftr-logo">値上がり予測ドットコム</div>
+  <div>© 2026 値上がり予測ドットコム All rights reserved.</div>
+  <div style="margin-top:8px;font-size:10px;color:#1e3a5f">当サイトは投資助言業者ではありません。投資に関する最終判断はご自身の責任で行ってください。<br>FX・投資には元本割れのリスクがあります。当サイトはアフィリエイトプログラムに参加しています（PR）。</div>
+</footer>
+
+<script>
+
+// ─── カルーセルデータ ───────────────────────
+const SECURITIES = [
+  {
+    id:'sbi', rank:1, name:'SBI証券', rankCls:'rb-1', cardCls:'top1',
+    catch:'総合力No.1・口座数1,500万超',
+    tags:[{t:'NISA対応',c:'sct-nisa'},{t:'初心者OK',c:'sct-beginner'},{t:'Vポイント',c:'sct-point'}],
+    scores:{手数料:98,NISA:95,投信数:100,アプリ:88,ポイント:90},
+    campaign:'最大¥30,000', campNote:'口座開設＋条件達成',
+    cats:['all','nisa','beginner','point'], affId:'sbi', affUrl:'#'/* TODO: SBI証券 ASPリンクに差し替え */
+  },
+  {
+    id:'rakuten', rank:2, name:'楽天証券', rankCls:'rb-2', cardCls:'top2',
+    catch:'NISA口座数No.1・楽天ポイントで投資',
+    tags:[{t:'NISA対応',c:'sct-nisa'},{t:'初心者OK',c:'sct-beginner'},{t:'楽天ポイント',c:'sct-point'}],
+    scores:{手数料:95,NISA:98,投信数:96,アプリ:92,ポイント:98},
+    campaign:'最大¥20,000', campNote:'楽天ポイントで投資も可能',
+    cats:['all','nisa','beginner','point'], affId:'rakuten-sec'
+  },
+  {
+    id:'monex', rank:3, name:'マネックス証券', rankCls:'rb-3', cardCls:'top3',
+    catch:'米国株・ETFに強み。クレカ積立1.1%',
+    tags:[{t:'NISA対応',c:'sct-nisa'},{t:'米国株',c:'sct-us'},{t:'高還元',c:'sct-point'}],
+    scores:{手数料:88,NISA:90,投信数:85,アプリ:88,ポイント:92},
+    campaign:'最大¥15,000', campNote:'クレカ積立1.1%ポイント還元',
+    cats:['all','us','point'], affId:'monex'
+  },
+  {
+    id:'matsui', rank:4, name:'松井証券', rankCls:'rb-n', cardCls:'',
+    catch:'創業100年超・25歳以下は手数料無料',
+    tags:[{t:'NISA対応',c:'sct-nisa'},{t:'初心者OK',c:'sct-beginner'},{t:'サポート充実',c:'sct-tool'}],
+    scores:{手数料:90,NISA:88,投信数:88,アプリ:82,ポイント:80},
+    campaign:'最大¥10,000', campNote:'25歳以下は手数料無料',
+    cats:['all','nisa','beginner'], affId:'sbi', affUrl:'#'/* TODO: SBI証券 ASPリンクに差し替え */
+  },
+  {
+    id:'aukabu', rank:5, name:'三菱UFJ eスマート証券', rankCls:'rb-n', cardCls:'',
+    catch:'三菱UFJグループ・Pontaポイント対応',
+    tags:[{t:'NISA対応',c:'sct-nisa'},{t:'Pontaポイント',c:'sct-point'},{t:'高機能ツール',c:'sct-tool'}],
+    scores:{手数料:85,NISA:85,投信数:82,アプリ:85,ポイント:85},
+    campaign:'最大¥10,000', campNote:'au経済圏ユーザーに最適',
+    cats:['all','point'], affId:'au-kabu'
+  },
+];
+
+let currentTab = 'all';
+
+function buildCard(sec) {
+  const tagsHtml = sec.tags.map(t => `<span class="sc-tag ${t.c}">${t.t}</span>`).join('');
+  const scoresHtml = Object.entries(sec.scores).map(([lbl, val]) =>
+    `<div class="sc-score-row">
+      <span class="sc-score-lbl">${lbl}</span>
+      <div class="sc-score-bar"><div class="sc-score-fill" style="width:${val}%"></div></div>
+      <span class="sc-score-num">${val}</span>
+    </div>`
+  ).join('');
+  return `<div class="sec-card ${sec.cardCls}">
+    <div class="sc-head">
+      <div class="sc-rank-badge ${sec.rankCls}">${sec.rank}</div>
+      <div class="sc-name">${sec.name}</div>
+      <div class="sc-catch">${sec.catch}</div>
+      <div class="sc-tags">${tagsHtml}</div>
+    </div>
+    <div class="sc-body">
+      ${scoresHtml}
+      <div class="sc-campaign">
+        <div class="sc-campaign-lbl">🎁 当サイト経由の開設特典</div>
+        <div class="sc-campaign-val">${sec.campaign}</div>
+        <div class="sc-campaign-note">${sec.campNote}</div>
+      </div>
+      <a class="sc-btn" onclick="affLink('${sec.affId}')">無料で口座開設する →</a>
+    </div>
+  </div>`;
+}
+
+function renderCarousel(tab) {
+  const filtered = SECURITIES.filter(s => s.cats.includes(tab));
+  const carousel = document.getElementById('rank-carousel');
+  const dots = document.getElementById('rank-dots');
+  if (!carousel) return;
+  carousel.innerHTML = filtered.map(buildCard).join('');
+  // ドット
+  dots.innerHTML = filtered.map((_, i) =>
+    `<div class="c-dot${i === 0 ? ' active' : ''}" onclick="scrollToCard(${i})"></div>`
+  ).join('');
+  // スクロール連動
+  carousel.onscroll = () => {
+    const idx = Math.round(carousel.scrollLeft / (carousel.scrollWidth / filtered.length));
+    document.querySelectorAll('.c-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+  };
+}
+
+function scrollToCard(idx) {
+  const carousel = document.getElementById('rank-carousel');
+  if (!carousel) return;
+  const card = carousel.children[idx];
+  if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+}
+
+function switchRankTab(btn, tab) {
+  document.querySelectorAll('.rank-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentTab = tab;
+  renderCarousel(tab);
+}
+
+// ─── 為替レート読み込み ─────────────────────
+async function loadFx(){
+  let rate=151.80;
+  try{
+    const r=await fetch('fx-data.json?v='+Date.now());
+    const d=await r.json();rate=parseFloat(d.rate);
+  }catch(e){
+    try{
+      const r=await fetch('https://open.er-api.com/v6/latest/USD',{signal:AbortSignal.timeout(5000)});
+      const d=await r.json();
+      if(d.result==='success')rate=Math.round(d.rates.JPY*100)/100;
+    }catch(e2){}
+  }
+  ['hdr-rate','h-rate','fx-big','u-rate'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.textContent=rate.toFixed(2);
+  });
+}
+
+// ─── 家計ダメージ計算機 ────────────────────
+function calcDamage(){
+  const spend=parseInt(document.getElementById('d-spend').value)||0;
+  const save =parseInt(document.getElementById('d-save').value)||0;
+  const rate =parseFloat(document.getElementById('d-rate').value)||5;
+  const inflationRate=0.085; // 8.5%の値上がり
+  const annualLoss=Math.round(spend*12*inflationRate);
+  const annualGain=Math.round(save*12*(rate/100));
+  const diff=annualGain-annualLoss;
+  const fiveYrLoss=Math.round(annualLoss*5+save*12*5*(1-(rate/100)));
+  document.getElementById('dr-loss').textContent='¥'+annualLoss.toLocaleString();
+  document.getElementById('dr-gain').textContent='¥'+annualGain.toLocaleString();
+  document.getElementById('dr-diff').textContent=(diff>=0?'+':'')+'¥'+Math.abs(diff).toLocaleString();
+  document.getElementById('dr-diff').style.color=diff>=0?'#4ade80':'#f87171';
+  document.getElementById('dr-5yr').textContent='¥'+Math.abs(fiveYrLoss).toLocaleString();
+}
+
+// ─── ふるさと納税計算機 ─────────────────────
+function calcFuru(){
+  const income=parseInt(document.getElementById('f-income').value)||0;
+  const family=parseFloat(document.getElementById('f-family').value)||1;
+  const pct=parseInt(document.getElementById('f-pct').value)||80;
+  // 簡易計算（実際は税額控除の上限）
+  let limit;
+  if(income<200)limit=14000;
+  else if(income<300)limit=19000;
+  else if(income<400)limit=33000;
+  else if(income<500)limit=61000;
+  else if(income<600)limit=77000;
+  else if(income<700)limit=108000;
+  else if(income<800)limit=129000;
+  else if(income<900)limit=151000;
+  else if(income<1000)limit=176000;
+  else limit=Math.round(income*200);
+  limit=Math.round(limit*family*(pct/100));
+  document.getElementById('furu-limit').textContent='¥'+limit.toLocaleString();
+}
+
+// ─── スクロール ─────────────────────────────
+function scrollTo(id){
+  const el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ─── アフィリエイトリンク ─────────────────────
+function affLink(id){
+  const urls={
+    'sbi':'https://www.sbisec.co.jp/',
+    'rakuten-sec':'https://www.rakuten-sec.co.jp/',
+    'monex':'https://www.monex.co.jp/',
+    'au-kabu':'https://kabu.com/',
+    'gmo-fx':'https://fx.gmo.jp/',
+    'dmm-fx':'https://fx.dmm.com/',
+    'sbi-fx':'https://www.sbisec.co.jp/ETGate/',
+    'gaitame':'https://www.gaitame.com/',
+    'tanaka-gold':'https://www.tanaka.co.jp/',
+    'rakuten-furu':'https://event.rakuten.co.jp/furusato/',
+    'furusato-choice':'https://www.furusato-tax.jp/',
+    'sanotomo':'https://www.satofull.jp/',
+    'coincheck':'https://coincheck.com/',
+    'gmo-coin':'https://coin.z.com/jp/',
+    'bitflyer':'https://bitflyer.com/ja-jp/',
+    'binance-jp':'https://www.binance.com/ja',
+    'creal':'https://creal.jp/',
+  };
+  const url=urls[id]||'#';
+  alert('【PR】アフィリエイトリンクへ移動します。\n実際のASP承認済みリンクに差し替えてください。\n移動先: '+url);
+}
+
+// ─── 初期化 ─────────────────────────────────
+loadFx();
+calcDamage();
+calcFuru();
+renderCarousel('all');
+
+// ── 証券会社ランキング描画 ──
+var currentRankFilter = 'all';
+
+function filterRank(btn, cat){
+  currentRankFilter = cat;
+  document.querySelectorAll('.rank-filter-btn').forEach(function(b){
+    b.classList.toggle('active', b === btn);
+  });
+  renderSecRanking();
+}
+
+function getScoreColor(score){
+  if(score >= 95) return '#16a34a';
+  if(score >= 85) return '#d97706';
+  return '#dc2626';
+}
+
+function renderSecRanking(){
+  var wrap = document.getElementById('sec-rank-list');
+  if(!wrap || typeof SECURITIES === 'undefined') return;
+
+  var items = SECURITIES.filter(function(s){
+    return currentRankFilter === 'all' || (s.cats && s.cats.indexOf(currentRankFilter) >= 0);
+  });
+
+  var scoreLabels = {手数料:'手数料',NISA:'NISA対応',投信数:'投信数',アプリ:'アプリ',ポイント:'ポイント'};
+  var scoreColors = {手数料:'#3b82f6',NISA:'#16a34a',投信数:'#8b5cf6',アプリ:'#f59e0b',ポイント:'#ef4444'};
+
+  var html = '';
+  for(var i=0;i<items.length;i++){
+    var s = items[i];
+    var rankNum = s.rank || (i+1);
+    var rankCls = rankNum===1?'rank-1':rankNum===2?'rank-2':rankNum===3?'rank-3':'rank-n';
+    var cardCls = rankNum===1?'top1':rankNum===2?'top2':rankNum===3?'top3':'';
+    var affUrl  = s.affUrl || '#';
+
+    html += '<div class="sec-rank-card ' + cardCls + '">';
+
+    // ヘッダー
+    html += '<div class="src-head">';
+    html += '<div class="src-rank ' + rankCls + '">' + rankNum + '</div>';
+    html += '<div><div class="src-name">' + s.name + '</div>';
+    html += '<div class="src-catch">' + (s.catch||'') + '</div></div>';
+    if(s.campaign){
+      html += '<div class="src-camp">';
+      html += '<div class="src-camp-val">' + s.campaign + '</div>';
+      html += '<div class="src-camp-note">' + (s.campNote||'特典あり') + '</div>';
+      html += '</div>';
+    }
+    html += '</div>';
+
+    // タグ
+    if(s.tags && s.tags.length){
+      html += '<div class="src-tags">';
+      for(var t=0;t<s.tags.length;t++){
+        html += '<span class="src-tag ' + (s.tags[t].c||'') + '">' + s.tags[t].t + '</span>';
+      }
+      html += '</div>';
+    }
+
+    // スコアバー
+    if(s.scores){
+      html += '<div class="src-scores">';
+      var scoreKeys = Object.keys(s.scores);
+      for(var k=0;k<scoreKeys.length;k++){
+        var key = scoreKeys[k];
+        var val = s.scores[key];
+        var clr = scoreColors[key] || '#3b82f6';
+        html += '<div class="src-score-row">';
+        html += '<span class="src-score-lbl">' + key + '</span>';
+        html += '<div class="src-score-bar"><div class="src-score-fill" style="width:' + val + '%;background:' + clr + '"></div></div>';
+        html += '<span class="src-score-num">' + val + '</span>';
+        html += '</div>';
+      }
+      html += '</div>';
+    }
+
+    // CTAボタン
+    html += '<div class="src-cta">';
+    html += '<a href="' + affUrl + '" class="src-btn primary" data-aff="' + (s.affId||s.id) + '">';
+    html += '口座開設（無料）→</a>';
+    html += '<button class="src-btn secondary" onclick="toggleDetail()">詳細</button>';
+    html += '</div>';
+    html += '</div>';
+  }
+
+  wrap.innerHTML = html || '<div style="padding:20px;text-align:center;color:#94a3b8">該当なし</div>';
+}
+
+function toggleDetail(id){ /* 詳細展開 将来実装 */ }
+
+function trackAff(affId){
+  // アフィリエイトクリック計測（将来的にGA4イベント等に連携）
+  console.log('AFF CLICK:', affId);
+}
+
+// 初期化
+document.addEventListener('DOMContentLoaded', function(){
+  renderSecRanking();
+});
+</script>
+</body>
+</html>
