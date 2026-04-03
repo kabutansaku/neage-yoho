@@ -987,7 +987,7 @@ img{max-width:100%}
 #cat-overlay .big-card,#cat-overlay .mid-card{background:#fff;border:0.5px solid #e2e8f0;border-radius:12px;padding:14px;cursor:pointer;transition:all .18s;margin-bottom:8px}
 #cat-overlay .big-card:hover,#cat-overlay .mid-card:hover{box-shadow:2px 2px 0 rgba(0,43,128,.12);transform:translate(-1px,-1px)}
 #cat-overlay .big-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-#cat-overlay .mid-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.overlay-mid-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
 #cat-overlay .sub-grid{display:grid;grid-template-columns:1fr;gap:8px}
 @media(max-width:500px){#cat-overlay .big-grid,#cat-overlay .mid-grid{grid-template-columns:1fr}}
 #cat-overlay .back-btn{display:inline-flex;align-items:center;gap:6px;background:#fff;border:0.5px solid #e2e8f0;border-radius:8px;padding:7px 14px;font-size:13px;color:#1e293b;cursor:pointer;margin-bottom:12px;text-decoration:none}
@@ -3118,7 +3118,7 @@ function renderOverlayMid(){
   var cat=_ovCat;
   var html='<div class="sec-hdr" style="margin-bottom:12px"><div style="font-size:18px;font-weight:800">'+cat.icon+' '+cat.name+'</div>';
   html+='<div style="font-size:12px;color:#64748b">中項目を選んでください</div></div>';
-  html+='<div class="mid-grid">';
+  html+='<div class="overlay-mid-grid">';
   (cat.mid||[]).forEach(function(mid){
     var avgV=avgR4ofMid(mid);
     var pct=Math.min(100,avgV/25*100).toFixed(0);
@@ -3153,7 +3153,7 @@ function renderOverlaySub(){
   var mid=_ovMid;
   var html='<div class="sec-hdr" style="margin-bottom:12px"><div style="font-size:17px;font-weight:800">'+(mid.icon||'')+'  '+mid.name+'</div>';
   html+='<div style="font-size:12px;color:#64748b">小項目を選んでください</div></div>';
-  html+='<div class="mid-grid">';
+  html+='<div class="overlay-mid-grid">';
   (mid.sub||[]).forEach(function(sub){
     var maxV=maxR4ofSub(sub);
     var pct=Math.min(100,maxV/25*100).toFixed(0);
