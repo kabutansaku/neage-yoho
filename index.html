@@ -2838,14 +2838,19 @@ var CATS = null;
 var _alertsToRender = null;
 
 async function loadCatsData(){
+  var groups = ['food','digital','life','energy','outdoor','money','culture'];
+  var all = [];
   try{
-    var r = await fetch('cats-data.js?v=' + Date.now());
-    var js = await r.text();
-    // cats-data.jsを評価してCATSを取得
-    var match = js.match(/const CATS=(\[[\s\S]*\]);?$/);
-    if(match){
-      CATS = eval('(' + match[1] + ')');
-    }
+    await Promise.all(groups.map(async function(g){
+      var r = await fetch('cats-'+g+'.js?v='+Date.now());
+      var js = await r.text();
+      var match = js.match(/const CATS_[A-Z]+=(\[[\s\S]*?\]);?\s*$/);
+      if(match){
+        var cats = JSON.parse(match[1]);
+        cats.forEach(function(c){ all.push(c); });
+      }
+    }));
+    CATS = all;
   }catch(e){ console.log('CATS読み込み失敗',e); }
 }
 
