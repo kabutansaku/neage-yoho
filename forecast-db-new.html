@@ -211,10 +211,7 @@ function updateBC(){
 }
 
 // ══════ LEVEL 0: 大カテゴリ ══════
-function go0(){
-  // このページはcatパラメータ必須のため使用しない
-  window.location.replace('index.html');
-}
+function go0(){ /* 使用しない */ }
 
 // ══════ LEVEL 1: 中カテゴリ ══════
 function go1(id){
@@ -359,7 +356,7 @@ function doAff(shop, prod){
   window.open(url, '_blank', 'noopener');
 }
 
-go0();
+// go0は使用しない
 
 // ── 分割CATSファイル非同期読み込み ──
 async function loadAllCats(){
