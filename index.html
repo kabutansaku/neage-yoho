@@ -2217,6 +2217,8 @@ function openCatDetail(catId){
   var cat = CATS.find(function(c){ return c.id === catId; });
   if(!cat){ console.error('cat not found:', catId); return; }
   _ovCat = cat; _ovMid = null; _ovLv = 1;
+  // カードをクリックした時のスクロール位置を記憶
+  _scrollY = window.scrollY;
   renderOverlayMid();
   document.getElementById('cat-overlay').style.display = 'block';
   document.body.style.overflow = 'hidden';
@@ -3067,7 +3069,7 @@ async function loadFullCatsData(){
 
 
 // ══ カテゴリ詳細オーバーレイ ══
-var _ovLv=0, _ovCat=null, _ovMid=null;
+var _ovLv=0, _ovCat=null, _ovMid=null, _scrollY=0;
 
 function showCatDetail(catId){
   var cat = CATS.find(function(c){return c.id===catId;});
@@ -3082,12 +3084,14 @@ function closeOverlay(){
   document.getElementById('cat-overlay').style.display='none';
   document.body.style.overflow='';
   _ovLv=0; _ovCat=null; _ovMid=null;
+  // カードをクリックした位置に戻る
+  window.scrollTo({top: _scrollY, behavior: 'instant'});
 }
 
 function overlayBack(){
   if(_ovLv===3){_ovLv=2; renderOverlaySub();}
   else if(_ovLv===2){_ovLv=1; renderOverlayMid();}
-  else{closeOverlay(); window.scrollTo({top:0,behavior:'smooth'});}
+  else{closeOverlay();}
 }
 
 function updateOverlayBackBtn(){
@@ -3222,7 +3226,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeOverlay
   <!-- 下部固定ナビ -->
   <div style="position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid #e2e8f0;padding:8px 16px;display:flex;gap:8px;z-index:2001">
     <button id="overlay-back-btn" onclick="overlayBack()" style="flex:1;background:#f1f5f9;color:#002B80;border:1.5px solid #002B80;padding:10px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer">← 戻る</button>
-    <button onclick="closeOverlay();window.scrollTo({top:0,behavior:'smooth'})" style="flex:1;background:#002B80;color:#fff;border:none;padding:10px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer">🏠 トップ</button>
+    <button onclick="_scrollY=0;closeOverlay()" style="flex:1;background:#002B80;color:#fff;border:none;padding:10px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer">🏠 トップ</button>
   </div>
 </div>
 </body>
