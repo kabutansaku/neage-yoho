@@ -106,8 +106,8 @@ body{font-family:'Noto Sans JP',sans-serif;background:#f1f5f9;color:var(--t1);fo
 </head>
 <body>
 <header class="hdr">
-  <span class="hdr-logo"><span>値上がり</span>予測ドットコム</span>
-  <a class="hdr-back" href="index.html">← トップ</a>
+  <a href="index.html" class="hdr-logo" style="text-decoration:none;color:inherit"><span>値上がり</span>予測ドットコム</a>
+  <a class="hdr-back" href="index.html" style="background:#002B80;color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap">🏠 トップへ</a>
 </header>
 <div class="main">
   <div class="breadcrumb" id="bc"><span class="bc-cur">すべてのカテゴリ</span></div>
@@ -389,6 +389,47 @@ function doAff(shop, prod){
 }
 
 go0();
+
+// ── 分割CATSファイル非同期読み込み ──
+async function loadAllCats(){
+  if(typeof CATS !== 'undefined' && CATS && CATS.length > 0) return;
+  var groups = ['food','digital','life','energy','outdoor','money','culture'];
+  var all = [];
+  try{
+    await Promise.all(groups.map(async function(g){
+      var r = await fetch('cats-'+g+'.js?v='+Date.now());
+      var js = await r.text();
+      var match = js.match(/const CATS_[A-Z]+=(\[[\s\S]*?\]);?\s*$/);
+      if(match){
+        JSON.parse(match[1]).forEach(function(c){ all.push(c); });
+      }
+    }));
+    // 既存CATSを置き換え
+    CATS.length = 0;
+    all.forEach(function(c){ CATS.push(c); });
+    go0();
+  }catch(e){ console.log('CATS分割読み込み失敗',e); }
+}
+document.addEventListener('DOMContentLoaded', function(){
+  // CATSがすでにインライン定義されていれば追加読み込み不要
+  if(typeof CATS !== 'undefined' && CATS.length >= 30){
+    go0();
+  } else {
+    loadAllCats();
+  }
+});
 </script>
+
+<!-- フローティング戻るボタン -->
+<a href="index.html" style="
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  background:#002B80;color:#fff;
+  padding:12px 28px;border-radius:30px;
+  font-size:14px;font-weight:700;
+  text-decoration:none;
+  box-shadow:0 4px 16px rgba(0,43,128,.35);
+  z-index:999;white-space:nowrap;
+  display:flex;align-items:center;gap:8px;
+">🏠 トップページに戻る</a>
 </body>
 </html>
