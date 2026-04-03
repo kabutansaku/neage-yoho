@@ -1221,14 +1221,7 @@ img{max-width:100%}
     
   </div>
   
-  <div class="cal-tabs">
-    <button class="cal-tab active" onclick="switchCal(this,'apr')">4月（確定）</button>
-    <button class="cal-tab" onclick="switchCal(this,'may')">5月（確定）</button>
-    <button class="cal-tab" onclick="switchCal(this,'jun')">6月（予測）</button>
-    <button class="cal-tab" onclick="switchCal(this,'jul')">7月（予測）</button>
-    <button class="cal-tab" onclick="switchCal(this,'aug')">8月（予測）</button>
-    <button class="cal-tab" onclick="switchCal(this,'sep')">9月（予測）</button>
-  </div>
+  <div class="cal-tabs" id="cal-tabs-container"></div>
   <div class="cal-grid" id="cal-grid"></div>
 </section>
 
@@ -1348,43 +1341,7 @@ img{max-width:100%}
 // データ定義
 // ═══════════════════════════════════════
 
-const CAL_DATA = {
-  apr:[
-    {cat:'食品',cls:'cat-food',name:'食パン・菓子パン各種',sub:'山崎・フジパンなど主要メーカー',rate:'+5〜8%',conf:5},
-    {cat:'食品',cls:'cat-food',name:'マヨネーズ・ドレッシング',sub:'キューピー・味の素など 大豆油高騰',rate:'+7〜10%',conf:5},
-    {cat:'日用品',cls:'cat-daily',name:'紙おむつ・生理用品',sub:'P&G・ユニ・チャーム 原材料＋物流費',rate:'+6〜9%',conf:4},
-    {cat:'エネルギー',cls:'cat-energy',name:'電気・ガス料金',sub:'補助金縮小で実質値上げ',rate:'+3〜5%',conf:4},
-    {cat:'食品',cls:'cat-food',name:'カップ麺・即席麺',sub:'日清・東洋水産 小麦高騰の波及',rate:'+8〜12%',conf:5},
-    {cat:'外食',cls:'cat-food',name:'ファミリーレストラン',sub:'人件費66%が原動力、外食全体に波及',rate:'+5〜15%',conf:3},
-    {cat:'PC',cls:'cat-pc',name:'ゲーミングPC・GPU',sub:'半導体需要増＋円安で価格改定',rate:'+10〜18%',conf:4},
-  ],
-  may:[
-    {cat:'食品',cls:'cat-food',name:'食用油（サラダ・オリーブ）',sub:'大豆・パーム油相場の遅延転嫁',rate:'+10〜15%',conf:4},
-    {cat:'日用品',cls:'cat-daily',name:'洗剤・シャンプー類',sub:'石油由来原料の高騰＋輸送コスト',rate:'+6〜9%',conf:3},
-    {cat:'食品',cls:'cat-food',name:'清涼飲料水・スポーツドリンク',sub:'砂糖・PET樹脂高騰',rate:'+5〜8%',conf:4},
-    {cat:'日用品',cls:'cat-daily',name:'ティッシュ・トイレットペーパー',sub:'パルプ相場+5.4%',rate:'+8〜10%',conf:4},
-    {cat:'健康',cls:'cat-health',name:'サプリメント・栄養ドリンク',sub:'原材料輸入コスト上昇',rate:'+5〜10%',conf:3},
-  ],
-  jun:[
-    {cat:'食品',cls:'cat-food',name:'乳製品・チーズ類',sub:'輸入乳製品の為替影響が遅延転嫁',rate:'+8〜12%',conf:3},
-    {cat:'外食',cls:'cat-food',name:'宅配・デリバリーサービス',sub:'人件費・配送コスト上昇第2波',rate:'+10〜20%',conf:2},
-    {cat:'調理家電',cls:'cat-kitchen',name:'食洗機・電気圧力鍋',sub:'部品コスト増＋円安影響',rate:'+8〜15%',conf:3},
-    {cat:'通信',cls:'cat-telecom',name:'スマホ・タブレット',sub:'半導体不足の再燃懸念',rate:'+5〜12%',conf:2},
-  ],
-  jul:[
-    {cat:'食品',cls:'cat-food',name:'冷凍食品全般',sub:'原油・小麦相場から4〜5ヶ月後に転嫁',rate:'+7〜13%',conf:2},
-    {cat:'育児',cls:'cat-baby',name:'粉ミルク・ベビーフード',sub:'輸入原材料費の上昇',rate:'+5〜10%',conf:2},
-    {cat:'ペット',cls:'cat-pet',name:'ペットフード全般',sub:'穀物・肉類コスト上昇の波及',rate:'+8〜12%',conf:2},
-  ],
-  aug:[
-    {cat:'エネルギー',cls:'cat-energy',name:'電気料金（秋冬向け改定）',sub:'夏ピーク後の料金体系見直し',rate:'未定',conf:1},
-    {cat:'日用品',cls:'cat-daily',name:'紙類全般・文房具',sub:'パルプ高騰第2波転嫁',rate:'+5〜10%',conf:2},
-  ],
-  sep:[
-    {cat:'食品',cls:'cat-food',name:'調味料全般（醤油・みそ）',sub:'大豆・小麦の複合高騰影響',rate:'+6〜11%',conf:2},
-    {cat:'健康',cls:'cat-health',name:'美容・スキンケア用品',sub:'石油系原料高騰の継続',rate:'+5〜9%',conf:1},
-  ]
-};
+// CAL_DATAは自動生成に移行
 
 const RANK_DATA = [
   {rank:1,icon:'💻',name:'PC・デジタル機器',   cat:'kaden',
@@ -2017,36 +1974,208 @@ const FALLBACK_ALERTS = [
    ]}
 ];
 // ═══════════════════════════════════════
-// カレンダー
-// ═══════════════════════════════════════
-let currentCalMonth='apr';
-function renderCal(month){
-  currentCalMonth = month;
-  const data = CAL_DATA[month] || [];
-  const grid = document.getElementById('cal-grid');
-  if(!grid) return;
-  grid.innerHTML = data.map(item => {
-    const cls = item.cls || 'cat-other';
-    const conf = item.conf || 3;
-    const dots = Array.from({length:5}, (_,i) =>
-      `<span class="cal-conf-dot${i < conf ? ' on' : ''}"></span>`
-    ).join('');
-    return `<div class="cal-item ${cls}">
-  <div class="cal-item-head">${item.cat}</div>
-  <div class="cal-item-body">
-    <div class="cal-name">${item.name}</div>
-    <div class="cal-sub">${item.sub}</div>
-    <div class="cal-rate-row">
-      <span class="cal-rate">${item.rate}</span>
-      <div class="cal-conf">${dots}</div>
-    </div>
-  </div>
-</div>`;
-  }).join('');
-  document.querySelectorAll('.cal-tab').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.month === month);
-  });
+
+// ══════════════════════════════════════════════════════
+// 値上げカレンダー 数学的自動生成エンジン
+// ══════════════════════════════════════════════════════
+
+/**
+ * 線形回帰でx月後の値上がり率を予測
+ */
+function calLinearPredict(r2, r3, r4, months){
+  var pts = [{x:0,y:0},{x:2,y:r2||0},{x:3,y:r3||0},{x:4,y:r4||0}].filter(function(p){return p.y>=0;});
+  var n=pts.length, sx=0,sy=0,sxy=0,sx2=0;
+  pts.forEach(function(p){sx+=p.x;sy+=p.y;sxy+=p.x*p.y;sx2+=p.x*p.x;});
+  var denom = n*sx2-sx*sx;
+  if(!denom) return r4||0;
+  var b=(n*sxy-sx*sy)/denom, a=(sy-b*sx)/n;
+  // 指数回帰も試みる
+  var pospts = pts.filter(function(p){return p.y>0;});
+  var expVal = 0;
+  if(pospts.length>=2){
+    var lpts=pospts.map(function(p){return{x:p.x,y:Math.log(p.y)};});
+    var ln=lpts.length,lsx=0,lsy=0,lsxy=0,lsx2=0;
+    lpts.forEach(function(p){lsx+=p.x;lsy+=p.y;lsxy+=p.x*p.y;lsx2+=p.x*p.x;});
+    var ld=ln*lsx2-lsx*lsx;
+    if(ld){
+      var lb=(ln*lsxy-lsx*lsy)/ld, la=(lsy-lb*lsx)/ln;
+      expVal = Math.exp(la)*Math.exp(lb*months) - Math.exp(la);
+    }
+  }
+  var linVal = a + b*months;
+  // R²が高い方を選択（簡易比較）
+  var useExp = (r4||0) > 5 && expVal > linVal && expVal < linVal*3;
+  return Math.max(0, Math.round((useExp ? expVal : linVal)*10)/10);
 }
+
+/**
+ * 加速度（2次微分）でトレンド判定
+ */
+function calTrend(r2, r3, r4){
+  var d1=(r3||0)-(r2||0), d2=(r4||0)-(r3||0), acc=d2-d1;
+  if(acc>2&&(r4||0)>=15) return {label:'🚨急騰',color:'#dc2626',conf:5};
+  if(acc>1.5)             return {label:'🔴加速',color:'#ef4444',conf:4};
+  if(acc<-2&&(r4||0)<5)  return {label:'✅沈静',color:'#059669',conf:3};
+  if(acc<-1.5)            return {label:'🟢鈍化',color:'#16a34a',conf:3};
+  return                         {label:'🟡安定',color:'#d97706',conf:4};
+}
+
+/**
+ * CATSデータから月別カレンダーを自動生成
+ * monthOffset: 0=今月, 1=来月, ...
+ */
+function buildCalendarMonth(monthOffset){
+  if(typeof CATS==='undefined'||!CATS||!CATS.length) return [];
+  var now = new Date();
+  var targetMonth = new Date(now.getFullYear(), now.getMonth()+monthOffset, 1);
+  var mLabel = targetMonth.getMonth()+1;
+  var items = [];
+
+  CATS.forEach(function(cat){
+    (cat.mid||[]).forEach(function(mid){
+      (mid.sub||[]).forEach(function(sub){
+        (sub.items||[]).forEach(function(item){
+          if(!item.r4||item.r4<=0) return;
+          // 月オフセットに応じた予測率を計算
+          var targetMonths = monthOffset<=1 ? 4 : monthOffset<=3 ? 6 : 12;
+          var predRate = calLinearPredict(item.r2||0, item.r3||0, item.r4||0, targetMonths);
+          if(predRate < 2) return; // 2%未満は表示しない
+
+          // 月ごとの「値上げタイミング」を決める
+          // 加速度から値上げ時期を推定：r4が高いほど早い
+          var urgencyScore = (item.r4||0) + (item.r3||0)*0.3 + (item.r2||0)*0.1;
+          // monthOffsetに対応するスコア閾値
+          var thresholds = [18, 14, 10, 7, 5, 3];
+          var threshold = thresholds[Math.min(monthOffset, thresholds.length-1)];
+          if(urgencyScore < threshold && monthOffset < 2) return;
+
+          var trend = calTrend(item.r2||0, item.r3||0, item.r4||0);
+          var rateStr = '+'+predRate+'%';
+          if(predRate !== item.r4) {
+            rateStr = '+'+item.r4+'%→+'+predRate+'%('+targetMonths+'ヶ月後)';
+          }
+
+          // カテゴリクラスマッピング
+          var clsMap = {
+            food:'cat-food',daily:'cat-daily',restaurant:'cat-food',
+            energy:'cat-energy',kaden:'cat-kaden',kitchen:'cat-kitchen',
+            pc:'cat-pc',smart:'cat-pc',camera:'cat-pc',
+            game:'cat-daily',telecom:'cat-telecom',
+            baby:'cat-baby',pet:'cat-pet',health:'cat-health',beauty:'cat-health',
+            sports:'cat-daily',shoes:'cat-daily',auto:'cat-daily',
+            garden:'cat-daily',construction:'cat-daily',
+            insurance:'cat-daily',moving2:'cat-daily',reform:'cat-daily',
+            fashion:'cat-daily',interior:'cat-daily',travel:'cat-daily',
+            books:'cat-daily',education:'cat-daily',medical:'cat-health',furu:'cat-daily'
+          };
+
+          items.push({
+            cat: cat.name,
+            cls: clsMap[cat.id]||'cat-other',
+            name: item.n,
+            sub: sub.name + '｜' + (item.s||''),
+            rate: rateStr,
+            conf: trend.conf,
+            trend: trend,
+            urgency: urgencyScore,
+            r4: item.r4||0,
+            predRate: predRate
+          });
+        });
+      });
+    });
+  });
+
+  // 緊急度順にソートして上位20件
+  items.sort(function(a,b){ return b.urgency - a.urgency; });
+  // 同カテゴリが集中しないよう分散
+  var seen = {}, result = [];
+  for(var i=0;i<items.length&&result.length<20;i++){
+    var key = items[i].cat;
+    seen[key] = (seen[key]||0)+1;
+    if(seen[key]<=4) result.push(items[i]); // 1カテゴリ最大4件
+  }
+  return result;
+}
+
+/**
+ * カレンダー描画
+ */
+function renderCalAuto(monthOffset){
+  var grid = document.getElementById('cal-grid');
+  if(!grid) return;
+
+  // ローディング表示
+  grid.innerHTML = '<div style="text-align:center;padding:40px;color:#64748b">📊 CATSデータから予測計算中...</div>';
+
+  setTimeout(function(){
+    var items = buildCalendarMonth(monthOffset);
+    if(!items.length){
+      grid.innerHTML = '<div style="text-align:center;padding:40px;color:#64748b">データを読み込み中... しばらくお待ちください</div>';
+      return;
+    }
+
+    grid.innerHTML = items.map(function(item){
+      var dots = Array.from({length:5}, function(_,i){
+        return '<span class="cal-conf-dot'+(i<item.conf?' on':'')+'"></span>';
+      }).join('');
+      return '<div class="cal-item '+item.cls+'">'
+        +'<div class="cal-item-head">'+item.cat+'</div>'
+        +'<div class="cal-item-body">'
+        +'<div class="cal-name">'+item.name+'</div>'
+        +'<div class="cal-sub">'+item.sub+'</div>'
+        +'<div class="cal-rate-row">'
+        +'<span class="cal-rate" style="color:'+item.trend.color+'">'+item.rate+' '+item.trend.label+'</span>'
+        +'<div class="cal-conf">'+dots+'</div>'
+        +'</div></div></div>';
+    }).join('');
+  }, 100);
+}
+
+/**
+ * 月タブを動的生成して初期表示
+ */
+function initCalendarTabs(){
+  var container = document.getElementById('cal-tabs-container');
+  if(!container) return;
+
+  var now = new Date();
+  var months = [];
+  for(var i=0;i<6;i++){
+    var d = new Date(now.getFullYear(), now.getMonth()+i, 1);
+    var m = d.getMonth()+1;
+    var label = m+'月（'+(i<2?'確定':'予測')+'）';
+    months.push({offset:i, label:label, m:m});
+  }
+
+  container.innerHTML = months.map(function(mo, idx){
+    return '<button class="cal-tab'+(idx===0?' active':'')+'" '
+      +'onclick="switchCalAuto(this,'+mo.offset+')">'+mo.label+'</button>';
+  }).join('');
+
+  // 最初の月を表示
+  renderCalAuto(0);
+}
+
+function switchCalAuto(btn, monthOffset){
+  document.querySelectorAll('.cal-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderCalAuto(monthOffset);
+}
+
+// CATSロード後にカレンダーを再初期化するよう登録
+var _calInited = false;
+function tryInitCalendar(){
+  if(_calInited) return;
+  if(typeof CATS!=='undefined'&&CATS&&CATS.length>0){
+    _calInited = true;
+    initCalendarTabs();
+  }
+}
+
+// 旧switchCal互換（不使用だが念のため）
+function switchCal(btn, month){}
+
 // ═══════════════════════════════════════
 // ランキング
 // ═══════════════════════════════════════
@@ -2851,6 +2980,7 @@ async function loadCatsData(){
       }
     }));
     CATS = all;
+    tryInitCalendar();
   }catch(e){ console.log('CATS読み込み失敗',e); }
 }
 
