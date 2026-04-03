@@ -2142,43 +2142,8 @@ function renderHomeCatGrid(){
   var grid = document.getElementById('home-cat-grid');
   if(!grid) return;
 
-  var CAT_INFO = {
-    food:    {icon:'🍱',url:'forecast-db-new.html?cat=food'},
-    drink:   {icon:'🥤',url:'forecast-db-new.html?cat=drink'},
-    daily:   {icon:'🧴',url:'forecast-db-new.html?cat=daily'},
-    energy:  {icon:'⚡',url:'forecast-db-new.html?cat=energy'},
-    pc:      {icon:'💻',url:'forecast-db-new.html?cat=pc'},
-    smart:   {icon:'📱',url:'forecast-db-new.html?cat=smart'},
-    camera:  {icon:'📷',url:'forecast-db-new.html?cat=camera'},
-    kaden:   {icon:'🏠',url:'forecast-db-new.html?cat=kaden'},
-    kitchen: {icon:'🍳',url:'forecast-db-new.html?cat=kitchen'},
-    health:  {icon:'💊',url:'forecast-db-new.html?cat=health'},
-    baby:    {icon:'👶',url:'forecast-db-new.html?cat=baby'},
-    pet:     {icon:'🐾',url:'forecast-db-new.html?cat=pet'},
-    fashion: {icon:'👗',url:'forecast-db-new.html?cat=fashion'},
-    beauty:  {icon:'💄',url:'forecast-db-new.html?cat=beauty'},
-    sports:  {icon:'⚽',url:'forecast-db-new.html?cat=sports'},
-    shoes:   {icon:'👟',url:'forecast-db-new.html?cat=shoes'},
-    auto:    {icon:'🚗',url:'forecast-db-new.html?cat=auto'},
-    interior:{icon:'🛋',url:'forecast-db-new.html?cat=interior'},
-    reform:  {icon:'🔨',url:'forecast-db-new.html?cat=reform'},
-    telecom: {icon:'📡',url:'forecast-db-new.html?cat=telecom'},
-    restaurant:{icon:'🍽',url:'forecast-db-new.html?cat=restaurant'},
-    travel:  {icon:'✈️',url:'forecast-db-new.html?cat=travel'},
-    books:   {icon:'📚',url:'forecast-db-new.html?cat=books'},
-    education:{icon:'🎓',url:'forecast-db-new.html?cat=education'},
-    medical: {icon:'🏥',url:'forecast-db-new.html?cat=medical'},
-    insurance:{icon:'🛡',url:'forecast-db-new.html?cat=insurance'},
-    moving2: {icon:'🚛',url:'forecast-db-new.html?cat=moving2'},
-    game:    {icon:'🎮',url:'forecast-db-new.html?cat=game'},
-    garden:  {icon:'🌿',url:'forecast-db-new.html?cat=garden'},
-    construction:{icon:'🏗',url:'forecast-db-new.html?cat=construction'},
-    furu:    {icon:'🎁',url:'forecast-db-new.html?cat=furu'}
-  };
-
   var html = '';
   CATS.forEach(function(cat){
-    var info = CAT_INFO[cat.id] || {icon:'📦', url:'forecast-db-new.html?cat='+cat.id};
     var midCount = (cat.mid||[]).length;
     var subCount = (cat.mid||[]).reduce(function(a,m){return a+(m.sub||[]).length;},0);
 
@@ -2187,63 +2152,60 @@ function renderHomeCatGrid(){
     (cat.mid||[]).forEach(function(m){
       (m.sub||[]).forEach(function(s){
         (s.items||[]).forEach(function(item){
-          if(item.r4>0){allR4.push(item.r4);}
-          if(item.r2>0){allR2.push(item.r2);}
-          if(item.r3>0){allR3.push(item.r3);}
+          if(item.r4>0) allR4.push(item.r4);
+          if(item.r2>0) allR2.push(item.r2);
+          if(item.r3>0) allR3.push(item.r3);
         });
       });
     });
     if(!allR4.length) return;
 
     var avg=function(a){return a.length?a.reduce(function(x,y){return x+y;})/a.length:0;};
-    var avgR4=avg(allR4), avgR2=avg(allR2), avgR3=avg(allR3);
-    var maxR4=Math.max.apply(null,allR4);
+    var avgR4=Math.round(avg(allR4)*10)/10;
+    var avgR2=avg(allR2), avgR3=avg(allR3);
 
     // 12ヶ月予測（線形回帰）
     var pts=[{x:0,y:0},{x:2,y:avgR2},{x:3,y:avgR3},{x:4,y:avgR4}];
     var n=pts.length,sx=0,sy=0,sxy=0,sx2=0;
     pts.forEach(function(p){sx+=p.x;sy+=p.y;sxy+=p.x*p.y;sx2+=p.x*p.x;});
     var d=n*sx2-sx*sx;
-    var b=d?(n*sxy-sx*sy)/d:0, a=(sy-b*sx)/n;
-    var pred12=Math.max(0,Math.round((a+b*12)*10)/10);
+    var b=d?(n*sxy-sx*sy)/d:0, a2=(sy-b*sx)/n;
+    var pred12=Math.max(0,Math.round((a2+b*12)*10)/10);
 
-    // 加速度トレンド
+    // トレンド
     var acc=(avgR4-avgR3)-(avgR3-avgR2);
-    var trendLabel, trendColor;
+    var trendLabel,trendColor;
     if(acc>2&&avgR4>=15){trendLabel='🚨急騰';trendColor='#dc2626';}
     else if(acc>1.5){trendLabel='🔴加速';trendColor='#ef4444';}
     else if(acc<-2&&avgR4<5){trendLabel='✅沈静';trendColor='#059669';}
     else if(acc<-1.5){trendLabel='🟢鈍化';trendColor='#16a34a';}
     else{trendLabel='🟡安定';trendColor='#d97706';}
 
-    var avgR4r = Math.round(avgR4*10)/10;
-    var riskBadge = avgR4>=12?'<span class="hbc-badge hbc-badge-h">高リスク</span>'
-                  :avgR4>=6 ?'<span class="hbc-badge hbc-badge-m">中リスク</span>'
-                             :'<span class="hbc-badge hbc-badge-l">低リスク</span>';
-    var barColor = avgR4>=12?'#dc2626':avgR4>=6?'#d97706':'#16a34a';
-    var barPct = Math.min(100, avgR4/25*100).toFixed(0);
+    var barColor=avgR4>=12?'#dc2626':avgR4>=6?'#d97706':'#16a34a';
+    var barPct=Math.min(100,avgR4/25*100).toFixed(0);
+    var riskBadge=avgR4>=12?'<span class="hbc-badge hbc-badge-h">高リスク</span>'
+                 :avgR4>=6 ?'<span class="hbc-badge hbc-badge-m">中リスク</span>'
+                            :'<span class="hbc-badge hbc-badge-l">低リスク</span>';
 
-    html += '<div class="home-big-card" onclick="openCatDetail(\'' + cat.id + '\')" style="cursor:pointer">';
+    html += '<div class="home-big-card" data-catid="'+cat.id+'" onclick="openCatDetail(this.dataset.catid)" style="cursor:pointer">';
     html += '<div class="hbc-top">';
-    html += '<span class="hbc-icon">'+info.icon+'</span>';
-    html += '<div><div class="hbc-name">'+cat.name+'</div>';
-    html += '<div class="hbc-count">'+midCount+'中項目・'+subCount+'小カテゴリ</div></div>';
+    html += '<span class="hbc-icon">'+(cat.icon||'📦')+'</span>';
+    html += '<div>';
+    html += '<div class="hbc-name">'+cat.name+'</div>';
+    html += '<div class="hbc-count">'+midCount+'中項目・'+subCount+'小カテゴリ</div>';
     html += '</div>';
-    html += '<div class="hbc-rise-row"><span class="hbc-rise-lbl">平均値上がり（4ヶ月後）</span>';
-    html += '<span class="hbc-rise-val" style="color:'+barColor+'">+'+(avgR4r||'—')+'%</span></div>';
-    html += '<div class="hbc-rise-row"><span class="hbc-rise-lbl">推定値上がり（12ヶ月後）</span>';
-    html += '<span class="hbc-rise-val" style="color:'+barColor+'">+'+(pred12||'—')+'%</span></div>';
+    html += '</div>';
+    html += '<div class="hbc-rise-row"><span class="hbc-rise-lbl">平均値上がり（4ヶ月後）</span><span class="hbc-rise-val" style="color:'+barColor+'">+'+avgR4+'%</span></div>';
+    html += '<div class="hbc-rise-row"><span class="hbc-rise-lbl">推定値上がり（12ヶ月後）</span><span class="hbc-rise-val" style="color:'+barColor+'">+'+pred12+'%</span></div>';
     html += '<div class="hbc-bar"><div class="hbc-bar-fill" style="width:'+barPct+'%;background:'+barColor+'"></div></div>';
-    html += '<div class="hbc-bottom">'+riskBadge;
-    html += '<span class="hbc-trend" style="color:'+trendColor+'">'+trendLabel+'</span>';
-    html += '<span class="hbc-arr">›</span>';
-    html += '</div></a>';
+    html += '<div class="hbc-bottom">'+riskBadge+'<span class="hbc-trend" style="color:'+trendColor+'">'+trendLabel+'</span><span class="hbc-arr">›</span></div>';
+    html += '</div>';
   });
 
-  grid.innerHTML = html;
+  grid.innerHTML = html || '<p style="color:#64748b;padding:20px">データ読み込み中...</p>';
 }
 
-// CATSロード後に呼ぶ
+
 function tryInitHomeGrid(){
   if(typeof CATS!=='undefined'&&CATS&&CATS.length>0){
     renderHomeCatGrid();
