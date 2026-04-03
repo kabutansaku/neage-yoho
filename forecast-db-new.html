@@ -195,7 +195,7 @@ function bc(v){if(v<=0)return'#059669';if(v>=15)return'#9b1c1c';if(v>=10)return'
 let lv=0,selCat=null,selMid=null,selSub=null;
 
 function updateBC(){
-  let h='<span class="bc-item" onclick="go0()">すべてのカテゴリ</span>';
+  let h='<a href="index.html#forecast-db" class="bc-item" style="text-decoration:none;color:var(--navy);font-weight:600">← トップ</a>';
   if(lv>=1&&selCat){
     h+='<span class="bc-sep">›</span>';
     h+=lv===1?`<span class="bc-cur">${selCat.icon} ${selCat.name}</span>`:`<span class="bc-item" onclick="go1()">${selCat.icon} ${selCat.name}</span>`;
@@ -251,9 +251,9 @@ function go1(id){
   lv=1;selMid=null;selSub=null;updateBC();
   const c=selCat;
   document.getElementById('content').innerHTML=`
-    <button class="back-btn fade-in" onclick="go0()">← すべてのカテゴリ</button>
+    <a href="index.html#forecast-db" class="back-btn fade-in" style="display:inline-block;text-decoration:none">← カテゴリ一覧に戻る</a>
     <div class="sec-hdr fade-in"><div class="sec-title">${c.icon} ${c.name}</div>
-    <div class="sec-sub">カテゴリを選ぶと小カテゴリ・商品の詳細が表示されます</div></div>
+    <div class="sec-sub">中項目を選ぶと小項目・商品の詳細が表示されます</div></div>
     <div class="mid-grid fade-in" id="mg"></div>`;
   document.getElementById('mg').innerHTML=c.mid.map(m=>{
     const mv=maxR4mid(m),pct=Math.min(100,mv/28*100);
@@ -285,7 +285,7 @@ function go2(id){
   document.getElementById('content').innerHTML=`
     <button class="back-btn fade-in" onclick="go1()">← ${selCat.icon} ${selCat.name}</button>
     <div class="sec-hdr fade-in"><div class="sec-title">${m.icon} ${m.name}</div>
-    <div class="sec-sub">小カテゴリを選ぶと商品の詳細予測と最安値比較が表示されます</div></div>
+    <div class="sec-sub">小項目を選ぶと商品の詳細予測と最安値比較が表示されます</div></div>
     <div class="mid-grid fade-in" id="sg"></div>`;
   document.getElementById('sg').innerHTML=m.sub.map(s=>{
     const mv=maxR4sub(s),pct=Math.min(100,mv/28*100);
@@ -392,30 +392,42 @@ go0();
 
 // ── 分割CATSファイル非同期読み込み ──
 async function loadAllCats(){
-  if(typeof CATS !== 'undefined' && CATS && CATS.length > 0) return;
-  var groups = ['food','digital','life','energy','outdoor','money','culture'];
-  var all = [];
-  try{
-    await Promise.all(groups.map(async function(g){
-      var r = await fetch('cats-'+g+'.js?v='+Date.now());
-      var js = await r.text();
-      var match = js.match(/const CATS_[A-Z]+=(\[[\s\S]*?\]);?\s*$/);
-      if(match){
-        JSON.parse(match[1]).forEach(function(c){ all.push(c); });
-      }
-    }));
-    // 既存CATSを置き換え
-    CATS.length = 0;
-    all.forEach(function(c){ CATS.push(c); });
-    go0();
-  }catch(e){ console.log('CATS分割読み込み失敗',e); }
+  if(typeof CATS!=='undefined'&&CATS&&CATS.length>=30){return;}
+  var groups=['food','digital','life','energy','outdoor','money','culture'];
+  var all=[];
+  for(var i=0;i<groups.length;i++){
+    var g=groups[i];
+    try{
+      var r=await fetch('cats-'+g+'.js');
+      var js=await r.text();
+      var p=js.indexOf('=[');
+      if(p<0)continue;
+      var tail=js.slice(p+1).trim();
+      if(tail[tail.length-1]===';')tail=tail.slice(0,-1).trim();
+      var cats=JSON.parse(tail);
+      for(var j=0;j<cats.length;j++)all.push(cats[j]);
+    }catch(e){console.error('cats-'+g+'.js:',e);}
+  }
+  if(all.length>0){
+    CATS.length=0;
+    for(var k=0;k<all.length;k++)CATS.push(all[k]);
+  }
 }
 document.addEventListener('DOMContentLoaded', function(){
-  // CATSがすでにインライン定義されていれば追加読み込み不要
-  if(typeof CATS !== 'undefined' && CATS.length >= 30){
-    go0();
+  var startFn = function(){
+    var params = new URLSearchParams(location.search);
+    var catId = params.get('cat');
+    if(catId){
+      go1(catId);
+    } else {
+      // catなし → トップページに戻る
+      window.location.replace('index.html');
+    }
+  };
+  if(typeof CATS !== 'undefined' && CATS && CATS.length >= 30){
+    startFn();
   } else {
-    loadAllCats();
+    loadAllCats().then(startFn);
   }
 });
 </script>
@@ -430,6 +442,6 @@ document.addEventListener('DOMContentLoaded', function(){
   box-shadow:0 4px 16px rgba(0,43,128,.35);
   z-index:999;white-space:nowrap;
   display:flex;align-items:center;gap:8px;
-">🏠 トップページに戻る</a>
+">← カテゴリ一覧</a>
 </body>
 </html>
