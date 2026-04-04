@@ -444,18 +444,30 @@ var RANK_DATA = [
 
 // アフィリエイトリンク
 var AFF_DATA = [
-  {name:'引越し侍',desc:'一括見積もりNo.1\n397社提携',
-   url:'https://hikkoshizamurai.jp/',
-   reward:'成約時: 〜5,000円'},
-  {name:'SUUMO引越し',desc:'リクルート運営\n優良業者多数',
-   url:'https://hikkoshi.suumo.jp/',
-   reward:'申込時: 〜2,000円'},
-  {name:'ミツモア',desc:'700万件の実績\n相場が明確',
-   url:'https://meetsmore.com/services/moving',
-   reward:'申込時: 〜1,500円'},
-  {name:'価格.com引越し',desc:'比較サイト最大手\n透明な見積もり',
-   url:'https://hikkoshi.kakaku.com/hikkoshi/',
-   reward:'申込時: 〜1,000円'},
+  {name:'引越し侍',
+   tag:'🥇 業界No.1・最大比較',
+   desc:'最大12社から一括見積もり。397社の中から最安値の業者を比較できる。見積もりは完全無料。',
+   merits:['最大12社を一括比較できる','強引な営業電話が来ない設定も可能','業界最多397社が提携'],
+   save:'平均節約額: ▲52,000円',
+   url:'https://hikkoshizamurai.jp/'},
+  {name:'SUUMO引越し',
+   tag:'🏆 リクルート運営・安心',
+   desc:'リクルートが運営する安心サービス。優良業者のみ掲載で悪質業者のリスクゼロ。',
+   merits:['リクルートが審査した優良業者のみ','しつこい電話が来ない設定','見積もりが細かくて比較しやすい'],
+   save:'安心して依頼できる優良業者に絞り込み',
+   url:'https://hikkoshi.suumo.jp/'},
+  {name:'ミツモア',
+   tag:'💡 700万件実績・相場が明確',
+   desc:'700万件超の実績で相場感がわかる。チャットで業者とやりとりできて手軽。',
+   merits:['相場価格がひと目でわかる','チャットで気軽に質問できる','口コミ・評価が豊富で業者選びが簡単'],
+   save:'相場を知って交渉で費用を下げられる',
+   url:'https://meetsmore.com/services/moving'},
+  {name:'価格.com引越し',
+   tag:'📊 価格比較の決定版',
+   desc:'日本最大の価格比較サイトが運営。透明な見積もりで不透明な追加料金の心配なし。',
+   merits:['見積もり金額が明確で比較しやすい','追加料金なしの透明な料金体系','ユーザーの口コミ評価が参考になる'],
+   save:'透明な料金で安心して契約できる',
+   url:'https://hikkoshi.kakaku.com/hikkoshi/'},
 ];
 
 // ══ 描画関数 ══
@@ -520,9 +532,9 @@ function renderAff(){
   grid.innerHTML = AFF_DATA.map(function(d){
     return '<div class="aff-card">'
       +'<div class="aff-logo">'+d.name+'</div>'
-      +'<div class="aff-desc">'+d.desc.replace('\n','<br>')+'</div>'
-      +'<a href="'+d.url+'" target="_blank" rel="noopener" class="aff-btn">無料で見積もり</a>'
-      +'<div class="aff-reward">'+d.reward+'</div>'
+      +'<div class="aff-desc">'+d.desc+'</div>'      +'<div style="margin:6px 0">'+(d.merits||[]).map(function(m){return '<div style="font-size:11px;color:#475569">✅ '+m+'</div>';}).join('')+'</div>'      +'<div style="background:#f0fdf4;border-radius:6px;padding:6px 8px;font-size:11px;font-weight:700;color:#166534;margin-bottom:6px">💰 '+(d.save||'')+'</div>'
+      +'<a href="'+d.url+'" target="_blank" rel="noopener" class="aff-btn">無料で一括見積もりをする →</a>'
+      
       +'</div>';
   }).join('');
 }
