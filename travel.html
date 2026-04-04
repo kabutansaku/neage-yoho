@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>旅行・宿泊 値上がり予測＆格安比較 2026年4月 | 値上がり予測ドットコム</title>
+<meta name="description" content="2026年の旅行・宿泊費値上がり予測。新幹線＋ホテルパック・格安航空券・温泉宿を徹底比較。じゃらん・楽天トラベル・JTBのクーポン情報も毎月自動更新。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#002B80;--teal:#0d9488;--red:#dc2626;--orange:#d97706;--green:#059669;--purple:#7c3aed;--bg:#f0fdfa;--paper:#fff;--border:#99f6e4;--t1:#0f172a;--t2:#475569;--t3:#94a3b8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--t1);font-size:14px;line-height:1.6}
+.hdr{background:var(--navy);color:#fff;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.hdr-logo{font-size:16px;font-weight:900;text-decoration:none;color:#fff}.hdr-logo span{color:#fcd34d}
+.hdr-back{color:#fff;text-decoration:none;font-size:12px;background:rgba(255,255,255,.15);padding:5px 12px;border-radius:20px}
+.main{max-width:900px;margin:0 auto;padding:0 0 80px}
+
+/* ヒーロー */
+.hero{background:linear-gradient(135deg,#0f4c3a,#0d9488,#06b6d4);padding:24px 20px;color:#fff;position:relative;overflow:hidden}
+.hero::before{content:'✈️';position:absolute;right:-10px;top:-10px;font-size:140px;opacity:.07}
+.hero-badge{display:inline-block;background:#fcd34d;color:#0f4c3a;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:10px}
+.hero h1{font-size:20px;font-weight:900;line-height:1.4;margin-bottom:8px}.hero h1 span{color:#a7f3d0}
+.hero-sub{font-size:11px;opacity:.85;line-height:1.7;margin-bottom:12px}
+.hero-alert{background:rgba(220,38,38,.2);border:1px solid rgba(220,38,38,.4);border-radius:8px;padding:10px 12px;font-size:11px;margin-bottom:12px;line-height:1.6}
+.hero-alert strong{color:#fca5a5}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hero-stat{text-align:center;background:rgba(255,255,255,.1);border-radius:8px;padding:10px 4px}
+.hero-stat-num{font-size:16px;font-weight:900;color:#fcd34d;font-family:'DM Mono',sans-serif}
+.hero-stat-lbl{font-size:9px;opacity:.7;margin-top:2px;line-height:1.3}
+
+/* タブ */
+.tab-nav{background:#fff;border-bottom:2px solid var(--border);padding:0 16px;display:flex;overflow-x:auto;position:sticky;top:52px;z-index:90;-webkit-overflow-scrolling:touch}
+.tab-btn{white-space:nowrap;padding:12px 14px;border:none;background:none;cursor:pointer;font-size:12px;font-weight:700;color:var(--t3);border-bottom:3px solid transparent;margin-bottom:-2px;font-family:'Noto Sans JP',sans-serif;transition:all .2s}
+.tab-btn.active{color:var(--teal);border-bottom-color:var(--teal)}
+
+.tab-content{display:none;padding:16px}
+.tab-content.active{display:block}
+.sec-title{font-size:14px;font-weight:800;margin-bottom:12px;padding-bottom:8px;border-bottom:3px solid var(--teal)}
+.update-note{font-size:10px;color:var(--t3);text-align:right;margin-bottom:10px}
+
+/* 値上がり予測カード */
+.predict-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+@media(max-width:500px){.predict-grid{grid-template-columns:1fr}}
+.predict-card{background:var(--paper);border-radius:12px;padding:14px;border:0.5px solid var(--border);position:relative;overflow:hidden}
+.predict-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red)}
+.predict-icon{font-size:26px;margin-bottom:6px}
+.predict-name{font-size:13px;font-weight:700;margin-bottom:4px}
+.predict-rate{font-size:20px;font-weight:900;color:var(--red);font-family:'DM Mono',sans-serif}
+.predict-cause{font-size:10px;color:var(--t2);margin-top:4px;line-height:1.5}
+.predict-rbar{height:4px;background:#e2e8f0;border-radius:2px;overflow:hidden;margin:6px 0}
+.predict-rbar-fill{height:100%;background:var(--red);border-radius:2px}
+
+/* シミュレーター */
+.sim-box{background:linear-gradient(135deg,#0f4c3a,#0d9488);color:#fff;border-radius:12px;padding:16px;margin-bottom:16px}
+.sim-title{font-size:14px;font-weight:900;margin-bottom:4px}
+.sim-sub{font-size:10px;opacity:.7;margin-bottom:12px}
+.sim-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.sim-lbl{font-size:10px;opacity:.8;margin-bottom:4px;display:block}
+.sim-select{width:100%;padding:8px 10px;border-radius:8px;border:none;font-size:12px;font-family:'Noto Sans JP',sans-serif;background:rgba(255,255,255,.95)}
+.sim-result-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.sim-r-box{text-align:center;background:rgba(255,255,255,.1);border-radius:8px;padding:10px}
+.sim-r-lbl{font-size:9px;opacity:.7;margin-bottom:2px}
+.sim-r-val{font-size:14px;font-weight:900;color:#fcd34d;font-family:'DM Mono',sans-serif}
+.sim-tip{font-size:11px;opacity:.8;padding:8px;background:rgba(255,255,255,.1);border-radius:8px;line-height:1.5}
+
+/* 旅行会社ランキング */
+.site-card{background:var(--paper);border-radius:12px;padding:14px;margin-bottom:10px;border:0.5px solid var(--border)}
+.site-card-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.site-rank{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0}
+.r1{background:linear-gradient(135deg,#fcd34d,#f59e0b);color:#92400e}
+.r2{background:linear-gradient(135deg,#e2e8f0,#cbd5e1);color:#475569}
+.r3{background:linear-gradient(135deg,#fed7aa,#fb923c);color:#9a3412}
+.rn{background:#ccfbf1;color:#0d9488}
+.site-info{flex:1}
+.site-name{font-size:14px;font-weight:900;margin-bottom:2px}
+.site-type{font-size:10px;color:var(--t2)}
+.site-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}
+.site-tag{font-size:10px;font-weight:600;padding:2px 6px;border-radius:6px}
+.tag-cheap{background:#dcfce7;color:#166534}
+.tag-point{background:#fef3c7;color:#92400e}
+.tag-coupon{background:#fee2e2;color:#991b1b}
+.tag-jr{background:#dbeafe;color:#1e40af}
+.tag-onsen{background:#f3e8ff;color:#6d28d9}
+.site-body{font-size:11px;color:var(--t2);line-height:1.6;margin-bottom:8px}
+.site-merit{background:#f0fdf4;border-radius:8px;padding:8px 10px;margin-bottom:8px;font-size:11px;color:var(--t2)}
+.site-merit ul{padding-left:14px;line-height:1.7}
+.site-merit ul li::marker{color:var(--green)}
+.site-campaign{background:linear-gradient(90deg,#dc2626,#b91c1c);color:#fff;border-radius:8px;padding:8px 10px;margin-bottom:8px;font-size:11px;line-height:1.5}
+.site-campaign-lbl{font-size:10px;opacity:.8;margin-bottom:2px}
+.site-campaign-val{font-weight:700;font-size:12px}
+.site-aff-btn{display:block;width:100%;padding:10px;background:var(--teal);color:#fff;border-radius:8px;font-size:12px;font-weight:700;text-align:center;text-decoration:none;border:none;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .2s}
+.site-aff-btn:hover{opacity:.9}
+
+/* 旅行タイプ別おすすめ */
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+@media(max-width:500px){.type-grid{grid-template-columns:1fr}}
+.type-card{background:var(--paper);border-radius:10px;padding:12px;border:0.5px solid var(--border)}
+.type-icon{font-size:24px;margin-bottom:6px}
+.type-name{font-size:12px;font-weight:700;color:var(--teal);margin-bottom:4px}
+.type-rec{font-size:13px;font-weight:700;margin-bottom:4px}
+.type-reason{font-size:11px;color:var(--t2);line-height:1.5;margin-bottom:8px}
+.type-btn{display:block;padding:7px;background:var(--teal);color:#fff;border-radius:7px;font-size:11px;font-weight:700;text-align:center;text-decoration:none}
+
+/* 季節別カレンダー */
+.season-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:16px}
+.season-card{background:var(--paper);border-radius:10px;padding:12px;border:0.5px solid var(--border)}
+.season-name{font-size:12px;font-weight:700;margin-bottom:6px}
+.season-bar{height:6px;border-radius:3px;margin-bottom:6px}
+.season-tip{font-size:10px;color:var(--t2);line-height:1.5}
+
+/* フォーム */
+.form-section{background:linear-gradient(135deg,#0f4c3a,#0d9488);border-radius:16px;padding:20px;margin-bottom:20px;color:#fff}
+.form-title{font-size:15px;font-weight:900;margin-bottom:4px}
+.form-sub{font-size:11px;opacity:.7;margin-bottom:14px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+@media(max-width:500px){.form-grid{grid-template-columns:1fr}}
+.form-group label{font-size:11px;opacity:.8;display:block;margin-bottom:4px}
+.form-group select{width:100%;padding:9px 12px;border-radius:8px;border:none;font-size:13px;font-family:'Noto Sans JP',sans-serif;background:rgba(255,255,255,.95)}
+.form-btn{width:100%;padding:13px;background:#fcd34d;color:#0f4c3a;border:none;border-radius:10px;font-size:14px;font-weight:900;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .2s;margin-top:8px}
+.form-btn:hover{background:#fbbf24}
+.form-note{font-size:10px;opacity:.5;text-align:center;margin-top:6px}
+
+/* フローティングナビ */
+.float-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--border);padding:8px 16px;display:flex;gap:8px;z-index:200}
+.fn-back{flex:1;text-align:center;padding:10px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;background:#ccfbf1;color:var(--teal);border:1.5px solid var(--teal)}
+.fn-search{flex:1;text-align:center;padding:10px;border-radius:10px;font-size:13px;font-weight:700;background:var(--teal);color:#fff;text-decoration:none}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <a href="index.html" class="hdr-logo"><span>値上がり</span>予測ドットコム</a>
+  <a href="index.html#forecast-db" class="hdr-back">← 予測DB</a>
+</header>
+
+<div class="hero">
+  <div class="hero-badge" id="hero-badge">✈️ 2026年4月 最新情報</div>
+  <h1>旅行・宿泊<br><span>値上がり予測</span>＆<br>格安サイト比較</h1>
+  <p class="hero-sub">人件費・光熱費・燃料費高騰でホテル・新幹線・航空券が値上がり中。今がお得に予約できる最後のチャンスかもしれません。</p>
+  <div class="hero-alert">
+    <strong>⚠️ 2026年 旅行費値上がり警告</strong><br>
+    国内ホテル平均単価が前年比<strong style="color:#fca5a5">+12〜18%</strong>上昇。GW・お盆・年末年始の人気宿は早期売り切れが急増。今すぐ早期予約がお得！
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">+15%</div><div class="hero-stat-lbl">ホテル平均料金<br>前年比上昇率</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">早割30%</div><div class="hero-stat-lbl">早期予約で<br>最大30%オフ</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">毎月更新</div><div class="hero-stat-lbl">クーポン・<br>キャンペーン情報</div></div>
+  </div>
+</div>
+
+<!-- タブ -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('predict')">📈 値上がり予測</button>
+  <button class="tab-btn" onclick="switchTab('site')">🏆 サイト比較</button>
+  <button class="tab-btn" onclick="switchTab('type')">🎯 旅行タイプ別</button>
+  <button class="tab-btn" onclick="switchTab('season')">📅 時期別</button>
+  <button class="tab-btn" onclick="switchTab('sim')">💰 節約計算</button>
+</div>
+
+<div>
+<!-- 値上がり予測タブ -->
+<div id="tab-predict" class="tab-content active">
+  <div class="sec-title">📈 旅行費用 値上がり予測</div>
+  <div class="predict-grid" id="predict-grid"></div>
+  <div style="font-size:10px;color:var(--t2);margin-bottom:16px">※2026年4月時点の各種調査・報道をもとにした予測値です</div>
+
+  <div class="sec-title">💡 値上がりの主な原因</div>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+    <div style="background:var(--paper);border-radius:10px;padding:12px;border:0.5px solid var(--border)">
+      <div style="font-size:12px;font-weight:700;margin-bottom:4px">👨‍💼 人件費・最低賃金の上昇</div>
+      <div style="font-size:11px;color:var(--t2);line-height:1.5">ホテル・旅館の従業員給与が上昇し、宿泊料金に転嫁。特に首都圏・観光地のシティホテルで顕著。</div>
+    </div>
+    <div style="background:var(--paper);border-radius:10px;padding:12px;border:0.5px solid var(--border)">
+      <div style="font-size:12px;font-weight:700;margin-bottom:4px">✈️ 燃油サーチャージの高止まり</div>
+      <div style="font-size:11px;color:var(--t2);line-height:1.5">航空燃料価格の高止まりにより、国際線・国内線ともに燃油サーチャージが継続。LCCも例外ではない。</div>
+    </div>
+    <div style="background:var(--paper);border-radius:10px;padding:12px;border:0.5px solid var(--border)">
+      <div style="font-size:12px;font-weight:700;margin-bottom:4px">🌍 インバウンド需要の急増</div>
+      <div style="font-size:11px;color:var(--t2);line-height:1.5">訪日外国人が過去最高水準で推移し、人気観光地・温泉宿の需要が急増。特に京都・箱根・沖縄で料金高騰。</div>
+    </div>
+    <div style="background:var(--paper);border-radius:10px;padding:12px;border:0.5px solid var(--border)">
+      <div style="font-size:12px;font-weight:700;margin-bottom:4px">🚄 新幹線・交通費の値上げ</div>
+      <div style="font-size:11px;color:var(--t2);line-height:1.5">JRグループが2026年度に一部路線で運賃改定。早割きっぷを活用することで影響を最小化できる。</div>
+    </div>
+  </div>
+</div>
+
+<!-- サイト比較タブ -->
+<div id="tab-site" class="tab-content">
+  <div class="sec-title">🔍 条件を入力してベストサイトを探す</div>
+
+  <!-- 条件入力フォーム -->
+  <div style="background:linear-gradient(135deg,#0f4c3a,#0d9488);border-radius:14px;padding:16px;margin-bottom:16px;color:#fff">
+    <div style="font-size:13px;font-weight:900;margin-bottom:4px">あなたの旅行条件を入力</div>
+    <div style="font-size:10px;opacity:.7;margin-bottom:12px">条件に合った最安・おすすめサイトをその場で表示します</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+      <div>
+        <div style="font-size:10px;opacity:.8;margin-bottom:3px">旅行タイプ</div>
+        <select id="cmp-type" onchange="rankSites()" style="width:100%;padding:8px;border-radius:8px;border:none;font-size:12px;font-family:inherit">
+          <option value="shinkansen">🚄 新幹線＋ホテル</option>
+          <option value="flight">✈️ 飛行機＋ホテル</option>
+          <option value="onsen">♨️ 温泉旅行</option>
+          <option value="hotel">🏨 ホテルのみ</option>
+          <option value="luxury">👑 高級・特別な旅</option>
+          <option value="business">💼 出張・ビジネス</option>
+        </select>
+      </div>
+      <div>
+        <div style="font-size:10px;opacity:.8;margin-bottom:3px">重視すること</div>
+        <select id="cmp-priority" onchange="rankSites()" style="width:100%;padding:8px;border-radius:8px;border:none;font-size:12px;font-family:inherit">
+          <option value="cheap">💰 とにかく安さ重視</option>
+          <option value="point">💳 ポイント・還元重視</option>
+          <option value="coupon">🎫 クーポン・割引重視</option>
+          <option value="select">📋 選択肢・品揃え重視</option>
+          <option value="ease">🤝 使いやすさ重視</option>
+        </select>
+      </div>
+      <div>
+        <div style="font-size:10px;opacity:.8;margin-bottom:3px">人数</div>
+        <select id="cmp-people" onchange="rankSites()" style="width:100%;padding:8px;border-radius:8px;border:none;font-size:12px;font-family:inherit">
+          <option value="solo">1人旅</option>
+          <option value="couple" selected>2人（カップル・友人）</option>
+          <option value="family">3〜4人（家族）</option>
+          <option value="group">5人以上（グループ）</option>
+        </select>
+      </div>
+      <div>
+        <div style="font-size:10px;opacity:.8;margin-bottom:3px">スマホキャリア</div>
+        <select id="cmp-carrier" onchange="rankSites()" style="width:100%;padding:8px;border-radius:8px;border:none;font-size:12px;font-family:inherit">
+          <option value="rakuten">楽天モバイル</option>
+          <option value="docomo">docomo</option>
+          <option value="au">au / UQ mobile</option>
+          <option value="softbank">SoftBank / Y!mobile</option>
+          <option value="other">その他・気にしない</option>
+        </select>
+      </div>
+    </div>
+    <div style="background:rgba(255,255,255,.15);border-radius:8px;padding:10px;font-size:11px" id="cmp-verdict">
+      ▶ 条件を選ぶと最適なサイトを表示します
+    </div>
+  </div>
+
+  <!-- 条件別ランキング結果 -->
+  <div class="sec-title">🏆 あなたへのおすすめランキング</div>
+  <div class="update-note" id="site-update">🔄 毎月自動更新</div>
+  <div id="site-list"></div>
+</div>
+
+<!-- 旅行タイプ別タブ -->
+<div id="tab-type" class="tab-content">
+  <div class="sec-title">🎯 旅行タイプ別 おすすめサービス</div>
+  <div class="type-grid" id="type-grid"></div>
+</div>
+
+<!-- 時期別カレンダー -->
+<div id="tab-season" class="tab-content">
+  <div class="sec-title">📅 時期別 旅行費用カレンダー</div>
+  <p style="font-size:11px;color:var(--t2);margin-bottom:12px">旅行費用は時期によって大きく変動します。安く旅行するための時期選びの参考に。</p>
+  <div class="season-grid" id="season-grid"></div>
+  <div style="background:var(--paper);border-radius:12px;padding:14px;margin-bottom:16px;border:0.5px solid var(--border)">
+    <div style="font-size:13px;font-weight:700;margin-bottom:8px">💡 旅費節約のポイント</div>
+    <ul style="padding-left:16px;font-size:11px;color:var(--t2);line-height:1.8">
+      <li>GW・お盆・年末年始の<strong>繁忙期を避ける</strong>だけで宿泊費が30〜50%安くなる</li>
+      <li>同じ宿でも<strong>平日利用</strong>で土日比20〜30%安い</li>
+      <li><strong>早期予約（3〜6ヶ月前）</strong>で早割10〜30%オフが適用される</li>
+      <li><strong>新幹線＋ホテルパック</strong>は別々予約より1万円以上安くなることが多い</li>
+      <li>じゃらん・楽天トラベルの<strong>不定期クーポン</strong>をチェックして最大5,000円割引</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 節約シミュレーター -->
+<div id="tab-sim" class="tab-content">
+  <div class="sec-title">💰 旅行費用節約シミュレーター</div>
+  <div class="sim-box">
+    <div class="sim-title">🧮 旅行プランの節約額を計算</div>
+    <div class="sim-sub">条件を選ぶだけで節約できる金額がわかる</div>
+    <div class="sim-grid">
+      <div>
+        <label class="sim-lbl">旅行人数</label>
+        <select class="sim-select" id="sim-people" onchange="calcTravel()">
+          <option value="1">1人</option>
+          <option value="2" selected>2人</option>
+          <option value="4">4人（家族）</option>
+        </select>
+      </div>
+      <div>
+        <label class="sim-lbl">泊数</label>
+        <select class="sim-select" id="sim-nights" onchange="calcTravel()">
+          <option value="1" selected>1泊2日</option>
+          <option value="2">2泊3日</option>
+          <option value="3">3泊4日</option>
+        </select>
+      </div>
+      <div>
+        <label class="sim-lbl">移動手段</label>
+        <select class="sim-select" id="sim-transport" onchange="calcTravel()">
+          <option value="15000">新幹線（東京↔大阪目安）</option>
+          <option value="8000">LCC（国内線）</option>
+          <option value="10000">特急（近距離）</option>
+          <option value="3000">高速バス</option>
+        </select>
+      </div>
+      <div>
+        <label class="sim-lbl">宿泊タイプ</label>
+        <select class="sim-select" id="sim-hotel" onchange="calcTravel()">
+          <option value="8000">ビジネスホテル</option>
+          <option value="15000" selected>シティホテル</option>
+          <option value="25000">温泉旅館（1泊2食）</option>
+          <option value="50000">高級旅館・リゾート</option>
+        </select>
+      </div>
+    </div>
+    <div class="sim-result-row">
+      <div class="sim-r-box">
+        <div class="sim-r-lbl">通常料金（定価）</div>
+        <div class="sim-r-val" id="sim-normal">¥92,000</div>
+      </div>
+      <div class="sim-r-box">
+        <div class="sim-r-lbl">パック利用時</div>
+        <div class="sim-r-val" id="sim-pack">¥74,000</div>
+      </div>
+      <div class="sim-r-box">
+        <div class="sim-r-lbl">最大節約額</div>
+        <div class="sim-r-val" id="sim-save" style="color:#a7f3d0">▲¥18,000</div>
+      </div>
+    </div>
+    <div class="sim-tip" id="sim-tip">💡 新幹線＋ホテルパックで別々予約より約20%節約できます！</div>
+  </div>
+
+  <!-- 一括比較フォーム -->
+  <div class="form-section">
+    <div class="form-title">🔍 条件を入力して格安プランを探す</div>
+    <div class="form-sub">旅行タイプ・目的地・人数で最適なプランを提案</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>旅行タイプ</label>
+        <select id="f-type">
+          <option>新幹線＋ホテルパック</option>
+          <option>国内ホテル・旅館のみ</option>
+          <option>航空券＋ホテルパック</option>
+          <option>温泉旅行</option>
+          <option>格安・LCC＋宿泊</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>目的地エリア</label>
+        <select id="f-dest">
+          <option>北海道</option><option>東北</option><option>関東・東京</option>
+          <option>中部・名古屋</option><option>関西・大阪・京都</option>
+          <option>九州・福岡</option><option>沖縄</option><option>その他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>人数</label>
+        <select id="f-people">
+          <option>1人</option><option>2人</option>
+          <option>3〜4人（家族）</option><option>5人以上</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>予算（1人あたり）</label>
+        <select id="f-budget">
+          <option>〜3万円</option><option>3〜5万円</option>
+          <option>5〜10万円</option><option>10万円以上</option>
+        </select>
+      </div>
+    </div>
+    <!-- ↓ アフィリエイトURLをここに設定 -->
+    <button class="form-btn" onclick="searchTravel()">🔍 格安プランを検索する</button>
+    <p class="form-note">PR：当サイトはアフィリエイトプログラムに参加しています</p>
+  </div>
+</div>
+</div>
+
+<p id="last-updated" style="font-size:10px;color:var(--t2);text-align:center;padding:8px 16px">
+  ※掲載情報は<span id="update-date"></span>時点。料金・キャンペーンは変動します。必ず各サイトでご確認ください。<br>
+  PR：当サイトはアフィリエイトプログラムに参加しています。
+</p>
+
+<div class="float-nav">
+  <a href="index.html#forecast-db" class="fn-back">← カテゴリ一覧</a>
+  <a href="#" onclick="switchTab('site');return false" class="fn-search">🏆 サイトを比較する</a>
+</div>
+
+<script>
+// ── データ（travel-data.jsonで毎月自動更新） ──
+var TRAVEL_DATA = {
+  updated: "2026年4月",
+  predicts: [
+    {icon:'🏨', name:'ホテル・旅館',rate:15,cause:'人件費・光熱費上昇+インバウンド需要急増',risk:'h'},
+    {icon:'🚄', name:'新幹線・JR',rate:8,cause:'2026年度運賃改定・繁忙期特急料金値上げ',risk:'m'},
+    {icon:'✈️', name:'国内航空券',rate:12,cause:'燃油サーチャージ継続・需要過多',risk:'h'},
+    {icon:'🏕', name:'グランピング・体験',rate:18,cause:'人気急上昇で供給不足・施設投資費転嫁',risk:'h'},
+    {icon:'🚌', name:'高速バス',rate:10,cause:'燃料費・人件費上昇で各社値上げ',risk:'m'},
+    {icon:'🚗', name:'レンタカー',rate:14,cause:'中古車高騰で車両取得費増加',risk:'h'},
+  ],
+  sites: [
+    {rank:1, name:'楽天トラベル', tags:['tag-point','tag-coupon'], type:'総合予約サイト',
+     body:'国内最大級の旅行予約サイト。楽天ポイントが貯まり、ポイントで宿泊料金を支払える。不定期の高額クーポン（最大5,000円）が強み。',
+     merits:['楽天ポイントが宿泊料金に応じて貯まる','楽天カード利用で最大3%還元','スーパーDEALで最大50%ポイントバック','じゃらんと並ぶ最安値水準'],
+     campaign:'今月のクーポン最大5,000円割引（条件あり）',
+     url:'https://travel.rakuten.co.jp/'},
+    {rank:2, name:'じゃらん', tags:['tag-cheap','tag-coupon'], type:'総合予約サイト',
+     body:'リクルートが運営する総合旅行サイト。Pontaポイント・dポイントが貯まる。期間限定クーポンや早割プランが豊富で、特にビジネスホテルの料金が安い。',
+     merits:['Pontaポイント・dポイントが貯まる','早割プランで最大30%オフ','ビジネスホテルの品揃えが豊富','ゴールドウィーク・お盆の先行予約が早い'],
+     campaign:'じゃらんクーポン最大3,000円割引（会員限定）',
+     url:'https://www.jalan.net/'},
+    {rank:3, name:'JR東海ツアーズ', tags:['tag-jr','tag-cheap'], type:'新幹線＋ホテルパック',
+     body:'新幹線＋ホテルパックで業界最安値水準。特に東海道新幹線（東京↔名古屋↔大阪）ルートが得意。早割30で大幅割引、当日の列車変更も無料。',
+     merits:['東海道新幹線パックが業界最安値水準','早割30で30%オフ','当日まで列車変更無料（EX旅パック）','日帰りプランも充実'],
+     campaign:'早割30：通常比最大30%オフ（30日前まで）',
+     url:'https://travel.jr-central.co.jp/'},
+    {rank:4, name:'日本旅行', tags:['tag-jr','tag-cheap'], type:'新幹線＋ホテルパック',
+     body:'JRグループの旅行会社。全国の新幹線エリアに対応し、往路と復路で異なる駅を指定できる柔軟性が強み。1人旅にも対応。',
+     merits:['全国の新幹線ルートに対応','往路・復路で異なる駅の設定可能','1名利用でも追加料金が少ない','6ヶ月前から予約可能'],
+     campaign:'スプリングSP：対象エリア最大1万円オフ',
+     url:'https://www.nta.co.jp/'},
+    {rank:5, name:'JTB', tags:['tag-coupon'], type:'総合旅行会社',
+     body:'国内最大手旅行会社。品揃えの豊富さと予約後の変更対応力が強み。大型セールで他社を下回る価格が出ることも多い。',
+     merits:['国内最大規模の商品ラインナップ','大型セールで最安値になることも','店舗サポートが充実','高級旅館・リゾートの取り扱いが豊富'],
+     campaign:'JTBスペシャルプラン：早期申込で最大45%オフ',
+     url:'https://www.jtb.co.jp/'},
+    {rank:6, name:'一休.com', tags:['tag-point'], type:'高級ホテル・旅館特化',
+     body:'高級ホテル・旅館に特化した予約サイト。一休ポイントが貯まり、贅沢旅行をお得に予約できる。ビジネス出張向け上質なホテルも充実。',
+     merits:['一休ポイントで次回宿泊に充当','高級温泉旅館の品揃えが豊富','会員ランクで最大8%割引','ラグジュアリーホテルは一休が最安値のことも'],
+     campaign:'一休プレミアサービス：最大8%割引＋優待特典',
+     url:'https://www.ikyu.com/'},
+    {rank:7, name:'Expedia（エクスペディア）', tags:['tag-cheap'], type:'国際旅行対応',
+     body:'海外旅行・国内旅行両方に対応した国際的な旅行予約サイト。航空券＋ホテルのパックが強く、海外旅行なら特にお得。',
+     merits:['航空券＋ホテルのセットが格安','海外ホテルの最安値を多数掲載','会員向けのメンバープライスあり','ポイントプログラムで将来の旅行に使える'],
+     campaign:'会員限定メンバープライス：最大20%オフ',
+     url:'https://www.expedia.co.jp/'},
+  ],
+  types: [
+    {icon:'🚄', name:'新幹線で行く旅', rec:'JR東海ツアーズ・日本旅行',
+     reason:'新幹線＋ホテルパックで別々予約より1万円以上安くなる。東海道・山陽新幹線なら特にお得。',
+     url:'https://travel.jr-central.co.jp/'},
+    {icon:'✈️', name:'飛行機で行く旅', rec:'じゃらん・楽天トラベル',
+     reason:'航空券＋ホテルのダイナミックパッケージが充実。LCC利用でさらに節約可能。',
+     url:'https://www.jalan.net/'},
+    {icon:'♨️', name:'温泉旅行', rec:'一休.com・じゃらん',
+     reason:'温泉旅館の品揃えが豊富。一休なら高級旅館もポイント還元でお得に。',
+     url:'https://www.ikyu.com/'},
+    {icon:'👨‍👩‍👧‍👦', name:'家族旅行', rec:'楽天トラベル・JTB',
+     reason:'子供向け設備・サービスが充実した宿を検索しやすい。楽天ポイントで家族分をまとめてお得に。',
+     url:'https://travel.rakuten.co.jp/'},
+    {icon:'💑', name:'カップル旅行', rec:'一休.com・楽天トラベル',
+     reason:'2名1室プランが豊富。露天風呂付き客室など特別な宿をお得に予約できる。',
+     url:'https://www.ikyu.com/'},
+    {icon:'💼', name:'出張・ビジネス旅行', rec:'じゃらん・楽天トラベル',
+     reason:'駅近ビジネスホテルの最安値が揃う。法人会員登録でさらにお得なプランが選べる。',
+     url:'https://www.jalan.net/'},
+  ],
+  seasons: [
+    {name:'1〜2月（冬）',level:70,color:'#3b82f6',tip:'スキー場周辺は高騰。温泉旅行は需要落ち着きで比較的安い。雪道に注意。'},
+    {name:'3〜4月（春）',level:90,color:'#dc2626',tip:'桜シーズンと春休みが重なり超繁忙期。特に京都・東京は要早期予約。'},
+    {name:'5月（GW）',level:100,color:'#dc2626',tip:'年間最高値段のシーズン。GW前後の平日を狙うと大幅節約可能。'},
+    {name:'6〜7月前半',level:45,color:'#16a34a',tip:'梅雨シーズンで閑散期。料金が下がる穴場時期。梅雨を避けて室内観光地がおすすめ。'},
+    {name:'7後半〜8月',level:95,color:'#dc2626',tip:'夏休み・お盆で超繁忙期。海・山系リゾートは2〜3倍になることも。'},
+    {name:'9〜10月（秋）',level:60,color:'#d97706',tip:'紅葉シーズン前は比較的安め。10月後半から紅葉観光で上昇傾向。'},
+    {name:'11月（紅葉）',level:80,color:'#d97706',tip:'紅葉シーズンで観光地の宿が高騰。特に京都・日光周辺は早め予約が必須。'},
+    {name:'12月（年末）',level:95,color:'#dc2626',tip:'年末年始は最高値シーズン。12月中旬〜26日前後がまだ比較的安い。'},
+  ],
+};
+
+// ── タブ切り替え ──
+function switchTab(id){
+  document.querySelectorAll('.tab-content').forEach(function(el){el.classList.remove('active')});
+  document.querySelectorAll('.tab-btn').forEach(function(el){el.classList.remove('active')});
+  document.getElementById('tab-'+id).classList.add('active');
+  var map={predict:0,site:1,type:2,season:3,sim:4};
+  document.querySelectorAll('.tab-btn')[map[id]].classList.add('active');
+}
+
+// ── 値上がり予測 ──
+function renderPredicts(){
+  var el = document.getElementById('predict-grid');
+  if(!el) return;
+  el.innerHTML = TRAVEL_DATA.predicts.map(function(d){
+    var pct = Math.min(100, d.rate/20*100);
+    return '<div class="predict-card">'
+      +'<div class="predict-icon">'+d.icon+'</div>'
+      +'<div class="predict-name">'+d.name+'</div>'
+      +'<div class="predict-rate">+'+d.rate+'%</div>'
+      +'<div class="predict-rbar"><div class="predict-rbar-fill" style="width:'+pct+'%"></div></div>'
+      +'<div class="predict-cause">'+d.cause+'</div>'
+      +'</div>';
+  }).join('');
+}
+
+// ── 条件別サイトランキング ──
+var SITE_SCORES = {
+  // [shinkansen, flight, onsen, hotel, luxury, business]
+  //  × [cheap, point, coupon, select, ease]
+  //  × [solo, couple, family, group]
+  'rakuten':    {base:85, shinkansen:70, flight:85, onsen:85, hotel:90, luxury:80, business:80,
+                 cheap:90, point:95, coupon:90, select:85, ease:85,
+                 solo:80, couple:90, family:95, group:90, rakuten:100, docomo:80, au:80, softbank:80, other:85},
+  'jalan':      {base:85, shinkansen:75, flight:80, onsen:85, hotel:90, luxury:75, business:90,
+                 cheap:90, point:85, coupon:90, select:85, ease:90,
+                 solo:85, couple:85, family:90, group:80, rakuten:80, docomo:90, au:80, softbank:80, other:85},
+  'jr-central': {base:80, shinkansen:100, flight:20, onsen:60, hotel:70, luxury:65, business:80,
+                 cheap:95, point:70, coupon:80, select:65, ease:80,
+                 solo:90, couple:85, family:75, group:70, rakuten:75, docomo:75, au:75, softbank:75, other:80},
+  'nihon':      {base:78, shinkansen:90, flight:40, onsen:70, hotel:75, luxury:70, business:75,
+                 cheap:85, point:70, coupon:75, select:80, ease:75,
+                 solo:90, couple:85, family:80, group:85, rakuten:75, docomo:75, au:75, softbank:75, other:78},
+  'jtb':        {base:80, shinkansen:75, flight:75, onsen:80, hotel:85, luxury:90, business:85,
+                 cheap:70, point:75, coupon:80, select:95, ease:85,
+                 solo:75, couple:85, family:90, group:90, rakuten:75, docomo:80, au:80, softbank:80, other:80},
+  'ikyu':       {base:75, shinkansen:50, flight:50, onsen:95, hotel:80, luxury:100, business:70,
+                 cheap:60, point:90, coupon:70, select:75, ease:80,
+                 solo:70, couple:95, family:80, group:75, rakuten:75, docomo:75, au:75, softbank:75, other:75},
+  'expedia':    {base:70, shinkansen:30, flight:95, onsen:50, hotel:80, luxury:85, business:80,
+                 cheap:80, point:75, coupon:80, select:90, ease:75,
+                 solo:80, couple:80, family:75, group:80, rakuten:70, docomo:70, au:70, softbank:70, other:75},
+};
+
+var SITE_VERDICTS = {
+  shinkansen: {cheap: 'JR東海ツアーズが最安水準！新幹線パックなら別々予約より平均1万円以上安くなります。',
+               point:  '楽天トラベルのポイント還元＋JR東海ツアーズの安値を組み合わせが最強！',
+               coupon: 'じゃらんのクーポンを使えば新幹線パックでもお得！楽天クーポンも見逃さずに。',
+               select: '日本旅行は往路・復路で異なる駅を指定できて自由度が高い！',
+               ease:   'JR東海ツアーズは予約後の列車変更が無料で使いやすい！'},
+  flight:    {cheap: 'じゃらん・楽天トラベルのダイナミックパック（航空券＋ホテル）が最安値候補！',
+               point:  '楽天トラベルで予約すると楽天ポイントが大量に貯まる！楽天カードで最大3%還元。',
+               coupon: 'エクスペディアの会員価格＋クーポン組み合わせが効果的！',
+               select: 'JTBは航空便の選択肢が最も豊富！マニアックな路線も対応。',
+               ease:   '楽天トラベルはスマホアプリが使いやすく、予約・変更が簡単！'},
+  onsen:     {cheap: 'じゃらんの温泉旅館早割プランが最安値になることが多い！',
+               point:  '一休.comのポイントは次回宿泊に使えてお得。高級旅館ほど還元額大！',
+               coupon: 'じゃらんの温泉クーポンで最大3,000円引き。楽天のスーパーDEALも要チェック！',
+               select: '一休.comは高級温泉旅館の品揃えが日本最強！露天風呂付き客室も充実。',
+               ease:   '楽天トラベルは口コミが豊富で温泉旅館選びの参考になる！'},
+  luxury:    {cheap: 'JTBの大型セールで高級ホテルも格安に！早期予約で最大45%オフ。',
+               point:  '一休.comのポイント還元率が高い！ランクアップで最大8%還元。',
+               coupon: 'JTBのスペシャルプランが一番クーポン効果が大きい！',
+               select: '一休.comは五つ星ホテル・高級旅館の品揃えが最強！',
+               ease:   '一休.comは高級ホテルのコンシェルジュサービス手配まで対応！'},
+  business:  {cheap: 'じゃらんのビジネスホテル最安値検索が最強！駅チカ格安ホテルが豊富。',
+               point:  '楽天ポイントは出張精算後に個人利用できてお得！',
+               coupon: 'じゃらんの法人会員クーポンで連泊割引が使える！',
+               select: 'じゃらんはビジネスホテルの選択肢が最多！全国対応。',
+               ease:   '楽天トラベルの領収書発行機能が便利。経費処理が楽！'},
+  hotel:     {cheap: 'じゃらん・楽天トラベルの価格比較で最安値を見つけよう！',
+               point:  '楽天トラベルのポイント還元が最大！楽天スーパーDEALで最大50%ポイントバックも。',
+               coupon: '楽天・じゃらん両方のクーポンをチェックして安い方で予約！',
+               select: 'JTBはホテルの品揃えが最多！ニッチなホテルも見つかる。',
+               ease:   '楽天トラベルはUIが最もシンプルで使いやすい！'},
+};
+
+var CARRIER_BONUS = {
+  rakuten: {rakuten: 'さらに楽天モバイルユーザーは楽天トラベルのポイント還元率がアップ！楽天経済圏との相乗効果抜群。'},
+  docomo:  {jalan: 'dポイントがじゃらんでも貯まる！dカード払いでさらにポイントアップ。'},
+  au:      {jalan: 'Pontaポイントがじゃらんで貯まる！auスマートパスとも連携でお得。'},
+  softbank: {rakuten: 'ソフトバンクユーザーもPayPayポイントが楽天トラベルで使えてお得！'},
+  other: {},
+};
+
+var SITE_ID_MAP = ['rakuten','jalan','jr-central','nihon','jtb','ikyu','expedia'];
+
+function rankSites(){
+  var type     = document.getElementById('cmp-type').value;
+  var priority = document.getElementById('cmp-priority').value;
+  var people   = document.getElementById('cmp-people').value;
+  var carrier  = document.getElementById('cmp-carrier').value;
+
+  // スコア計算
+  var scored = TRAVEL_DATA.sites.map(function(site, idx){
+    var sid = SITE_ID_MAP[idx] || 'other';
+    var sc  = SITE_SCORES[sid] || {base:70};
+    var score = (sc.base||70)
+      + (sc[type]     ? (sc[type]-70)*0.4     : 0)
+      + (sc[priority] ? (sc[priority]-70)*0.4  : 0)
+      + (sc[people]   ? (sc[people]-70)*0.2    : 0)
+      + (sc[carrier]  ? (sc[carrier]-100)*0.1  : 0);
+    return {site:site, sid:sid, score:Math.round(score)};
+  });
+
+  // スコア降順でソート
+  scored.sort(function(a,b){ return b.score-a.score; });
+
+  // verdict表示
+  var verdictMap = SITE_VERDICTS[type] || SITE_VERDICTS['hotel'];
+  var verdict = verdictMap[priority] || '条件に合ったサイトを表示しています。';
+  var carrierBonus = (CARRIER_BONUS[carrier]||{});
+  var bonusKey = Object.keys(carrierBonus)[0];
+  if(bonusKey){
+    var bonusSite = scored.find(function(s){ return s.sid===bonusKey; });
+    if(bonusSite) verdict += ' ' + carrierBonus[bonusKey];
+  }
+
+  var verdictEl = document.getElementById('cmp-verdict');
+  if(verdictEl) verdictEl.innerHTML = '💡 <strong>'+scored[0].site.name+'がおすすめ！</strong> '+verdict;
+
+  // ランキング再描画
+  renderSitesRanked(scored);
+}
+
+function renderSitesRanked(scored){
+  var el = document.getElementById('site-list');
+  if(!el) return;
+  el.innerHTML = scored.map(function(item, idx){
+    var d = item.site;
+    var rc = idx===0?'r1':idx===1?'r2':idx===2?'r3':'rn';
+    var tags = d.tags.map(function(t){
+      var lbl = t==='tag-point'?'💳ポイント':t==='tag-coupon'?'🎫クーポン':t==='tag-jr'?'🚄JR系':t==='tag-cheap'?'💰最安値':t==='tag-onsen'?'♨️温泉':'';
+      return '<span class="site-tag '+t+'">'+lbl+'</span>';
+    }).join('');
+    var merits = d.merits.map(function(m){return '<li>'+m+'</li>';}).join('');
+    var badge = idx===0?'<div style="display:inline-block;background:#fcd34d;color:#0f4c3a;font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;margin-bottom:6px">✨ あなたへの最適解！</div><br>':'';
+    return '<div class="site-card" style="'+(idx===0?'border:2px solid var(--teal)':'')+'">'
+      +'<div class="site-card-top">'
+      +'<div class="site-rank '+rc+'">'+(idx+1)+'</div>'
+      +'<div class="site-info"><div class="site-name">'+d.name+'</div>'
+      +'<div class="site-type">'+d.type+'</div>'
+      +'<div class="site-tags">'+tags+'</div></div>'
+      +'<div style="text-align:right;font-size:10px;color:var(--t3)">適合スコア<br><span style="font-size:16px;font-weight:900;color:var(--teal)">'+item.score+'</span></div>'
+      +'</div>'
+      +badge
+      +'<div class="site-body">'+d.body+'</div>'
+      +'<div class="site-merit"><ul>'+merits+'</ul></div>'
+      +'<div class="site-campaign"><div class="site-campaign-lbl">🎁 今月のキャンペーン</div>'
+      +'<div class="site-campaign-val">'+d.campaign+'</div></div>'
+      +'<a href="'+d.url+'" target="_blank" rel="noopener" class="site-aff-btn">'+d.name+' で格安プランを探す →</a>'
+      +'</div>';
+  }).join('');
+}
+
+// ── サイト比較ランキング ──
+function renderSites(){
+  rankSites();
+  var el = document.getElementById('site-list');
+  if(!el) return;
+  el.innerHTML = TRAVEL_DATA.sites.map(function(d){
+    var rc = d.rank<=3?'r'+d.rank:'rn';
+    var tags = d.tags.map(function(t){
+      var lbl = t==='tag-point'?'💳ポイント':t==='tag-coupon'?'🎫クーポン':t==='tag-jr'?'🚄JR系':t==='tag-cheap'?'💰最安値':'';
+      return '<span class="site-tag '+t+'">'+lbl+'</span>';
+    }).join('');
+    var merits = d.merits.map(function(m){return '<li>'+m+'</li>';}).join('');
+    return '<div class="site-card">'
+      +'<div class="site-card-top">'
+      +'<div class="site-rank '+rc+'">'+d.rank+'</div>'
+      +'<div class="site-info"><div class="site-name">'+d.name+'</div>'
+      +'<div class="site-type">'+d.type+'</div>'
+      +'<div class="site-tags">'+tags+'</div></div>'
+      +'</div>'
+      +'<div class="site-body">'+d.body+'</div>'
+      +'<div class="site-merit"><ul>'+merits+'</ul></div>'
+      +'<div class="site-campaign"><div class="site-campaign-lbl">🎁 今月のキャンペーン</div>'
+      +'<div class="site-campaign-val">'+d.campaign+'</div></div>'
+      +'<a href="'+d.url+'" target="_blank" rel="noopener" class="site-aff-btn">'+d.name+' で格安プランを探す →</a>'
+      +'</div>';
+  }).join('');
+  var u = document.getElementById('site-update');
+  if(u) u.textContent = '🔄 更新日: '+TRAVEL_DATA.updated;
+  // 初期表示は条件別ランキングで
+  rankSites();
+}
+
+// ── 旅行タイプ別 ──
+function renderTypes(){
+  var el = document.getElementById('type-grid');
+  if(!el) return;
+  el.innerHTML = TRAVEL_DATA.types.map(function(d){
+    return '<div class="type-card">'
+      +'<div class="type-icon">'+d.icon+'</div>'
+      +'<div class="type-name">'+d.name+'</div>'
+      +'<div class="type-rec">→ '+d.rec+'</div>'
+      +'<div class="type-reason">'+d.reason+'</div>'
+      +'<a href="'+d.url+'" target="_blank" rel="noopener" class="type-btn">このサービスで探す →</a>'
+      +'</div>';
+  }).join('');
+}
+
+// ── 季節別 ──
+function renderSeasons(){
+  var el = document.getElementById('season-grid');
+  if(!el) return;
+  el.innerHTML = TRAVEL_DATA.seasons.map(function(d){
+    return '<div class="season-card">'
+      +'<div class="season-name">'+d.name+'</div>'
+      +'<div class="season-bar" style="background:linear-gradient(90deg,'+d.color+' '+d.level+'%,#e2e8f0 '+d.level+'%)"></div>'
+      +'<div style="font-size:12px;font-weight:700;color:'+d.color+';margin-bottom:4px">混雑度 '+d.level+'%</div>'
+      +'<div class="season-tip">'+d.tip+'</div>'
+      +'</div>';
+  }).join('');
+}
+
+// ── 節約シミュレーター ──
+function calcTravel(){
+  var people = parseInt(document.getElementById('sim-people').value)||2;
+  var nights = parseInt(document.getElementById('sim-nights').value)||1;
+  var transport = parseInt(document.getElementById('sim-transport').value)||15000;
+  var hotel = parseInt(document.getElementById('sim-hotel').value)||15000;
+
+  var normal = (transport*2 + hotel*nights) * people;
+  var pack   = Math.round(normal * 0.82 / 1000) * 1000; // パックで約18%オフ
+  var save   = normal - pack;
+
+  document.getElementById('sim-normal').textContent = '¥'+normal.toLocaleString();
+  document.getElementById('sim-pack').textContent   = '¥'+pack.toLocaleString();
+  document.getElementById('sim-save').textContent   = '▲¥'+save.toLocaleString();
+
+  var tips = [
+    '💡 新幹線＋ホテルパックで別々予約より約20%節約！',
+    '💡 平日利用なら土日比でさらに10〜20%安くなります！',
+    '💡 早割（30〜45日前）を使えばさらに節約できます！',
+  ];
+  document.getElementById('sim-tip').textContent = tips[Math.floor(Math.random()*tips.length)];
+}
+
+// ── 検索フォーム ──
+function searchTravel(){
+  var type   = document.getElementById('f-type').value;
+  var dest   = document.getElementById('f-dest').value;
+  var people = document.getElementById('f-people').value;
+
+  // タイプに応じてアフィリエイトサイトへ誘導
+  var url = 'https://travel.rakuten.co.jp/'; // デフォルト
+  // ↓ ASP承認後にアフィリエイトURLに変更
+  if(type.includes('新幹線')) url = 'https://travel.jr-central.co.jp/';
+  else if(type.includes('温泉')) url = 'https://www.ikyu.com/';
+  else if(type.includes('航空')) url = 'https://www.jalan.net/';
+  else if(type.includes('格安')) url = 'https://www.jalan.net/';
+
+  var sep = url.indexOf('?')>=0?'&':'?';
+  window.open(url+sep+'area='+encodeURIComponent(dest)+'&pax='+encodeURIComponent(people), '_blank', 'noopener');
+}
+
+// ── travel-data.jsonから自動読み込み ──
+function loadTravelData(){
+  fetch('travel-data.json?v='+Date.now())
+    .then(function(r){return r.json();})
+    .then(function(data){
+      if(data.predicts) TRAVEL_DATA.predicts = data.predicts;
+      if(data.sites) TRAVEL_DATA.sites = data.sites;
+      if(data.updated) TRAVEL_DATA.updated = data.updated;
+      renderAll();
+    })
+    .catch(function(){ renderAll(); });
+}
+
+function renderAll(){
+  renderPredicts();
+  renderSites();
+  renderTypes();
+  renderSeasons();
+  calcTravel();
+  var now = new Date();
+  var b = document.getElementById('hero-badge');
+  if(b) b.textContent = '✈️ '+now.getFullYear()+'年'+(now.getMonth()+1)+'月 最新情報';
+  var u = document.getElementById('update-date');
+  if(u) u.textContent = TRAVEL_DATA.updated || now.getFullYear()+'年'+(now.getMonth()+1)+'月';
+}
+
+document.addEventListener('DOMContentLoaded', loadTravelData);
+</script>
+</body>
+</html>
