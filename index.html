@@ -2219,6 +2219,11 @@ function openCatDetail(catId){
     window.location.href = 'hikkoshi.html';
     return;
   }
+  // エネルギーは専用ページへ直接遷移
+  if(catId === 'energy'){
+    window.location.href = 'energy.html';
+    return;
+  }
   var cat = CATS.find(function(c){ return c.id === catId; });
   if(!cat){ console.error('cat not found:', catId); return; }
   _ovCat = cat; _ovMid = null; _ovLv = 1;
