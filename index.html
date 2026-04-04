@@ -1770,7 +1770,7 @@ function renderAlerts(alerts){
     var conf = a.confidence || 3;
     var dots = '';
     for(var d=0; d<5; d++){
-      dots += '<span class="alert-conf-dot'+(d<conf?' on '+(isCrit?'crit':'warn'):'')+'"></span>';
+      dots += '<span class="alert-conf-dot'+(d<conf?' on '+(isCrit?'crit':'warn'):'')+'" style="width:8px;height:8px;border-radius:50%;display:inline-block;background:'+(d<conf?(isCrit?'#dc2626':'#d97706'):'#e2e8f0')+';margin-right:2px"></span>';
     }
     var rate = (a.rate_min && a.rate_max)
       ? '+'+a.rate_min+'〜'+a.rate_max+'%'
@@ -1791,47 +1791,43 @@ function renderAlerts(alerts){
     html += '</div>';
     html += '<div class="alert-info">';
     if(a.brands) html += '<div class="alert-info-row"><span class="alert-info-icon">🏭</span><span class="alert-info-text">'+a.brands+'</span></div>';
-    if(a.reason) html += '<div class="alert-info-row"><span class="alert-info-icon">📌</span><span class="alert-info-text">'+a.reason+'</span></div>';
+    if(a.cause)  html += '<div class="alert-info-row"><span class="alert-info-icon">📌</span><span class="alert-info-text">'+a.cause+'</span></div>';
+    if(a.action) html += '<div class="alert-info-row"><span class="alert-info-icon">💡</span><span class="alert-info-text" style="font-weight:700;color:#dc2626">'+a.action+'</span></div>';
     html += '</div>';
     html += '<div class="alert-conf-row">確度 '+dots+'</div>';
-    html += '<div class="alert-shop-toggle">🛒 値上がり商品を今すぐ買う ▼</div>';
-    html += '<div class="alert-shops" style="display:none">';
 
-    // サブアイテム（中項目・小項目から生成）
-    // cats_refがDBに存在するか確認
+    // ▼ 展開パネル（クリックで開く）
+    html += '<div class="alert-expand-hint">🛒 今すぐ買う・値上がり予測を見る ▼</div>';
+    html += '<div class="alert-sub-panel">';
+
+    // ── A：アフィリエイトリンク（Amazon・楽天・Yahoo!で今すぐ買う）──
+    var keyword = encodeURIComponent(a.name);
+    var shopLinks = [
+      {nm:'Amazon',   url:'https://www.amazon.co.jp/s?k='+keyword+'&ref=nb_sb_noss'},
+      {nm:'楽天市場', url:'https://search.rakuten.co.jp/search/mall/'+keyword+'/'},
+      {nm:'Yahoo!', url:'https://shopping.yahoo.co.jp/search?p='+keyword},
+    ];
+    html += '<div style="padding:10px 14px 6px">';
+    html += '<div style="font-size:11px;font-weight:700;color:#dc2626;margin-bottom:8px">🛒 値上がり前に今すぐ買う</div>';
+    html += '<div style="display:flex;flex-direction:column;gap:6px">';
+    shopLinks.forEach(function(sh){
+      var bgColor = sh.nm==='Amazon'?'#ff9900':sh.nm==='楽天市場'?'#bf0000':'#6001d2';
+      html += '<a href="'+sh.url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()" '
+        + 'style="display:flex;align-items:center;justify-content:space-between;padding:9px 12px;'
+        + 'background:'+bgColor+';color:#fff;border-radius:8px;text-decoration:none;font-size:12px;font-weight:700">'
+        + '<span>'+sh.nm+'で検索・購入 →</span>'
+        + '<span style="font-size:10px;opacity:.8">'+a.name+'</span>'
+        + '</a>';
+    });
+    html += '</div></div>';
+
+    // ── B：DBへの導線（値上がり予測を詳しく見る）──
     var validRefs = (a.cats_ref||[]).filter(function(ref){
       return typeof DB_CAT_MAP !== 'undefined' && DB_CAT_MAP[ref];
     });
-
-    if(validRefs.length > 0 && typeof CATS !== 'undefined'){
-      var subItems = getSubItemsFromCats(validRefs, 3);
-      for(var j=0; j<subItems.length; j++){
-        var si = subItems[j];
-        var shopHtml = '';
-        if(si.sh && si.sh.length > 0){
-          for(var k=0; k<Math.min(si.sh.length,3); k++){
-            var sh = si.sh[k];
-            var nm = sh.id==='r'?'楽天':sh.id==='a'?'Amazon':'Yahoo!';
-            var isRec = k===0;
-            shopHtml += '<a href="https://search.'+
-              (sh.id==='r'?'rakuten.co.jp/search/?field=0&query=':
-               sh.id==='a'?'amazon.co.jp/s?k=':
-               'shopping.yahoo.co.jp/search?p=')+
-              encodeURIComponent(si.n)+'" target="_blank" rel="noopener" class="sdel '+(isRec?'srec':'')+'" onclick="event.stopPropagation()">'+
-              '<span class="sstore">'+nm+'</span>'+
-              '<span class="slink">検索 →</span>'+
-              (isRec?'<span class="sbadge">おすすめ</span>':'')+
-              '</a>';
-          }
-          html += '<div class="alert-sub-item">';
-          html += '<div class="alert-sub-name-row"><span class="alert-sub-name">'+si.n+'</span><span class="alert-sub-r4">+'+(si.r4||0)+'%</span></div>';
-          html += shopHtml;
-          html += '</div>';
-        }
-      }
-
-      // ── DBへの導線ボタン ──
-      html += '<div class="alert-db-nav">';
+    if(validRefs.length > 0){
+      html += '<div style="padding:4px 14px 10px;border-top:1px solid #f1f5f9;margin-top:4px">';
+      html += '<div style="font-size:11px;font-weight:700;color:#002B80;margin-bottom:6px">📊 値上がり予測DBで詳しく見る</div>';
       validRefs.forEach(function(ref){
         var info = (typeof DB_CAT_MAP !== 'undefined' && DB_CAT_MAP[ref]) || {name:ref, icon:'📦'};
         html += '<button class="alert-db-btn" data-catid="'+ref+'" onclick="alertNavToDB(this);event.stopPropagation()">'
@@ -1840,9 +1836,10 @@ function renderAlerts(alerts){
       });
       html += '</div>';
     }
-    html += '</div>';
-    html += '</div>';
-    html += '</div>';
+
+    html += '</div>'; // alert-sub-panel
+    html += '</div>'; // alert-card-body
+    html += '</div>'; // alert-card
   }
 
   grid.innerHTML = html || '<p style="color:#64748b;padding:20px">アラートデータを読み込み中...</p>';
@@ -1855,14 +1852,9 @@ function toggleAlert(card){
   if(!panel) return;
   var isOpen = panel.classList.contains('open');
   // 全部閉じる
-  var allPanels = document.querySelectorAll('.alert-sub-panel');
-  var allHints  = document.querySelectorAll('.alert-expand-hint');
-  var allCards  = document.querySelectorAll('.alert-card');
-  for(var i=0;i<allPanels.length;i++){
-    allPanels[i].classList.remove('open');
-    if(allHints[i]) allHints[i].textContent = '🛒 今すぐ買う商品を見る ▼';
-    if(allCards[i]) allCards[i].classList.remove('expanded');
-  }
+  document.querySelectorAll('.alert-sub-panel').forEach(function(p){ p.classList.remove('open'); });
+  document.querySelectorAll('.alert-expand-hint').forEach(function(h){ h.textContent = '🛒 今すぐ買う・値上がり予測を見る ▼'; });
+  document.querySelectorAll('.alert-card').forEach(function(c){ c.classList.remove('expanded'); });
   // 同じカードなら閉じるだけ、違うなら開く
   if(!isOpen){
     panel.classList.add('open');
