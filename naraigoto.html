@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>習い事 おすすめランキング 2026 大人・子供別 | 値上がり予測ドットコム</title>
+<meta name="description" content="2026年おすすめ習い事ランキング。大人向け1〜10位（将来性・費用・メリット）・子供向け男の子・女の子別。無料体験・教室探しはこちら。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#002B80;--pink:#db2777;--blue:#2563eb;--purple:#7c3aed;
+  --green:#059669;--orange:#d97706;--red:#dc2626;
+  --bg:#fdf4ff;--paper:#fff;--border:#e9d5ff;--t1:#1e1b4b;--t2:#6b7280;--t3:#9ca3af
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--t1);font-size:14px;line-height:1.6}
+.hdr{background:var(--navy);color:#fff;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.hdr-logo{font-size:16px;font-weight:900;text-decoration:none;color:#fff}.hdr-logo span{color:#fcd34d}
+.hdr-back{color:#fff;text-decoration:none;font-size:12px;background:rgba(255,255,255,.15);padding:5px 12px;border-radius:20px}
+.main{max-width:900px;margin:0 auto;padding:0 0 80px}
+
+/* ヒーロー */
+.hero{background:linear-gradient(135deg,#1e1b4b,#312e81,#4c1d95);padding:28px 20px;margin-bottom:0;color:#fff;position:relative;overflow:hidden}
+.hero::before{content:'🌟';position:absolute;top:-20px;right:-10px;font-size:160px;opacity:.06}
+.hero-badge{display:inline-block;background:#fcd34d;color:#1e1b4b;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:12px}
+.hero h1{font-size:22px;font-weight:900;line-height:1.4;margin-bottom:10px}.hero h1 span{color:#f9a8d4}
+.hero-sub{font-size:12px;opacity:.85;line-height:1.7;margin-bottom:16px}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.hero-stat{text-align:center;background:rgba(255,255,255,.08);border-radius:10px;padding:12px 6px}
+.hero-stat-num{font-size:18px;font-weight:900;color:#fcd34d;font-family:'DM Mono',sans-serif}
+.hero-stat-lbl{font-size:10px;opacity:.7;margin-top:2px;line-height:1.3}
+
+/* タブナビ */
+.tab-nav{background:#fff;border-bottom:2px solid var(--border);padding:0 20px;display:flex;gap:0;position:sticky;top:52px;z-index:90}
+.tab-btn{padding:14px 20px;font-size:13px;font-weight:700;border:none;background:none;cursor:pointer;color:var(--t2);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;font-family:'Noto Sans JP',sans-serif;white-space:nowrap}
+.tab-btn.active{color:var(--purple);border-bottom-color:var(--purple)}
+.tab-btn:hover{color:var(--purple)}
+
+/* タブコンテンツ */
+.tab-content{display:none;padding:20px}
+.tab-content.active{display:block}
+
+/* セクション */
+.sec-title{font-size:15px;font-weight:800;margin-bottom:14px;padding-bottom:8px;border-bottom:3px solid var(--purple);display:flex;align-items:center;gap:8px}
+
+/* 目的別診断 */
+.quiz-box{background:linear-gradient(135deg,#4c1d95,#6d28d9);color:#fff;border-radius:16px;padding:20px;margin-bottom:20px}
+.quiz-title{font-size:15px;font-weight:900;margin-bottom:6px}
+.quiz-sub{font-size:11px;opacity:.7;margin-bottom:14px}
+.quiz-q{font-size:13px;font-weight:700;margin-bottom:10px}
+.quiz-options{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}
+.quiz-opt{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.2);border-radius:10px;padding:10px;cursor:pointer;font-size:12px;font-weight:600;text-align:center;transition:all .2s;font-family:'Noto Sans JP',sans-serif;color:#fff}
+.quiz-opt:hover,.quiz-opt.selected{background:rgba(255,255,255,.25);border-color:#fcd34d}
+.quiz-result{display:none;background:rgba(255,255,255,.12);border-radius:10px;padding:14px;margin-top:10px}
+.quiz-result.show{display:block}
+.quiz-result-title{font-size:13px;font-weight:700;color:#fcd34d;margin-bottom:8px}
+.quiz-result-list{list-style:none;font-size:12px;line-height:1.8}
+
+/* 大人ランキング */
+.adult-rank-card{background:var(--paper);border-radius:14px;margin-bottom:12px;border:0.5px solid var(--border);overflow:hidden;transition:box-shadow .2s}
+.adult-rank-card:hover{box-shadow:0 4px 20px rgba(124,58,237,.15)}
+.rank-header{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer}
+.rank-num-badge{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;flex-shrink:0}
+.rn1{background:linear-gradient(135deg,#fcd34d,#f59e0b);color:#92400e}
+.rn2{background:linear-gradient(135deg,#e2e8f0,#cbd5e1);color:#475569}
+.rn3{background:linear-gradient(135deg,#fed7aa,#fb923c);color:#9a3412}
+.rn4,.rn5,.rn6,.rn7,.rn8,.rn9,.rn10{background:#f3e8ff;color:#6d28d9}
+.rank-icon{font-size:28px;flex-shrink:0}
+.rank-info{flex:1}
+.rank-name{font-size:15px;font-weight:900;margin-bottom:3px}
+.rank-catch{font-size:11px;color:var(--t2)}
+.rank-score-bar{display:flex;gap:6px;align-items:center;margin-top:4px}
+.score-lbl{font-size:9px;color:var(--t3);width:40px;flex-shrink:0}
+.score-track{flex:1;height:5px;background:#f3e8ff;border-radius:3px;overflow:hidden}
+.score-fill{height:100%;border-radius:3px}
+.score-val{font-size:9px;font-weight:700;width:24px;text-align:right}
+.rank-expand-icon{font-size:16px;color:var(--t3);transition:transform .2s;flex-shrink:0}
+.rank-expand-icon.open{transform:rotate(180deg)}
+.rank-detail{display:none;padding:0 16px 16px}
+.rank-detail.open{display:block}
+.rank-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.rank-tag{font-size:10px;font-weight:600;padding:3px 8px;border-radius:8px}
+.tag-job{background:#dbeafe;color:#1e40af}
+.tag-health{background:#dcfce7;color:#166534}
+.tag-social{background:#fef3c7;color:#92400e}
+.tag-creative{background:#f3e8ff;color:#6d28d9}
+.tag-income{background:#fee2e2;color:#991b1b}
+.rank-body{font-size:12px;color:var(--t2);line-height:1.7;margin-bottom:10px}
+.rank-merit-box{background:#f0fdf4;border-radius:8px;padding:10px 12px;margin-bottom:8px}
+.rank-merit-title{font-size:11px;font-weight:700;color:#166534;margin-bottom:6px}
+.rank-merit-list{list-style:none;font-size:11px;color:var(--t2);line-height:1.8}
+.rank-merit-list li::before{content:'✅ '}
+.rank-future-box{background:#eff6ff;border-radius:8px;padding:10px 12px;margin-bottom:8px}
+.rank-future-title{font-size:11px;font-weight:700;color:#1e40af;margin-bottom:6px}
+.rank-future-text{font-size:11px;color:var(--t2);line-height:1.6}
+.rank-fee-box{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
+.rank-fee-item{background:#f8fafc;border-radius:8px;padding:8px;text-align:center}
+.rank-fee-lbl{font-size:9px;color:var(--t3);margin-bottom:2px}
+.rank-fee-val{font-size:12px;font-weight:700;color:var(--t1)}
+.rank-aff-btn{display:block;width:100%;padding:10px;background:linear-gradient(90deg,#7c3aed,#6d28d9);color:#fff;border-radius:10px;font-size:13px;font-weight:700;text-align:center;text-decoration:none;transition:all .2s;margin-top:4px}
+.rank-aff-btn:hover{opacity:.9;transform:translateY(-1px)}
+
+/* 子供タブ */
+.kids-gender-tab{display:flex;gap:8px;margin-bottom:16px}
+.gender-btn{flex:1;padding:12px;border-radius:12px;border:2px solid var(--border);background:#fff;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Noto Sans JP',sans-serif;color:var(--t2)}
+.gender-btn.active-boy{border-color:#2563eb;background:#dbeafe;color:#1e40af}
+.gender-btn.active-girl{border-color:#db2777;background:#fce7f3;color:#9d174d}
+
+.kids-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(max-width:500px){.kids-grid{grid-template-columns:1fr}}
+.kids-card{background:var(--paper);border-radius:12px;padding:14px;border:0.5px solid var(--border);transition:all .2s;cursor:pointer}
+.kids-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.1);transform:translateY(-2px)}
+.kids-icon{font-size:36px;margin-bottom:8px;text-align:center}
+.kids-name{font-size:14px;font-weight:800;text-align:center;margin-bottom:6px}
+.kids-age{font-size:10px;color:var(--t2);text-align:center;margin-bottom:8px}
+.kids-benefit{font-size:11px;color:var(--t2);line-height:1.5;margin-bottom:8px}
+.kids-fee{font-size:11px;font-weight:700;color:var(--purple);margin-bottom:8px;text-align:center}
+.kids-future{background:#f3e8ff;border-radius:6px;padding:6px 8px;font-size:10px;color:#6d28d9;margin-bottom:8px;line-height:1.4}
+.kids-aff-btn{display:block;width:100%;padding:8px;border-radius:8px;font-size:12px;font-weight:700;text-align:center;text-decoration:none;transition:all .2s;border:none;cursor:pointer;font-family:'Noto Sans JP',sans-serif}
+.btn-boy{background:linear-gradient(90deg,#2563eb,#1d4ed8);color:#fff}
+.btn-girl{background:linear-gradient(90deg,#db2777,#be185d);color:#fff}
+
+/* 費用シミュレーター */
+.sim-box{background:var(--paper);border-radius:12px;padding:18px;margin-bottom:20px;border:2px solid var(--purple)}
+.sim-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+@media(max-width:500px){.sim-grid{grid-template-columns:1fr}}
+.sim-lbl{font-size:11px;color:var(--t2);font-weight:600;margin-bottom:4px}
+.sim-select{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:'Noto Sans JP',sans-serif;background:#fff}
+.sim-select:focus{outline:none;border-color:var(--purple)}
+.sim-result{background:linear-gradient(135deg,#1e1b4b,#4c1d95);color:#fff;border-radius:12px;padding:16px}
+.sim-result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px}
+.sim-r-box{text-align:center;background:rgba(255,255,255,.08);border-radius:8px;padding:10px}
+.sim-r-lbl{font-size:10px;opacity:.7;margin-bottom:4px}
+.sim-r-val{font-size:16px;font-weight:900;color:#fcd34d;font-family:'DM Mono',sans-serif}
+.sim-r-sub{font-size:9px;opacity:.5;margin-top:2px}
+.sim-tip{background:rgba(249,168,212,.15);border-radius:8px;padding:10px;font-size:11px;line-height:1.6;margin-top:4px}
+
+/* 近くの教室検索 */
+.area-search{background:linear-gradient(135deg,#1e1b4b,#4c1d95);border-radius:16px;padding:20px;margin-bottom:20px;color:#fff}
+.area-title{font-size:15px;font-weight:900;margin-bottom:4px}
+.area-sub{font-size:11px;opacity:.7;margin-bottom:14px}
+.area-form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:10px}
+.area-form-grid select{width:100%;padding:10px 12px;border-radius:8px;border:none;font-size:13px;font-family:'Noto Sans JP',sans-serif;background:rgba(255,255,255,.95)}
+.area-btn{width:100%;padding:13px;background:#fcd34d;color:#1e1b4b;border:none;border-radius:10px;font-size:14px;font-weight:900;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .2s}
+.area-btn:hover{background:#fbbf24;transform:translateY(-1px)}
+
+/* SNSシェア */
+.share-box{background:var(--paper);border-radius:12px;padding:16px;margin-bottom:20px;border:0.5px solid var(--border);text-align:center}
+.share-title{font-size:13px;font-weight:700;margin-bottom:10px}
+.share-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.share-btn{padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;border:none;cursor:pointer;font-family:'Noto Sans JP',sans-serif;text-decoration:none;display:inline-block}
+.share-x{background:#000;color:#fff}
+.share-line{background:#06c755;color:#fff}
+.share-copy{background:#f3e8ff;color:#6d28d9}
+
+/* フローティングナビ */
+.float-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--border);padding:8px 16px;display:flex;gap:8px;z-index:200}
+.fn-back{flex:1;text-align:center;padding:10px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;background:#f3e8ff;color:var(--purple);border:1.5px solid var(--purple)}
+.fn-search{flex:1;text-align:center;padding:10px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;background:linear-gradient(90deg,var(--purple),#6d28d9);color:#fff}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a href="index.html" class="hdr-logo"><span>値上がり</span>予測ドットコム</a>
+  <a href="index.html#forecast-db" class="hdr-back">← 予測DB</a>
+</header>
+
+<!-- ヒーロー -->
+<div class="hero">
+  <div class="hero-badge" id="hero-badge">🌟 2026年 おすすめ習い事ランキング</div>
+  <h1>習い事で<br><span>人生が変わる</span><br>おすすめランキング</h1>
+  <p class="hero-sub">大人も子供も、今始める習い事が将来を変える。費用・将来性・メリットを徹底比較。あなたに最適な習い事を見つけよう。</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">3,000万人</div><div class="hero-stat-lbl">習い事をしている<br>日本人の数</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">月7,000円</div><div class="hero-stat-lbl">大人の習い事<br>平均月謝</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">83%</div><div class="hero-stat-lbl">継続した人が<br>「人生が豊かになった」</div></div>
+  </div>
+</div>
+
+<!-- タブナビ -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('quiz')">🎯 診断</button>
+  <button class="tab-btn" onclick="switchTab('adult')">👨‍💼 大人</button>
+  <button class="tab-btn" onclick="switchTab('kids')">👶 子供</button>
+  <button class="tab-btn" onclick="switchTab('sim')">💰 費用計算</button>
+  <button class="tab-btn" onclick="switchTab('search')">🗺 教室検索</button>
+</div>
+
+<div style="padding:0 0 8px">
+
+<!-- 診断タブ -->
+<div id="tab-quiz" class="tab-content active">
+  <div class="quiz-box">
+    <div class="quiz-title">🎯 あなたに合う習い事診断</div>
+    <div class="quiz-sub">3つの質問に答えるだけで最適な習い事がわかる</div>
+    <div id="quiz-step-1">
+      <div class="quiz-q">Q1. 習い事を始める一番の目的は？</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="selectQuiz(1,'job')">💼 キャリア・副業に活かしたい</button>
+        <button class="quiz-opt" onclick="selectQuiz(1,'health')">💪 健康・ダイエットしたい</button>
+        <button class="quiz-opt" onclick="selectQuiz(1,'social')">👥 友達・出会いを増やしたい</button>
+        <button class="quiz-opt" onclick="selectQuiz(1,'creative')">🎨 創作・自己表現がしたい</button>
+      </div>
+    </div>
+    <div id="quiz-step-2" style="display:none">
+      <div class="quiz-q">Q2. 週に使える時間は？</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="selectQuiz(2,'30min')">⏰ 週30分以内</button>
+        <button class="quiz-opt" onclick="selectQuiz(2,'2h')">⏰ 週1〜2時間</button>
+        <button class="quiz-opt" onclick="selectQuiz(2,'5h')">⏰ 週3〜5時間</button>
+        <button class="quiz-opt" onclick="selectQuiz(2,'more')">⏰ 週5時間以上</button>
+      </div>
+    </div>
+    <div id="quiz-step-3" style="display:none">
+      <div class="quiz-q">Q3. 月の予算は？</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="selectQuiz(3,'free')">無料〜3,000円</button>
+        <button class="quiz-opt" onclick="selectQuiz(3,'mid')">3,000〜10,000円</button>
+        <button class="quiz-opt" onclick="selectQuiz(3,'high')">10,000〜30,000円</button>
+        <button class="quiz-opt" onclick="selectQuiz(3,'pro')">30,000円以上</button>
+      </div>
+    </div>
+    <div class="quiz-result" id="quiz-result">
+      <div class="quiz-result-title">🎉 あなたにおすすめの習い事</div>
+      <ul class="quiz-result-list" id="quiz-result-list"></ul>
+    </div>
+  </div>
+</div>
+
+<!-- 大人タブ -->
+<div id="tab-adult" class="tab-content">
+  <div class="sec-title">🏆 大人の習い事 おすすめランキング TOP10</div>
+  <p style="font-size:11px;color:var(--t2);margin-bottom:14px">将来性・健康効果・収入貢献・継続しやすさを総合評価。各習い事の将来につながる価値も明示。</p>
+  <div id="adult-rank-list"></div>
+</div>
+
+<!-- 子供タブ -->
+<div id="tab-kids" class="tab-content">
+  <div class="sec-title">👶 子供の習い事 おすすめランキング</div>
+  <div class="kids-gender-tab">
+    <button class="gender-btn active-boy" onclick="switchGender('boy')" id="btn-boy">👦 男の子向け</button>
+    <button class="gender-btn" onclick="switchGender('girl')" id="btn-girl">👧 女の子向け</button>
+  </div>
+  <div id="kids-boy" class="kids-grid"></div>
+  <div id="kids-girl" class="kids-grid" style="display:none"></div>
+</div>
+
+<!-- 費用シミュレーター -->
+<div id="tab-sim" class="tab-content">
+  <div class="sec-title">💰 習い事費用シミュレーター</div>
+  <div class="sim-box">
+    <div class="sim-grid">
+      <div>
+        <div class="sim-lbl">習い事の種類</div>
+        <select class="sim-select" id="sim-type" onchange="calcNarai()">
+          <option value="5000">英会話（月5,000円〜）</option>
+          <option value="8000">ピアノ（月8,000円〜）</option>
+          <option value="10000">ヨガ（月10,000円〜）</option>
+          <option value="15000">ゴルフ（月15,000円〜）</option>
+          <option value="12000">プログラミング（月12,000円〜）</option>
+          <option value="8000">書道（月8,000円〜）</option>
+          <option value="20000">ダンス（月20,000円〜）</option>
+          <option value="6000">水泳（月6,000円〜）</option>
+          <option value="10000">料理（月10,000円〜）</option>
+          <option value="3000">オンライン語学（月3,000円〜）</option>
+        </select>
+      </div>
+      <div>
+        <div class="sim-lbl">継続年数</div>
+        <select class="sim-select" id="sim-years" onchange="calcNarai()">
+          <option value="1">1年間</option>
+          <option value="3" selected>3年間</option>
+          <option value="5">5年間</option>
+          <option value="10">10年間</option>
+        </select>
+      </div>
+      <div>
+        <div class="sim-lbl">頻度</div>
+        <select class="sim-select" id="sim-freq" onchange="calcNarai()">
+          <option value="1">週1回</option>
+          <option value="2">週2回</option>
+          <option value="0.5">月2回</option>
+        </select>
+      </div>
+      <div>
+        <div class="sim-lbl">入会金・教材費</div>
+        <select class="sim-select" id="sim-init" onchange="calcNarai()">
+          <option value="0">なし（0円）</option>
+          <option value="10000" selected>あり（約1万円）</option>
+          <option value="30000">高め（約3万円）</option>
+        </select>
+      </div>
+    </div>
+    <div class="sim-result">
+      <div class="sim-result-grid">
+        <div class="sim-r-box">
+          <div class="sim-r-lbl">月額費用（目安）</div>
+          <div class="sim-r-val" id="sim-month">¥8,000</div>
+          <div class="sim-r-sub">月謝</div>
+        </div>
+        <div class="sim-r-box">
+          <div class="sim-r-lbl">年間費用</div>
+          <div class="sim-r-val" id="sim-year">¥96,000</div>
+          <div class="sim-r-sub">月謝×12</div>
+        </div>
+        <div class="sim-r-box">
+          <div class="sim-r-lbl">総費用（継続）</div>
+          <div class="sim-r-val" id="sim-total">¥298,000</div>
+          <div class="sim-r-sub" id="sim-years-lbl">3年間</div>
+        </div>
+      </div>
+      <div class="sim-tip" id="sim-tip">💡 コーヒー1杯分（約500円）を毎日節約するだけで月謝を賄えます。習い事への投資は自己成長・健康・将来の収入アップにつながります！</div>
+    </div>
+  </div>
+</div>
+
+<!-- 教室検索タブ -->
+<div id="tab-search" class="tab-content">
+  <div class="sec-title">🗺 近くの習い事教室を探す</div>
+  <div class="area-search">
+    <div class="area-title">地域×ジャンルで教室を検索</div>
+    <div class="area-sub">条件を選んであなたにぴったりの教室を見つけよう</div>
+    <div class="area-form-grid">
+      <div>
+        <select id="a-pref">
+          <option>都道府県を選択</option>
+          <option>北海道</option><option>東京都</option><option>神奈川県</option>
+          <option>大阪府</option><option>愛知県</option><option>福岡県</option>
+          <option>埼玉県</option><option>千葉県</option><option>兵庫県</option>
+          <option>その他</option>
+        </select>
+      </div>
+      <div>
+        <select id="a-genre">
+          <option>ジャンルを選択</option>
+          <option>英会話・語学</option><option>ヨガ・ピラティス</option>
+          <option>ゴルフ</option><option>プログラミング</option>
+          <option>ピアノ・音楽</option><option>書道・習字</option>
+          <option>ダンス</option><option>料理・製菓</option>
+          <option>水泳・スポーツ</option><option>絵画・アート</option>
+        </select>
+      </div>
+      <div>
+        <select id="a-target">
+          <option>対象を選択</option>
+          <option>大人（一般）</option><option>シニア</option>
+          <option>子供（〜小学生）</option><option>中高生</option>
+          <option>どなたでも</option>
+        </select>
+      </div>
+      <div>
+        <select id="a-format">
+          <option>形式を選択</option>
+          <option>通学（対面）</option><option>オンライン</option>
+          <option>どちらでも</option>
+        </select>
+      </div>
+    </div>
+    <button class="area-btn" onclick="searchArea()">🔍 この条件で教室を検索する</button>
+  </div>
+
+  <!-- アフィリエイトリンク集 -->
+  <div class="sec-title">おすすめ習い事検索サービス</div>
+  <div id="aff-site-list"></div>
+</div>
+
+</div><!-- padding wrapper -->
+
+<!-- SNSシェア -->
+<div style="padding:0 20px 20px">
+  <div class="share-box">
+    <div class="share-title">📣 友達にシェアする</div>
+    <div class="share-btns">
+      <a class="share-btn share-x" href="#" onclick="shareX();return false">𝕏 でシェア</a>
+      <a class="share-btn share-line" href="#" onclick="shareLine();return false">LINE でシェア</a>
+      <button class="share-btn share-copy" onclick="copyUrl()">🔗 URLをコピー</button>
+    </div>
+  </div>
+</div>
+
+<div style="padding:0 20px 20px">
+  <p id="last-updated" style="font-size:10px;color:var(--t2);text-align:center;margin-bottom:4px"></p>
+  <p style="font-size:10px;color:var(--t2);text-align:center">
+    PR：当サイトはアフィリエイトプログラムに参加しています。リンク先での成約により報酬を受け取る場合があります。
+  </p>
+</div>
+
+<!-- フローティングナビ -->
+<div class="float-nav">
+  <a href="index.html#forecast-db" class="fn-back">← カテゴリ一覧</a>
+  <a href="#" onclick="switchTab('search');return false" class="fn-search">🗺 教室を探す</a>
+</div>
+
+<script>
+// ══ タブ切り替え ══
+function switchTab(id){
+  document.querySelectorAll('.tab-content').forEach(function(el){el.classList.remove('active')});
+  document.querySelectorAll('.tab-btn').forEach(function(el){el.classList.remove('active')});
+  document.getElementById('tab-'+id).classList.add('active');
+  var btns = document.querySelectorAll('.tab-btn');
+  var map = {quiz:0,adult:1,kids:2,sim:3,search:4};
+  if(map[id]!==undefined) btns[map[id]].classList.add('active');
+}
+
+// ══ 診断ロジック ══
+var quizAns = {};
+var QUIZ_REC = {
+  job:{
+    free:['📱 プログラミング（独学）','✍️ ライティング・ブログ','🎨 デザイン（Canva等）'],
+    mid:['💻 プログラミング教室','📊 Excel・データ分析','🇬🇧 ビジネス英語'],
+    high:['🤖 AI・DXスキル講座','📈 投資・FP資格','💼 MBAオンライン'],
+    pro:['🏫 資格スクール（社労士・FP等）','🎓 大学院・MBA']
+  },
+  health:{
+    free:['🏃 ランニング・ウォーキング','🧘 YouTube ヨガ','💪 自重トレーニング'],
+    mid:['🏊 スポーツジム','🧘‍♀️ ヨガ教室','🚴 サイクリング'],
+    high:['🤸 パーソナルトレーニング','🏋️ ピラティス','⛳ ゴルフ'],
+    pro:['🏄 マリンスポーツ','🥊 格闘技・ボクシング']
+  },
+  social:{
+    free:['📸 写真（スマホ）','🎮 オンラインゲーム'],
+    mid:['💃 ダンス教室','🍳 料理教室','🎭 演劇ワークショップ'],
+    high:['⛳ ゴルフ（接待にも）','🎻 楽器演奏','🍷 ワインスクール'],
+    pro:['🎿 スキー・スノボ','🎨 アート教室']
+  },
+  creative:{
+    free:['✏️ イラスト・絵（独学）','📝 小説・詩'],
+    mid:['🎨 絵画・水彩','📷 写真教室','🎵 DTM・音楽制作'],
+    high:['🎸 楽器（ギター・ピアノ）','🎭 陶芸・クラフト','🖼 油絵・アクリル'],
+    pro:['🎬 映像制作・動画編集','🎤 ボイストレーニング']
+  }
+};
+
+function selectQuiz(step, val){
+  quizAns['q'+step] = val;
+  document.querySelectorAll('#quiz-step-'+step+' .quiz-opt').forEach(function(b){b.classList.remove('selected')});
+  event.target.classList.add('selected');
+  if(step < 3){
+    setTimeout(function(){
+      document.getElementById('quiz-step-'+step).style.display='none';
+      document.getElementById('quiz-step-'+(step+1)).style.display='block';
+    }, 400);
+  } else {
+    setTimeout(showQuizResult, 400);
+  }
+}
+
+function showQuizResult(){
+  var purpose = quizAns.q1 || 'job';
+  var budget  = quizAns.q3 || 'mid';
+  var recs = QUIZ_REC[purpose] && QUIZ_REC[purpose][budget] ? QUIZ_REC[purpose][budget] : ['💡 英会話','🎨 ヨガ','📚 読書'];
+  var list = document.getElementById('quiz-result-list');
+  list.innerHTML = recs.map(function(r,i){
+    return '<li style="padding:4px 0">'+['🥇','🥈','🥉'][i]+'  '+r+'</li>';
+  }).join('');
+  var res = document.getElementById('quiz-result');
+  res.classList.add('show');
+  // 大人タブに誘導
+  setTimeout(function(){
+    var hint = document.createElement('div');
+    hint.style.cssText='margin-top:10px;font-size:11px;opacity:.8';
+    hint.innerHTML = '👇 <a href="#" onclick="switchTab(\'adult\');return false" style="color:#fcd34d;font-weight:700">詳しいランキングを見る →</a>';
+    res.appendChild(hint);
+  }, 500);
+}
+
+// ══ 大人ランキングデータ ══
+var ADULT_DATA = [
+  {rank:1, icon:'🇬🇧', name:'英会話・英語', catch:'グローバル化必須スキル。転職・昇給に直結',
+   tags:['tag-job','tag-social'], tagTxts:['キャリアアップ','交流・出会い'],
+   score:{future:95, income:85, health:40, social:80},
+   body:'英語力はビジネスの必須スキル。TOEIC高得点で年収100万円以上アップした事例も多数。オンライン英会話の普及で月3,000円から始められ、コスパ最高の習い事。',
+   merits:['転職・昇給で収入アップに直結する実績が多い','海外旅行・出張が一気に楽しくなる','外国人の友人・パートナーができる可能性','リモートワークの国際業務に対応できる','継続すれば副業（翻訳・通訳）も可能'],
+   future:'英語力はAI時代でも価値が下がらず、むしろグローバル連携が増えるほど重要度が増す。英語×専門スキルで年収を大幅アップできる可能性が高い。管理職・グローバル人材としての評価も向上。',
+   fees:{init:'0〜10,000円',month:'3,000〜30,000円',year:'36,000〜360,000円'},
+   url:'https://eikaiwa.dmm.com/'}, // ← アフィリエイトURL
+  {rank:2, icon:'💻', name:'プログラミング', catch:'IT×副業で月10万円以上も。AI時代の最強スキル',
+   tags:['tag-job','tag-income'], tagTxts:['副業収入','将来性No.1'],
+   score:{future:98, income:95, health:30, social:50},
+   body:'プログラミングは現代の読み書き算盤。未経験からエンジニア転職で年収100万円UP、副業で月10万円以上の事例が急増。AI（ChatGPT等）と組み合わせることで開発速度が激増し、習得コストも下がっている。',
+   merits:['未経験からエンジニア転職で年収大幅アップ','フリーランスとして副業・独立が可能','在宅・リモートワーク案件が豊富','AIツールを組み合わせることで生産性が爆上がり','自分でアプリ・Webサービスを作れる'],
+   future:'AI・DXの加速により2030年には日本でITエンジニアが最大79万人不足する見通し（経産省）。プログラミングスキルは今後10〜20年、最も価値の高いスキルであり続ける。副業・フリーランスの選択肢も広がる。',
+   fees:{init:'0〜100,000円',month:'10,000〜60,000円',year:'120,000〜720,000円'},
+   url:'https://tech-boost.jp/'}, // ← アフィリエイトURL
+  {rank:3, icon:'🧘', name:'ヨガ・ピラティス', catch:'心身の健康＋インストラクター資格で副業も',
+   tags:['tag-health','tag-income'], tagTxts:['健康・美容','副業可能'],
+   score:{future:75, income:60, health:95, social:70},
+   body:'ヨガ・ピラティスは体の柔軟性向上・ストレス解消・姿勢改善に絶大な効果。週2〜3回の継続で体型が劇的に変わる。インストラクター資格（RYT200等）を取得すれば週末副業として月3〜10万円の収入も可能。',
+   merits:['ストレス解消・睡眠改善・集中力向上の科学的根拠あり','体型改善・姿勢改善で外見への自信が増す','インストラクター資格で副業収入が得られる','自宅でもできるので継続しやすい','産後・更年期にも対応したプログラムが多い'],
+   future:'健康寿命の延伸が社会課題となる中、ヨガ・ピラティスの需要は拡大中。資格取得でスタジオ開業・オンラインレッスンなど独立の選択肢も。高齢化社会でシニア向けクラスの需要も激増。',
+   fees:{init:'0〜30,000円',month:'5,000〜20,000円',year:'60,000〜240,000円'},
+   url:'https://lava-yoga.com/'}, // ← アフィリエイトURL
+  {rank:4, icon:'⛳', name:'ゴルフ', catch:'ビジネス接待の必須スキル。出世に直結する習い事',
+   tags:['tag-job','tag-social'], tagTxts:['接待・出世','人脈形成'],
+   score:{future:70, income:70, health:60, social:90},
+   body:'ゴルフは日本のビジネスシーンで今でも重要な接待ツール。コースに出られるスキルを身につけると取引先との関係構築・上司との距離感が縮まり昇進に有利。健康維持にも効果的で生涯スポーツとして継続できる。',
+   merits:['取引先・上司との関係構築に直接役立つ','週末の自然の中でのストレス解消','生涯スポーツとして体力維持に有効','ゴルフ仲間との出会い・人脈形成','スコアアップという明確な目標が継続のモチベーションに'],
+   future:'接待ゴルフ文化は日本のビジネスで根強く残っており、できる人は評価される。シニアになっても続けられ、定年後のコミュニティ形成にも。早く始めるほど上達し、ビジネスチャンスが広がる。',
+   fees:{init:'10,000〜50,000円',month:'10,000〜30,000円',year:'120,000〜360,000円'},
+   url:'https://golfdigest.co.jp/'}, // ← アフィリエイトURL
+  {rank:5, icon:'🎸', name:'楽器（ギター・ピアノ等）', catch:'脳の活性化＋趣味の充実。人生を豊かにする',
+   tags:['tag-creative','tag-health'], tagTxts:['脳活性化','趣味・娯楽'],
+   score:{future:55, income:40, health:70, social:75},
+   body:'楽器演奏は脳の認知機能向上・認知症予防に科学的効果あり。大人になってからでも習得可能で、バンド活動・セッションを通じた新たな出会いも生まれる。ギターなら3ヶ月で弾き語りができるように。',
+   merits:['脳の認知機能向上・認知症予防に効果的','バンド・セッションを通じた友人・コミュニティが生まれる','完成した曲を弾けたときの達成感が大きい','子どもと一緒に演奏できる喜び','将来的にライブ出演・YouTube投稿も可能'],
+   future:'音楽×SNS（TikTok・YouTube）の組み合わせで発信力を持てる時代。演奏動画がバズれば収入につながるケースも。脳の健康維持として老後まで継続できる生涯の趣味になる。',
+   fees:{init:'20,000〜100,000円（楽器代）',month:'5,000〜20,000円',year:'60,000〜240,000円'},
+   url:'https://www.shimamura.co.jp/'}, // ← アフィリエイトURL
+  {rank:6, icon:'🍳', name:'料理・製菓', catch:'食費節約＋健康管理。家族を笑顔にするスキル',
+   tags:['tag-health','tag-social'], tagTxts:['健康管理','家族・パートナー'],
+   score:{future:60, income:45, health:80, social:80},
+   body:'料理スキルは毎日の食費を大幅に節約しながら健康管理にも直結。外食費が月2〜5万円節約できれば実質「収入アップ」と同じ効果。パートナーや家族への評価も急上昇。製菓スキルはハンドメイド販売（minne等）で副収入も可能。',
+   merits:['外食費の削減で実質月2〜5万円の節約効果','健康的な食事で医療費削減・健康寿命延伸','パートナー・家族からの評価向上','おもてなしで友人・人脈が広がる','製菓は副業（ハンドメイド販売）にもなる'],
+   future:'健康意識の高まりとともに料理スキルの需要は安定。発酵食品・腸活など健康系レシピの知識は将来ますます価値が上がる。フードコーディネーター資格で独立の選択肢も。',
+   fees:{init:'0〜30,000円',month:'5,000〜20,000円',year:'60,000〜240,000円'},
+   url:'https://www.abc-cooking.co.jp/'}, // ← アフィリエイトURL
+  {rank:7, icon:'🎨', name:'絵画・デジタルアート', catch:'AIと組み合わせで収入化。副業・フリーランスへ',
+   tags:['tag-creative','tag-income'], tagTxts:['副業可能','AI×アート'],
+   score:{future:70, income:65, health:50, social:60},
+   body:'デジタルイラスト（iPad+Procreate等）はSNS発信→フォロワー獲得→グッズ販売・依頼受注というマネタイズが現実的。AI画像生成との組み合わせでプロンプトエンジニアとしても活躍できる新時代のスキル。',
+   merits:['SNS発信でフォロワーを増やし収入化できる','グッズ販売（BOOTH・minne）で副収入','AI画像生成のプロンプトスキルと組み合わせて相乗効果','自分のキャラクター・世界観を作れる','ストレス解消・マインドフルネス効果も'],
+   future:'NFT・デジタルコンテンツ市場の拡大により、デジタルアートの価値は増加傾向。AI時代でも「人間のクリエイティビティ」は価値を持ち続ける。早くから発信を続ければSNS資産が蓄積する。',
+   fees:{init:'10,000〜60,000円（iPad等）',month:'3,000〜15,000円',year:'36,000〜180,000円'},
+   url:'https://www.街の美術教室.com/'}, // ← アフィリエイトURL（仮）
+  {rank:8, icon:'✍️', name:'書道・習字', catch:'精神統一＋資格取得で子供への指導も',
+   tags:['tag-creative','tag-health'], tagTxts:['精神安定','資格取得'],
+   score:{future:50, income:45, health:65, social:55},
+   body:'書道は集中力・精神統一に優れ、毎週の練習がマインドフルネスの効果を発揮。段位・師範資格を取得すれば子供教室の開設・カルチャーセンターでの指導員として副収入が得られる。日本文化として外国人にも人気。',
+   merits:['集中力・精神統一・ストレス解消に効果的','段位・師範資格で指導員・教室開設が可能','日本文化として外国人への需要が増加','冠婚葬祭の書（のし袋等）が美しく書ける','デジタル疲れの解消にアナログの良さが輝く'],
+   future:'デジタル化が進む時代だからこそ手書きの価値が見直されている。外国人向け書道体験・インバウンド需要で指導の仕事が増加。SNSで作品発信すれば注目を集めやすい。',
+   fees:{init:'5,000〜20,000円',month:'5,000〜15,000円',year:'60,000〜180,000円'},
+   url:'https://www.shodo.co.jp/'}, // ← アフィリエイトURL（仮）
+  {rank:9, icon:'💃', name:'ダンス（社交・ヒップホップ等）', catch:'健康×社交×自己表現。年齢不問で楽しめる',
+   tags:['tag-health','tag-social'], tagTxts:['健康・体力','友人・出会い'],
+   score:{future:60, income:40, health:85, social:90},
+   body:'ダンスは有酸素運動として最高の健康効果を持ちながら、仲間との一体感・社交の場にもなる。社交ダンスは競技としても楽しめ、シニアになっても継続できる生涯スポーツ。ヒップホップ・K-POPダンスは若い世代に圧倒的人気。',
+   merits:['有酸素運動で体力向上・ダイエット効果が高い','仲間・友人が自然と増えるコミュニティ性','自己表現力・自信がつく','舞台発表・競技会という目標が継続の動機に','年齢・体力を問わず続けやすい'],
+   future:'K-POP・日本のダンス文化の世界的人気が高まり、インストラクターやオンラインレッスンの需要が増加。発表会・SNS投稿でファンを集めることも現実的に。',
+   fees:{init:'5,000〜20,000円',month:'8,000〜25,000円',year:'96,000〜300,000円'},
+   url:'https://www.odoriba.com/'}, // ← アフィリエイトURL（仮）
+  {rank:10, icon:'🍷', name:'ワイン・利き酒・食文化', catch:'接待・教養・大人の趣味。ソムリエ資格も',
+   tags:['tag-job','tag-social'], tagTxts:['接待・教養','大人の趣味'],
+   score:{future:50, income:50, health:30, social:85},
+   body:'ワインの知識はビジネスの接待シーンで即効性がある教養。ソムリエ・ワインエキスパート資格はレストラン・ホテル業界でも評価される。利き酒師・日本酒検定はインバウンド向け体験イベントの運営にも活かせる。',
+   merits:['ビジネス接待でワインを選べると一目置かれる','ソムリエ資格で飲食業界での転職・副業が可能','食文化への理解が深まり旅行がより楽しくなる','高級レストランでの食事がより豊かになる','利き酒師資格でインバウンド体験イベントの開催も'],
+   future:'訪日外国人向けの日本酒・ワイン体験の需要が激増。知識×発信力でインフルエンサーとしての道も。食文化×SNSで専門アカウントを育てれば収益化も可能。',
+   fees:{init:'10,000〜50,000円',month:'5,000〜30,000円',year:'60,000〜360,000円'},
+   url:'https://www.asahiculture.jp/'}, // ← アフィリエイトURL（仮）
+];
+
+function renderAdultRank(){
+  var list = document.getElementById('adult-rank-list');
+  if(!list) return;
+  list.innerHTML = ADULT_DATA.map(function(d){
+    var numCls = 'rn'+d.rank;
+    var tags = d.tags.map(function(t,i){return '<span class="rank-tag '+t+'">'+d.tagTxts[i]+'</span>';}).join('');
+    var scores = [
+      {lbl:'将来性',val:d.score.future,c:'#7c3aed'},
+      {lbl:'収入貢献',val:d.score.income,c:'#dc2626'},
+      {lbl:'健康効果',val:d.score.health,c:'#059669'},
+      {lbl:'社交性',val:d.score.social,c:'#2563eb'},
+    ];
+    var scoreBars = scores.map(function(s){
+      return '<div class="rank-score-bar">'
+        +'<span class="score-lbl">'+s.lbl+'</span>'
+        +'<div class="score-track"><div class="score-fill" style="width:'+s.val+'%;background:'+s.c+'"></div></div>'
+        +'<span class="score-val" style="color:'+s.c+'">'+s.val+'</span>'
+        +'</div>';
+    }).join('');
+    var merits = d.merits.map(function(m){return '<li>'+m+'</li>';}).join('');
+    return '<div class="adult-rank-card">'
+      +'<div class="rank-header" onclick="toggleAdult(\'a'+d.rank+'\')">'
+      +'<div class="rank-num-badge '+numCls+'">'+d.rank+'</div>'
+      +'<div class="rank-icon">'+d.icon+'</div>'
+      +'<div class="rank-info">'
+      +'<div class="rank-name">'+d.name+'</div>'
+      +'<div class="rank-catch">'+d.catch+'</div>'
+      +scoreBars
+      +'</div>'
+      +'<span class="rank-expand-icon" id="icon-a'+d.rank+'">▼</span>'
+      +'</div>'
+      +'<div class="rank-detail" id="a'+d.rank+'">'
+      +'<div class="rank-tags">'+tags+'</div>'
+      +'<div class="rank-body">'+d.body+'</div>'
+      +'<div class="rank-fee-box">'
+      +'<div class="rank-fee-item"><div class="rank-fee-lbl">初期費用</div><div class="rank-fee-val">'+d.fees.init+'</div></div>'
+      +'<div class="rank-fee-item"><div class="rank-fee-lbl">月謝目安</div><div class="rank-fee-val">'+d.fees.month+'</div></div>'
+      +'<div class="rank-fee-item"><div class="rank-fee-lbl">年間費用</div><div class="rank-fee-val">'+d.fees.year+'</div></div>'
+      +'</div>'
+      +'<div class="rank-merit-box"><div class="rank-merit-title">✅ この習い事のメリット</div><ul class="rank-merit-list">'+merits+'</ul></div>'
+      +'<div class="rank-future-box"><div class="rank-future-title">🚀 将来につながる価値</div><div class="rank-future-text">'+d.future+'</div></div>'
+      +'<a href="'+d.url+'" target="_blank" rel="noopener" class="rank-aff-btn">🔍 無料体験・教室を探す →</a>'
+      +'</div></div>';
+  }).join('');
+}
+
+function toggleAdult(id){
+  var el = document.getElementById(id);
+  var icon = document.getElementById('icon-'+id);
+  if(el.classList.contains('open')){
+    el.classList.remove('open'); icon.classList.remove('open');
+  } else {
+    el.classList.add('open'); icon.classList.add('open');
+  }
+}
+
+// ══ 子供データ ══
+var KIDS_BOY = [
+  {icon:'⚽',name:'サッカー',age:'3歳〜',benefit:'チームワーク・体力・精神力を育む。日本代表選手の大半が幼少期から開始。',fee:'月5,000〜15,000円',future:'🌟 スポーツマンシップが社会人としての強みに。プロ・指導者の道も',url:'https://www.jfa.jp/'},
+  {icon:'🥋',name:'空手・武道',age:'4歳〜',benefit:'礼儀・集中力・自制心を育む。護身術として将来も役立つ。',fee:'月5,000〜12,000円',future:'🌟 礼儀正しさと精神力は社会人評価に直結。段位取得で自信につながる',url:'https://www.karatedo.co.jp/'},
+  {icon:'🏊',name:'水泳',age:'1歳〜',benefit:'体幹・心肺機能・体力の基礎を作る。溺れない安全スキルも。',fee:'月6,000〜12,000円',future:'🌟 水泳の体力基盤はすべてのスポーツに活きる。生涯スポーツとして継続可能',url:'https://www.central.co.jp/'},
+  {icon:'🎹',name:'ピアノ',age:'3歳〜',benefit:'集中力・記憶力・両手協調性を育む。学力との相関が研究で証明済み。',fee:'月8,000〜20,000円',future:'🌟 音楽は感情知性（EQ）を高め、リーダーシップや人間関係に好影響',url:'https://www.yamaha-ongaku.com/'},
+  {icon:'🤸',name:'体操教室',age:'2歳〜',benefit:'柔軟性・バランス感覚・身体操作の基礎。すべての運動の土台になる。',fee:'月6,000〜12,000円',future:'🌟 身体能力の基礎は学校体育・部活・スポーツすべてに有利に働く',url:'https://www.konami.com/sportsclub/'},
+  {icon:'💻',name:'プログラミング',age:'6歳〜',benefit:'論理的思考・問題解決力・創造力を育む。将来の収入に最も直結する習い事。',fee:'月10,000〜25,000円',future:'🌟 IT人材不足が続く中、プログラミングは最強のキャリアスキルになる',url:'https://techkidsschool.jp/'},
+  {icon:'🎾',name:'テニス',age:'4歳〜',benefit:'集中力・判断力・フットワーク。生涯スポーツとして大人になっても継続できる。',fee:'月8,000〜20,000円',future:'🌟 ビジネスシーンでの共通趣味として人脈形成に。健康維持にも最適',url:'https://www.konami.com/sportsclub/'},
+  {icon:'🎸',name:'ギター・バンド',age:'6歳〜',benefit:'音楽センス・表現力・仲間との協調性。バンド活動が青春の宝になる。',fee:'月8,000〜15,000円（楽器別途）',future:'🌟 音楽は感性・創造力を磨き、芸術・エンタメ分野でのキャリアも',url:'https://www.shimamura.co.jp/lesson/'},
+];
+
+var KIDS_GIRL = [
+  {icon:'🩰',name:'バレエ',age:'3歳〜',benefit:'姿勢・礼儀・表現力・柔軟性を育む。舞台発表で自信と達成感を得られる。',fee:'月8,000〜25,000円',future:'🌟 バレエで培う表現力・美しい姿勢は社会人としての第一印象に直結',url:'https://www.ballet.co.jp/'},
+  {icon:'🎹',name:'ピアノ',age:'3歳〜',benefit:'集中力・記憶力・感性を育む。学力との高い相関が研究で示されている。',fee:'月8,000〜20,000円',future:'🌟 音楽的感性は言語能力・数学力にも好影響。EQ（感情知性）が高まる',url:'https://www.yamaha-ongaku.com/'},
+  {icon:'🏊',name:'水泳',age:'1歳〜',benefit:'基礎体力・心肺機能・水難事故への対応力。風邪をひきにくい体に。',fee:'月6,000〜12,000円',future:'🌟 体力・健康の基盤を小さいうちに作ることで生涯の健康につながる',url:'https://www.central.co.jp/'},
+  {icon:'💃',name:'ダンス・HIPHOPダンス',age:'3歳〜',benefit:'表現力・リズム感・自己表現力・友達との協調性。発表会で輝ける。',fee:'月8,000〜20,000円',future:'🌟 K-POP・ダンス文化が世界的に拡大。自己表現力は社会人でも最大の武器',url:'https://www.kids-dance.jp/'},
+  {icon:'🎀',name:'英会話',age:'2歳〜',benefit:'英語脳を幼少期に育てる黄金期。リスニング力・発音が大人よりはるかに伸びやすい。',fee:'月10,000〜25,000円',future:'🌟 グローバル社会で英語力は最強の武器。幼少期習得は大人の10倍の効率',url:'https://www.eikaiwa-child.com/'},
+  {icon:'🎨',name:'絵画・造形',age:'2歳〜',benefit:'創造力・表現力・集中力を育む。自由な発想力は将来のあらゆる職業に活きる。',fee:'月5,000〜15,000円',future:'🌟 デザイン・アート・クリエイティブ系の職業は今後も需要が増す',url:'https://www.artschool.co.jp/'},
+  {icon:'🤸‍♀️',name:'新体操',age:'4歳〜',benefit:'柔軟性・バランス感覚・美しい体の動きを育む。姿勢の良さが際立つ。',fee:'月8,000〜20,000円',future:'🌟 柔軟性・体幹は健康寿命に直結。美しい立ち姿勢は社会人でも好印象',url:'https://www.konami.com/sportsclub/'},
+  {icon:'📚',name:'プログラミング',age:'6歳〜',benefit:'女性エンジニアの需要が急増中。論理的思考力・問題解決力が育つ。',fee:'月10,000〜25,000円',future:'🌟 女性×ITは今最も需要が高い人材。将来の収入・雇用安定性が高い',url:'https://techkidsschool.jp/'},
+];
+
+var currentGender = 'boy';
+
+function renderKids(){
+  var boyGrid = document.getElementById('kids-boy');
+  var girlGrid = document.getElementById('kids-girl');
+  if(!boyGrid||!girlGrid) return;
+
+  function makeCard(d, gender){
+    var btnCls = gender==='boy'?'btn-boy':'btn-girl';
+    return '<div class="kids-card">'
+      +'<div class="kids-icon">'+d.icon+'</div>'
+      +'<div class="kids-name">'+d.name+'</div>'
+      +'<div class="kids-age">開始年齢目安：'+d.age+'</div>'
+      +'<div class="kids-benefit">'+d.benefit+'</div>'
+      +'<div class="kids-fee">月謝：'+d.fee+'</div>'
+      +'<div class="kids-future">'+d.future+'</div>'
+      +'<a href="'+d.url+'" target="_blank" rel="noopener" class="kids-aff-btn '+btnCls+'">無料体験を見る →</a>'
+      +'</div>';
+  }
+
+  boyGrid.innerHTML = KIDS_BOY.map(function(d){return makeCard(d,'boy');}).join('');
+  girlGrid.innerHTML = KIDS_GIRL.map(function(d){return makeCard(d,'girl');}).join('');
+}
+
+function switchGender(g){
+  currentGender = g;
+  document.getElementById('kids-boy').style.display = g==='boy'?'grid':'none';
+  document.getElementById('kids-girl').style.display = g==='girl'?'grid':'none';
+  document.getElementById('btn-boy').className = 'gender-btn'+(g==='boy'?' active-boy':'');
+  document.getElementById('btn-girl').className = 'gender-btn'+(g==='girl'?' active-girl':'');
+}
+
+// ══ 費用シミュレーター ══
+function calcNarai(){
+  var base = parseFloat(document.getElementById('sim-type').value);
+  var years = parseInt(document.getElementById('sim-years').value);
+  var freq = parseFloat(document.getElementById('sim-freq').value);
+  var init = parseFloat(document.getElementById('sim-init').value);
+  var monthly = Math.round(base * freq / 1000) * 1000;
+  var yearly = monthly * 12;
+  var total = yearly * years + init;
+
+  document.getElementById('sim-month').textContent = '¥'+monthly.toLocaleString();
+  document.getElementById('sim-year').textContent = '¥'+yearly.toLocaleString();
+  document.getElementById('sim-total').textContent = '¥'+total.toLocaleString();
+  document.getElementById('sim-years-lbl').textContent = years+'年間合計';
+
+  var tips = [
+    '💡 毎日のコーヒー代を節約すれば月謝を賄えます。自己投資の効果は必ず返ってきます！',
+    '💡 '+years+'年継続すれば習得したスキルは一生モノ。費用対効果は計り知れません。',
+    '💡 副業・転職で年収が上がれば、習い事費用はすぐに回収できます！'
+  ];
+  document.getElementById('sim-tip').textContent = tips[Math.floor(Math.random()*tips.length)];
+}
+
+// ══ 教室検索（アフィリエイトサイト一覧）══
+var AFF_SITES = [
+  {name:'ストアカ',icon:'🎓',desc:'大人向け習い事・セミナーNo.1。オンライン・対面両対応。20万件以上の講座',url:'https://www.street-academy.com/'},
+  {name:'minimo',icon:'💆',desc:'美容・ネイル・ヘアの習い事検索。全国のサロン・スクールを探せる',url:'https://minimo.me/'},
+  {name:'アソビュー',icon:'🎪',desc:'体験・習い事の予約サイト。料理・アート・スポーツ体験を手軽に予約',url:'https://www.asoview.com/'},
+  {name:'Proof（プルーフ）',icon:'📋',desc:'フィットネス・スポーツ・文化・趣味の習い事を地域から探せる',url:'https://www.proof-a.com/'},
+  {name:'カルチャーセンター各社',icon:'🏫',desc:'朝日・読売・NHK文化センターなど全国のカルチャーセンターを比較',url:'https://www.nhk-cul.co.jp/'},
+  {name:'こどもちゃれんじ',icon:'👶',desc:'0〜6歳の幼児教育。子供の習い事・知育教材No.1ブランド',url:'https://home.benesse.ne.jp/'},
+];
+
+function renderAffSites(){
+  var el = document.getElementById('aff-site-list');
+  if(!el) return;
+  el.innerHTML = '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px">'
+    + AFF_SITES.map(function(s){
+      return '<div style="background:var(--paper);border-radius:10px;padding:12px;border:0.5px solid var(--border)">'
+        +'<div style="font-size:20px;margin-bottom:4px">'+s.icon+'</div>'
+        +'<div style="font-size:13px;font-weight:700;margin-bottom:4px">'+s.name+'</div>'
+        +'<div style="font-size:10px;color:var(--t2);margin-bottom:8px;line-height:1.4">'+s.desc+'</div>'
+        +'<a href="'+s.url+'" target="_blank" rel="noopener" '
+        +'style="display:block;padding:7px;background:linear-gradient(90deg,var(--purple),#6d28d9);'
+        +'color:#fff;border-radius:8px;font-size:11px;font-weight:700;text-align:center;text-decoration:none">'
+        +'教室を探す →</a></div>';
+    }).join('')
+    +'</div>';
+}
+
+// ══ 地域検索 ══
+function searchArea(){
+  var pref   = document.getElementById('a-pref').value;
+  var genre  = document.getElementById('a-genre').value;
+  var target = document.getElementById('a-target').value;
+
+  // 条件に応じてアフィリエイトサイトへ誘導
+  var url = 'https://www.street-academy.com/'; // ← アフィリエイトURL
+  if(genre.includes('ヨガ') || genre.includes('フィットネス')){
+    url = 'https://lava-yoga.com/'; // ← ヨガ系
+  } else if(genre.includes('英会話')){
+    url = 'https://eikaiwa.dmm.com/'; // ← 英会話
+  } else if(genre.includes('プログラミング')){
+    url = 'https://techkidsschool.jp/'; // ← プログラミング
+  } else if(genre.includes('料理')){
+    url = 'https://www.abc-cooking.co.jp/'; // ← 料理
+  }
+
+  var sep = url.indexOf('?')>=0?'&':'?';
+  var params = 'pref='+encodeURIComponent(pref)+'&genre='+encodeURIComponent(genre);
+  window.open(url+sep+params,'_blank','noopener');
+}
+
+// ══ SNSシェア ══
+function shareX(){
+  var text = encodeURIComponent('習い事ランキング2026を見てみた！大人も子供もおすすめの習い事がわかる👉');
+  var url  = encodeURIComponent(location.href);
+  window.open('https://twitter.com/intent/tweet?text='+text+'&url='+url,'_blank');
+}
+function shareLine(){
+  var url = encodeURIComponent(location.href);
+  window.open('https://social-plugins.line.me/lineit/share?url='+url,'_blank');
+}
+function copyUrl(){
+  navigator.clipboard.writeText(location.href).then(function(){
+    alert('URLをコピーしました！');
+  });
+}
+
+// ══ 初期化 ══
+document.addEventListener('DOMContentLoaded',function(){
+  renderAdultRank();
+  renderKids();
+  renderAffSites();
+  calcNarai();
+  var now = new Date();
+  var b = document.getElementById('hero-badge');
+  if(b) b.textContent = '🌟 '+now.getFullYear()+'年'+(now.getMonth()+1)+'月 おすすめ習い事ランキング';
+  var lu = document.getElementById('last-updated');
+  if(lu) lu.textContent = 'データ更新日: '+now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate();
+});
+</script>
+</body>
+</html>
