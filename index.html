@@ -2224,6 +2224,16 @@ function openCatDetail(catId){
     window.location.href = 'energy.html';
     return;
   }
+  // 教育・習い事は専用ページへ直接遷移
+  if(catId === 'education'){
+    window.location.href = 'juku.html';
+    return;
+  }
+  // 教育・習い事（学習塾）は専用ページへ直接遷移
+  if(catId === 'education'){
+    window.location.href = 'juku.html';
+    return;
+  }
   var cat = CATS.find(function(c){ return c.id === catId; });
   if(!cat){ console.error('cat not found:', catId); return; }
   _ovCat = cat; _ovMid = null; _ovLv = 1;
