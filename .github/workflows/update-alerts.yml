@@ -2,7 +2,7 @@ name: 値上げアラート毎日自動更新
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # 毎朝9時(JST)
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
@@ -11,151 +11,93 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Generate alert.json with Claude AI
+      - name: Generate alert.json
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          python3 - << 'PYEOF'
+          python3 << 'PYEOF'
           import json, urllib.request, datetime, os
 
           today = datetime.date.today()
           month = today.month
           year  = today.year
+          day   = today.day
 
-          prompt = f"""あなたは日本の物価・値上げ動向の専門アナリストです。
-{year}年{month}月{today.day}日時点の最新情報をもとに、今月・来月に値上がりが確定または予測される品目を10件リストアップしてください。
+          # f-stringを使わずformat()で組み立て
+          date_str = "{0}年{1}月{2}日".format(year, month, day)
 
-重要：中項目と小項目を必ず含めてください。中項目は値上がり率が高い順に3件、小項目は具体的な購入できる商品を2〜3件記載してください。
+          prompt = (
+            "あなたは日本の物価・値上げ動向の専門アナリストです。\n"
+            + date_str + "時点の最新情報をもとに、今月・来月に値上がりが確定または予測される品目を10件リストアップしてください。\n\n"
+            "重要：具体的な商品名・値上がり率・理由を含めてください。\n\n"
+            '以下のJSON形式のみで出力（前後にテキスト不要）：\n\n'
+            '{\n'
+            '  "updated": "' + date_str + ' 09:00",\n'
+            '  "source": "農林水産省・消費者庁・各社IR・為替データ",\n'
+            '  "alerts": [\n'
+            '    {\n'
+            '      "id": 1,\n'
+            '      "level": "critical or warn",\n'
+            '      "category": "カテゴリ名",\n'
+            '      "cat_icon": "絵文字",\n'
+            '      "name": "品目名",\n'
+            '      "date": "値上がり時期",\n'
+            '      "rate_min": 数値,\n'
+            '      "rate_max": 数値,\n'
+            '      "brands": "主要メーカー名",\n'
+            '      "reason": "値上がり理由（簡潔に）",\n'
+            '      "confidence": 1から5,\n'
+            '      "cats_ref": ["関連カテゴリID"]\n'
+            '    }\n'
+            '  ]\n'
+            '}'
+          )
 
-以下のJSON形式のみで出力（前後にテキスト不要）：
+          api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+          if not api_key:
+            print("ANTHROPIC_API_KEY not set")
+            exit(1)
 
-{{
-  "updated": "{today.strftime('%Y年%-m月%-d日')} 09:00",
-  "source": "農林水産省・消費者庁・各社IR・為替データ",
-  "alerts": [
-    {{
-      "id": 1,
-      "level": "critical",
-      "category": "食品・飲料",
-      "cat_icon": "🍱",
-      "name": "パン・小麦製品全般",
-      "brands": "山崎パン・フジパン・敷島製パン",
-      "date": "4月8日",
-      "rate_min": 8,
-      "rate_max": 12,
-      "cause": "小麦先物+14%・円安152円が直撃",
-      "action": "冷凍保存で今すぐ備蓄",
-      "action_url": "#",
-      "confidence": 5,
-      "tags": ["食品", "備蓄推奨"],
-      "mid_items": [
-        {{
-          "name": "食パン・菓子パン",
-          "icon": "🍞",
-          "rate": 12,
-          "sub_items": [
-            {{
-              "name": "山崎食パン 超芳醇 6枚切り×6袋",
-              "shops": [
-                {{"nm": "楽天",   "price": 1280, "url": "#"}},
-                {{"nm": "Amazon", "price": 1350, "url": "#"}},
-                {{"nm": "Yahoo!", "price": 1420, "url": "#"}}
-              ]
-            }},
-            {{
-              "name": "フジパン 菓子パン詰め合わせ 24個",
-              "shops": [
-                {{"nm": "Amazon", "price": 2480, "url": "#"}},
-                {{"nm": "楽天",   "price": 2580, "url": "#"}},
-                {{"nm": "Yahoo!", "price": 2650, "url": "#"}}
-              ]
-            }}
-          ]
-        }},
-        {{
-          "name": "パスタ・麺類",
-          "icon": "🍝",
-          "rate": 10,
-          "sub_items": [
-            {{
-              "name": "ディチェコ スパゲッティ 5kg",
-              "shops": [
-                {{"nm": "Amazon", "price": 2980, "url": "#"}},
-                {{"nm": "楽天",   "price": 3080, "url": "#"}},
-                {{"nm": "Yahoo!", "price": 3150, "url": "#"}}
-              ]
-            }}
-          ]
-        }},
-        {{
-          "name": "カップ麺・即席麺",
-          "icon": "🍜",
-          "rate": 8,
-          "sub_items": [
-            {{
-              "name": "日清カップヌードル 20個セット",
-              "shops": [
-                {{"nm": "Amazon", "price": 2480, "url": "#"}},
-                {{"nm": "楽天",   "price": 2580, "url": "#"}},
-                {{"nm": "Yahoo!", "price": 2650, "url": "#"}}
-              ]
-            }}
-          ]
-        }}
-      ]
-    }}
-  ]
-}}
-
-注意事項：
-- levelはcritical（確定・10%以上）またはwarn（予測・5〜10%）
-- mid_itemsは値上がり率(rate)の高い順に並べること
-- sub_itemsの商品名は実際に購入できる具体的な商品名にすること
-- 価格は現在の相場に近い値を設定すること
-- 10件のアラートを必ず出力すること
-- 今日の日付 {today.strftime('%Y年%-m月%-d日')} に合わせた最新情報を使うこと"""
-
-          req_data = json.dumps({
+          payload = json.dumps({
             "model": "claude-sonnet-4-20250514",
-            "max_tokens": 6000,
+            "max_tokens": 4096,
             "messages": [{"role": "user", "content": prompt}]
           }).encode()
 
-          api_key = os.environ.get("ANTHROPIC_API_KEY", "")
           req = urllib.request.Request(
             "https://api.anthropic.com/v1/messages",
-            data=req_data,
+            data=payload,
             headers={
-              "Content-Type": "application/json",
               "x-api-key": api_key,
-              "anthropic-version": "2023-06-01"
+              "anthropic-version": "2023-06-01",
+              "content-type": "application/json"
             }
           )
 
-          with urllib.request.urlopen(req) as res:
-            body = json.loads(res.read())
-            text = body["content"][0]["text"].strip()
-            start = text.find("{")
-            end   = text.rfind("}") + 1
-            alert_data = json.loads(text[start:end])
-
-          # mid_itemsをrate降順にソート
-          for alert in alert_data.get("alerts", []):
-            if "mid_items" in alert:
-              alert["mid_items"].sort(key=lambda x: x.get("rate", 0), reverse=True)
-
-          with open("alert.json", "w", encoding="utf-8") as f:
-            json.dump(alert_data, f, ensure_ascii=False, indent=2)
-
-          count = len(alert_data.get("alerts", []))
-          mid_count = sum(len(a.get("mid_items",[])) for a in alert_data.get("alerts",[]))
-          print(f"生成完了: {count}件のアラート、{mid_count}件の中項目")
+          try:
+            with urllib.request.urlopen(req, timeout=60) as res:
+              data = json.loads(res.read())
+              text = data["content"][0]["text"].strip()
+              # JSONのみ抽出
+              start = text.find("{")
+              end   = text.rfind("}") + 1
+              if start >= 0 and end > start:
+                alert_json = json.loads(text[start:end])
+                with open("alert.json", "w", encoding="utf-8") as f:
+                  json.dump(alert_json, f, ensure_ascii=False, indent=2)
+                print("alert.json updated:", date_str)
+              else:
+                print("JSON not found in response")
+                exit(1)
+          except Exception as e:
+            print("Error:", e)
+            exit(1)
           PYEOF
 
-      - name: Commit and push
+      - name: Commit alert.json
         run: |
-          git config user.name  "github-actions[bot]"
+          git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add alert.json
-          git diff --cached --quiet || git commit -m "🔄 alert.json 自動更新 $(date +'%Y/%m/%d') - 中項目・小項目付き"
+          git diff --staged --quiet || git commit -m "🔔 値上げアラート自動更新 $(date '+%Y-%m-%d')"
           git push
