@@ -1,0 +1,103 @@
+name: 値上げアラート毎日自動更新
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-alerts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate alert.json
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python3 << 'PYEOF'
+          import json, urllib.request, datetime, os
+
+          today = datetime.date.today()
+          date_str = "{0}年{1}月{2}日".format(today.year, today.month, today.day)
+
+          # cats_refで使えるカテゴリID一覧
+          VALID_CATS = "food,daily,drink,pc,smartphone,camera,game,hobby,provider,baby,pet,health,beauty,energy,kaden,kitchen,sports,shoes,auto,garden,construction,insurance,moving2,reform,fashion,interior,travel,books,juku,naraigoto,medical,furu,contact"
+
+          prompt = (
+            "あなたは日本の物価・値上げ動向の専門アナリストです。\n"
+            + date_str + "時点の最新情報をもとに、今月・来月に値上がりが確定または予測される品目を10件リストアップしてください。\n\n"
+            "重要：cats_refには必ず以下のIDから該当するものを選んでください：\n"
+            + VALID_CATS + "\n\n"
+            "また、各アラートにcauseフィールド（値上がり原因）を必ず含めてください。\n\n"
+            "以下のJSON形式のみで出力（前後にテキスト不要）：\n"
+            "{\n"
+            '  "updated": "' + date_str + ' 09:00",\n'
+            '  "source": "農林水産省・消費者庁・各社IR・為替データ",\n'
+            '  "alerts": [\n'
+            '    {\n'
+            '      "id": 1,\n'
+            '      "level": "critical",\n'
+            '      "category": "食品・飲料",\n'
+            '      "cat_icon": "🍱",\n'
+            '      "name": "品目名",\n'
+            '      "brands": "メーカー名",\n'
+            '      "date": "値上がり時期",\n'
+            '      "rate_min": 8,\n'
+            '      "rate_max": 12,\n'
+            '      "cause": "値上がりの原因",\n'
+            '      "action": "推奨アクション",\n'
+            '      "confidence": 5,\n'
+            '      "cats_ref": ["food"]\n'
+            '    }\n'
+            '  ]\n'
+            '}'
+          )
+
+          api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+          if not api_key:
+            print("ANTHROPIC_API_KEY not set")
+            exit(1)
+
+          payload = json.dumps({
+            "model": "claude-sonnet-4-20250514",
+            "max_tokens": 4096,
+            "messages": [{"role": "user", "content": prompt}]
+          }).encode()
+
+          req = urllib.request.Request(
+            "https://api.anthropic.com/v1/messages",
+            data=payload,
+            headers={
+              "x-api-key": api_key,
+              "anthropic-version": "2023-06-01",
+              "content-type": "application/json"
+            }
+          )
+
+          try:
+            with urllib.request.urlopen(req, timeout=60) as res:
+              data = json.loads(res.read())
+              text = data["content"][0]["text"].strip()
+              start = text.find("{")
+              end   = text.rfind("}") + 1
+              if start >= 0 and end > start:
+                alert_json = json.loads(text[start:end])
+                with open("alert.json", "w", encoding="utf-8") as f:
+                  json.dump(alert_json, f, ensure_ascii=False, indent=2)
+                print("alert.json updated:", date_str)
+              else:
+                print("JSON not found in response")
+                exit(1)
+          except Exception as e:
+            print("Error:", e)
+            exit(1)
+          PYEOF
+
+      - name: Commit alert.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add alert.json
+          git diff --staged --quiet || git commit -m "🔔 値上げアラート自動更新 $(date '+%Y-%m-%d')"
+          git push
