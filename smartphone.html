@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>スマートフォン 値上がり予測・比較ランキング 2026年4月 | 値上がり予測ドットコム</title>
+<meta name="description" content="2026年最新スマートフォンランキング・料金プラン比較・格安SIM節約シミュレーター。iPhone・Galaxy・Pixelの値上がり予測。毎月自動更新。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#002B80;--blue:#2563eb;--red:#dc2626;--green:#059669;--orange:#d97706;--purple:#7c3aed;--bg:#f0f9ff;--paper:#fff;--border:#bae6fd;--t1:#0f172a;--t2:#475569;--t3:#94a3b8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--t1);font-size:14px;line-height:1.6}
+.hdr{background:var(--navy);color:#fff;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.hdr-logo{font-size:16px;font-weight:900;text-decoration:none;color:#fff}.hdr-logo span{color:#fcd34d}
+.hdr-back{color:#fff;text-decoration:none;font-size:12px;background:rgba(255,255,255,.15);padding:5px 12px;border-radius:20px}
+.main{max-width:900px;margin:0 auto;padding:0 0 80px}
+
+/* ヒーロー */
+.hero{background:linear-gradient(135deg,#001a4d,#002B80,#003fa6);padding:24px 20px;color:#fff;position:relative;overflow:hidden;margin-bottom:0}
+.hero::before{content:'📱';position:absolute;right:-10px;top:-10px;font-size:140px;opacity:.06}
+.hero-badge{display:inline-block;background:#fcd34d;color:#001a4d;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:10px}
+.hero h1{font-size:20px;font-weight:900;line-height:1.4;margin-bottom:8px}.hero h1 span{color:#67e8f9}
+.hero-sub{font-size:11px;opacity:.8;line-height:1.7;margin-bottom:12px}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hero-stat{text-align:center;background:rgba(255,255,255,.08);border-radius:8px;padding:10px 4px}
+.hero-stat-num{font-size:16px;font-weight:900;color:#fcd34d;font-family:'DM Mono',sans-serif}
+.hero-stat-lbl{font-size:9px;opacity:.7;margin-top:2px;line-height:1.3}
+
+/* タブ */
+.tab-nav{background:#fff;border-bottom:2px solid var(--border);padding:0 16px;display:flex;gap:0;position:sticky;top:52px;z-index:90;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab-btn{white-space:nowrap;padding:12px 16px;border:none;background:none;cursor:pointer;font-size:12px;font-weight:700;color:var(--t3);border-bottom:3px solid transparent;margin-bottom:-2px;font-family:'Noto Sans JP',sans-serif;transition:all .2s}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue)}
+
+.tab-content{display:none;padding:16px}
+.tab-content.active{display:block}
+.sec-title{font-size:14px;font-weight:800;margin-bottom:12px;padding-bottom:8px;border-bottom:3px solid var(--blue)}
+.update-note{font-size:10px;color:var(--t3);text-align:right;margin-bottom:10px}
+
+/* ランキングカード */
+.rank-card{background:var(--paper);border-radius:12px;padding:14px;margin-bottom:10px;border:0.5px solid var(--border)}
+.rank-card-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.rank-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0}
+.r1{background:linear-gradient(135deg,#fcd34d,#f59e0b);color:#92400e}
+.r2{background:linear-gradient(135deg,#e2e8f0,#cbd5e1);color:#475569}
+.r3{background:linear-gradient(135deg,#fed7aa,#fb923c);color:#9a3412}
+.rn{background:#e0f2fe;color:#0369a1}
+.rank-info{flex:1}
+.rank-name{font-size:14px;font-weight:900;margin-bottom:2px}
+.rank-maker{font-size:10px;color:var(--t2)}
+.rank-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}
+.rank-tag{font-size:10px;font-weight:600;padding:2px 6px;border-radius:6px}
+.tag-hot{background:#fee2e2;color:#991b1b}
+.tag-new{background:#dbeafe;color:#1e40af}
+.tag-sale{background:#dcfce7;color:#166534}
+.tag-5g{background:#f3e8ff;color:#6d28d9}
+.rank-price{text-align:right;flex-shrink:0}
+.rank-price-now{font-size:15px;font-weight:900;color:var(--t1);font-family:'DM Mono',sans-serif}
+.rank-price-pred{font-size:10px;color:var(--red);font-weight:700}
+.rank-body{font-size:11px;color:var(--t2);line-height:1.6;margin-bottom:8px}
+.rank-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:8px}
+.rank-spec{background:#f8fafc;border-radius:6px;padding:6px;text-align:center}
+.rank-spec-lbl{font-size:9px;color:var(--t3);margin-bottom:1px}
+.rank-spec-val{font-size:11px;font-weight:700}
+.rank-aff-btn{display:block;width:100%;padding:10px;background:var(--blue);color:#fff;border-radius:8px;font-size:12px;font-weight:700;text-align:center;text-decoration:none;border:none;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .2s}
+.rank-aff-btn:hover{opacity:.9}
+
+/* 料金プランシミュレーター */
+.plan-sim{background:linear-gradient(135deg,#001a4d,#002B80);color:#fff;border-radius:12px;padding:16px;margin-bottom:16px}
+.plan-sim-title{font-size:14px;font-weight:900;margin-bottom:4px}
+.plan-sim-sub{font-size:10px;opacity:.7;margin-bottom:12px}
+.plan-q{font-size:12px;font-weight:700;margin-bottom:8px}
+.plan-opts{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:12px}
+.plan-opt{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:8px;padding:8px;cursor:pointer;font-size:11px;font-weight:600;text-align:center;font-family:'Noto Sans JP',sans-serif;color:#fff;transition:all .2s}
+.plan-opt.selected,.plan-opt:hover{background:rgba(255,255,255,.25);border-color:#fcd34d}
+.plan-result{display:none;background:rgba(255,255,255,.1);border-radius:10px;padding:12px}
+.plan-result.show{display:block}
+.plan-result-title{font-size:12px;font-weight:700;color:#fcd34d;margin-bottom:8px}
+.plan-item{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:11px}
+.plan-item:last-child{border-bottom:none}
+.plan-item-name{display:flex;align-items:center;gap:6px}
+.plan-badge{font-size:9px;font-weight:700;padding:2px 5px;border-radius:4px}
+.badge-best{background:#fcd34d;color:#001a4d}
+.badge-cheap{background:#dcfce7;color:#166534}
+.plan-price{font-weight:700;font-family:'DM Mono',sans-serif;font-size:12px}
+
+/* 格安SIMシミュレーター */
+.sim-box{background:var(--paper);border-radius:12px;padding:16px;margin-bottom:16px;border:2px solid var(--blue)}
+.sim-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.sim-lbl{font-size:11px;color:var(--t2);font-weight:600;margin-bottom:4px}
+.sim-select{width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-family:'Noto Sans JP',sans-serif;background:#fff}
+.sim-result-box{background:linear-gradient(135deg,#001a4d,#002B80);color:#fff;border-radius:10px;padding:14px}
+.sim-result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.sim-r-item{text-align:center}
+.sim-r-lbl{font-size:9px;opacity:.7;margin-bottom:2px}
+.sim-r-val{font-size:15px;font-weight:900;color:#fcd34d;font-family:'DM Mono',sans-serif}
+
+/* SIM比較カード */
+.sim-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sim-card{background:var(--paper);border-radius:10px;padding:12px;border:0.5px solid var(--border)}
+.sim-card-top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.sim-card-icon{font-size:20px}
+.sim-card-name{font-size:13px;font-weight:700}
+.sim-card-price{font-size:12px;font-weight:700;color:var(--blue);margin-bottom:4px}
+.sim-card-feat{font-size:10px;color:var(--t2);line-height:1.5;margin-bottom:8px}
+.sim-card-btn{display:block;width:100%;padding:7px;background:var(--blue);color:#fff;border-radius:7px;font-size:11px;font-weight:700;text-align:center;text-decoration:none;border:none;cursor:pointer;font-family:'Noto Sans JP',sans-serif}
+
+/* メーカー・特徴フィルター */
+.filter-section{margin-bottom:16px}
+.filter-title{font-size:12px;font-weight:700;color:var(--t2);margin-bottom:8px}
+.filter-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.filter-chip{font-size:11px;font-weight:600;padding:5px 10px;border-radius:20px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-family:'Noto Sans JP',sans-serif;color:var(--t2);transition:all .2s}
+.filter-chip.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+/* フローティングナビ */
+.float-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--border);padding:8px 16px;display:flex;gap:8px;z-index:200}
+.fn-back{flex:1;text-align:center;padding:10px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;background:#e0f2fe;color:var(--blue);border:1.5px solid var(--blue)}
+.fn-top{flex:1;text-align:center;padding:10px;border-radius:10px;font-size:13px;font-weight:700;background:var(--blue);color:#fff;border:none;cursor:pointer;font-family:'Noto Sans JP',sans-serif}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <a href="index.html" class="hdr-logo"><span>値上がり</span>予測ドットコム</a>
+  <a href="index.html#forecast-db" class="hdr-back">← 予測DB</a>
+</header>
+
+<div class="hero">
+  <div class="hero-badge" id="hero-badge">📱 2026年4月 最新情報</div>
+  <h1>スマートフォン<br><span>値上がり予測</span>・<br>比較ランキング</h1>
+  <p class="hero-sub">半導体不足・円安・輸入コスト上昇により2026年もスマホ価格は値上がり傾向。今が買い時かどうかを独自データで分析。</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">+14%</div><div class="hero-stat-lbl">2026年<br>平均値上がり予測</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">月2,000円</div><div class="hero-stat-lbl">格安SIM乗り換えで<br>節約可能額</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">毎月更新</div><div class="hero-stat-lbl">価格・ランキング<br>自動更新</div></div>
+  </div>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('ranking')">🏆 ランキング</button>
+  <button class="tab-btn" onclick="switchTab('model')">📱 機種から探す</button>
+  <button class="tab-btn" onclick="switchTab('plan')">💰 料金プラン</button>
+  <button class="tab-btn" onclick="switchTab('sim')">📶 格安SIM</button>
+</div>
+
+<div style="padding:0">
+
+<!-- ランキングタブ -->
+<div id="tab-ranking" class="tab-content active">
+  <div class="sec-title">🏆 スマートフォン 人気・注目ランキング</div>
+  <div class="update-note" id="ranking-update">🔄 データ更新日: 読み込み中...</div>
+  <div id="ranking-list"></div>
+
+  <div class="sec-title" style="margin-top:20px">⭐ 満足度ランキング</div>
+  <div class="update-note">購入者の口コミ・評価をもとに独自集計</div>
+  <div id="satisfaction-list"></div>
+
+  <div class="sec-title" style="margin-top:20px">🆕 新製品・発売予定</div>
+  <div id="newmodel-list"></div>
+
+  <div class="sec-title" style="margin-top:20px">📉 値下がり・特価情報</div>
+  <div id="sale-list"></div>
+</div>
+
+<!-- 機種から探すタブ -->
+<div id="tab-model" class="tab-content">
+  <div class="sec-title">📱 機種から探す</div>
+  <div class="filter-section">
+    <div class="filter-title">🏢 メーカーで絞り込む</div>
+    <div class="filter-chips" id="maker-filter">
+      <button class="filter-chip active" onclick="filterMaker('all',this)">すべて</button>
+      <button class="filter-chip" onclick="filterMaker('Apple',this)">Apple</button>
+      <button class="filter-chip" onclick="filterMaker('Samsung',this)">Samsung</button>
+      <button class="filter-chip" onclick="filterMaker('Google',this)">Google</button>
+      <button class="filter-chip" onclick="filterMaker('SONY',this)">SONY</button>
+      <button class="filter-chip" onclick="filterMaker('OPPO',this)">OPPO</button>
+      <button class="filter-chip" onclick="filterMaker('Xiaomi',this)">Xiaomi</button>
+      <button class="filter-chip" onclick="filterMaker('Sharp',this)">Sharp</button>
+    </div>
+    <div class="filter-title">🔍 特徴で絞り込む</div>
+    <div class="filter-chips" id="feature-filter">
+      <button class="filter-chip" onclick="filterFeature('5G',this)">5G対応</button>
+      <button class="filter-chip" onclick="filterFeature('fold',this)">折りたたみ</button>
+      <button class="filter-chip" onclick="filterFeature('esim',this)">eSIM</button>
+      <button class="filter-chip" onclick="filterFeature('sim',this)">SIMフリー</button>
+      <button class="filter-chip" onclick="filterFeature('water',this)">防水</button>
+    </div>
+  </div>
+  <div id="model-list"></div>
+</div>
+
+<!-- 料金プランタブ -->
+<div id="tab-plan" class="tab-content">
+  <div class="sec-title">💰 料金プラン比較</div>
+  <div class="plan-sim">
+    <div class="plan-sim-title">💡 あなたに最適なプランを診断</div>
+    <div class="plan-sim-sub">使い方を選ぶだけで最適プランをご案内</div>
+    <div class="plan-q" id="plan-q1">Q1. 月に使うデータ量は？</div>
+    <div class="plan-opts" id="plan-opts">
+      <button class="plan-opt" onclick="selectPlan('data','3gb')">〜3GB<br><small>ライト</small></button>
+      <button class="plan-opt" onclick="selectPlan('data','20gb')">〜20GB<br><small>標準</small></button>
+      <button class="plan-opt" onclick="selectPlan('data','50gb')">〜50GB<br><small>ヘビー</small></button>
+      <button class="plan-opt" onclick="selectPlan('data','unlimited')">無制限<br><small>使いたい放題</small></button>
+    </div>
+    <div class="plan-result" id="plan-result">
+      <div class="plan-result-title" id="plan-result-title">🎯 あなたへのおすすめプラン</div>
+      <div id="plan-result-list"></div>
+    </div>
+  </div>
+
+  <div class="sec-title">📊 全キャリア料金比較表</div>
+  <div id="plan-table"></div>
+</div>
+
+<!-- 格安SIMタブ -->
+<div id="tab-sim" class="tab-content">
+  <div class="sec-title">📶 格安SIM節約シミュレーター</div>
+  <div class="sim-box">
+    <div class="sim-grid">
+      <div>
+        <div class="sim-lbl">現在の月額料金</div>
+        <select class="sim-select" id="sim-current" onchange="calcSim()">
+          <option value="7000">〜7,000円（大手標準）</option>
+          <option value="9000" selected>〜9,000円（大手ファミリー）</option>
+          <option value="11000">〜11,000円（大手ヘビー）</option>
+          <option value="13000">〜13,000円以上</option>
+        </select>
+      </div>
+      <div>
+        <div class="sim-lbl">乗り換え先の種類</div>
+        <select class="sim-select" id="sim-new" onchange="calcSim()">
+          <option value="2178">ahamo（2,970円・20GB）</option>
+          <option value="2178" selected>楽天モバイル（3,278円・無制限）</option>
+          <option value="1628">IIJmio（1,628円〜）</option>
+          <option value="1078">povo2.0（1,078円〜）</option>
+        </select>
+      </div>
+    </div>
+    <div class="sim-result-box">
+      <div class="sim-result-grid">
+        <div class="sim-r-item"><div class="sim-r-lbl">月額節約額</div><div class="sim-r-val" id="sim-monthly">¥5,822</div></div>
+        <div class="sim-r-item"><div class="sim-r-lbl">年間節約額</div><div class="sim-r-val" id="sim-yearly">¥69,864</div></div>
+        <div class="sim-r-item"><div class="sim-r-lbl">3年間節約額</div><div class="sim-r-val" id="sim-3year">¥209,592</div></div>
+      </div>
+      <div style="font-size:10px;opacity:.7;text-align:center">※目安額です。実際の料金は使用状況により異なります</div>
+    </div>
+  </div>
+
+  <div class="sec-title">📶 格安SIM・格安スマホ 比較ランキング</div>
+  <div class="update-note" id="sim-update">🔄 毎月1日自動更新</div>
+  <div id="sim-list"></div>
+</div>
+
+</div>
+
+<p style="font-size:10px;color:var(--t2);text-align:center;padding:10px 16px">
+  ※掲載情報は<span id="last-updated"></span>時点。実際の価格・料金は公式サイトでご確認ください。<br>
+  PR：当サイトはアフィリエイトプログラムに参加しています。
+</p>
+
+<div class="float-nav">
+  <a href="index.html#forecast-db" class="fn-back">← カテゴリ一覧</a>
+  <button class="fn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲ TOP</button>
+</div>
+
+<script>
+// ── データ（毎月smartphone-data.jsonで自動更新） ──
+var SP_DATA = {
+  updated: "2026年4月",
+  ranking: [
+    {rank:1,name:"iPhone 16",maker:"Apple",tags:["tag-hot","tag-5g"],price:124800,pred_pct:14,score:4.6,
+     chip:"A18","os":"iOS 18","ram":"8GB","storage":"128GB〜","camera":"4800万画素",
+     body:"2026年最も売れているスマートフォン。A18チップで高速処理・高いカメラ性能が評価される。値上がり予測+14%で早めの購入が得策。",
+     url:"https://www.apple.com/jp/shop/buy-iphone/iphone-16"},
+    {rank:2,name:"Google Pixel 9",maker:"Google",tags:["tag-hot","tag-new"],price:99800,pred_pct:12,score:4.5,
+     chip:"Tensor G4","os":"Android 15","ram":"12GB","storage":"128GB〜","camera":"5000万画素",
+     body:"Googleの独自AIチップ搭載。写真・動画補正機能が業界最高水準。コスパも高く2位にランクイン。",
+     url:"https://store.google.com/jp/product/pixel_9"},
+    {rank:3,name:"Galaxy S25",maker:"Samsung",tags:["tag-5g","tag-new"],price:134800,pred_pct:16,score:4.4,
+     chip:"Snapdragon 8 Elite","os":"Android 15","ram":"12GB","storage":"256GB〜","camera":"5000万画素",
+     body:"Snapdragon 8 Elite搭載でゲーム・動画に強い。Galaxy AI機能が充実。値上がり予測+16%で注意。",
+     url:"https://www.samsung.com/jp/smartphones/galaxy-s25/"},
+    {rank:4,name:"iPhone 15",maker:"Apple",tags:["tag-sale"],price:99800,pred_pct:10,score:4.5,
+     chip:"A16 Bionic","os":"iOS 18","ram":"6GB","storage":"128GB〜","camera":"4800万画素",
+     body:"iPhone 16登場で値下がり中。今が買い時。パフォーマンスは現役で十分な性能を持つ。",
+     url:"https://www.apple.com/jp/shop/buy-iphone/iphone-15"},
+    {rank:5,name:"Xperia 10 VII",maker:"SONY",tags:["tag-new","tag-5g"],price:69800,pred_pct:11,score:4.2,
+     chip:"Snapdragon 6 Gen 3","os":"Android 15","ram":"8GB","storage":"128GB","camera":"4800万画素",
+     body:"軽量・コンパクトで使いやすい。SOXYブランドの音質・カメラが魅力。ミドルレンジ最良の選択肢。",
+     url:"https://www.sonymobile.com/jp/products/phones/"},
+  ],
+  satisfaction: [
+    {rank:1,name:"Google Pixel 9 Pro",maker:"Google",score:4.7,review:"カメラの夜景撮影が圧倒的。AIの補正が自然で最高。",price:159800,url:"https://store.google.com/jp/product/pixel_9_pro"},
+    {rank:2,name:"iPhone 16 Pro",maker:"Apple",score:4.6,review:"A18 Pro チップの速さが格別。カメラシステムも完成度高い。",price:179800,url:"https://www.apple.com/jp/shop/buy-iphone/iphone-16-pro"},
+    {rank:3,name:"Galaxy S25 Ultra",maker:"Samsung",score:4.5,review:"Sペンとの組み合わせで生産性が抜群。大画面も使いやすい。",price:239800,url:"https://www.samsung.com/jp/smartphones/galaxy-s25-ultra/"},
+  ],
+  newmodels: [
+    {name:"iPhone 17",maker:"Apple",release:"2026年9月予定",price_est:"〜130,000円",pred_pct:18,
+     points:["A19チップ搭載予定","デザイン刷新の噂","カメラシステム大幅強化"],url:""},
+    {name:"Galaxy Z Fold7",maker:"Samsung",release:"2026年7月予定",price_est:"〜230,000円",pred_pct:20,
+     points:["折りたたみディスプレイ第7世代","薄型化・軽量化","AI機能強化"],url:"https://www.samsung.com/jp/smartphones/galaxy-z-fold/"},
+    {name:"Google Pixel 10",maker:"Google",release:"2026年秋予定",price_est:"〜120,000円",pred_pct:15,
+     points:["Tensor G5チップ","生成AI機能の進化","カメラさらに強化"],url:""},
+  ],
+  sales: [
+    {name:"iPhone 15",maker:"Apple",price_now:89800,price_orig:124800,discount:28,url:"https://www.apple.com/jp/shop/buy-iphone/iphone-15"},
+    {name:"Galaxy A55 5G",maker:"Samsung",price_now:59800,price_orig:78000,discount:23,url:"https://www.samsung.com/jp/smartphones/galaxy-a/"},
+    {name:"Xperia 10 VI",maker:"SONY",price_now:54800,price_orig:69800,discount:21,url:"https://www.sonymobile.com/jp/"},
+    {name:"OPPO Reno11 A",maker:"OPPO",price_now:39800,price_orig:52800,discount:25,url:"https://www.oppo.com/jp/smartphones/"},
+  ],
+  sims: [
+    {rank:1,name:"楽天モバイル",price_min:1078,price_max:3278,data:"無制限",
+     features:["データ無制限プランあり","国内通話無料（Rakuten Link）","楽天ポイント貯まる"],
+     best_for:"データをたくさん使う方・楽天ユーザー",
+     url:"https://network.mobile.rakuten.co.jp/"},
+    {rank:2,name:"ahamo",price_min:2970,price_max:4950,data:"20GB〜100GB",
+     features:["ドコモ回線で品質安定","海外82ヵ国データ利用可","シンプルな料金体系"],
+     best_for:"品質重視・ドコモユーザーからの乗り換え",
+     url:"https://ahamo.com/"},
+    {rank:3,name:"IIJmio",price_min:748,price_max:2068,data:"2GB〜15GB",
+     features:["業界最安水準の月額","MVNO最大手で安心","SMS・データSIMも選べる"],
+     best_for:"とにかく安くしたい方・データ使用量が少ない方",
+     url:"https://www.iijmio.jp/"},
+    {rank:4,name:"povo2.0",price_min:0,price_max:3300,data:"使った分だけ",
+     features:["基本料金0円から","データトッピング式","使わない月は0円"],
+     best_for:"月によって使用量がバラバラな方",
+     url:"https://povo.jp/"},
+    {rank:5,name:"UQ mobile",price_min:2365,price_max:3278,data:"4GB〜15GB",
+     features:["au回線で高品質","コンビニ・店舗サポートあり","家族割・自宅セット割"],
+     best_for:"au・UQユーザー・サポートを重視する方",
+     url:"https://www.uqwimax.jp/mobile/"},
+    {rank:6,name:"mineo",price_min:250,price_max:2178,data:"1GB〜20GB",
+     features:["複数キャリア回線選択可","パケットシェア機能","マイネ王コミュニティ"],
+     best_for:"自分でキャリアを選びたい方・コミュニティ重視",
+     url:"https://mineo.jp/"},
+  ],
+  plans: {
+    "3gb": [
+      {name:"povo2.0",price:"0〜1,078円",data:"0〜3GB",note:"基本0円・トッピング式",badge:"badge-cheap"},
+      {name:"楽天モバイル",price:"1,078円",data:"3GBまで",note:"3GB超えると自動で次の段階",badge:"badge-best"},
+      {name:"IIJmio",price:"748円",data:"2GB",note:"業界最安水準"},
+    ],
+    "20gb": [
+      {name:"ahamo",price:"2,970円",data:"20GB",note:"ドコモ回線・海外OK",badge:"badge-best"},
+      {name:"楽天モバイル",price:"2,178円",data:"3〜20GB",note:"使った分だけ課金"},
+      {name:"UQ mobile",price:"2,365円",data:"15GB",note:"au回線・高品質",badge:"badge-cheap"},
+    ],
+    "50gb": [
+      {name:"楽天モバイル",price:"3,278円",data:"無制限",note:"50GB超えても無制限",badge:"badge-best"},
+      {name:"ahamo",price:"4,950円",data:"100GB",note:"ドコモ回線・安定"},
+      {name:"povo2.0",price:"3,300円",data:"60GB(180日)",note:"トッピング購入"},
+    ],
+    "unlimited": [
+      {name:"楽天モバイル",price:"3,278円",data:"無制限",note:"国内通話無料も",badge:"badge-best"},
+      {name:"ドコモ eximo",price:"7,315円〜",data:"無制限",note:"大手最高品質"},
+      {name:"SoftBankメリハリ",price:"9,625円",data:"無制限",note:"SBユーザー向け"},
+    ],
+  },
+  models: [
+    {name:"iPhone 16 Pro",maker:"Apple",features:["5G","esim","water"],price:179800,pred_pct:16,
+     url:"https://www.apple.com/jp/shop/buy-iphone/iphone-16-pro"},
+    {name:"iPhone 16",maker:"Apple",features:["5G","esim","water"],price:124800,pred_pct:14,
+     url:"https://www.apple.com/jp/shop/buy-iphone/iphone-16"},
+    {name:"iPhone 15",maker:"Apple",features:["5G","esim","water"],price:89800,pred_pct:10,
+     url:"https://www.apple.com/jp/shop/buy-iphone/iphone-15"},
+    {name:"Galaxy S25 Ultra",maker:"Samsung",features:["5G","esim","water"],price:239800,pred_pct:20,
+     url:"https://www.samsung.com/jp/smartphones/galaxy-s25-ultra/"},
+    {name:"Galaxy S25",maker:"Samsung",features:["5G","esim","water"],price:134800,pred_pct:16,
+     url:"https://www.samsung.com/jp/smartphones/galaxy-s25/"},
+    {name:"Galaxy A55 5G",maker:"Samsung",features:["5G","water"],price:59800,pred_pct:12,
+     url:"https://www.samsung.com/jp/smartphones/galaxy-a/"},
+    {name:"Google Pixel 9 Pro",maker:"Google",features:["5G","esim","water"],price:159800,pred_pct:14,
+     url:"https://store.google.com/jp/product/pixel_9_pro"},
+    {name:"Google Pixel 9",maker:"Google",features:["5G","esim","water"],price:99800,pred_pct:12,
+     url:"https://store.google.com/jp/product/pixel_9"},
+    {name:"Google Pixel 9a",maker:"Google",features:["5G","water"],price:79800,pred_pct:11,
+     url:"https://store.google.com/jp/product/pixel_9a"},
+    {name:"Xperia 1 VII",maker:"SONY",features:["5G","esim","water"],price:198000,pred_pct:18,
+     url:"https://www.sonymobile.com/jp/products/phones/"},
+    {name:"Xperia 10 VII",maker:"SONY",features:["5G","water"],price:69800,pred_pct:11,
+     url:"https://www.sonymobile.com/jp/products/phones/"},
+    {name:"AQUOS R10",maker:"Sharp",features:["5G","water"],price:198000,pred_pct:15,
+     url:"https://jp.sharp/products/"},
+    {name:"AQUOS sense9",maker:"Sharp",features:["5G","water"],price:54800,pred_pct:9,
+     url:"https://jp.sharp/products/"},
+    {name:"OPPO Reno13 A",maker:"OPPO",features:["5G","sim","water"],price:49800,pred_pct:9,
+     url:"https://www.oppo.com/jp/smartphones/"},
+    {name:"Xiaomi 15T Pro",maker:"Xiaomi",features:["5G","sim"],price:109800,pred_pct:13,
+     url:"https://www.mi.com/jp"},
+  ],
+};
+
+var _planState = {};
+
+// ── タブ切り替え ──
+function switchTab(id){
+  document.querySelectorAll('.tab-content').forEach(function(el){el.classList.remove('active')});
+  document.querySelectorAll('.tab-btn').forEach(function(el){el.classList.remove('active')});
+  document.getElementById('tab-'+id).classList.add('active');
+  var map = {ranking:0,model:1,plan:2,sim:3};
+  var btns = document.querySelectorAll('.tab-btn');
+  if(map[id]!==undefined) btns[map[id]].classList.add('active');
+}
+
+// ── ランキング描画 ──
+function renderRanking(){
+  // 人気ランキング
+  var el = document.getElementById('ranking-list');
+  if(!el) return;
+  el.innerHTML = SP_DATA.ranking.map(function(d){
+    var tags = d.tags.map(function(t){
+      var lbl = t==='tag-hot'?'🔥人気':t==='tag-new'?'🆕新製品':t==='tag-sale'?'💰値下がり':t==='tag-5g'?'5G':'';
+      return '<span class="rank-tag '+t+'">'+lbl+'</span>';
+    }).join('');
+    return '<div class="rank-card">'
+      +'<div class="rank-card-top">'
+      +'<div class="rank-num '+(d.rank<=3?'r'+d.rank:'rn')+'">'+d.rank+'</div>'
+      +'<div class="rank-info"><div class="rank-name">'+d.name+'</div>'
+      +'<div class="rank-maker">'+d.maker+'</div>'
+      +'<div class="rank-tags">'+tags+'</div></div>'
+      +'<div class="rank-price"><div class="rank-price-now">¥'+d.price.toLocaleString()+'</div>'
+      +'<div class="rank-price-pred">+'+d.pred_pct+'%予測↑</div></div>'
+      +'</div>'
+      +'<div class="rank-specs">'
+      +'<div class="rank-spec"><div class="rank-spec-lbl">チップ</div><div class="rank-spec-val">'+d.chip+'</div></div>'
+      +'<div class="rank-spec"><div class="rank-spec-lbl">RAM</div><div class="rank-spec-val">'+d.ram+'</div></div>'
+      +'<div class="rank-spec"><div class="rank-spec-lbl">カメラ</div><div class="rank-spec-val">'+d.camera+'</div></div>'
+      +'</div>'
+      +'<div class="rank-body">'+d.body+'</div>'
+      +'<a href="'+d.url+'" target="_blank" rel="noopener" class="rank-aff-btn">公式サイトで詳細・購入 →</a>'
+      +'</div>';
+  }).join('');
+
+  // 満足度ランキング
+  var el2 = document.getElementById('satisfaction-list');
+  if(el2) el2.innerHTML = SP_DATA.satisfaction.map(function(d){
+    var stars = '★'.repeat(Math.round(d.score))+'☆'.repeat(5-Math.round(d.score));
+    return '<div class="rank-card">'
+      +'<div class="rank-card-top">'
+      +'<div class="rank-num '+(d.rank<=3?'r'+d.rank:'rn')+'">'+d.rank+'</div>'
+      +'<div class="rank-info"><div class="rank-name">'+d.name+'</div>'
+      +'<div class="rank-maker">'+d.maker+'</div>'
+      +'<div style="color:#f59e0b;font-size:12px;margin-top:2px">'+stars+' '+d.score+'</div></div>'
+      +'<div class="rank-price"><div class="rank-price-now">¥'+d.price.toLocaleString()+'</div></div>'
+      +'</div>'
+      +'<div class="rank-body" style="font-style:italic">「'+d.review+'」</div>'
+      +'<a href="'+d.url+'" target="_blank" rel="noopener" class="rank-aff-btn">公式サイトで詳細・購入 →</a>'
+      +'</div>';
+  }).join('');
+
+  // 新製品
+  var el3 = document.getElementById('newmodel-list');
+  if(el3) el3.innerHTML = SP_DATA.newmodels.map(function(d){
+    var pts = d.points.map(function(p){return '<li style="font-size:11px;color:var(--t2)">'+p+'</li>';}).join('');
+    return '<div class="rank-card">'
+      +'<div class="rank-card-top">'
+      +'<div class="rank-num rn">🆕</div>'
+      +'<div class="rank-info"><div class="rank-name">'+d.name+'</div>'
+      +'<div class="rank-maker">'+d.maker+' ｜ '+d.release+'</div></div>'
+      +'<div class="rank-price"><div class="rank-price-now">'+d.price_est+'</div>'
+      +'<div class="rank-price-pred">+'+d.pred_pct+'%予測↑</div></div>'
+      +'</div>'
+      +'<ul style="padding-left:16px;margin-bottom:8px">'+pts+'</ul>'
+      +(d.url?'<a href="'+d.url+'" target="_blank" rel="noopener" class="rank-aff-btn">公式サイトで確認 →</a>':'<div style="font-size:11px;color:var(--t2);text-align:center;padding:8px">発売前のため公式情報をお待ちください</div>')
+      +'</div>';
+  }).join('');
+
+  // 値下がり
+  var el4 = document.getElementById('sale-list');
+  if(el4) el4.innerHTML = SP_DATA.sales.map(function(d){
+    return '<div class="rank-card">'
+      +'<div class="rank-card-top">'
+      +'<div class="rank-num" style="background:#dcfce7;color:#166534;font-size:12px">-'+d.discount+'%</div>'
+      +'<div class="rank-info"><div class="rank-name">'+d.name+'</div>'
+      +'<div class="rank-maker">'+d.maker+'</div></div>'
+      +'<div class="rank-price">'
+      +'<div class="rank-price-now" style="color:var(--green)">¥'+d.price_now.toLocaleString()+'</div>'
+      +'<div style="font-size:10px;color:var(--t3);text-decoration:line-through">¥'+d.price_orig.toLocaleString()+'</div>'
+      +'</div></div>'
+      +'<a href="'+d.url+'" target="_blank" rel="noopener" class="rank-aff-btn" style="background:var(--green)">今すぐ購入する →</a>'
+      +'</div>';
+  }).join('');
+
+  var u = document.getElementById('ranking-update');
+  if(u) u.textContent = '🔄 データ更新日: '+SP_DATA.updated;
+}
+
+// ── 機種から探す ──
+var _maker = 'all', _feature = '';
+function filterMaker(maker, btn){
+  _maker = maker;
+  document.querySelectorAll('#maker-filter .filter-chip').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
+  renderModels();
+}
+function filterFeature(feat, btn){
+  if(_feature === feat){ _feature=''; btn.classList.remove('active'); }
+  else {
+    _feature = feat;
+    document.querySelectorAll('#feature-filter .filter-chip').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+  }
+  renderModels();
+}
+function renderModels(){
+  var list = document.getElementById('model-list');
+  if(!list) return;
+  var filtered = SP_DATA.models.filter(function(m){
+    if(_maker !== 'all' && m.maker !== _maker) return false;
+    if(_feature && m.features.indexOf(_feature) < 0) return false;
+    return true;
+  });
+  if(!filtered.length){
+    list.innerHTML = '<div style="text-align:center;padding:20px;color:var(--t2)">該当する機種がありません</div>';
+    return;
+  }
+  list.innerHTML = filtered.map(function(m){
+    var featIcons = m.features.map(function(f){
+      var ic = f==='5G'?'📶':f==='fold'?'📐':f==='esim'?'💳':f==='sim'?'🔓':f==='water'?'💧':'';
+      return '<span style="font-size:10px;background:#e0f2fe;color:#0369a1;padding:2px 5px;border-radius:4px">'+ic+' '+f+'</span>';
+    }).join(' ');
+    return '<div class="rank-card">'
+      +'<div class="rank-card-top">'
+      +'<div class="rank-info"><div class="rank-name">'+m.name+'</div>'
+      +'<div class="rank-maker">'+m.maker+'</div>'
+      +'<div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:4px">'+featIcons+'</div></div>'
+      +'<div class="rank-price"><div class="rank-price-now">¥'+m.price.toLocaleString()+'</div>'
+      +'<div class="rank-price-pred">+'+m.pred_pct+'%予測↑</div></div>'
+      +'</div>'
+      +'<a href="'+m.url+'" target="_blank" rel="noopener" class="rank-aff-btn">公式サイトで詳細・購入 →</a>'
+      +'</div>';
+  }).join('');
+}
+
+// ── 料金プラン診断 ──
+function selectPlan(key, val){
+  _planState[key] = val;
+  document.querySelectorAll('.plan-opt').forEach(function(b){b.classList.remove('selected')});
+  event.target.classList.add('selected');
+  var plans = SP_DATA.plans[val] || [];
+  var html = plans.map(function(p){
+    return '<div class="plan-item">'
+      +'<div class="plan-item-name">'
+      +p.name
+      +(p.badge?'<span class="plan-badge '+p.badge+'">'+(p.badge==='badge-best'?'おすすめ':'最安')+'</span>':'')
+      +'</div>'
+      +'<div><div class="plan-price">'+p.price+'/月</div>'
+      +'<div style="font-size:9px;opacity:.7">'+p.data+'</div></div>'
+      +'</div>';
+  }).join('');
+  document.getElementById('plan-result-list').innerHTML = html;
+  document.getElementById('plan-result').classList.add('show');
+}
+
+// 全プラン比較表
+function renderPlanTable(){
+  var el = document.getElementById('plan-table');
+  if(!el) return;
+  var carriers = [
+    {name:'楽天モバイル',plans:['1,078円/3GB','2,178円/20GB','3,278円/無制限'],note:'国内通話無料',url:'https://network.mobile.rakuten.co.jp/'},
+    {name:'ahamo',plans:['2,970円/20GB','4,950円/100GB','—'],note:'海外82ヵ国OK',url:'https://ahamo.com/'},
+    {name:'povo2.0',plans:['0円〜','1,078円/3GB','3,300円/60日60GB'],note:'基本料0円',url:'https://povo.jp/'},
+    {name:'IIJmio',plans:['748円/2GB','1,078円/5GB','1,628円/15GB'],note:'業界最安水準',url:'https://www.iijmio.jp/'},
+    {name:'UQ mobile',plans:['2,365円/4GB','2,728円/15GB','3,278円/25GB'],note:'au高品質回線',url:'https://www.uqwimax.jp/mobile/'},
+    {name:'mineo',plans:['250円/1GB','1,298円/5GB','2,178円/20GB'],note:'3キャリア選択可',url:'https://mineo.jp/'},
+  ];
+  el.innerHTML = carriers.map(function(c){
+    return '<div class="rank-card">'
+      +'<div class="rank-card-top">'
+      +'<div class="rank-info"><div class="rank-name">'+c.name+'</div>'
+      +'<div style="font-size:10px;color:var(--t2)">'+c.note+'</div></div>'
+      +'</div>'
+      +'<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">'
+      +c.plans.map(function(p){
+        return '<span style="font-size:11px;background:#e0f2fe;color:#0369a1;padding:4px 8px;border-radius:6px;font-weight:600">'+p+'</span>';
+      }).join('')
+      +'</div>'
+      +'<a href="'+c.url+'" target="_blank" rel="noopener" class="rank-aff-btn">公式サイトで申し込む →</a>'
+      +'</div>';
+  }).join('');
+}
+
+// ── 格安SIMシミュレーター ──
+function calcSim(){
+  var cur = parseInt(document.getElementById('sim-current').value) || 9000;
+  var nw  = parseInt(document.getElementById('sim-new').value) || 2178;
+  var monthly = cur - nw;
+  var yearly = monthly * 12;
+  var three = yearly * 3;
+  document.getElementById('sim-monthly').textContent = '¥'+monthly.toLocaleString();
+  document.getElementById('sim-yearly').textContent  = '¥'+yearly.toLocaleString();
+  document.getElementById('sim-3year').textContent   = '¥'+three.toLocaleString();
+}
+
+// 格安SIM一覧
+function renderSimList(){
+  var el = document.getElementById('sim-list');
+  if(!el) return;
+  el.innerHTML = '<div class="sim-card-grid">'
+    + SP_DATA.sims.map(function(s){
+      var feats = s.features.map(function(f){
+        return '<div style="font-size:10px;color:var(--t2)">✅ '+f+'</div>';
+      }).join('');
+      return '<div class="sim-card">'
+        +'<div class="sim-card-top">'
+        +'<div class="sim-card-icon">📶</div>'
+        +'<div><div class="sim-card-name">'+s.name+'</div></div>'
+        +'</div>'
+        +'<div class="sim-card-price">'+s.price_min.toLocaleString()+'〜'+s.price_max.toLocaleString()+'円/月</div>'
+        +'<div style="font-size:10px;font-weight:600;color:var(--t2);margin-bottom:4px">データ: '+s.data+'</div>'
+        +feats
+        +'<div style="font-size:10px;color:var(--blue);margin:6px 0 8px;font-weight:600">'+s.best_for+'</div>'
+        +'<a href="'+s.url+'" target="_blank" rel="noopener" class="sim-card-btn">詳細・申し込み →</a>'
+        +'</div>';
+    }).join('')
+    +'</div>';
+}
+
+// ── smartphone-data.json から自動読み込み ──
+function loadSpData(){
+  fetch('smartphone-data.json?v='+Date.now())
+    .then(function(r){return r.json();})
+    .then(function(data){
+      if(data && data.ranking) SP_DATA.ranking = data.ranking;
+      if(data && data.satisfaction) SP_DATA.satisfaction = data.satisfaction;
+      if(data && data.newmodels) SP_DATA.newmodels = data.newmodels;
+      if(data && data.sales) SP_DATA.sales = data.sales;
+      if(data && data.sims) SP_DATA.sims = data.sims;
+      if(data && data.updated) SP_DATA.updated = data.updated;
+      renderAll();
+    })
+    .catch(function(){ renderAll(); });
+}
+
+function renderAll(){
+  renderRanking();
+  renderModels();
+  renderPlanTable();
+  renderSimList();
+  calcSim();
+  var now = new Date();
+  var b = document.getElementById('hero-badge');
+  if(b) b.textContent = '📱 '+now.getFullYear()+'年'+(now.getMonth()+1)+'月 最新情報';
+  var lu = document.getElementById('last-updated');
+  if(lu) lu.textContent = SP_DATA.updated || now.getFullYear()+'年'+(now.getMonth()+1)+'月';
+  var su = document.getElementById('sim-update');
+  if(su) su.textContent = '🔄 データ更新: '+SP_DATA.updated;
+}
+
+document.addEventListener('DOMContentLoaded', loadSpData);
+</script>
+</body>
+</html>
