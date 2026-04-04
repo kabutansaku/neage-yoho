@@ -3,104 +3,185 @@
   "source": "農林水産省・消費者庁・各社IR・為替データ",
   "alerts": [
     {
-      "id": 1, "level": "critical",
-      "category": "食品・飲料", "cat_icon": "🍱",
+      "id": 1,
+      "level": "critical",
+      "category": "食品・飲料",
+      "cat_icon": "🍱",
       "name": "パン・小麦製品全般",
       "brands": "山崎パン・フジパン・敷島製パン",
-      "date": "4月8日", "rate_min": 8, "rate_max": 12,
+      "date": "4月8日",
+      "rate_min": 8,
+      "rate_max": 12,
       "cause": "小麦先物+14%・円安152円が直撃",
-      "action": "冷凍保存で今すぐ備蓄", "action_url": "#", "confidence": 5,
-      "cats_ref": ["food"]
+      "action": "冷凍保存で今すぐ備蓄",
+      "action_url": "#",
+      "confidence": 5,
+      "cats_ref": [
+        "food"
+      ]
     },
     {
-      "id": 2, "level": "critical",
-      "category": "PC・デジタル", "cat_icon": "💻",
+      "id": 2,
+      "level": "critical",
+      "category": "PC・デジタル",
+      "cat_icon": "💻",
       "name": "PC・GPU・メモリ全般",
       "brands": "ASUS・MSI・Kingston・Samsung",
-      "date": "4月以降 継続", "rate_min": 15, "rate_max": 25,
+      "date": "4月以降 継続",
+      "rate_min": 15,
+      "rate_max": 25,
       "cause": "半導体需要急増+円安で二重高騰",
-      "action": "今月中の購入を強く推奨", "action_url": "#", "confidence": 5,
-      "cats_ref": ["pc", "smart"]
+      "action": "今月中の購入を強く推奨",
+      "action_url": "#",
+      "confidence": 5,
+      "cats_ref": [
+        "pc",
+        "smartphone"
+      ]
     },
     {
-      "id": 3, "level": "warn",
-      "category": "日用品", "cat_icon": "🧴",
+      "id": 3,
+      "level": "warn",
+      "category": "日用品",
+      "cat_icon": "🧴",
       "name": "トイレットペーパー・ティッシュ",
       "brands": "日本製紙クレシア・大王製紙・王子ネピア",
-      "date": "4月15日", "rate_min": 6, "rate_max": 10,
+      "date": "4月15日",
+      "rate_min": 6,
+      "rate_max": 10,
       "cause": "パルプ相場+5.4%・物流費上昇",
-      "action": "ケース買いでまとめ備蓄", "action_url": "#", "confidence": 5,
-      "cats_ref": ["daily"]
+      "action": "ケース買いでまとめ備蓄",
+      "action_url": "#",
+      "confidence": 5,
+      "cats_ref": [
+        "daily"
+      ]
     },
     {
-      "id": 4, "level": "warn",
-      "category": "エネルギー", "cat_icon": "⚡",
+      "id": 4,
+      "level": "warn",
+      "category": "エネルギー",
+      "cat_icon": "⚡",
       "name": "電気料金・都市ガス",
       "brands": "東京電力・東京ガス・大阪ガス他",
-      "date": "5月検針分〜", "rate_min": 5, "rate_max": 8,
+      "date": "5月検針分〜",
+      "rate_min": 5,
+      "rate_max": 8,
       "cause": "補助金終了+LNG価格上昇",
-      "action": "今すぐ電力会社乗り換え比較", "action_url": "#", "confidence": 4,
-      "cats_ref": ["energy"]
+      "action": "今すぐ電力会社乗り換え比較",
+      "action_url": "#",
+      "confidence": 4,
+      "cats_ref": [
+        "energy"
+      ]
     },
     {
-      "id": 5, "level": "critical",
-      "category": "食品・飲料", "cat_icon": "🍜",
+      "id": 5,
+      "level": "critical",
+      "category": "食品・飲料",
+      "cat_icon": "🍜",
       "name": "カップ麺5社同時値上げ",
       "brands": "日清・東洋水産・サンヨー・エースコック・マルちゃん",
-      "date": "4月1日 確定", "rate_min": 10, "rate_max": 15,
+      "date": "4月1日 確定",
+      "rate_min": 10,
+      "rate_max": 15,
       "cause": "小麦+容器+物流費 三重コスト増",
-      "action": "ケース単位でまとめ買い", "action_url": "#", "confidence": 5,
-      "cats_ref": ["food"]
+      "action": "ケース単位でまとめ買い",
+      "action_url": "#",
+      "confidence": 5,
+      "cats_ref": [
+        "food"
+      ]
     },
     {
-      "id": 6, "level": "warn",
-      "category": "家電", "cat_icon": "🏠",
+      "id": 6,
+      "level": "warn",
+      "category": "家電",
+      "cat_icon": "🏠",
       "name": "エアコン・冷蔵庫",
       "brands": "ダイキン・パナソニック・日立・三菱電機",
-      "date": "4月〜順次", "rate_min": 7, "rate_max": 12,
+      "date": "4月〜順次",
+      "rate_min": 7,
+      "rate_max": 12,
       "cause": "冷媒・基板コスト上昇+円安",
-      "action": "夏前に購入が得策", "action_url": "#", "confidence": 4,
-      "cats_ref": ["kaden"]
+      "action": "夏前に購入が得策",
+      "action_url": "#",
+      "confidence": 4,
+      "cats_ref": [
+        "kaden"
+      ]
     },
     {
-      "id": 7, "level": "warn",
-      "category": "調理用油・調味料", "cat_icon": "🫒",
+      "id": 7,
+      "level": "warn",
+      "category": "調理用油・調味料",
+      "cat_icon": "🫒",
       "name": "食用油・マヨネーズ",
       "brands": "日清オイリオ・昭和産業・キューピー",
-      "date": "4月20日", "rate_min": 10, "rate_max": 15,
+      "date": "4月20日",
+      "rate_min": 10,
+      "rate_max": 15,
       "cause": "大豆・パーム油相場の遅延転嫁",
-      "action": "まとめ買いが最も効果的", "action_url": "#", "confidence": 4,
-      "cats_ref": ["food"]
+      "action": "まとめ買いが最も効果的",
+      "action_url": "#",
+      "confidence": 4,
+      "cats_ref": [
+        "food"
+      ]
     },
     {
-      "id": 8, "level": "warn",
-      "category": "育児・ベビー", "cat_icon": "👶",
+      "id": 8,
+      "level": "warn",
+      "category": "育児・ベビー",
+      "cat_icon": "👶",
       "name": "紙おむつ・ベビー用品",
       "brands": "P&G・ユニ・チャーム・王子ネピア",
-      "date": "4月15日", "rate_min": 6, "rate_max": 9,
+      "date": "4月15日",
+      "rate_min": 6,
+      "rate_max": 9,
       "cause": "原材料+物流費上昇",
-      "action": "1〜2サイズ先まで備蓄推奨", "action_url": "#", "confidence": 5,
-      "cats_ref": ["baby"]
+      "action": "1〜2サイズ先まで備蓄推奨",
+      "action_url": "#",
+      "confidence": 5,
+      "cats_ref": [
+        "baby"
+      ]
     },
     {
-      "id": 9, "level": "warn",
-      "category": "ペット", "cat_icon": "🐾",
+      "id": 9,
+      "level": "warn",
+      "category": "ペット",
+      "cat_icon": "🐾",
       "name": "ペットフード全般",
       "brands": "ロイヤルカナン・ヒルズ・ピュリナ",
-      "date": "4月〜5月", "rate_min": 5, "rate_max": 10,
+      "date": "4月〜5月",
+      "rate_min": 5,
+      "rate_max": 10,
       "cause": "輸入原料+円安で継続上昇",
-      "action": "2〜3ヶ月分まとめ買い", "action_url": "#", "confidence": 3,
-      "cats_ref": ["pet"]
+      "action": "2〜3ヶ月分まとめ買い",
+      "action_url": "#",
+      "confidence": 3,
+      "cats_ref": [
+        "pet"
+      ]
     },
     {
-      "id": 10, "level": "warn",
-      "category": "健康・サプリ", "cat_icon": "💊",
+      "id": 10,
+      "level": "warn",
+      "category": "健康・サプリ",
+      "cat_icon": "💊",
       "name": "プロテイン・サプリメント",
       "brands": "明治・グリコ・ザバス・DHC",
-      "date": "5月以降", "rate_min": 5, "rate_max": 8,
+      "date": "5月以降",
+      "rate_min": 5,
+      "rate_max": 8,
       "cause": "輸入原料コスト増+容器値上げ",
-      "action": "2〜3ヶ月分の在庫確保", "action_url": "#", "confidence": 3,
-      "cats_ref": ["health"]
+      "action": "2〜3ヶ月分の在庫確保",
+      "action_url": "#",
+      "confidence": 3,
+      "cats_ref": [
+        "health"
+      ]
     }
   ]
 }
