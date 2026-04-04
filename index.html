@@ -2294,52 +2294,125 @@ function switchCal(btn, month){}
 function renderRanking(){
   var wrap = document.getElementById('ranking-list');
   if(!wrap) return;
-  var html = '<div class="rank-grid">';
-  for(var i=0;i<RANK_DATA.length;i++){
-    var item = RANK_DATA[i];
-    var loss = Math.round(item.spend * item.r4 / 100);
-    var lossStr = loss >= 10000
-      ? '+' + (loss/10000).toFixed(1) + '万円'
-      : '+' + loss.toLocaleString() + '円';
-    var clr = item.r4 >= 15 ? '#dc2626' : item.r4 >= 10 ? '#d97706' : '#16a34a';
-    var pct = Math.min(100, item.r4 / 25 * 100).toFixed(0);
-    var badgeCls = item.rank <= 2 ? 'gold' : item.rank <= 4 ? 'silver' : item.rank <= 6 ? 'bronze' : 'normal';
-    var stars = '★'.repeat(item.score) + '☆'.repeat(5 - item.score);
-    var urgCls  = item.weeks <= 3 ? 'urgent' : item.weeks <= 6 ? 'soon' : 'watch';
-    var urgText = item.weeks <= 3 ? '⏰ 約' + item.weeks + '週間で値上げ'
-                : item.weeks <= 6 ? '📅 約' + item.weeks + '週間後'
-                : '👀 様子見もOK';
-    var spendM = (item.spend/10000).toFixed(0);
-    html += '<div class="rank-card" data-rank="' + item.rank + '">';
-    html += '<div class="rank-card-head">';
-    html += '<div class="rank-num-badge ' + badgeCls + '">' + item.rank + '</div>';
-    html += '<div class="rank-icon-name">';
-    html += '<span class="rank-icon">' + item.icon + '</span>';
-    html += '<span class="rank-name">' + item.name + '</span>';
-    html += '</div></div>';
-    html += '<div class="rank-loss-block">';
-    html += '<div class="rank-loss-label">今買わないと損する金額（4ヶ月後）</div>';
-    html += '<div class="rank-loss-amount">' + lossStr + '</div>';
-    html += '<div class="rank-loss-basis">月' + spendM + '万円の支出が対象</div>';
-    html += '</div>';
-    html += '<div class="rank-rate-row">';
-    html += '<div class="rank-bar"><div class="rank-bar-fill" style="width:' + pct + '%;background:' + clr + '"></div></div>';
-    html += '<span class="rank-rate-val" style="color:' + clr + '">+' + item.r4 + '%</span>';
-    html += '</div>';
-    html += '<div class="rank-meta">';
-    html += '<div class="rank-stars">' + stars + '</div>';
-    html += '<span class="rank-urgency ' + urgCls + '">' + urgText + '</span>';
-    html += '</div>';
-    html += '<div class="rank-reason">' + item.reason + '</div>';
-    html += '<a href="forecast-db-new.html" class="rank-btn">最安値で今すぐ購入 →</a>';
-    html += '</div>';
+
+  // alert.jsonのデータからランキングを動的生成
+  var alerts = (typeof CURRENT_ALERTS !== 'undefined') ? CURRENT_ALERTS : [];
+  
+  // フォールバックデータ（alert.json読み込み前）
+  if(!alerts.length){
+    alerts = [
+      {name:'パン・小麦製品全般',     cat_icon:'🍱',category:'食品',
+       rate_min:8,rate_max:12,confidence:5,cause:'小麦先物+14%・円安直撃',
+       action:'冷凍保存で今すぐ備蓄',cats_ref:['food'],spend:8000},
+      {name:'PC・GPU・メモリ全般',    cat_icon:'💻',category:'デジタル',
+       rate_min:15,rate_max:25,confidence:5,cause:'半導体需要急増+円安',
+       action:'今月中の購入を強く推奨',cats_ref:['pc','smartphone'],spend:5000},
+      {name:'トイレットペーパー・ティッシュ',cat_icon:'🧴',category:'生活雑貨',
+       rate_min:6,rate_max:10,confidence:5,cause:'パルプ相場+5.4%・物流費',
+       action:'ケース買いでまとめ備蓄',cats_ref:['daily'],spend:3000},
+      {name:'エアコン・冷蔵庫',       cat_icon:'🏠',category:'家電',
+       rate_min:7,rate_max:12,confidence:4,cause:'冷媒・基板コスト+円安',
+       action:'夏前に購入が得策',cats_ref:['kaden'],spend:30000},
+      {name:'電気料金・都市ガス',      cat_icon:'⚡',category:'エネルギー',
+       rate_min:5,rate_max:8,confidence:4,cause:'補助金終了+LNG価格上昇',
+       action:'今すぐ電力会社乗り換え',cats_ref:['energy'],spend:10000},
+      {name:'食用油・マヨネーズ',      cat_icon:'🫒',category:'食品',
+       rate_min:10,rate_max:15,confidence:4,cause:'大豆・パーム油相場遅延転嫁',
+       action:'まとめ買いが最も効果的',cats_ref:['food'],spend:3000},
+    ];
   }
+
+  // 家庭支出額（月）の推定マップ
+  var SPEND_MAP = {
+    food:15000, drink:3000, daily:5000, kaden:8000, pc:3000,
+    smartphone:8000, energy:12000, kitchen:3000, baby:8000,
+    pet:5000, health:3000, beauty:3000, sports:3000, shoes:2000,
+    auto:5000, construction:2000, insurance:15000, moving2:50000,
+    travel:30000, books:1000, juku:20000, naraigoto:8000,
+    furu:5000, contact:2000, fashion:5000, interior:5000,
+    reform:50000, garden:2000, provider:5000, camera:3000,
+    game:3000, hobby:3000
+  };
+
+  // スコア計算：値上がり率の中央値×月支出で年間損失額を算出
+  var ranked = alerts.map(function(a){
+    var rate = ((a.rate_min||0) + (a.rate_max||0)) / 2;
+    // 主要cats_refの月支出を取得
+    var spend = 0;
+    (a.cats_ref||[]).forEach(function(ref){
+      spend = Math.max(spend, SPEND_MAP[ref] || 3000);
+    });
+    var yearly_loss = Math.round(spend * rate / 100 * 12);
+    return Object.assign({}, a, {rate:rate, spend:spend, yearly_loss:yearly_loss});
+  });
+  ranked.sort(function(a,b){ return b.yearly_loss - a.yearly_loss; });
+
+  var html = '<div class="rank-grid">';
+  ranked.slice(0, 8).forEach(function(item, idx){
+    var rank = idx + 1;
+    var lossStr = item.yearly_loss >= 10000
+      ? Math.round(item.yearly_loss/10000*10)/10 + '万円/年'
+      : item.yearly_loss.toLocaleString() + '円/年';
+    var clr = item.rate >= 15 ? '#dc2626' : item.rate >= 10 ? '#d97706' : '#16a34a';
+    var badgeCls = rank <= 2 ? 'gold' : rank <= 4 ? 'silver' : rank <= 6 ? 'bronze' : 'normal';
+    var urgText = item.confidence >= 5 ? '🔴 緊急' : item.confidence >= 4 ? '🟡 注意' : '🟢 注目';
+
+    var primaryRef = (item.cats_ref||[])[0] || '';
+
+    // アフィリエイトリンク（商品検索）
+    var keyword = encodeURIComponent(item.name);
+    var affLinks = [
+      '<a href="https://www.amazon.co.jp/s?k='+keyword+'" target="_blank" rel="noopener" style="flex:1;padding:7px 4px;background:#ff9900;color:#fff;border-radius:6px;font-size:10px;font-weight:700;text-align:center;text-decoration:none">Amazon</a>',
+      '<a href="https://search.rakuten.co.jp/search/mall/'+keyword+'/" target="_blank" rel="noopener" style="flex:1;padding:7px 4px;background:#bf0000;color:#fff;border-radius:6px;font-size:10px;font-weight:700;text-align:center;text-decoration:none">楽天</a>',
+      '<a href="https://shopping.yahoo.co.jp/search?p='+keyword+'" target="_blank" rel="noopener" style="flex:1;padding:7px 4px;background:#6001d2;color:#fff;border-radius:6px;font-size:10px;font-weight:700;text-align:center;text-decoration:none">Yahoo!</a>',
+    ].join('');
+
+    html += '<div class="rank-item rank-'+badgeCls+'">'
+      +'<div class="rank-num-wrap"><span class="rank-num rank-num-'+badgeCls+'">'+rank+'</span><span class="rank-urg">'+urgText+'</span></div>'
+      +'<div class="rank-body-wrap">'
+      +'<div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px">'
+      +'<span style="font-size:22px;flex-shrink:0">'+(item.cat_icon||'📦')+'</span>'
+      +'<div style="flex:1">'
+      +'<div style="font-size:13px;font-weight:800;line-height:1.3;margin-bottom:2px">'+item.name+'</div>'
+      +'<div style="font-size:10px;color:#64748b">'+item.category+'</div>'
+      +'</div>'
+      +'<div style="text-align:right;flex-shrink:0">'
+      +'<div style="font-size:16px;font-weight:900;color:'+clr+';font-family:monospace">+'+item.rate+'%</div>'
+      +'<div style="font-size:9px;color:#94a3b8">値上がり予測</div>'
+      +'</div>'
+      +'</div>'
+      +'<div style="background:#fef2f2;border-radius:8px;padding:8px 10px;margin-bottom:8px">'
+      +'<div style="font-size:10px;color:#64748b;margin-bottom:2px">📉 今すぐ買わないと年間で損する金額</div>'
+      +'<div style="font-size:18px;font-weight:900;color:#dc2626;font-family:monospace">▲'+lossStr+'</div>'
+      +'</div>'
+      +'<div style="font-size:11px;color:#475569;margin-bottom:4px">📌 原因：'+item.cause+'</div>'
+      +'<div style="font-size:11px;color:#002B80;font-weight:700;margin-bottom:8px">💡 '+item.action+'</div>'
+      +'<div style="display:flex;gap:5px;margin-bottom:6px">'+affLinks+'</div>'
+      +(primaryRef ? '<button onclick="openCatDetail(\'' + primaryRef + '\')" style="display:block;width:100%;padding:8px;background:#f0f9ff;color:#002B80;border-radius:8px;font-size:11px;font-weight:700;border:1px solid #bae6fd;cursor:pointer;font-family:inherit">📊 ' + item.cat_icon + ' 値上がり予測を詳しく見る →</button>' : '')
+      +'</div></div>';
+  });
   html += '</div>';
   wrap.innerHTML = html;
-}// ═══════════════════════════════════════
-// 価格比較タブ
-// ═══════════════════════════════════════
-let currentCompareCat='food';
+}
+
+// CURRENT_ALERTSをfetchして更新
+function loadAndRenderRanking(){
+  var basePath = location.pathname.includes('/neage-yoho/') ? '/neage-yoho/' : '/';
+  fetch(basePath + 'alert.json?v=' + Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if(data && data.alerts){
+        window.CURRENT_ALERTS = data.alerts;
+        renderRanking();
+        // アラートカードも更新
+        if(typeof renderAlerts === 'function') renderAlerts(data.alerts);
+        if(typeof updateStatsFromAlerts === 'function') updateStatsFromAlerts(data.alerts);
+      }
+    })
+    .catch(function(){ renderRanking(); });
+}
+
+
 function renderCompareTabs(){
   const wrap=document.getElementById('compare-cat-tabs');
   if(!wrap) return;
@@ -2989,6 +3062,8 @@ function updateStatsFromAlerts(alerts){
 document.addEventListener('DOMContentLoaded', function(){
   // ── ヒーロー統計を自動更新 ──
   updateHeroStats();
+  // ── ランキングをalert.jsonから毎回ロード ──
+  loadAndRenderRanking();
   // CATSがインライン埋め込み済みなので即時グリッド描画
   loadCatsData();
   loadStats();
