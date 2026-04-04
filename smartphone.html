@@ -616,7 +616,7 @@ function renderSimList(){
 
 // ── smartphone-data.json から自動読み込み ──
 function loadSpData(){
-  fetch('smartphone-data.json?v='+Date.now())
+  fetch((location.pathname.includes('/neage-yoho/')?'/neage-yoho/':'/')+'smartphone-data.json?v='+Date.now())
     .then(function(r){return r.json();})
     .then(function(data){
       if(data && data.ranking) SP_DATA.ranking = data.ranking;
@@ -636,6 +636,7 @@ function renderAll(){
   renderPlanTable();
   renderSimList();
   calcSim();
+  updateSpPlanResult();
   var now = new Date();
   var b = document.getElementById('hero-badge');
   if(b) b.textContent = '📱 '+now.getFullYear()+'年'+(now.getMonth()+1)+'月 最新情報';
@@ -645,7 +646,31 @@ function renderAll(){
   if(su) su.textContent = '🔄 データ更新: '+SP_DATA.updated;
 }
 
-document.addEventListener('DOMContentLoaded', loadSpData);
+
+function updateSpPlanResult(){
+  var el = document.getElementById('sp-data-select');
+  if(!el) return;
+  var gb = parseInt(el.value) || 20;
+  var plans = gb<=3
+    ? '🥇 povo2.0（0円〜・使った分だけ）<br>🥈 楽天モバイル（1,078円〜3GBまで）<br>🥉 IIJmio（748円〜2GB）'
+    : gb<=20
+    ? '🥇 ahamo（2,970円・20GB）<br>🥈 楽天モバイル（2,178円・〜20GB）<br>🥉 UQ mobile（2,365円・15GB）'
+    : gb<=50
+    ? '🥇 楽天モバイル（3,278円・無制限）<br>🥈 ahamo（4,950円・100GB）<br>🥉 povo2.0トッピング'
+    : '🥇 楽天モバイル（3,278円・無制限）<br>🥈 ドコモ eximo（7,315円〜）<br>🥉 SoftBankメリハリ無制限（9,625円）';
+  var res = document.getElementById('sp-plan-result');
+  if(res) res.innerHTML = plans;
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  loadSpData();
+  // URLパラメータでタブを指定できる（例: ?tab=plan）
+  var params = new URLSearchParams(location.search);
+  var tab = params.get('tab');
+  if(tab && ['ranking','model','plan','sim'].indexOf(tab) >= 0){
+    setTimeout(function(){ switchTab(tab); }, 300);
+  }
+});
 </script>
 </body>
 </html>

@@ -1,9 +1,289 @@
 {
   "updated": "2026年4月",
-  "note": "このファイルはGitHub Actionsで毎月1日に自動更新されます",
-  "ranking": [],
-  "satisfaction": [],
-  "newmodels": [],
-  "sales": [],
-  "sims": []
+  "ranking": [
+    {
+      "rank": 1,
+      "name": "iPhone 16",
+      "maker": "Apple",
+      "tags": [
+        "tag-hot",
+        "tag-5g"
+      ],
+      "price": 124800,
+      "pred_pct": 14,
+      "score": 4.6,
+      "chip": "A18",
+      "os": "iOS 18",
+      "ram": "8GB",
+      "storage": "128GB〜",
+      "camera": "4800万画素",
+      "body": "2026年最も売れているスマートフォン。A18チップで高速処理・カメラ性能が高評価。値上がり予測+14%で早めの購入推奨。",
+      "url": "https://www.apple.com/jp/shop/buy-iphone/iphone-16"
+    },
+    {
+      "rank": 2,
+      "name": "Google Pixel 9",
+      "maker": "Google",
+      "tags": [
+        "tag-hot",
+        "tag-new"
+      ],
+      "price": 99800,
+      "pred_pct": 12,
+      "score": 4.5,
+      "chip": "Tensor G4",
+      "os": "Android 15",
+      "ram": "12GB",
+      "storage": "128GB〜",
+      "camera": "5000万画素",
+      "body": "Google独自AIチップ搭載。写真・動画補正機能が業界最高水準。コスパも高く人気2位。",
+      "url": "https://store.google.com/jp/product/pixel_9"
+    },
+    {
+      "rank": 3,
+      "name": "Galaxy S25",
+      "maker": "Samsung",
+      "tags": [
+        "tag-5g",
+        "tag-new"
+      ],
+      "price": 134800,
+      "pred_pct": 16,
+      "score": 4.4,
+      "chip": "Snapdragon 8 Elite",
+      "os": "Android 15",
+      "ram": "12GB",
+      "storage": "256GB〜",
+      "camera": "5000万画素",
+      "body": "Snapdragon 8 Elite搭載でゲーム・動画に強い。Galaxy AI機能が充実。値上がり+16%で注意。",
+      "url": "https://www.samsung.com/jp/smartphones/galaxy-s25/"
+    },
+    {
+      "rank": 4,
+      "name": "iPhone 15",
+      "maker": "Apple",
+      "tags": [
+        "tag-sale"
+      ],
+      "price": 89800,
+      "pred_pct": 10,
+      "score": 4.5,
+      "chip": "A16 Bionic",
+      "os": "iOS 18",
+      "ram": "6GB",
+      "storage": "128GB〜",
+      "camera": "4800万画素",
+      "body": "iPhone 16登場で値下がり中。今が買い時。パフォーマンスは現役で十分な性能。",
+      "url": "https://www.apple.com/jp/shop/buy-iphone/iphone-15"
+    },
+    {
+      "rank": 5,
+      "name": "Xperia 10 VII",
+      "maker": "SONY",
+      "tags": [
+        "tag-new",
+        "tag-5g"
+      ],
+      "price": 69800,
+      "pred_pct": 11,
+      "score": 4.2,
+      "chip": "Snapdragon 6 Gen 3",
+      "os": "Android 15",
+      "ram": "8GB",
+      "storage": "128GB",
+      "camera": "4800万画素",
+      "body": "軽量・コンパクトで使いやすい。SONYブランドの音質・カメラが魅力。ミドルレンジ最良の選択肢。",
+      "url": "https://www.sonymobile.com/jp/products/phones/"
+    }
+  ],
+  "satisfaction": [
+    {
+      "rank": 1,
+      "name": "Google Pixel 9 Pro",
+      "maker": "Google",
+      "score": 4.7,
+      "review": "カメラの夜景撮影が圧倒的。AIの補正が自然で最高。",
+      "price": 159800,
+      "url": "https://store.google.com/jp/product/pixel_9_pro"
+    },
+    {
+      "rank": 2,
+      "name": "iPhone 16 Pro",
+      "maker": "Apple",
+      "score": 4.6,
+      "review": "A18 Proチップの速さが格別。カメラシステムも完成度高い。",
+      "price": 179800,
+      "url": "https://www.apple.com/jp/shop/buy-iphone/iphone-16-pro"
+    },
+    {
+      "rank": 3,
+      "name": "Galaxy S25 Ultra",
+      "maker": "Samsung",
+      "score": 4.5,
+      "review": "Sペンとの組み合わせで生産性が抜群。大画面も使いやすい。",
+      "price": 239800,
+      "url": "https://www.samsung.com/jp/smartphones/galaxy-s25-ultra/"
+    }
+  ],
+  "newmodels": [
+    {
+      "name": "iPhone 17",
+      "maker": "Apple",
+      "release": "2026年9月予定",
+      "price_est": "〜130,000円",
+      "pred_pct": 18,
+      "points": [
+        "A19チップ搭載予定",
+        "デザイン刷新の噂",
+        "カメラシステム大幅強化"
+      ],
+      "url": ""
+    },
+    {
+      "name": "Galaxy Z Fold7",
+      "maker": "Samsung",
+      "release": "2026年7月予定",
+      "price_est": "〜230,000円",
+      "pred_pct": 20,
+      "points": [
+        "折りたたみディスプレイ第7世代",
+        "薄型化・軽量化",
+        "AI機能強化"
+      ],
+      "url": "https://www.samsung.com/jp/smartphones/galaxy-z-fold/"
+    },
+    {
+      "name": "Google Pixel 10",
+      "maker": "Google",
+      "release": "2026年秋予定",
+      "price_est": "〜120,000円",
+      "pred_pct": 15,
+      "points": [
+        "Tensor G5チップ",
+        "生成AI機能の進化",
+        "カメラさらに強化"
+      ],
+      "url": ""
+    }
+  ],
+  "sales": [
+    {
+      "name": "iPhone 15",
+      "maker": "Apple",
+      "price_now": 89800,
+      "price_orig": 124800,
+      "discount": 28,
+      "url": "https://www.apple.com/jp/shop/buy-iphone/iphone-15"
+    },
+    {
+      "name": "Galaxy A55 5G",
+      "maker": "Samsung",
+      "price_now": 59800,
+      "price_orig": 78000,
+      "discount": 23,
+      "url": "https://www.samsung.com/jp/smartphones/galaxy-a/"
+    },
+    {
+      "name": "Xperia 10 VI",
+      "maker": "SONY",
+      "price_now": 54800,
+      "price_orig": 69800,
+      "discount": 21,
+      "url": "https://www.sonymobile.com/jp/"
+    },
+    {
+      "name": "OPPO Reno11 A",
+      "maker": "OPPO",
+      "price_now": 39800,
+      "price_orig": 52800,
+      "discount": 25,
+      "url": "https://www.oppo.com/jp/smartphones/"
+    }
+  ],
+  "sims": [
+    {
+      "rank": 1,
+      "name": "楽天モバイル",
+      "price_min": 1078,
+      "price_max": 3278,
+      "data": "無制限",
+      "features": [
+        "データ無制限プランあり",
+        "国内通話無料（Rakuten Link）",
+        "楽天ポイント貯まる"
+      ],
+      "best_for": "データをたくさん使う方・楽天ユーザー",
+      "url": "https://network.mobile.rakuten.co.jp/"
+    },
+    {
+      "rank": 2,
+      "name": "ahamo",
+      "price_min": 2970,
+      "price_max": 4950,
+      "data": "20GB〜100GB",
+      "features": [
+        "ドコモ回線で品質安定",
+        "海外82ヵ国データ利用可",
+        "シンプルな料金体系"
+      ],
+      "best_for": "品質重視・ドコモユーザーからの乗り換え",
+      "url": "https://ahamo.com/"
+    },
+    {
+      "rank": 3,
+      "name": "IIJmio",
+      "price_min": 748,
+      "price_max": 2068,
+      "data": "2GB〜15GB",
+      "features": [
+        "業界最安水準の月額",
+        "MVNO最大手で安心",
+        "SMS・データSIMも選べる"
+      ],
+      "best_for": "とにかく安くしたい方",
+      "url": "https://www.iijmio.jp/"
+    },
+    {
+      "rank": 4,
+      "name": "povo2.0",
+      "price_min": 0,
+      "price_max": 3300,
+      "data": "使った分だけ",
+      "features": [
+        "基本料金0円から",
+        "データトッピング式",
+        "使わない月は0円"
+      ],
+      "best_for": "月によって使用量がバラバラな方",
+      "url": "https://povo.jp/"
+    },
+    {
+      "rank": 5,
+      "name": "UQ mobile",
+      "price_min": 2365,
+      "price_max": 3278,
+      "data": "4GB〜15GB",
+      "features": [
+        "au回線で高品質",
+        "コンビニ・店舗サポートあり",
+        "家族割・自宅セット割"
+      ],
+      "best_for": "au・UQユーザー・サポート重視の方",
+      "url": "https://www.uqwimax.jp/mobile/"
+    },
+    {
+      "rank": 6,
+      "name": "mineo",
+      "price_min": 250,
+      "price_max": 2178,
+      "data": "1GB〜20GB",
+      "features": [
+        "複数キャリア回線選択可",
+        "パケットシェア機能",
+        "マイネ王コミュニティ"
+      ],
+      "best_for": "自分でキャリアを選びたい方",
+      "url": "https://mineo.jp/"
+    }
+  ]
 }
