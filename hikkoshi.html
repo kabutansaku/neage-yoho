@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>引越し費用 値上がり予測 2026 | 値上がり予測ドットコム</title>
+<meta name="description" content="2026年の引越し費用値上がり予測。単身・家族・距離・時期別の料金シミュレーション、業者比較、一括見積もり。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#002B80;--red:#dc2626;--orange:#d97706;--green:#059669;
+  --bg:#f1f5f9;--paper:#fff;--border:#e2e8f0;
+  --t1:#0f172a;--t2:#475569;--t3:#94a3b8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--t1);font-size:14px}
+
+/* ヘッダー */
+.hdr{background:var(--navy);color:#fff;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.hdr-logo{font-size:16px;font-weight:900;text-decoration:none;color:#fff}
+.hdr-logo span{color:#fcd34d}
+.hdr-back{color:#fff;text-decoration:none;font-size:13px;background:rgba(255,255,255,.15);padding:5px 12px;border-radius:20px}
+
+.main{max-width:900px;margin:0 auto;padding:16px 12px 80px}
+
+/* ヒーローバナー */
+.hero{background:linear-gradient(135deg,#001a5c 0%,#002B80 50%,#003fa6 100%);border-radius:16px;padding:24px 20px;margin-bottom:20px;color:#fff;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(252,211,77,.1);border-radius:50%}
+.hero-badge{display:inline-block;background:#fcd34d;color:#001a5c;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:10px}
+.hero h1{font-size:20px;font-weight:900;line-height:1.4;margin-bottom:8px}
+.hero-sub{font-size:12px;opacity:.8;line-height:1.6}
+.hero-stats{display:flex;gap:16px;margin-top:16px;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat-num{font-size:22px;font-weight:900;color:#fcd34d;font-family:'DM Mono',monospace}
+.hero-stat-lbl{font-size:10px;opacity:.7;margin-top:2px}
+
+/* セクションヘッダー */
+.sec-title{font-size:15px;font-weight:800;color:var(--t1);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--navy);display:flex;align-items:center;gap:6px}
+
+/* 予測カード */
+.predict-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px}
+@media(max-width:500px){.predict-grid{grid-template-columns:1fr}}
+.predict-card{background:var(--paper);border-radius:12px;padding:14px;border:0.5px solid var(--border)}
+.predict-card-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.predict-icon{font-size:22px}
+.predict-name{font-size:13px;font-weight:700}
+.predict-sub{font-size:10px;color:var(--t2)}
+.predict-price{font-size:11px;color:var(--t2);margin-bottom:4px}
+.predict-amount{font-family:'DM Mono',monospace;font-size:18px;font-weight:700}
+.predict-trend{font-size:11px;margin-top:6px;padding:4px 8px;border-radius:8px;display:inline-block}
+.trend-up{background:#fee2e2;color:#991b1b}
+.trend-warn{background:#fef3c7;color:#92400e}
+.predict-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin:8px 0}
+.predict-bar-fill{height:100%;border-radius:3px;background:var(--red)}
+
+/* 月別チャート */
+.month-chart{background:var(--paper);border-radius:12px;padding:16px;margin-bottom:20px}
+.month-bars{display:flex;gap:4px;align-items:flex-end;height:100px;margin:12px 0 6px}
+.month-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px}
+.month-bar{width:100%;border-radius:4px 4px 0 0;min-height:8px;transition:opacity .2s;cursor:pointer}
+.month-bar:hover{opacity:.8}
+.month-lbl{font-size:9px;color:var(--t2);text-align:center}
+.month-amt{font-size:8px;font-weight:700;text-align:center}
+.chart-legend{display:flex;gap:12px;flex-wrap:wrap;font-size:10px;color:var(--t2)}
+.legend-dot{width:8px;height:8px;border-radius:2px;display:inline-block;margin-right:3px}
+
+/* シミュレーター */
+.simulator{background:var(--paper);border-radius:12px;padding:16px;margin-bottom:20px;border:1.5px solid var(--navy)}
+.sim-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+@media(max-width:500px){.sim-grid{grid-template-columns:1fr}}
+.sim-label{font-size:11px;color:var(--t2);margin-bottom:4px;font-weight:600}
+.sim-select,.sim-input{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:'Noto Sans JP',sans-serif;background:#fff;color:var(--t1)}
+.sim-select:focus,.sim-input:focus{outline:none;border-color:var(--navy)}
+.sim-result{background:linear-gradient(135deg,#001a5c,#002B80);color:#fff;border-radius:10px;padding:16px;text-align:center}
+.sim-result-lbl{font-size:11px;opacity:.7;margin-bottom:4px}
+.sim-result-price{font-size:28px;font-weight:900;font-family:'DM Mono',monospace;color:#fcd34d}
+.sim-result-range{font-size:11px;opacity:.7;margin-top:4px}
+.sim-result-tips{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.sim-tip{background:rgba(255,255,255,.1);border-radius:8px;padding:6px 10px;font-size:10px;flex:1;min-width:100px}
+.sim-tip-icon{font-size:14px;display:block;margin-bottom:2px}
+
+/* 業者ランキング */
+.ranking-list{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.rank-card{background:var(--paper);border-radius:12px;padding:14px;display:flex;align-items:center;gap:12px;border:0.5px solid var(--border);transition:all .18s}
+.rank-card:hover{box-shadow:2px 2px 0 rgba(0,43,128,.1)}
+.rank-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0}
+.rank-1{background:#fcd34d;color:#92400e}
+.rank-2{background:#e2e8f0;color:#475569}
+.rank-3{background:#fed7aa;color:#9a3412}
+.rank-n{background:#f1f5f9;color:#64748b}
+.rank-info{flex:1}
+.rank-name{font-size:13px;font-weight:700;margin-bottom:2px}
+.rank-desc{font-size:11px;color:var(--t2)}
+.rank-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-top:4px;display:inline-block}
+.badge-cheap{background:#dcfce7;color:#166534}
+.badge-fast{background:#dbeafe;color:#1e40af}
+.badge-quality{background:#fef3c7;color:#92400e}
+.rank-btn{background:var(--navy);color:#fff;border:none;padding:8px 14px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;transition:opacity .2s}
+.rank-btn:hover{opacity:.85}
+
+/* 一括見積もりフォーム */
+.estimate-form{background:linear-gradient(135deg,#001a5c,#002B80);border-radius:16px;padding:20px;margin-bottom:20px;color:#fff}
+.form-title{font-size:16px;font-weight:900;margin-bottom:4px}
+.form-sub{font-size:11px;opacity:.7;margin-bottom:16px}
+.form-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:10px}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}}
+.form-group label{font-size:11px;opacity:.8;display:block;margin-bottom:4px}
+.form-group select,.form-group input{width:100%;padding:10px 12px;border-radius:8px;border:none;font-size:13px;font-family:'Noto Sans JP',sans-serif;background:rgba(255,255,255,.95);color:var(--t1)}
+.form-submit{width:100%;padding:14px;background:#fcd34d;color:#001a5c;border:none;border-radius:10px;font-size:15px;font-weight:900;cursor:pointer;margin-top:10px;transition:all .2s;font-family:'Noto Sans JP',sans-serif}
+.form-submit:hover{background:#fbbf24;transform:translateY(-1px)}
+.form-note{font-size:10px;opacity:.6;margin-top:8px;text-align:center}
+.affiliate-note{font-size:10px;opacity:.5;text-align:center;margin-top:6px}
+
+/* アフィリエイトボタン（設定可能） */
+.aff-section{margin-bottom:20px}
+.aff-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(max-width:400px){.aff-grid{grid-template-columns:1fr}}
+.aff-card{background:var(--paper);border-radius:10px;padding:12px;border:0.5px solid var(--border);text-align:center}
+.aff-logo{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.aff-desc{font-size:10px;color:var(--t2);margin-bottom:8px}
+.aff-btn{display:block;width:100%;padding:8px;background:var(--navy);color:#fff;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;transition:opacity .2s}
+.aff-btn:hover{opacity:.85}
+.aff-reward{font-size:10px;color:var(--green);margin-top:4px;font-weight:600}
+
+/* 節約tips */
+.tips-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:20px}
+@media(max-width:500px){.tips-grid{grid-template-columns:1fr}}
+.tip-card{background:var(--paper);border-radius:10px;padding:12px;border:0.5px solid var(--border)}
+.tip-icon{font-size:18px;margin-bottom:6px}
+.tip-title{font-size:12px;font-weight:700;margin-bottom:4px}
+.tip-desc{font-size:11px;color:var(--t2);line-height:1.5}
+.tip-save{font-size:11px;font-weight:700;color:var(--green);margin-top:4px}
+
+/* フローティングナビ */
+.float-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--border);padding:8px 16px;display:flex;gap:8px;z-index:200}
+.float-nav a{flex:1;text-align:center;padding:10px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;transition:all .2s}
+.fn-back{background:#f1f5f9;color:var(--navy);border:1.5px solid var(--navy)}
+.fn-estimate{background:var(--navy);color:#fff}
+.fn-estimate:hover{background:#001a5c}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a href="index.html" class="hdr-logo"><span>値上がり</span>予測ドットコム</a>
+  <a href="index.html#forecast-db" class="hdr-back">← 予測DB</a>
+</header>
+
+<div class="main">
+
+  <!-- ヒーロー -->
+  <div class="hero">
+    <div class="hero-badge">📊 2026年 最新予測</div>
+    <h1>引越し費用<br>値上がり予測レポート</h1>
+    <p class="hero-sub">人件費高騰・燃料費上昇・ドライバー不足により<br>引越し費用は過去最高水準。今が動き時！</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">+5%</div>
+        <div class="hero-stat-lbl">2026年 前年比</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">+40%</div>
+        <div class="hero-stat-lbl">5年前比（長距離）</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">2.2倍</div>
+        <div class="hero-stat-lbl">繁忙期/通常期</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 値上がり予測カード -->
+  <div class="sec-title">📈 引越し費用 値上がり予測</div>
+  <div class="predict-grid" id="predict-grid">
+    <!-- JS生成 -->
+  </div>
+
+  <!-- 月別料金チャート -->
+  <div class="month-chart">
+    <div class="sec-title">📅 月別料金指数（通常期比）</div>
+    <div class="month-bars" id="month-bars"></div>
+    <div class="chart-legend">
+      <span><span class="legend-dot" style="background:#dc2626"></span>繁忙期（割高）</span>
+      <span><span class="legend-dot" style="background:#16a34a"></span>閑散期（割安）</span>
+      <span><span class="legend-dot" style="background:#94a3b8"></span>通常期</span>
+    </div>
+    <p style="font-size:10px;color:var(--t2);margin-top:8px">※単身・近距離（15km以内）の相対指数。1.0=通常期平均</p>
+  </div>
+
+  <!-- シミュレーター -->
+  <div class="simulator">
+    <div class="sec-title" style="border-bottom-color:var(--navy)">🔢 引越し費用シミュレーター</div>
+    <div class="sim-grid">
+      <div>
+        <div class="sim-label">世帯人数</div>
+        <select class="sim-select" id="sim-people" onchange="calcSim()">
+          <option value="1">単身（1人）</option>
+          <option value="2">2人暮らし</option>
+          <option value="3">3人家族</option>
+          <option value="4">4人家族以上</option>
+        </select>
+      </div>
+      <div>
+        <div class="sim-label">移動距離</div>
+        <select class="sim-select" id="sim-dist" onchange="calcSim()">
+          <option value="near">同市内（〜15km）</option>
+          <option value="mid">近距離（〜50km）</option>
+          <option value="far">中距離（〜200km）</option>
+          <option value="vfar">長距離（200km超）</option>
+        </select>
+      </div>
+      <div>
+        <div class="sim-label">引越し時期</div>
+        <select class="sim-select" id="sim-season" onchange="calcSim()">
+          <option value="繁忙期">繁忙期（2〜4月）</option>
+          <option value="通常期" selected>通常期（5〜1月）</option>
+          <option value="閑散期">閑散期（9〜11月）</option>
+        </select>
+      </div>
+      <div>
+        <div class="sim-label">曜日・時間帯</div>
+        <select class="sim-select" id="sim-day" onchange="calcSim()">
+          <option value="1.0">土日・午前（標準）</option>
+          <option value="0.85">平日（-15%）</option>
+          <option value="0.75">平日・午後便（-25%）</option>
+          <option value="0.6">フリー便（-40%）</option>
+        </select>
+      </div>
+    </div>
+    <div class="sim-result">
+      <div class="sim-result-lbl">推定引越し費用（目安）</div>
+      <div class="sim-result-price" id="sim-price">¥65,000</div>
+      <div class="sim-result-range" id="sim-range">目安: ¥50,000〜¥80,000</div>
+      <div class="sim-result-tips">
+        <div class="sim-tip">
+          <span class="sim-tip-icon">📅</span>
+          <span id="sim-timing-tip">閑散期に変えると<br>最大40%お得</span>
+        </div>
+        <div class="sim-tip">
+          <span class="sim-tip-icon">📦</span>
+          <span>荷物を減らすと<br>1ランク下げられる</span>
+        </div>
+        <div class="sim-tip">
+          <span class="sim-tip-icon">🏷</span>
+          <span>一括見積もりで<br>平均2〜3万円節約</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 一括見積もりフォーム -->
+  <div class="estimate-form">
+    <div class="form-title">🚛 引越し業者 一括見積もり</div>
+    <div class="form-sub">60秒入力で最大10社から見積もりが届く・完全無料</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>引越し元（都道府県）</label>
+        <select id="from-pref">
+          <option value="">選択してください</option>
+          <option>北海道</option><option>青森県</option><option>岩手県</option><option>宮城県</option><option>秋田県</option>
+          <option>山形県</option><option>福島県</option><option>茨城県</option><option>栃木県</option><option>群馬県</option>
+          <option>埼玉県</option><option>千葉県</option><option>東京都</option><option>神奈川県</option><option>新潟県</option>
+          <option>富山県</option><option>石川県</option><option>福井県</option><option>山梨県</option><option>長野県</option>
+          <option>岐阜県</option><option>静岡県</option><option>愛知県</option><option>三重県</option><option>滋賀県</option>
+          <option>京都府</option><option>大阪府</option><option>兵庫県</option><option>奈良県</option><option>和歌山県</option>
+          <option>鳥取県</option><option>島根県</option><option>岡山県</option><option>広島県</option><option>山口県</option>
+          <option>徳島県</option><option>香川県</option><option>愛媛県</option><option>高知県</option><option>福岡県</option>
+          <option>佐賀県</option><option>長崎県</option><option>熊本県</option><option>大分県</option><option>宮崎県</option>
+          <option>鹿児島県</option><option>沖縄県</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>引越し先（都道府県）</label>
+        <select id="to-pref">
+          <option value="">選択してください</option>
+          <option>北海道</option><option>青森県</option><option>岩手県</option><option>宮城県</option><option>秋田県</option>
+          <option>山形県</option><option>福島県</option><option>茨城県</option><option>栃木県</option><option>群馬県</option>
+          <option>埼玉県</option><option>千葉県</option><option>東京都</option><option>神奈川県</option><option>新潟県</option>
+          <option>富山県</option><option>石川県</option><option>福井県</option><option>山梨県</option><option>長野県</option>
+          <option>岐阜県</option><option>静岡県</option><option>愛知県</option><option>三重県</option><option>滋賀県</option>
+          <option>京都府</option><option>大阪府</option><option>兵庫県</option><option>奈良県</option><option>和歌山県</option>
+          <option>鳥取県</option><option>島根県</option><option>岡山県</option><option>広島県</option><option>山口県</option>
+          <option>徳島県</option><option>香川県</option><option>愛媛県</option><option>高知県</option><option>福岡県</option>
+          <option>佐賀県</option><option>長崎県</option><option>熊本県</option><option>大分県</option><option>宮崎県</option>
+          <option>鹿児島県</option><option>沖縄県</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>世帯人数</label>
+        <select id="est-people">
+          <option>単身（1人）</option>
+          <option>2人</option>
+          <option>3人</option>
+          <option>4人以上</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>引越し希望時期</label>
+        <select id="est-month">
+          <option>できるだけ早く</option>
+          <option>2026年4月</option><option>2026年5月</option><option>2026年6月</option>
+          <option>2026年7月</option><option>2026年8月</option><option>2026年9月</option>
+          <option>2026年10月</option><option>2026年11月</option><option>2026年12月</option>
+          <option>2027年1月</option><option>2027年2月</option><option>2027年3月</option>
+        </select>
+      </div>
+    </div>
+    <!-- アフィリエイトURLをここに設定 -->
+    <!-- 引越し侍: https://hikkoshizamurai.jp/?bid=XXXXX -->
+    <!-- SUUMO引越し: https://hikkoshi.suumo.jp/lp/?XXXXX -->
+    <button class="form-submit" onclick="submitEstimate()">
+      🔍 無料で一括見積もりをスタート
+    </button>
+    <p class="form-note">※入力後、提携業者から見積もりが届きます（完全無料）</p>
+    <p class="affiliate-note">PR：当サイトはアフィリエイトプログラムに参加しています</p>
+  </div>
+
+  <!-- 業者ランキング -->
+  <div class="sec-title">🏆 引越し業者 比較ランキング 2026</div>
+  <div class="ranking-list" id="ranking-list">
+    <!-- JS生成 -->
+  </div>
+
+  <!-- アフィリエイトリンク集 -->
+  <div class="aff-section">
+    <div class="sec-title">🔗 引越し見積もりサービス比較</div>
+    <div class="aff-grid" id="aff-grid">
+      <!-- JS生成 -->
+    </div>
+  </div>
+
+  <!-- 節約Tips -->
+  <div class="sec-title">💡 引越し費用を安くする方法</div>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-icon">📅</div>
+      <div class="tip-title">時期をずらす</div>
+      <div class="tip-desc">3月から5月へ変更するだけで繁忙期割増がなくなる</div>
+      <div class="tip-save">節約効果：最大▲5万円</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">⏰</div>
+      <div class="tip-title">午後・フリー便を選ぶ</div>
+      <div class="tip-desc">時間帯を午後やフリー便にするだけで2〜3割安くなる</div>
+      <div class="tip-save">節約効果：最大▲3万円</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">📦</div>
+      <div class="tip-title">荷物を減らす</div>
+      <div class="tip-desc">引越し前に不用品を処分してトラックサイズを小さくする</div>
+      <div class="tip-save">節約効果：最大▲2万円</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">📋</div>
+      <div class="tip-title">一括見積もりで比較</div>
+      <div class="tip-desc">複数社を比較すると相見積もりで値下げ交渉しやすい</div>
+      <div class="tip-save">節約効果：最大▲3万円</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">📅</div>
+      <div class="tip-title">2ヶ月前に予約</div>
+      <div class="tip-desc">早期予約で希望日・業者を確保でき高額回避できる</div>
+      <div class="tip-save">繁忙期は特に重要</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🏷</div>
+      <div class="tip-title">平日に引越す</div>
+      <div class="tip-desc">土日より平日の方が業者の手が空いており割安になる</div>
+      <div class="tip-save">節約効果：▲15%前後</div>
+    </div>
+  </div>
+
+  <p id="last-updated" style="font-size:10px;color:var(--t2);text-align:center;margin-top:8px;margin-bottom:4px"></p>
+  <p style="font-size:10px;color:var(--t2);text-align:center;margin-top:0">
+    ※掲載データは過去の統計・各種調査を元にした予測値です。実際の費用は条件により大きく異なります。<br>
+    PR：当サイトはアフィリエイトプログラムに参加しています。
+  </p>
+</div>
+
+<!-- フローティングナビ -->
+<div class="float-nav">
+  <a href="index.html#forecast-db" class="float-nav a fn-back">← カテゴリ一覧</a>
+  <a href="#" onclick="document.querySelector('.estimate-form').scrollIntoView({behavior:'smooth'});return false" class="float-nav a fn-estimate">🚛 無料見積もり</a>
+</div>
+
+<script>
+// ══ データ定義 ══
+var PREDICT_DATA = [
+  {icon:'🧍',name:'単身 近距離',sub:'同市内・15km以内',
+   now:66000, predict4:70000, predict12:73000,
+   season:{繁忙期:1.9,通常期:1.0,閑散期:0.8}, risk:'h',
+   trend:'🚨急騰', trendCls:'trend-up', riseRate:6.0},
+  {icon:'🧍',name:'単身 中距離',sub:'50〜200km',
+   now:85000, predict4:90000, predict12:96000,
+   season:{繁忙期:2.0,通常期:1.0,閑散期:0.8}, risk:'h',
+   trend:'🔴加速', trendCls:'trend-up', riseRate:8.0},
+  {icon:'👨‍👩‍👦',name:'家族 近距離',sub:'2〜4人・15km以内',
+   now:130000, predict4:140000, predict12:150000,
+   season:{繁忙期:1.8,通常期:1.0,閑散期:0.85}, risk:'h',
+   trend:'🚨急騰', trendCls:'trend-up', riseRate:7.0},
+  {icon:'👨‍👩‍👦',name:'家族 長距離',sub:'200km超',
+   now:250000, predict4:270000, predict12:300000,
+   season:{繁忙期:2.2,通常期:1.0,閑散期:0.85}, risk:'h',
+   trend:'🚨急騰', trendCls:'trend-up', riseRate:12.0},
+];
+
+// 月別指数データ（1=通常期平均）
+var MONTH_DATA = [
+  {m:'1月',idx:0.95,c:'#16a34a'},{m:'2月',idx:1.25,c:'#d97706'},
+  {m:'3月',idx:1.90,c:'#dc2626'},{m:'4月',idx:1.40,c:'#d97706'},
+  {m:'5月',idx:1.05,c:'#94a3b8'},{m:'6月',idx:0.90,c:'#16a34a'},
+  {m:'7月',idx:0.92,c:'#16a34a'},{m:'8月',idx:1.00,c:'#94a3b8'},
+  {m:'9月',idx:0.85,c:'#16a34a'},{m:'10月',idx:0.82,c:'#16a34a'},
+  {m:'11月',idx:0.88,c:'#16a34a'},{m:'12月',idx:0.95,c:'#94a3b8'},
+];
+
+// 業者ランキングデータ
+var RANK_DATA = [
+  {rank:1,name:'引越し侍',desc:'397社提携・一括見積もり最大手。電話なしで比較可能',
+   badge:'最安値',badgeCls:'badge-cheap',
+   // ↓ アフィリエイトURLをここに設定
+   url:'https://hikkoshizamurai.jp/',
+   point:'相見積もりで平均2〜3万円節約できる'},
+  {rank:2,name:'SUUMO引越し',desc:'リクルート運営・口コミ充実。優良業者が多い',
+   badge:'高品質',badgeCls:'badge-quality',
+   url:'https://hikkoshi.suumo.jp/',
+   point:'口コミ重視の方・サービス品質優先'},
+  {rank:3,name:'引越し革命',desc:'最安値保証・価格交渉サポートあり',
+   badge:'激安',badgeCls:'badge-cheap',
+   url:'https://hikkoshi-kakumei.com/',
+   point:'とにかく安さ重視の方に'},
+  {rank:4,name:'ミツモア',desc:'700万件超のデータで相場が明確。即日対応',
+   badge:'即日',badgeCls:'badge-fast',
+   url:'https://meetsmore.com/services/moving',
+   point:'急ぎの引越し・データ重視の方に'},
+  {rank:5,name:'価格.com引越し',desc:'比較サイト最大手・透明性高い見積もり',
+   badge:'比較',badgeCls:'badge-fast',
+   url:'https://hikkoshi.kakaku.com/hikkoshi/',
+   point:'料金の透明性・比較のしやすさ重視'},
+];
+
+// アフィリエイトリンク
+var AFF_DATA = [
+  {name:'引越し侍',desc:'一括見積もりNo.1\n397社提携',
+   url:'https://hikkoshizamurai.jp/',
+   reward:'成約時: 〜5,000円'},
+  {name:'SUUMO引越し',desc:'リクルート運営\n優良業者多数',
+   url:'https://hikkoshi.suumo.jp/',
+   reward:'申込時: 〜2,000円'},
+  {name:'ミツモア',desc:'700万件の実績\n相場が明確',
+   url:'https://meetsmore.com/services/moving',
+   reward:'申込時: 〜1,500円'},
+  {name:'価格.com引越し',desc:'比較サイト最大手\n透明な見積もり',
+   url:'https://hikkoshi.kakaku.com/hikkoshi/',
+   reward:'申込時: 〜1,000円'},
+];
+
+// ══ 描画関数 ══
+function renderPredict(){
+  var grid = document.getElementById('predict-grid');
+  if(!grid) return;
+  grid.innerHTML = PREDICT_DATA.map(function(d){
+    var pct = Math.min(100, d.riseRate/20*100).toFixed(0);
+    var diff4 = Math.round((d.predict4 - d.now)/1000);
+    return '<div class="predict-card">'
+      +'<div class="predict-card-head">'
+      +'<span class="predict-icon">'+d.icon+'</span>'
+      +'<div><div class="predict-name">'+d.name+'</div>'
+      +'<div class="predict-sub">'+d.sub+'</div></div>'
+      +'</div>'
+      +'<div class="predict-price">現在の相場</div>'
+      +'<div class="predict-amount" style="color:#002B80">¥'+d.now.toLocaleString()+'〜</div>'
+      +'<div class="predict-bar"><div class="predict-bar-fill" style="width:'+pct+'%"></div></div>'
+      +'<div class="predict-price" style="margin-top:6px">4ヶ月後の予測</div>'
+      +'<div class="predict-amount" style="color:#dc2626">¥'+d.predict4.toLocaleString()+'〜 <small style="font-size:11px">(+'+diff4+'千円)</small></div>'
+      +'<div class="predict-trend '+d.trendCls+'">'+d.trend+' 年間+'+d.riseRate+'%予測</div>'
+      +'</div>';
+  }).join('');
+}
+
+function renderMonthChart(){
+  var bars = document.getElementById('month-bars');
+  if(!bars) return;
+  var maxIdx = Math.max.apply(null, MONTH_DATA.map(function(d){return d.idx;}));
+  bars.innerHTML = MONTH_DATA.map(function(d){
+    var h = Math.round(d.idx/maxIdx*90);
+    return '<div class="month-col">'
+      +'<div class="month-amt" style="color:'+d.c+'">'+d.idx+'</div>'
+      +'<div class="month-bar" style="height:'+h+'px;background:'+d.c+'" title="'+d.m+': '+d.idx+'倍"></div>'
+      +'<div class="month-lbl">'+d.m+'</div>'
+      +'</div>';
+  }).join('');
+}
+
+function renderRanking(){
+  var list = document.getElementById('ranking-list');
+  if(!list) return;
+  list.innerHTML = RANK_DATA.map(function(d){
+    var rankCls = d.rank<=3 ? 'rank-'+d.rank : 'rank-n';
+    return '<div class="rank-card">'
+      +'<div class="rank-num '+rankCls+'">'+d.rank+'</div>'
+      +'<div class="rank-info">'
+      +'<div class="rank-name">'+d.name+'</div>'
+      +'<div class="rank-desc">'+d.desc+'</div>'
+      +'<span class="rank-badge '+d.badgeCls+'">'+d.badge+'</span>'
+      +' <span style="font-size:10px;color:#64748b">'+d.point+'</span>'
+      +'</div>'
+      // アフィリエイトURLを設定
+      +'<a href="'+d.url+'" target="_blank" rel="noopener" class="rank-btn">見積もり →</a>'
+      +'</div>';
+  }).join('');
+}
+
+function renderAff(){
+  var grid = document.getElementById('aff-grid');
+  if(!grid) return;
+  grid.innerHTML = AFF_DATA.map(function(d){
+    return '<div class="aff-card">'
+      +'<div class="aff-logo">'+d.name+'</div>'
+      +'<div class="aff-desc">'+d.desc.replace('\n','<br>')+'</div>'
+      +'<a href="'+d.url+'" target="_blank" rel="noopener" class="aff-btn">無料で見積もり</a>'
+      +'<div class="aff-reward">'+d.reward+'</div>'
+      +'</div>';
+  }).join('');
+}
+
+// ══ シミュレーター ══
+var SIM_BASE = {
+  '1': {near:66000, mid:85000, far:120000, vfar:160000},
+  '2': {near:110000, mid:140000, far:190000, vfar:260000},
+  '3': {near:150000, mid:190000, far:250000, vfar:340000},
+  '4': {near:200000, mid:250000, far:320000, vfar:440000},
+};
+var SEASON_MUL = {繁忙期:1.9, 通常期:1.0, 閑散期:0.82};
+
+function calcSim(){
+  var people = document.getElementById('sim-people').value;
+  var dist = document.getElementById('sim-dist').value;
+  var season = document.getElementById('sim-season').value;
+  var dayMul = parseFloat(document.getElementById('sim-day').value);
+
+  var base = SIM_BASE[people][dist];
+  var seasonMul = SEASON_MUL[season];
+  var price = Math.round(base * seasonMul * dayMul / 1000) * 1000;
+  var low = Math.round(price * 0.75 / 1000) * 1000;
+  var high = Math.round(price * 1.35 / 1000) * 1000;
+
+  document.getElementById('sim-price').textContent = '¥' + price.toLocaleString();
+  document.getElementById('sim-range').textContent = '目安: ¥'+low.toLocaleString()+'〜¥'+high.toLocaleString();
+
+  // タイミングtip
+  var tip = '';
+  if(season === '繁忙期'){
+    var cheaper = Math.round(price*(1-1/1.9)/1000)*1000;
+    tip = '通常期に変えると約▲¥'+cheaper.toLocaleString()+'節約可能';
+  } else if(season === '通常期'){
+    var cheaper2 = Math.round(price*(1-0.82)/1000)*1000;
+    tip = '閑散期に変えると約▲¥'+cheaper2.toLocaleString()+'節約可能';
+  } else {
+    tip = '最もお得な時期です！早めに予約を';
+  }
+  document.getElementById('sim-timing-tip').textContent = tip;
+}
+
+// 見積もり送信（アフィリエイトサイトへ誘導）
+function submitEstimate(){
+  var from = document.getElementById('from-pref').value;
+  var to = document.getElementById('to-pref').value;
+  if(!from || !to){
+    alert('引越し元と引越し先を選択してください');
+    return;
+  }
+  // ↓ アフィリエイトURLを設定（例：引越し侍）
+  // var affUrl = 'https://hikkoshizamurai.jp/?bid=XXXXX&from='+encodeURIComponent(from)+'&to='+encodeURIComponent(to);
+  var affUrl = 'https://hikkoshizamurai.jp/'; // ← ASP承認後に変更
+  window.open(affUrl, '_blank', 'noopener');
+}
+
+// ══ 初期化 ══
+document.addEventListener('DOMContentLoaded', function(){
+  // hikkoshi-data.jsonから最新データを取得して自動更新
+  fetch('hikkoshi-data.json?v=' + Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      updateFromJson(data);
+    })
+    .catch(function(){
+      // fetchできない場合はデフォルトデータで表示
+      console.log('データJSON取得失敗。デフォルトデータを使用');
+    })
+    .finally(function(){
+      renderPredict();
+      renderMonthChart();
+      renderRanking();
+      renderAff();
+      calcSim();
+      updateLastUpdated();
+    });
+});
+
+function updateFromJson(data){
+  if(!data || !data.predictions) return;
+
+  // 更新日表示
+  if(data.updated){
+    var el = document.getElementById('last-updated');
+    if(el) el.textContent = 'データ更新日: ' + data.updated;
+  }
+
+  // 月別指数を更新
+  if(data.month_index){
+    var MONTH_LABELS = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+    var MONTH_COLORS = {1:'#16a34a',2:'#d97706',3:'#dc2626',4:'#d97706',5:'#94a3b8',6:'#16a34a',7:'#16a34a',8:'#94a3b8',9:'#16a34a',10:'#16a34a',11:'#16a34a',12:'#94a3b8'};
+    MONTH_DATA = Object.keys(data.month_index).map(function(k){
+      return {m:MONTH_LABELS[parseInt(k)-1], idx:data.month_index[k], c:MONTH_COLORS[parseInt(k)]};
+    });
+  }
+
+  // 予測データを更新
+  var preds = data.predictions;
+  PREDICT_DATA = [
+    {icon:'🧍',name:preds.single_near.label,sub:preds.single_near.sub,
+     now:preds.single_near.now, predict4:preds.single_near.m4, predict12:preds.single_near.m12,
+     riseRate:preds.single_near.rise_rate, trend:'🔴加速', trendCls:'trend-up'},
+    {icon:'🧍',name:preds.single_far.label,sub:preds.single_far.sub,
+     now:preds.single_far.now, predict4:preds.single_far.m4, predict12:preds.single_far.m12,
+     riseRate:preds.single_far.rise_rate, trend:'🚨急騰', trendCls:'trend-up'},
+    {icon:'👨‍👩‍👦',name:preds.family_near.label,sub:preds.family_near.sub,
+     now:preds.family_near.now, predict4:preds.family_near.m4, predict12:preds.family_near.m12,
+     riseRate:preds.family_near.rise_rate, trend:'🔴加速', trendCls:'trend-up'},
+    {icon:'👨‍👩‍👦',name:preds.family_far.label,sub:preds.family_far.sub,
+     now:preds.family_far.now, predict4:preds.family_far.m4, predict12:preds.family_far.m12,
+     riseRate:preds.family_far.rise_rate, trend:'🚨急騰', trendCls:'trend-up'},
+  ];
+
+  // 現在の季節インデックスをシミュレーターに反映
+  if(data.current_season_index){
+    var curMonth = data.month || new Date().getMonth()+1;
+    var seasonName = curMonth>=2&&curMonth<=4?'繁忙期':curMonth>=9&&curMonth<=11?'閑散期':'通常期';
+    var sel = document.getElementById('sim-season');
+    if(sel) sel.value = seasonName;
+  }
+}
+
+function updateLastUpdated(){
+  // hero-badgeの日付を今日に更新
+  var badge = document.querySelector('.hero-badge');
+  if(badge){
+    var now = new Date();
+    badge.textContent = '📊 ' + now.getFullYear() + '年' + (now.getMonth()+1) + '月 最新予測';
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+name: 引越し費用データ自動更新
+
+on:
+  schedule:
+    # 毎月1日 朝9時（JST）に自動実行
+    - cron: '0 0 1 * *'
+  workflow_dispatch:  # 手動実行も可能
+
+jobs:
+  update-hikkoshi-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: 引越し費用データを自動更新
+        run: |
+          python3 << 'PYEOF'
+          import json, math, datetime
+          
+          today = datetime.date.today()
+          month = today.month
+          year = today.year
+          
+          # ══ 現在月に基づく季節係数 ══
+          SEASON = {
+            1:0.95, 2:1.25, 3:1.90, 4:1.40,
+            5:1.05, 6:0.90, 7:0.92, 8:1.00,
+            9:0.85, 10:0.82, 11:0.88, 12:0.95
+          }
+          
+          # ══ ベース料金（2024年実績ベース） ══
+          BASE = {
+            "single_near":  66000,
+            "single_mid":   85000,
+            "single_far":  120000,
+            "single_vfar": 160000,
+            "family_near": 130000,
+            "family_mid":  190000,
+            "family_far":  250000,
+            "family_vfar": 350000,
+          }
+          
+          # ══ 年次値上がりロジック ══
+          # 2014年ベースからの年次上昇率（実績ベース）
+          base_year = 2014
+          annual_rise_single_near  = 0.045  # 4.5%/年（近距離）
+          annual_rise_single_far   = 0.065  # 6.5%/年（長距離）
+          annual_rise_family_near  = 0.050  # 5.0%/年
+          annual_rise_family_far   = 0.075  # 7.5%/年（長距離は急騰）
+          
+          years_elapsed = year - base_year
+          
+          # 予測料金計算（線形+加速度を考慮）
+          def predict(base, rise_rate, months_ahead, season_mul=1.0):
+              # 線形トレンド
+              linear = base * (1 + rise_rate * (years_elapsed + months_ahead/12))
+              # 加速度補正（近年の急騰を反映）
+              accel = 1.0 + max(0, years_elapsed - 8) * 0.005
+              # 繁忙期係数
+              target_month = ((month - 1 + months_ahead) % 12) + 1
+              season = SEASON[target_month]
+              return int(round(linear * accel * season / 1000) * 1000)
+          
+          current_season = SEASON[month]
+          
+          data = {
+            "updated": today.isoformat(),
+            "month": month,
+            "year": year,
+            "current_season_index": current_season,
+            "predictions": {
+              "single_near": {
+                "label": "単身 近距離",
+                "sub": "同市内・15km以内",
+                "now": int(round(BASE["single_near"] * current_season / 1000) * 1000),
+                "m4":  predict(BASE["single_near"],  annual_rise_single_near, 4),
+                "m12": predict(BASE["single_near"],  annual_rise_single_near, 12),
+                "rise_rate": round(annual_rise_single_near * 100, 1),
+              },
+              "single_far": {
+                "label": "単身 長距離",
+                "sub": "200km超",
+                "now": int(round(BASE["single_vfar"] * current_season / 1000) * 1000),
+                "m4":  predict(BASE["single_vfar"], annual_rise_single_far, 4),
+                "m12": predict(BASE["single_vfar"], annual_rise_single_far, 12),
+                "rise_rate": round(annual_rise_single_far * 100, 1),
+              },
+              "family_near": {
+                "label": "家族 近距離",
+                "sub": "2〜4人・15km以内",
+                "now": int(round(BASE["family_near"] * current_season / 1000) * 1000),
+                "m4":  predict(BASE["family_near"],  annual_rise_family_near, 4),
+                "m12": predict(BASE["family_near"],  annual_rise_family_near, 12),
+                "rise_rate": round(annual_rise_family_near * 100, 1),
+              },
+              "family_far": {
+                "label": "家族 長距離",
+                "sub": "200km超",
+                "now": int(round(BASE["family_vfar"] * current_season / 1000) * 1000),
+                "m4":  predict(BASE["family_vfar"],  annual_rise_family_far, 4),
+                "m12": predict(BASE["family_vfar"],  annual_rise_family_far, 12),
+                "rise_rate": round(annual_rise_family_far * 100, 1),
+              },
+            },
+            "month_index": SEASON,
+            "next_peak": "3月（繁忙期ピーク）" if month < 3 else ("来年3月" if month >= 4 else "今月"),
+            "cheap_months": [9, 10, 11, 6],
+          }
+          
+          with open('hikkoshi-data.json', 'w') as f:
+              json.dump(data, f, ensure_ascii=False, indent=2)
+          
+          print(f"✅ 引越しデータ更新完了: {today}")
+          print(json.dumps(data, ensure_ascii=False, indent=2))
+          PYEOF
+          
+      - name: 変更をコミット
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add hikkoshi-data.json
+          git diff --staged --quiet || git commit -m "🚛 引越し費用データ自動更新 $(date '+%Y-%m-%d')"
+          git push
