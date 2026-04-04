@@ -2804,8 +2804,16 @@ function renderSmartphoneOverlay(tab){
   tabHTML += '</div>';
   var html = '<div class="sec-hdr" style="margin-bottom:0"><div style="font-size:18px;font-weight:800">📱 スマートフォン</div></div>' + tabHTML;
 
+  // 全タブ共通：専用ページ誘導バナー
+  var pageBanner = '<div style="background:linear-gradient(90deg,#002B80,#2563eb);color:#fff;border-radius:10px;padding:12px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:10px">'
+    + '<div><div style="font-size:12px;font-weight:700">📊 詳細な比較・ランキングはこちら</div>'
+    + '<div style="font-size:10px;opacity:.7;margin-top:2px">独自データで毎月自動更新</div></div>'
+    + '<a href="smartphone.html" style="flex-shrink:0;padding:8px 14px;background:#fcd34d;color:#002B80;border-radius:8px;font-size:12px;font-weight:900;text-decoration:none">詳細ページへ →</a>'
+    + '</div>';
+
   if(_spTab === 'model'){
     html += '<div style="font-size:11px;color:#64748b;margin-bottom:10px">メーカー・シリーズを選んでください</div>';
+    html += pageBanner;
     html += '<div class="overlay-mid-grid">';
     var skipIds = ['ranking_m','plan_m','carrier_m','feature_m','maker_m'];
     (cat.mid||[]).forEach(function(mid){
@@ -2825,72 +2833,46 @@ function renderSmartphoneOverlay(tab){
       html += '<div style="margin-top:6px">'+subNames+'</div></div>';
     });
     html += '</div>';
-    html += '<div style="margin-top:14px"><div style="font-size:12px;font-weight:700;color:#475569;margin-bottom:8px">🏢 メーカーから探す</div>';
-    html += '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">';
-    ['Apple','Google','SONY','Samsung','OPPO','Xiaomi','Sharp','ASUS','FCNT','MOTOROLA','NOTHING','HUAWEI'].forEach(function(m){
-      html += '<a href="https://kakaku.com/keitai/smartphone/itemlist.aspx?pdf_ma='+encodeURIComponent(m)+'" target="_blank" rel="noopener" style="font-size:11px;font-weight:600;padding:5px 10px;background:#f1f5f9;border-radius:8px;text-decoration:none;color:#334155;border:1px solid #e2e8f0">'+m+'</a>';
-    });
-    html += '</div><div style="font-size:12px;font-weight:700;color:#475569;margin-bottom:8px">🔍 特徴から探す</div>';
-    html += '<div style="display:flex;flex-wrap:wrap;gap:6px">';
-    [{l:'5G対応',u:'pdf_op5=1'},{l:'折りたたみ',u:'pdf_op27=1'},{l:'eSIM',u:'pdf_op30=1'},{l:'SIMフリー',u:'pdf_Simfree=1'},{l:'防水',u:'pdf_op7=1'},{l:'ワイヤレス充電',u:'pdf_op12=1'},{l:'ハイレゾ',u:'pdf_op16=1'},{l:'イヤホンジャック',u:'pdf_op17=1'}].forEach(function(f){
-      html += '<a href="https://kakaku.com/keitai/smartphone/itemlist.aspx?'+f.u+'" target="_blank" rel="noopener" style="font-size:11px;font-weight:600;padding:5px 10px;background:#eff6ff;border-radius:8px;text-decoration:none;color:#1e40af;border:1px solid #dbeafe">'+f.l+'</a>';
-    });
-    html += '</div></div>';
 
   } else if(_spTab === 'ranking'){
-    html += '<div style="font-size:11px;color:#64748b;margin-bottom:12px">人気・満足度ランキングをチェック</div>';
-    html += '<div style="display:flex;flex-direction:column;gap:10px">';
-    [{icon:'🔥',title:'人気・注目ランキング',desc:'今最も売れているスマートフォンを一覧で比較',label:'ランキングを見る',url:'https://kakaku.com/keitai/smartphone/',c:'#dc2626'},
-     {icon:'⭐',title:'満足度ランキング',desc:'購入者の評価が高いスマートフォン。口コミ参考に',label:'満足度ランキングへ',url:'https://kakaku.com/keitai/smartphone/ranking_3147/rating/',c:'#d97706'},
-     {icon:'🆕',title:'新製品・発売予定',desc:'2026年最新スマートフォン。予約情報も確認できる',label:'新製品を見る',url:'https://kakaku.com/keitai/smartphone/ranking_3147/new/',c:'#7c3aed'},
-     {icon:'💹',title:'値下がり・特価情報',desc:'値下がりしているスマートフォンをお得に購入',label:'特価情報を見る',url:'https://kakaku.com/keitai/smartphone/ranking_3147/pricedrop/',c:'#059669'}
-    ].forEach(function(r){
-      html += '<div style="background:#fff;border-radius:12px;padding:14px;border:0.5px solid #e2e8f0">';
-      html += '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:24px">'+r.icon+'</span>';
-      html += '<div><div style="font-size:13px;font-weight:700">'+r.title+'</div><div style="font-size:11px;color:#64748b;margin-top:2px">'+r.desc+'</div></div></div>';
-      html += '<a href="'+r.url+'" target="_blank" rel="noopener" style="display:block;padding:9px;background:'+r.c+';color:#fff;border-radius:8px;font-size:12px;font-weight:700;text-align:center;text-decoration:none">'+r.label+' →</a></div>';
-    });
-    html += '</div><p style="font-size:10px;color:#94a3b8;margin-top:10px;text-align:center">PR：アフィリエイトリンクを含む場合があります</p>';
-
-  } else if(_spTab === 'plan'){
-    html += '<div style="font-size:11px;color:#64748b;margin-bottom:12px">データ量・用途に合ったプランを比較</div>';
-    html += '<div style="background:linear-gradient(135deg,#002B80,#003fa6);color:#fff;border-radius:12px;padding:14px;margin-bottom:12px">';
-    html += '<div style="font-size:13px;font-weight:700;margin-bottom:8px">💰 最適プラン診断</div>';
-    html += '<select id="sp-data-select" onchange="updateSpPlanResult()" style="width:100%;padding:8px;border-radius:8px;border:none;font-size:13px;font-family:inherit;margin-bottom:10px">';
-    html += '<option value="3">〜3GB（ライト）</option><option value="20" selected>〜20GB（標準）</option><option value="50">〜50GB（ヘビー）</option><option value="0">無制限</option>';
-    html += '</select><div id="sp-plan-result" style="background:rgba(255,255,255,.12);border-radius:8px;padding:10px;font-size:11px;line-height:1.8"></div></div>';
+    html += pageBanner;
+    html += '<div style="font-size:12px;font-weight:700;color:#475569;margin-bottom:10px">当サイト独自の人気・満足度ランキングはこちら</div>';
+    var rankItems = [
+      {icon:'🔥',title:'人気・注目ランキング',desc:'2026年最も売れているスマートフォントップ5。値上がり予測も掲載。'},
+      {icon:'⭐',title:'満足度ランキング',desc:'購入者の口コミ・評価をもとに独自集計したランキング。'},
+      {icon:'🆕',title:'新製品・発売予定',desc:'iPhone 17・Galaxy Z Fold7など2026年発売予定モデル情報。'},
+      {icon:'📉',title:'値下がり・特価情報',desc:'現在値下がり中のお得なスマートフォン一覧。'},
+    ];
     html += '<div style="display:flex;flex-direction:column;gap:8px">';
-    [{icon:'📋',title:'全プラン一括比較',desc:'ドコモ・au・SB・楽天・格安SIMまで全プランを比較',url:'https://kakaku.com/keitai/simulation/'},
-     {icon:'📱',title:'キャリア別プラン',desc:'大手3キャリアのプランを月額・データ量で詳細比較',url:'https://kakaku.com/keitai/simulation/'}
-    ].forEach(function(r){
+    rankItems.forEach(function(r){
       html += '<div style="background:#fff;border-radius:10px;padding:12px;border:0.5px solid #e2e8f0;display:flex;align-items:center;gap:10px">';
-      html += '<span style="font-size:22px">'+r.icon+'</span><div style="flex:1"><div style="font-size:12px;font-weight:700">'+r.title+'</div>';
-      html += '<div style="font-size:10px;color:#64748b">'+r.desc+'</div></div>';
-      html += '<a href="'+r.url+'" target="_blank" rel="noopener" style="flex-shrink:0;padding:8px 12px;background:#002B80;color:#fff;border-radius:8px;font-size:11px;font-weight:700;text-decoration:none">比較 →</a></div>';
+      html += '<span style="font-size:24px">'+r.icon+'</span>';
+      html += '<div style="flex:1"><div style="font-size:13px;font-weight:700">'+r.title+'</div>';
+      html += '<div style="font-size:10px;color:#64748b;margin-top:2px">'+r.desc+'</div></div>';
+      html += '<a href="smartphone.html" style="flex-shrink:0;padding:8px 12px;background:#002B80;color:#fff;border-radius:8px;font-size:11px;font-weight:700;text-decoration:none">見る →</a>';
+      html += '</div>';
     });
     html += '</div>';
 
+  } else if(_spTab === 'plan'){
+    html += pageBanner;
+    html += '<div style="font-size:12px;font-weight:700;color:#475569;margin-bottom:10px">💰 料金プラン診断・比較</div>';
+    html += '<div style="background:linear-gradient(135deg,#002B80,#003fa6);color:#fff;border-radius:10px;padding:12px;margin-bottom:10px">';
+    html += '<div style="font-size:12px;font-weight:700;margin-bottom:8px">💡 データ量別おすすめプラン</div>';
+    html += '<select id="sp-data-select" onchange="updateSpPlanResult()" style="width:100%;padding:8px;border-radius:8px;border:none;font-size:13px;font-family:inherit;margin-bottom:10px">';
+    html += '<option value="3gb">〜3GB（ライト）</option><option value="20gb" selected>〜20GB（標準）</option><option value="50gb">〜50GB（ヘビー）</option><option value="unlimited">無制限</option>';
+    html += '</select><div id="sp-plan-result" style="background:rgba(255,255,255,.12);border-radius:8px;padding:10px;font-size:11px;line-height:1.8"></div></div>';
+    html += '<a href="smartphone.html" style="display:block;padding:12px;background:#002B80;color:#fff;border-radius:8px;font-size:13px;font-weight:700;text-align:center;text-decoration:none;margin-top:8px">全キャリア料金比較表を見る →</a>';
+
   } else if(_spTab === 'sim'){
-    html += '<div style="font-size:11px;color:#64748b;margin-bottom:12px">格安SIMで通信費を大幅節約しよう</div>';
-    html += '<div style="background:#f0f9ff;border-radius:12px;padding:14px;margin-bottom:12px;border:1.5px solid #bae6fd">';
-    html += '<div style="font-size:12px;font-weight:700;color:#0e7490;margin-bottom:8px">💡 格安SIM節約シミュレーター</div>';
+    html += pageBanner;
+    html += '<div style="font-size:12px;font-weight:700;color:#475569;margin-bottom:10px">📶 格安SIM節約シミュレーター</div>';
+    html += '<div style="background:#f0f9ff;border-radius:10px;padding:12px;margin-bottom:10px;border:1.5px solid #bae6fd">';
     html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">';
-    html += '<div><div style="font-size:10px;color:#64748b;margin-bottom:3px">現在の月額</div><select id="sp-current-fee" onchange="calcSimSaving()" style="width:100%;padding:7px;border-radius:6px;border:1px solid #bae6fd;font-size:12px;font-family:inherit"><option value="8000">〜8,000円</option><option value="10000" selected>〜10,000円</option><option value="12000">〜12,000円</option><option value="15000">〜15,000円</option></select></div>';
-    html += '<div><div style="font-size:10px;color:#64748b;margin-bottom:3px">格安SIM後の月額</div><select id="sp-new-fee" onchange="calcSimSaving()" style="width:100%;padding:7px;border-radius:6px;border:1px solid #bae6fd;font-size:12px;font-family:inherit"><option value="1000">〜1,000円</option><option value="2000" selected>〜2,000円</option><option value="3000">〜3,000円</option><option value="5000">〜5,000円</option></select></div>';
-    html += '</div><div id="sp-saving-result" style="background:#0e7490;color:#fff;border-radius:8px;padding:10px;text-align:center"><div style="font-size:10px;opacity:.8">年間節約額（目安）</div><div style="font-size:20px;font-weight:900;font-family:monospace;color:#67e8f9">▲ 96,000円</div></div></div>';
-    html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">';
-    [{icon:'📱',title:'格安スマホ',desc:'本体も月額も安い',url:'https://kakaku.com/keitai/smartphone/lowprice/'},
-     {icon:'📶',title:'格安SIM',desc:'今のスマホで乗り換え',url:'https://kakaku.com/mobile_data/sim/'},
-     {icon:'📞',title:'音声通話付きSIM',desc:'電話もできる格安SIM',url:'https://kakaku.com/mobile_data/sim/ranking.asp?si_option2=1'},
-     {icon:'💾',title:'データ通信専用SIM',desc:'タブレット・2台目に',url:'https://kakaku.com/mobile_data/sim/ranking.asp?si_option7=1'}
-    ].forEach(function(s){
-      html += '<div style="background:#fff;border-radius:10px;padding:12px;border:0.5px solid #e2e8f0;text-align:center">';
-      html += '<div style="font-size:24px;margin-bottom:6px">'+s.icon+'</div>';
-      html += '<div style="font-size:12px;font-weight:700;margin-bottom:3px">'+s.title+'</div>';
-      html += '<div style="font-size:10px;color:#64748b;margin-bottom:8px">'+s.desc+'</div>';
-      html += '<a href="'+s.url+'" target="_blank" rel="noopener" style="display:block;padding:7px;background:#0e7490;color:#fff;border-radius:8px;font-size:11px;font-weight:700;text-decoration:none">比較 →</a></div>';
-    });
-    html += '</div><p style="font-size:10px;color:#94a3b8;margin-top:10px;text-align:center">PR：アフィリエイトリンクを含む場合があります</p>';
+    html += '<div><div style="font-size:10px;color:#64748b;margin-bottom:3px">現在の月額</div><select id="sp-current-fee" onchange="calcSimSaving()" style="width:100%;padding:7px;border-radius:6px;border:1px solid #bae6fd;font-size:12px;font-family:inherit"><option value="7000">〜7,000円</option><option value="9000" selected>〜9,000円</option><option value="11000">〜11,000円</option><option value="13000">〜13,000円</option></select></div>';
+    html += '<div><div style="font-size:10px;color:#64748b;margin-bottom:3px">格安SIM後の月額</div><select id="sp-new-fee" onchange="calcSimSaving()" style="width:100%;padding:7px;border-radius:6px;border:1px solid #bae6fd;font-size:12px;font-family:inherit"><option value="1000">〜1,000円</option><option value="2178" selected>〜2,178円</option><option value="2970">〜2,970円</option><option value="3278">〜3,278円</option></select></div>';
+    html += '</div><div id="sp-saving-result" style="background:#0e7490;color:#fff;border-radius:8px;padding:10px;text-align:center"><div style="font-size:10px;opacity:.8">年間節約額（目安）</div><div style="font-size:20px;font-weight:900;font-family:monospace;color:#67e8f9">▲ 81,864円</div></div></div>';
+    html += '<a href="smartphone.html" style="display:block;padding:12px;background:#0e7490;color:#fff;border-radius:8px;font-size:13px;font-weight:700;text-align:center;text-decoration:none">格安SIM比較ランキングを見る →</a>';
   }
 
   document.getElementById('overlay-content').innerHTML = html;
