@@ -1,0 +1,76 @@
+name: 旅行・宿泊情報自動更新
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'  # 毎月1日 朝9時(JST)
+  workflow_dispatch:
+
+jobs:
+  update-travel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 旅行データ自動更新
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python3 << 'PYEOF'
+          import json, urllib.request, datetime, os
+
+          today = datetime.date.today()
+          date_str = "{0}年{1}月".format(today.year, today.month)
+
+          prompt = (
+            "あなたは日本の旅行・宿泊業界の専門アナリストです。"
+            + date_str + "時点の最新情報をもとに以下のデータをJSON形式で返してください。\n\n"
+            "1. predicts: 旅行費用の値上がり予測6件（icon,name,rate数値,cause,risk:h/m/l）\n"
+            "2. sites: 旅行予約サイトランキング7社（rank,name,tags配列,type,body,merits配列,campaign,url）\n\n"
+            "tags値: tag-cheap/tag-point/tag-coupon/tag-jr/tag-onsen から選択\n\n"
+            "JSON形式のみで出力：\n"
+            '{"updated":"' + date_str + '","predicts":[...],"sites":[...]}'
+          )
+
+          api_key = os.environ.get("ANTHROPIC_API_KEY","")
+          if not api_key:
+              print("ANTHROPIC_API_KEY not set")
+              exit(1)
+
+          payload = json.dumps({
+              "model":"claude-sonnet-4-20250514",
+              "max_tokens":3000,
+              "messages":[{"role":"user","content":prompt}]
+          }).encode()
+
+          req = urllib.request.Request(
+              "https://api.anthropic.com/v1/messages",
+              data=payload,
+              headers={"x-api-key":api_key,"anthropic-version":"2023-06-01","content-type":"application/json"}
+          )
+
+          try:
+              with urllib.request.urlopen(req, timeout=90) as res:
+                  data = json.loads(res.read())
+                  text = data["content"][0]["text"].strip()
+                  start = text.find("{")
+                  end = text.rfind("}") + 1
+                  if start >= 0 and end > start:
+                      travel_data = json.loads(text[start:end])
+                      with open("travel-data.json","w",encoding="utf-8") as f:
+                          json.dump(travel_data, f, ensure_ascii=False, indent=2)
+                      print("travel-data.json更新完了:", date_str)
+                  else:
+                      print("JSONが見つからない")
+                      exit(1)
+          except Exception as e:
+              print("Error:", e)
+              exit(1)
+          PYEOF
+
+      - name: コミット
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add travel-data.json
+          git diff --staged --quiet || git commit -m "✈️ 旅行・宿泊情報自動更新 $(date '+%Y-%m')"
+          git push
