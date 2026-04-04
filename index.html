@@ -2801,7 +2801,7 @@ function renderSmartphoneOverlay(tab){
   var pageBanner = '<div style="background:linear-gradient(90deg,#002B80,#2563eb);color:#fff;border-radius:10px;padding:12px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:10px">'
     + '<div><div style="font-size:12px;font-weight:700">📊 詳細な比較・ランキングはこちら</div>'
     + '<div style="font-size:10px;opacity:.7;margin-top:2px">独自データで毎月自動更新</div></div>'
-    + '<a href="smartphone.html" style="flex-shrink:0;padding:8px 14px;background:#fcd34d;color:#002B80;border-radius:8px;font-size:12px;font-weight:900;text-decoration:none">詳細ページへ →</a>'
+    + '<a href="smartphone.html?tab=ranking" style="flex-shrink:0;padding:8px 14px;background:#fcd34d;color:#002B80;border-radius:8px;font-size:12px;font-weight:900;text-decoration:none">詳細ページへ →</a>'
     + '</div>';
 
   if(_spTab === 'model'){
@@ -2829,12 +2829,14 @@ function renderSmartphoneOverlay(tab){
 
   } else if(_spTab === 'ranking'){
     html += pageBanner;
-    html += '<div style="font-size:12px;font-weight:700;color:#475569;margin-bottom:10px">当サイト独自の人気・満足度ランキングはこちら</div>';
+    html += '<div style="font-size:11px;color:#64748b;margin-bottom:12px">当サイト独自のスマートフォンランキング・情報ページはこちら</div>';
     var rankItems = [
-      {icon:'🔥',title:'人気・注目ランキング',desc:'2026年最も売れているスマートフォントップ5。値上がり予測も掲載。'},
-      {icon:'⭐',title:'満足度ランキング',desc:'購入者の口コミ・評価をもとに独自集計したランキング。'},
-      {icon:'🆕',title:'新製品・発売予定',desc:'iPhone 17・Galaxy Z Fold7など2026年発売予定モデル情報。'},
-      {icon:'📉',title:'値下がり・特価情報',desc:'現在値下がり中のお得なスマートフォン一覧。'},
+      {icon:'🔥', title:'人気・注目ランキング',    desc:'2026年最も売れているスマートフォントップ5。値上がり予測も掲載。',      tab:'ranking'},
+      {icon:'⭐', title:'満足度ランキング',       desc:'購入者の口コミ・評価をもとに独自集計したランキング。',               tab:'ranking'},
+      {icon:'🆕', title:'新製品・発売予定',       desc:'iPhone 17・Galaxy Z Fold7など2026年発売予定モデル情報。',         tab:'ranking'},
+      {icon:'📉', title:'値下がり・特価情報',      desc:'現在値下がり中のお得なスマートフォン一覧。今が買い時！',              tab:'ranking'},
+      {icon:'💰', title:'料金プラン比較',         desc:'ahamo・楽天モバイル・UQ mobileなど全キャリアを一括比較。',          tab:'plan'},
+      {icon:'📶', title:'格安SIM比較ランキング',   desc:'月額748円〜！格安SIM6社を節約額で徹底比較。',                    tab:'sim'},
     ];
     html += '<div style="display:flex;flex-direction:column;gap:8px">';
     rankItems.forEach(function(r){
@@ -2842,7 +2844,7 @@ function renderSmartphoneOverlay(tab){
       html += '<span style="font-size:24px">'+r.icon+'</span>';
       html += '<div style="flex:1"><div style="font-size:13px;font-weight:700">'+r.title+'</div>';
       html += '<div style="font-size:10px;color:#64748b;margin-top:2px">'+r.desc+'</div></div>';
-      html += '<a href="smartphone.html" style="flex-shrink:0;padding:8px 12px;background:#002B80;color:#fff;border-radius:8px;font-size:11px;font-weight:700;text-decoration:none">見る →</a>';
+      html += '<a href="smartphone.html?tab='+r.tab+'" style="flex-shrink:0;padding:8px 12px;background:#002B80;color:#fff;border-radius:8px;font-size:11px;font-weight:700;text-decoration:none">見る →</a>';
       html += '</div>';
     });
     html += '</div>';
@@ -2855,7 +2857,8 @@ function renderSmartphoneOverlay(tab){
     html += '<select id="sp-data-select" onchange="updateSpPlanResult()" style="width:100%;padding:8px;border-radius:8px;border:none;font-size:13px;font-family:inherit;margin-bottom:10px">';
     html += '<option value="3gb">〜3GB（ライト）</option><option value="20gb" selected>〜20GB（標準）</option><option value="50gb">〜50GB（ヘビー）</option><option value="unlimited">無制限</option>';
     html += '</select><div id="sp-plan-result" style="background:rgba(255,255,255,.12);border-radius:8px;padding:10px;font-size:11px;line-height:1.8"></div></div>';
-    html += '<a href="smartphone.html" style="display:block;padding:12px;background:#002B80;color:#fff;border-radius:8px;font-size:13px;font-weight:700;text-align:center;text-decoration:none;margin-top:8px">全キャリア料金比較表を見る →</a>';
+    html += '<a href="smartphone.html?tab=plan" style="display:block;padding:12px;background:#002B80;color:#fff;border-radius:8px;font-size:13px;font-weight:700;text-align:center;text-decoration:none;margin-top:8px">全キャリア料金比較表を見る →</a>';
+
 
   } else if(_spTab === 'sim'){
     html += pageBanner;
@@ -2865,7 +2868,7 @@ function renderSmartphoneOverlay(tab){
     html += '<div><div style="font-size:10px;color:#64748b;margin-bottom:3px">現在の月額</div><select id="sp-current-fee" onchange="calcSimSaving()" style="width:100%;padding:7px;border-radius:6px;border:1px solid #bae6fd;font-size:12px;font-family:inherit"><option value="7000">〜7,000円</option><option value="9000" selected>〜9,000円</option><option value="11000">〜11,000円</option><option value="13000">〜13,000円</option></select></div>';
     html += '<div><div style="font-size:10px;color:#64748b;margin-bottom:3px">格安SIM後の月額</div><select id="sp-new-fee" onchange="calcSimSaving()" style="width:100%;padding:7px;border-radius:6px;border:1px solid #bae6fd;font-size:12px;font-family:inherit"><option value="1000">〜1,000円</option><option value="2178" selected>〜2,178円</option><option value="2970">〜2,970円</option><option value="3278">〜3,278円</option></select></div>';
     html += '</div><div id="sp-saving-result" style="background:#0e7490;color:#fff;border-radius:8px;padding:10px;text-align:center"><div style="font-size:10px;opacity:.8">年間節約額（目安）</div><div style="font-size:20px;font-weight:900;font-family:monospace;color:#67e8f9">▲ 81,864円</div></div></div>';
-    html += '<a href="smartphone.html" style="display:block;padding:12px;background:#0e7490;color:#fff;border-radius:8px;font-size:13px;font-weight:700;text-align:center;text-decoration:none">格安SIM比較ランキングを見る →</a>';
+    html += '<a href="smartphone.html?tab=sim" style="display:block;padding:12px;background:#0e7490;color:#fff;border-radius:8px;font-size:13px;font-weight:700;text-align:center;text-decoration:none">格安SIM比較ランキングを見る →</a>';
   }
 
   document.getElementById('overlay-content').innerHTML = html;
