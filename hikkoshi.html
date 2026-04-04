@@ -594,7 +594,7 @@ function submitEstimate(){
 // ══ 初期化 ══
 document.addEventListener('DOMContentLoaded', function(){
   // hikkoshi-data.jsonから最新データを取得して自動更新
-  fetch('hikkoshi-data.json?v=' + Date.now())
+  fetch((location.pathname.includes('/neage-yoho/')?'/neage-yoho/':'/')+'hikkoshi-data.json?v='+Date.now())
     .then(function(r){ return r.json(); })
     .then(function(data){
       updateFromJson(data);

@@ -731,7 +731,7 @@ function searchTravel(){
 
 // ── travel-data.jsonから自動読み込み ──
 function loadTravelData(){
-  fetch('travel-data.json?v='+Date.now())
+  fetch((location.pathname.includes('/neage-yoho/')?'/neage-yoho/':'/')+'travel-data.json?v='+Date.now())
     .then(function(r){return r.json();})
     .then(function(data){
       if(data.predicts) TRAVEL_DATA.predicts = data.predicts;

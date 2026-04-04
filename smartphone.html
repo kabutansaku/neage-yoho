@@ -616,14 +616,15 @@ function renderSimList(){
 
 // ── smartphone-data.json から自動読み込み ──
 function loadSpData(){
-  fetch((location.pathname.includes('/neage-yoho/')?'/neage-yoho/':'/')+'smartphone-data.json?v='+Date.now())
+  var base = location.pathname.includes('/neage-yoho/')?'/neage-yoho/':'/';
+  fetch(base+'smartphone-data.json?v='+Date.now())
     .then(function(r){return r.json();})
     .then(function(data){
-      if(data && data.ranking) SP_DATA.ranking = data.ranking;
-      if(data && data.satisfaction) SP_DATA.satisfaction = data.satisfaction;
-      if(data && data.newmodels) SP_DATA.newmodels = data.newmodels;
-      if(data && data.sales) SP_DATA.sales = data.sales;
-      if(data && data.sims) SP_DATA.sims = data.sims;
+      if(data && data.ranking && data.ranking.length>0) SP_DATA.ranking = data.ranking;
+      if(data && data.satisfaction && data.satisfaction.length>0) SP_DATA.satisfaction = data.satisfaction;
+      if(data && data.newmodels && data.newmodels.length>0) SP_DATA.newmodels = data.newmodels;
+      if(data && data.sales && data.sales.length>0) SP_DATA.sales = data.sales;
+      if(data && data.sims && data.sims.length>0) SP_DATA.sims = data.sims;
       if(data && data.updated) SP_DATA.updated = data.updated;
       renderAll();
     })

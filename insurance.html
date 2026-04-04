@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>生命保険・医療保険 比較ランキング 2026年4月 | 値上がり予測ドットコム</title>
+<meta name="description" content="2026年最新の生命保険・医療保険比較ランキング。医療・入院保険、がん保険、死亡保険、女性保険を徹底比較。保険料の値上がり予測も掲載。毎月自動更新。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#002B80;--green:#059669;--red:#dc2626;--orange:#d97706;--blue:#2563eb;--purple:#7c3aed;--bg:#f0fdf4;--paper:#fff;--border:#bbf7d0;--t1:#0f172a;--t2:#475569;--t3:#94a3b8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--t1);font-size:14px;line-height:1.6}
+.hdr{background:var(--navy);color:#fff;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.hdr-logo{font-size:16px;font-weight:900;text-decoration:none;color:#fff}.hdr-logo span{color:#fcd34d}
+.hdr-back{color:#fff;text-decoration:none;font-size:12px;background:rgba(255,255,255,.15);padding:5px 12px;border-radius:20px}
+.main{max-width:900px;margin:0 auto;padding:0 0 80px}
+
+/* ヒーロー */
+.hero{background:linear-gradient(135deg,#064e3b,#059669,#10b981);padding:24px 20px;color:#fff;position:relative;overflow:hidden}
+.hero::before{content:'🛡';position:absolute;right:-10px;top:-10px;font-size:140px;opacity:.07}
+.hero-badge{display:inline-block;background:#fcd34d;color:#064e3b;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:10px}
+.hero h1{font-size:20px;font-weight:900;line-height:1.4;margin-bottom:8px}.hero h1 span{color:#a7f3d0}
+.hero-sub{font-size:11px;opacity:.85;line-height:1.7;margin-bottom:12px}
+.hero-alert{background:rgba(220,38,38,.2);border:1px solid rgba(220,38,38,.4);border-radius:8px;padding:10px 12px;font-size:11px;margin-bottom:12px;line-height:1.6}
+.hero-alert strong{color:#fca5a5}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hero-stat{text-align:center;background:rgba(255,255,255,.1);border-radius:8px;padding:10px 4px}
+.hero-stat-num{font-size:15px;font-weight:900;color:#fcd34d;font-family:'DM Mono',sans-serif}
+.hero-stat-lbl{font-size:9px;opacity:.7;margin-top:2px;line-height:1.3}
+
+/* タブ */
+.tab-nav{background:#fff;border-bottom:2px solid var(--border);padding:0 8px;display:flex;overflow-x:auto;position:sticky;top:52px;z-index:90;-webkit-overflow-scrolling:touch}
+.tab-btn{white-space:nowrap;padding:11px 12px;border:none;background:none;cursor:pointer;font-size:11px;font-weight:700;color:var(--t3);border-bottom:3px solid transparent;margin-bottom:-2px;font-family:'Noto Sans JP',sans-serif;transition:all .2s}
+.tab-btn.active{color:var(--green);border-bottom-color:var(--green)}
+
+.tab-content{display:none;padding:16px}
+.tab-content.active{display:block}
+.sec-title{font-size:14px;font-weight:800;margin-bottom:12px;padding-bottom:8px;border-bottom:3px solid var(--green)}
+.update-note{font-size:10px;color:var(--t3);text-align:right;margin-bottom:10px}
+
+/* 診断ツール */
+.diag-box{background:linear-gradient(135deg,#064e3b,#059669);color:#fff;border-radius:14px;padding:18px;margin-bottom:20px}
+.diag-title{font-size:14px;font-weight:900;margin-bottom:4px}
+.diag-sub{font-size:10px;opacity:.7;margin-bottom:14px}
+.diag-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.diag-lbl{font-size:10px;opacity:.8;margin-bottom:4px;display:block}
+.diag-select{width:100%;padding:8px 10px;border-radius:8px;border:none;font-size:12px;font-family:'Noto Sans JP',sans-serif;background:rgba(255,255,255,.95)}
+.diag-result{background:rgba(255,255,255,.12);border-radius:10px;padding:12px;margin-top:2px}
+.diag-result-title{font-size:12px;font-weight:700;color:#fcd34d;margin-bottom:8px}
+.diag-rec-item{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:11px;line-height:1.4}
+.diag-rec-item:last-child{border-bottom:none}
+.diag-rec-rank{font-size:14px;flex-shrink:0}
+
+/* ランキングカード */
+.rank-card{background:var(--paper);border-radius:12px;padding:14px;margin-bottom:10px;border:0.5px solid var(--border);transition:box-shadow .2s}
+.rank-card.top{border:2px solid var(--green)}
+.rank-card:hover{box-shadow:0 4px 16px rgba(5,150,105,.12)}
+.rank-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
+.rank-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0}
+.r1{background:linear-gradient(135deg,#fcd34d,#f59e0b);color:#92400e}
+.r2{background:linear-gradient(135deg,#e2e8f0,#cbd5e1);color:#475569}
+.r3{background:linear-gradient(135deg,#fed7aa,#fb923c);color:#9a3412}
+.rn{background:#dcfce7;color:#166534}
+.rank-info{flex:1}
+.rank-name{font-size:14px;font-weight:900;margin-bottom:2px}
+.rank-company{font-size:10px;color:var(--t2);margin-bottom:4px}
+.rank-tags{display:flex;gap:4px;flex-wrap:wrap}
+.rank-tag{font-size:10px;font-weight:600;padding:2px 6px;border-radius:6px}
+.tag-cheap{background:#dcfce7;color:#166534}
+.tag-rich{background:#dbeafe;color:#1e40af}
+.tag-net{background:#f3e8ff;color:#6d28d9}
+.tag-women{background:#fce7f3;color:#9d174d}
+.tag-easy{background:#fef3c7;color:#92400e}
+.rank-price{text-align:right;flex-shrink:0}
+.rank-price-num{font-size:15px;font-weight:900;font-family:'DM Mono',sans-serif;color:var(--t1)}
+.rank-price-lbl{font-size:9px;color:var(--t3)}
+.rank-body{font-size:11px;color:var(--t2);line-height:1.6;margin-bottom:8px}
+.rank-points{background:#f0fdf4;border-radius:8px;padding:10px;margin-bottom:8px}
+.rank-points-title{font-size:11px;font-weight:700;color:#166534;margin-bottom:5px}
+.rank-point-item{font-size:11px;color:var(--t2);padding:2px 0}
+.rank-point-item::before{content:'✅ '}
+.rank-worry{background:#fffbeb;border-radius:8px;padding:8px 10px;margin-bottom:8px;font-size:11px;color:#92400e}
+.rank-aff-btn{display:block;width:100%;padding:11px;background:linear-gradient(90deg,#059669,#047857);color:#fff;border-radius:8px;font-size:13px;font-weight:700;text-align:center;text-decoration:none;transition:all .2s}
+.rank-aff-btn:hover{opacity:.9}
+.rank-aff-sub{font-size:10px;color:var(--t3);text-align:center;margin-top:4px}
+
+/* 保険選び方ガイド */
+.guide-card{background:var(--paper);border-radius:10px;padding:12px;margin-bottom:8px;border:0.5px solid var(--border)}
+.guide-icon{font-size:22px;margin-bottom:6px}
+.guide-title{font-size:13px;font-weight:700;color:var(--green);margin-bottom:4px}
+.guide-body{font-size:11px;color:var(--t2);line-height:1.5}
+
+/* 値上がり予測 */
+.predict-card{background:var(--paper);border-radius:10px;padding:12px;margin-bottom:8px;border-left:4px solid var(--red)}
+.predict-name{font-size:12px;font-weight:700;margin-bottom:4px}
+.predict-rate{font-size:16px;font-weight:900;color:var(--red);font-family:'DM Mono',sans-serif}
+.predict-cause{font-size:10px;color:var(--t2);margin-top:3px;line-height:1.4}
+
+/* 一括資料請求 */
+.request-box{background:linear-gradient(135deg,#064e3b,#059669);border-radius:14px;padding:18px;color:#fff;margin-bottom:20px}
+.request-title{font-size:14px;font-weight:900;margin-bottom:4px}
+.request-sub{font-size:10px;opacity:.7;margin-bottom:12px}
+.request-checks{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px}
+.request-check{background:rgba(255,255,255,.1);border-radius:8px;padding:8px;font-size:11px;display:flex;align-items:center;gap:6px;cursor:pointer}
+.request-check input{accent-color:#fcd34d}
+.request-btn{width:100%;padding:13px;background:#fcd34d;color:#064e3b;border:none;border-radius:10px;font-size:14px;font-weight:900;cursor:pointer;font-family:'Noto Sans JP',sans-serif}
+
+/* フローティングナビ */
+.float-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--border);padding:8px 16px;display:flex;gap:8px;z-index:200}
+.fn-back{flex:1;text-align:center;padding:10px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;background:#dcfce7;color:var(--green);border:1.5px solid var(--green)}
+.fn-diag{flex:1;text-align:center;padding:10px;border-radius:10px;font-size:13px;font-weight:700;background:var(--green);color:#fff;border:none;cursor:pointer;font-family:'Noto Sans JP',sans-serif}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <a href="index.html" class="hdr-logo"><span>値上がり</span>予測ドットコム</a>
+  <a href="index.html#forecast-db" class="hdr-back">← 予測DB</a>
+</header>
+
+<div class="hero">
+  <div class="hero-badge" id="hero-badge">🛡 2026年4月 最新ランキング</div>
+  <h1>生命保険・医療保険<br><span>比較ランキング</span></h1>
+  <p class="hero-sub">保険料の値上がりが続く今こそ見直しのチャンス。医療・がん・死亡保険を徹底比較。あなたに最適な保険をその場で提案します。</p>
+  <div class="hero-alert">
+    <strong>⚠️ 2026年 保険料値上がり警告</strong><br>
+    医療保険の保険料が前年比<strong style="color:#fca5a5">+5〜12%</strong>上昇中。今すぐ見直しで<strong style="color:#fca5a5">年間数万円</strong>の節約が可能！
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">最大50%OFF</div><div class="hero-stat-lbl">ネット申込で<br>保険料が安い</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">無料</div><div class="hero-stat-lbl">資料請求・<br>相談は全て無料</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">毎月更新</div><div class="hero-stat-lbl">ランキング・<br>保険料自動更新</div></div>
+  </div>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('ranking')">🏆 ランキング</button>
+  <button class="tab-btn" onclick="switchTab('diag')">🎯 診断</button>
+  <button class="tab-btn" onclick="switchTab('predict')">📈 値上がり予測</button>
+  <button class="tab-btn" onclick="switchTab('guide')">📖 選び方</button>
+  <button class="tab-btn" onclick="switchTab('request')">📋 一括資料請求</button>
+</div>
+
+<div>
+
+<!-- ランキングタブ -->
+<div id="tab-ranking" class="tab-content active">
+
+  <!-- カテゴリ切り替え -->
+  <div style="display:flex;gap:6px;overflow-x:auto;margin-bottom:14px;padding-bottom:4px">
+    <button class="rank-cat-btn active" onclick="switchRankCat('iryo',this)" style="white-space:nowrap;padding:7px 12px;border-radius:20px;border:1.5px solid var(--green);background:var(--green);color:#fff;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">🏥 医療・入院保険</button>
+    <button class="rank-cat-btn" onclick="switchRankCat('cancer',this)" style="white-space:nowrap;padding:7px 12px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--t2);font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">🎗 がん・特定疾病保険</button>
+    <button class="rank-cat-btn" onclick="switchRankCat('death',this)" style="white-space:nowrap;padding:7px 12px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--t2);font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">🌿 死亡保険</button>
+    <button class="rank-cat-btn" onclick="switchRankCat('women',this)" style="white-space:nowrap;padding:7px 12px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--t2);font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">👩 女性医療保険</button>
+    <button class="rank-cat-btn" onclick="switchRankCat('easy',this)" style="white-space:nowrap;padding:7px 12px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--t2);font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">📝 引受基準緩和型</button>
+  </div>
+
+  <div class="sec-title" id="rank-title">🏥 医療・入院保険 ランキング</div>
+  <div class="update-note" id="rank-update">🔄 毎月自動更新</div>
+  <div id="rank-list"></div>
+</div>
+
+<!-- 診断タブ -->
+<div id="tab-diag" class="tab-content">
+  <div class="sec-title">🎯 あなたに合う保険を診断</div>
+  <div class="diag-box">
+    <div class="diag-title">3つの質問で最適な保険を提案</div>
+    <div class="diag-sub">年齢・性別・ご希望をお選びください</div>
+    <div class="diag-grid">
+      <div>
+        <label class="diag-lbl">年齢</label>
+        <select class="diag-select" id="diag-age" onchange="runDiag()">
+          <option value="20s">20代</option>
+          <option value="30s" selected>30代</option>
+          <option value="40s">40代</option>
+          <option value="50s">50代</option>
+          <option value="60s">60代</option>
+        </select>
+      </div>
+      <div>
+        <label class="diag-lbl">性別</label>
+        <select class="diag-select" id="diag-gender" onchange="runDiag()">
+          <option value="male">男性</option>
+          <option value="female">女性</option>
+        </select>
+      </div>
+      <div>
+        <label class="diag-lbl">一番の心配事</label>
+        <select class="diag-select" id="diag-worry" onchange="runDiag()">
+          <option value="hospital">入院・手術が心配</option>
+          <option value="cancer">がんが心配</option>
+          <option value="death">家族への死亡保障</option>
+          <option value="cost">保険料を安くしたい</option>
+          <option value="health">持病・既往症がある</option>
+        </select>
+      </div>
+      <div>
+        <label class="diag-lbl">月の予算</label>
+        <select class="diag-select" id="diag-budget" onchange="runDiag()">
+          <option value="2000">〜2,000円</option>
+          <option value="5000" selected>〜5,000円</option>
+          <option value="10000">〜10,000円</option>
+          <option value="any">予算は問わない</option>
+        </select>
+      </div>
+    </div>
+    <div class="diag-result" id="diag-result">
+      <div class="diag-result-title">🎯 あなたへのおすすめ保険</div>
+      <div id="diag-result-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 値上がり予測タブ -->
+<div id="tab-predict" class="tab-content">
+  <div class="sec-title">📈 保険料 値上がり予測</div>
+  <p style="font-size:11px;color:var(--t2);margin-bottom:12px">医療費増加・高齢化・保険金支払い増加により保険料の値上がりが続いています。今すぐ見直して現在の安い保険料を確保しましょう。</p>
+  <div id="predict-list"></div>
+  <div style="background:#fffbeb;border-radius:12px;padding:14px;margin-top:14px;border:1.5px solid #fcd34d">
+    <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">💡 値上がり前に今すぐ行動すべき理由</div>
+    <ul style="padding-left:16px;font-size:11px;color:var(--t2);line-height:1.8">
+      <li>保険料は<strong>加入時の年齢・健康状態</strong>で決まる（後から若い時の保険料には戻れない）</li>
+      <li>保険会社の予定利率改定前に加入すれば<strong>現在の低い保険料が一生続く</strong></li>
+      <li>健康なうちに加入しておけば<strong>持病ができても保障が続く</strong></li>
+      <li>見直しは無料・今すぐできる。<strong>損するリスクはゼロ</strong></li>
+    </ul>
+  </div>
+</div>
+
+<!-- 選び方ガイド -->
+<div id="tab-guide" class="tab-content">
+  <div class="sec-title">📖 保険の選び方ガイド</div>
+  <div id="guide-list"></div>
+</div>
+
+<!-- 一括資料請求 -->
+<div id="tab-request" class="tab-content">
+  <div class="sec-title">📋 気になる保険を一括資料請求</div>
+  <div class="request-box">
+    <div class="request-title">気になる保険の種類を選んでください</div>
+    <div class="request-sub">選んだ保険の資料をまとめて無料でお届け</div>
+    <div class="request-checks">
+      <label class="request-check"><input type="checkbox" id="req-iryo" checked> 🏥 医療・入院保険</label>
+      <label class="request-check"><input type="checkbox" id="req-cancer"> 🎗 がん保険</label>
+      <label class="request-check"><input type="checkbox" id="req-death"> 🌿 死亡保険・終身保険</label>
+      <label class="request-check"><input type="checkbox" id="req-women"> 👩 女性医療保険</label>
+      <label class="request-check"><input type="checkbox" id="req-easy"> 📝 引受基準緩和型</label>
+      <label class="request-check"><input type="checkbox" id="req-care"> 👴 介護保険</label>
+    </div>
+    <!-- ↓ アフィリエイトURLに変更 -->
+    <button class="request-btn" onclick="submitRequest()">📋 無料で資料を一括請求する</button>
+    <p style="font-size:10px;opacity:.6;text-align:center;margin-top:6px">PR：アフィリエイトプログラムに参加しています</p>
+  </div>
+
+  <!-- 保険相談サービス -->
+  <div class="sec-title">💬 無料保険相談サービス</div>
+  <div id="consult-list"></div>
+</div>
+
+</div>
+
+<p style="font-size:10px;color:var(--t2);text-align:center;padding:8px 16px">
+  ※掲載情報は<span id="update-date"></span>時点。保険料・商品内容は変動します。必ず各保険会社でご確認ください。<br>
+  PR：当サイトはアフィリエイトプログラムに参加しています。
+</p>
+
+<div class="float-nav">
+  <a href="index.html#forecast-db" class="fn-back">← カテゴリ一覧</a>
+  <button class="fn-diag" onclick="switchTab('diag')">🎯 保険を診断する</button>
+</div>
+
+<script>
+// ── データ ──
+var INSURANCE_DATA = {
+  updated: "2026年4月",
+  iryo: [
+    {rank:1, name:"オリックス生命 医療保険CURE Next",company:"オリックス生命",
+     tags:["tag-cheap","tag-net"],price_male30:"1,780円/月",price_female30:"1,980円/月",
+     body:"業界最安水準の保険料で充実の保障。ネット申込で最大50%保険料が安くなる。入院・手術・先進医療を幅広くカバー。",
+     points:["業界最安水準の保険料","入院1日目から保障","先進医療特約を追加可能","ネット完結で手続き簡単"],
+     worry:"保険料を安く抑えたい方に最適",
+     url:"https://www.orixlife.co.jp/"},
+    {rank:2, name:"アフラック 生きるためのがん保険Days+",company:"アフラック",
+     tags:["tag-rich","tag-net"],price_male30:"2,180円/月",price_female30:"2,480円/月",
+     body:"がん特化型の医療保険。がん診断給付金100万円＋治療内容にあわせた保障が充実。抗がん剤・放射線治療も網羅。",
+     points:["がん診断で100万円一時金","治療方法を問わず保障","通院治療もしっかり保障","女性特有のがんは保障アップ"],
+     worry:"がんへの備えを手厚くしたい方向け",
+     url:"https://www.aflac.co.jp/"},
+    {rank:3, name:"チューリッヒ生命 プレミアDX医療",company:"チューリッヒ生命",
+     tags:["tag-rich","tag-net"],price_male30:"2,350円/月",price_female30:"2,680円/月",
+     body:"三大疾病（がん・心疾患・脳卒中）に手厚い保障。入院・手術に加え、就労不能時の保障も充実。",
+     points:["三大疾病に手厚い保障","就労不能保障が付加できる","先進医療を1,000万円まで保障","保険料払込免除特約あり"],
+     worry:"三大疾病が心配な方・働けなくなることが心配な方",
+     url:"https://www.zurich.co.jp/"},
+    {rank:4, name:"東京海上日動あんしん生命 メディカルKit R",company:"東京海上日動あんしん生命",
+     tags:["tag-rich"],price_male30:"3,200円/月",price_female30:"3,500円/月",
+     body:"保険料が戻ってくる「返戻金あり」タイプ。解約時に払い込んだ保険料の一部が戻る安心感が人気。",
+     points:["解約時に保険料が一部戻る","入院・手術を幅広くカバー","先進医療・抗がん剤治療も保障","60歳払済で老後も安心"],
+     worry:"保険料を損したくない・貯蓄性も求める方",
+     url:"https://www.tmn-anshinlife.co.jp/"},
+    {rank:5, name:"SOMPOひまわり生命 健康をサポートする医療保険",company:"SOMPOひまわり生命",
+     tags:["tag-cheap"],price_male30:"1,950円/月",price_female30:"2,150円/月",
+     body:"健康増進で保険料が安くなる「健康割引」が特徴。禁煙・BMI適正範囲で最大15%保険料が安くなる。",
+     points:["健康状態で保険料が安くなる","禁煙割引・健康割引あり","入院1日目から保障","ネット申込で手続き簡単"],
+     worry:"健康に自信がある・健康管理に取り組んでいる方",
+     url:"https://www.sompo-himawari.co.jp/"},
+  ],
+  cancer: [
+    {rank:1, name:"アフラック 生きるためのがん保険Days+",company:"アフラック",
+     tags:["tag-rich","tag-net"],price_male30:"2,080円/月",price_female30:"2,380円/月",
+     body:"がん保険の最大手。診断給付金・治療給付金・通院給付金がすべて充実。抗がん剤・ホルモン療法も保障。",
+     points:["がん診断で100万円一時金","通院・入院・手術全て保障","再発・転移も何度でも保障","先進医療も1,000万円まで"],
+     worry:"がんに最も手厚く備えたい方の定番",
+     url:"https://www.aflac.co.jp/"},
+    {rank:2, name:"チューリッヒ生命 終身がん治療保険プレミアムDX",company:"チューリッヒ生命",
+     tags:["tag-rich"],price_male30:"2,350円/月",price_female30:"2,680円/月",
+     body:"がん治療を一生涯サポート。抗がん剤・放射線・手術・入院・通院まですべてカバー。",
+     points:["一生涯保障が続く終身型","治療方法を問わず保障","抗がん剤・放射線治療を保障","保険料払込免除特約あり"],
+     worry:"一生涯がんへの備えを続けたい方",
+     url:"https://www.zurich.co.jp/"},
+    {rank:3, name:"メットライフ生命 ガン保険",company:"メットライフ生命",
+     tags:["tag-cheap"],price_male30:"1,980円/月",price_female30:"2,180円/月",
+     body:"シンプルな保障内容で保険料が安い。がん診断給付金に特化したコスパ最強のがん保険。",
+     points:["シンプルで保険料が安い","がん診断給付金に特化","保障内容がわかりやすい","ネット申込で手続き完結"],
+     worry:"シンプルに安くがん保険に備えたい方",
+     url:"https://www.metlife.co.jp/"},
+  ],
+  death: [
+    {rank:1, name:"ライフネット生命 定期死亡保険",company:"ライフネット生命",
+     tags:["tag-cheap","tag-net"],price_male30:"1,170円/月",price_female30:"690円/月",
+     body:"ネット生命保険の草分け。余計なコストをカットして業界最安水準の保険料を実現。シンプルで分かりやすい。",
+     points:["業界最安水準の保険料","ネット完結で申込簡単","必要な期間だけ保障","保障内容がシンプルで明快"],
+     worry:"コスパ重視・ネットで完結したい方",
+     url:"https://www.lifenet-seimei.co.jp/"},
+    {rank:2, name:"オリックス生命 定期保険Bridge",company:"オリックス生命",
+     tags:["tag-cheap","tag-net"],price_male30:"1,340円/月",price_female30:"820円/月",
+     body:"オリックスのネット完結型定期保険。大手の安心感とコストダウンを両立。ライフネットと並ぶ最安水準。",
+     points:["大手の安心感＋低コスト","保険料が毎年変わらない定額型","必要な時期だけ保障","オンラインで申込完結"],
+     worry:"大手の安心感も欲しいコスパ重視の方",
+     url:"https://www.orixlife.co.jp/"},
+    {rank:3, name:"住友生命 スミセイ終身保険",company:"住友生命",
+     tags:["tag-rich"],price_male30:"8,500円/月",price_female30:"7,800円/月",
+     body:"一生涯の死亡保障。解約返戻金あり・貯蓄性もある終身保険の定番。老後の資金準備にも活用できる。",
+     points:["一生涯の保障が続く","解約時に返戻金が受け取れる","相続対策としても活用できる","老後の資金準備を兼ねられる"],
+     worry:"一生涯の保障＋貯蓄性を求める方",
+     url:"https://www.sumitomolife.co.jp/"},
+  ],
+  women: [
+    {rank:1, name:"FWD生命 FWDがん・医療保険（女性向け）",company:"FWD生命",
+     tags:["tag-women","tag-net"],price_female30:"2,180円/月",price_female40:"3,200円/月",
+     body:"女性特有の疾病（乳がん・子宮がん等）への給付金が2倍。女性が罹りやすい疾病に手厚い保障。",
+     points:["女性特有疾病は給付金2倍","乳がん・子宮がんに手厚い","妊娠・出産関連の保障あり","産後うつ・不妊治療も考慮"],
+     worry:"女性特有の疾病に手厚く備えたい方",
+     url:"https://www.fwdlife.co.jp/"},
+    {rank:2, name:"アフラック EVER PRIME（女性型）",company:"アフラック",
+     tags:["tag-women","tag-rich"],price_female30:"2,450円/月",price_female40:"3,580円/月",
+     body:"アフラックの女性向け医療保険。入院・手術に加え、女性特有疾病と生活習慣病に手厚い保障設計。",
+     points:["女性疾病・三大疾病に手厚い","入院から通院まで一貫保障","ホルモン療法・放射線も保障","骨粗しょう症など女性疾病も"],
+     worry:"幅広い女性の病気に備えたい方",
+     url:"https://www.aflac.co.jp/"},
+    {rank:3, name:"チューリッヒ生命 プレミアDX（女性型）",company:"チューリッヒ生命",
+     tags:["tag-women","tag-rich"],price_female30:"2,680円/月",price_female40:"3,900円/月",
+     body:"女性に多いがん・心疾患・脳卒中の三大疾病に加え、バセドウ病・鉄欠乏性貧血など女性疾病も保障。",
+     points:["三大疾病＋女性特有疾病を保障","妊娠合併症も保障対象","就労不能保障も付加可能","先進医療1,000万円まで保障"],
+     worry:"三大疾病と女性疾病の両方が心配な方",
+     url:"https://www.zurich.co.jp/"},
+  ],
+  easy: [
+    {rank:1, name:"アフラック 楽天の保険（引受緩和型）",company:"アフラック",
+     tags:["tag-easy","tag-net"],price_male50:"4,500円/月",price_female50:"4,200円/月",
+     body:"持病・既往症がある方でも入りやすい3つの告知だけで申込できる医療保険。持病の悪化も保障対象。",
+     points:["3つの告知だけで申込可能","持病があっても入りやすい","入院・手術をしっかり保障","持病の悪化も保障対象"],
+     worry:"持病・既往症があって保険に入れなかった方",
+     url:"https://www.aflac.co.jp/"},
+    {rank:2, name:"チューリッヒ生命 引受基準緩和型医療保険",company:"チューリッヒ生命",
+     tags:["tag-easy"],price_male50:"5,200円/月",price_female50:"4,800円/月",
+     body:"告知項目が少なく、持病・既往症がある方向けの医療保険。入院・手術の保障が充実している。",
+     points:["告知項目が少ない","持病・既往症の悪化も保障","入院1日目から保障","先進医療特約の付加が可能"],
+     worry:"健康状態に不安がある中高年の方",
+     url:"https://www.zurich.co.jp/"},
+    {rank:3, name:"オリックス生命 CURE Support Plus",company:"オリックス生命",
+     tags:["tag-easy","tag-cheap"],price_male50:"4,100円/月",price_female50:"3,800円/月",
+     body:"引受基準緩和型の中では保険料が安い。オリックスの安心感と低コストを両立した緩和型医療保険。",
+     points:["緩和型で業界最安水準","3つの告知項目だけ","入院・手術・先進医療を保障","持病がある方も入りやすい"],
+     worry:"持病があるが保険料も安く抑えたい方",
+     url:"https://www.orixlife.co.jp/"},
+  ],
+};
+
+var PREDICT_DATA = [
+  {name:"医療保険（入院給付型）",rate:"+8〜12%",cause:"医療費増加・高齢化進行・保険金支払い増加",risk:"h"},
+  {name:"がん保険",rate:"+5〜9%",cause:"がん治療の高度化による保険金支払い増加・新薬の保険適用拡大",risk:"h"},
+  {name:"死亡保険（定期保険）",rate:"+3〜6%",cause:"超低金利環境・予定利率の引き下げ",risk:"m"},
+  {name:"終身保険",rate:"+5〜10%",cause:"運用環境悪化・予定利率の引き下げ継続",risk:"h"},
+  {name:"女性向け医療保険",rate:"+6〜10%",cause:"女性の就業率向上に伴う就労不能リスク増加",risk:"m"},
+];
+
+var GUIDE_DATA = [
+  {icon:"🏥",title:"医療保険の選び方",body:"入院給付金（1日いくらか）・手術給付金・先進医療の有無を確認。入院日数は短期化しているので、短期入院でも保障が手厚いタイプを選ぼう。"},
+  {icon:"🎗",title:"がん保険の選び方",body:"診断給付金の額・通院治療への対応・抗がん剤・ホルモン療法の保障の有無をチェック。一度加入すれば再発・転移も保障されるかが重要。"},
+  {icon:"🌿",title:"死亡保険の選び方",body:"必要保障額＝生活費×期間＋教育費−貯蓄。子供が独立するまでの定期保険と、一生涯の終身保険を組み合わせるのが定番。"},
+  {icon:"👩",title:"女性医療保険の選び方",body:"乳がん・子宮がん等の女性特有疾病への給付金増額があるかを確認。妊娠・出産関連の保障も要チェック。30代前半の加入が最もコスパが良い。"},
+  {icon:"📝",title:"引受基準緩和型の選び方",body:"告知項目が3〜5項目に絞られているが保険料は割高。過去5年以内の入院・手術の有無と、現在の治療・投薬の有無が主な告知項目。"},
+  {icon:"💡",title:"保険見直しのタイミング",body:"結婚・出産・住宅購入・子供の独立・定年退職など、ライフイベントのタイミングが最適な見直し時期。保険料が安い若いうちの加入が有利。"},
+];
+
+var CONSULT_DATA = [
+  {name:"ほけんの窓口",type:"対面・無料相談",merit:"全国の店舗で対面相談。複数社を比較して最適な保険を提案。相談は何度でも無料。",url:"https://www.hokennomadoguchi.com/"},
+  {name:"保険見直し本舗",type:"対面・無料相談",merit:"全国に店舗あり。中立的な立場で複数社を比較。しつこい勧誘なし。",url:"https://www.hoken-minaoshi.co.jp/"},
+  {name:"保険チャンネル",type:"オンライン・無料相談",merit:"自宅から相談できるオンライン保険相談。複数社のFPが対応。土日も相談可能。",url:"https://hokench.com/"},
+];
+
+var _curCat = 'iryo';
+
+// ── タブ切り替え ──
+function switchTab(id){
+  document.querySelectorAll('.tab-content').forEach(function(el){el.classList.remove('active')});
+  document.querySelectorAll('.tab-btn').forEach(function(el){el.classList.remove('active')});
+  document.getElementById('tab-'+id).classList.add('active');
+  var map={ranking:0,diag:1,predict:2,guide:3,request:4};
+  document.querySelectorAll('.tab-btn')[map[id]].classList.add('active');
+}
+
+// ── カテゴリ切り替え ──
+function switchRankCat(cat, btn){
+  _curCat = cat;
+  document.querySelectorAll('.rank-cat-btn').forEach(function(b){
+    b.style.background='#fff'; b.style.color='var(--t2)'; b.style.borderColor='var(--border)';
+  });
+  btn.style.background='var(--green)'; btn.style.color='#fff'; btn.style.borderColor='var(--green)';
+  var titles={iryo:'🏥 医療・入院保険',cancer:'🎗 がん・特定疾病保険',death:'🌿 死亡保険',women:'👩 女性医療保険',easy:'📝 引受基準緩和型保険'};
+  document.getElementById('rank-title').textContent = titles[cat]+' ランキング';
+  renderRanking(cat);
+}
+
+// ── ランキング描画 ──
+function renderRanking(cat){
+  var data = INSURANCE_DATA[cat] || [];
+  var el = document.getElementById('rank-list');
+  if(!el) return;
+  el.innerHTML = data.map(function(d){
+    var rc = d.rank<=3?'r'+d.rank:'rn';
+    var tags = d.tags.map(function(t){
+      var lbl=t==='tag-cheap'?'💰低価格':t==='tag-rich'?'🛡保障充実':t==='tag-net'?'📱ネット申込':t==='tag-women'?'👩女性向け':t==='tag-easy'?'📝引受緩和':'';
+      return '<span class="rank-tag '+t+'">'+lbl+'</span>';
+    }).join('');
+    var priceHtml = cat==='women'
+      ? '<div class="rank-price-num">'+d.price_female30+'</div><div class="rank-price-lbl">女性30歳目安</div>'
+      : cat==='easy'
+      ? '<div class="rank-price-num">'+d.price_male50+'</div><div class="rank-price-lbl">男性50歳目安</div>'
+      : '<div class="rank-price-num">'+d.price_male30+'</div><div class="rank-price-lbl">男性30歳目安</div>';
+    var points = d.points.map(function(p){return '<div class="rank-point-item">'+p+'</div>';}).join('');
+    return '<div class="rank-card '+(d.rank===1?'top':'')+'">'
+      +'<div class="rank-top">'
+      +'<div class="rank-num '+rc+'">'+d.rank+'</div>'
+      +'<div class="rank-info">'
+      +'<div class="rank-name">'+d.name+'</div>'
+      +'<div class="rank-company">'+d.company+'</div>'
+      +'<div class="rank-tags">'+tags+'</div>'
+      +'</div>'
+      +'<div class="rank-price">'+priceHtml+'</div>'
+      +'</div>'
+      +'<div class="rank-body">'+d.body+'</div>'
+      +'<div class="rank-points"><div class="rank-points-title">✅ この保険のポイント</div>'+points+'</div>'
+      +'<div class="rank-worry">💡 こんな方におすすめ：'+d.worry+'</div>'
+      +'<a href="'+d.url+'" target="_blank" rel="noopener" class="rank-aff-btn">無料で詳細・資料請求 →</a>'
+      +'<div class="rank-aff-sub">PR：アフィリエイトリンクです</div>'
+      +'</div>';
+  }).join('');
+}
+
+// ── 診断ロジック ──
+var DIAG_MAP = {
+  hospital: {male:{'20s':'iryo','30s':'iryo','40s':'iryo','50s':'iryo','60s':'easy'}, female:{'20s':'women','30s':'women','40s':'women','50s':'iryo','60s':'easy'}},
+  cancer:   {male:{'20s':'cancer','30s':'cancer','40s':'cancer','50s':'cancer','60s':'cancer'}, female:{'20s':'women','30s':'women','40s':'cancer','50s':'cancer','60s':'cancer'}},
+  death:    {male:{'20s':'death','30s':'death','40s':'death','50s':'death','60s':'death'}, female:{'20s':'death','30s':'death','40s':'death','50s':'iryo','60s':'easy'}},
+  cost:     {male:{'20s':'death','30s':'iryo','40s':'iryo','50s':'iryo','60s':'easy'}, female:{'20s':'death','30s':'iryo','40s':'iryo','50s':'iryo','60s':'easy'}},
+  health:   {male:{'20s':'easy','30s':'easy','40s':'easy','50s':'easy','60s':'easy'}, female:{'20s':'easy','30s':'easy','40s':'easy','50s':'easy','60s':'easy'}},
+};
+var CAT_NAME = {iryo:'医療・入院保険',cancer:'がん保険',death:'死亡保険',women:'女性医療保険',easy:'引受基準緩和型保険'};
+
+function runDiag(){
+  var age    = document.getElementById('diag-age').value;
+  var gender = document.getElementById('diag-gender').value;
+  var worry  = document.getElementById('diag-worry').value;
+  var cat = (DIAG_MAP[worry]||DIAG_MAP.hospital)[gender][age] || 'iryo';
+  var recs = (INSURANCE_DATA[cat]||[]).slice(0,3);
+  var listEl = document.getElementById('diag-result-list');
+  var icons = ['🥇','🥈','🥉'];
+  listEl.innerHTML = '<div style="font-size:11px;opacity:.7;margin-bottom:8px">あなたには「'+CAT_NAME[cat]+'」がおすすめです</div>'
+    + recs.map(function(d,i){
+      return '<div class="diag-rec-item">'
+        +'<span class="diag-rec-rank">'+icons[i]+'</span>'
+        +'<div><div style="font-weight:700;font-size:12px">'+d.name+'</div>'
+        +'<div style="font-size:10px;opacity:.7">'+d.company+' ｜ '+( gender==='female'?(d.price_female30||d.price_female40||'-'):(d.price_male30||d.price_male50||'-') )+'</div></div>'
+        +'<a href="'+d.url+'" target="_blank" rel="noopener" style="margin-left:auto;flex-shrink:0;padding:6px 10px;background:#fcd34d;color:#064e3b;border-radius:6px;font-size:11px;font-weight:700;text-decoration:none">詳細</a>'
+        +'</div>';
+    }).join('');
+}
+
+// ── 値上がり予測 ──
+function renderPredicts(){
+  var el = document.getElementById('predict-list');
+  if(!el) return;
+  el.innerHTML = PREDICT_DATA.map(function(d){
+    return '<div class="predict-card">'
+      +'<div class="predict-name">'+d.name+'</div>'
+      +'<div class="predict-rate">'+d.rate+'</div>'
+      +'<div class="predict-cause">原因：'+d.cause+'</div>'
+      +'</div>';
+  }).join('');
+}
+
+// ── 選び方ガイド ──
+function renderGuides(){
+  var el = document.getElementById('guide-list');
+  if(!el) return;
+  el.innerHTML = GUIDE_DATA.map(function(d){
+    return '<div class="guide-card">'
+      +'<div class="guide-icon">'+d.icon+'</div>'
+      +'<div class="guide-title">'+d.title+'</div>'
+      +'<div class="guide-body">'+d.body+'</div>'
+      +'</div>';
+  }).join('');
+}
+
+// ── 無料相談 ──
+function renderConsult(){
+  var el = document.getElementById('consult-list');
+  if(!el) return;
+  el.innerHTML = CONSULT_DATA.map(function(d){
+    return '<div style="background:var(--paper);border-radius:10px;padding:12px;margin-bottom:8px;border:0.5px solid var(--border)">'
+      +'<div style="font-size:13px;font-weight:700;margin-bottom:2px">'+d.name+'</div>'
+      +'<div style="font-size:10px;color:var(--green);font-weight:600;margin-bottom:6px">'+d.type+'</div>'
+      +'<div style="font-size:11px;color:var(--t2);margin-bottom:8px;line-height:1.5">'+d.merit+'</div>'
+      +'<a href="'+d.url+'" target="_blank" rel="noopener" style="display:block;padding:9px;background:var(--green);color:#fff;border-radius:8px;font-size:12px;font-weight:700;text-align:center;text-decoration:none">無料で相談する →</a>'
+      +'</div>';
+  }).join('');
+}
+
+// ── 一括資料請求 ──
+function submitRequest(){
+  var checked = [];
+  var map = {req_iryo:'医療・入院保険',req_cancer:'がん保険',req_death:'死亡保険',req_women:'女性医療保険',req_easy:'引受基準緩和型',req_care:'介護保険'};
+  Object.keys(map).forEach(function(id){
+    var el = document.getElementById(id);
+    if(el && el.checked) checked.push(map[id]);
+  });
+  if(!checked.length){ alert('保険の種類を1つ以上選んでください'); return; }
+  // ↓ アフィリエイトURLに変更
+  var url = 'https://www.hokennomadoguchi.com/';
+  window.open(url, '_blank', 'noopener');
+}
+
+// ── 初期化 ──
+document.addEventListener('DOMContentLoaded', function(){
+  renderRanking('iryo');
+  renderPredicts();
+  renderGuides();
+  renderConsult();
+  runDiag();
+  var now = new Date();
+  var b = document.getElementById('hero-badge');
+  if(b) b.textContent = '🛡 '+now.getFullYear()+'年'+(now.getMonth()+1)+'月 最新ランキング';
+  var u = document.getElementById('update-date');
+  if(u) u.textContent = INSURANCE_DATA.updated;
+  var ru = document.getElementById('rank-update');
+  if(ru) ru.textContent = '🔄 更新日: '+INSURANCE_DATA.updated;
+});
+</script>
+</body>
+</html>

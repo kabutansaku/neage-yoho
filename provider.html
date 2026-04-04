@@ -704,7 +704,7 @@ function toggleRank(id){
 
 // ══ provider-data.jsonから自動読み込み（毎月更新） ══
 function loadProviderData(){
-  fetch('provider-data.json?v='+Date.now())
+  fetch((location.pathname.includes('/neage-yoho/')?'/neage-yoho/':'/')+'provider-data.json?v='+Date.now())
     .then(function(r){return r.json();})
     .then(function(data){
       if(!data||!data.providers) return;
