@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>光回線・プロバイダ 比較ランキング 2026年4月最新 | 値上がり予測ドットコム</title>
+<meta name="description" content="2026年4月最新の光回線・プロバイダ比較ランキング。キャッシュバック・月額料金・速度・口コミを徹底比較。NURO光・auひかり・ドコモ光・GMOとくとくBB光。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#002B80;--cyan:#0891b2;--red:#dc2626;--orange:#d97706;--green:#059669;
+  --bg:#f0f9ff;--paper:#fff;--border:#bae6fd;--t1:#0f172a;--t2:#475569;--t3:#94a3b8
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--t1);font-size:14px;line-height:1.6}
+.hdr{background:var(--navy);color:#fff;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.hdr-logo{font-size:16px;font-weight:900;text-decoration:none;color:#fff}.hdr-logo span{color:#fcd34d}
+.hdr-back{color:#fff;text-decoration:none;font-size:12px;background:rgba(255,255,255,.15);padding:5px 12px;border-radius:20px}
+.main{max-width:900px;margin:0 auto;padding:16px 12px 80px}
+
+/* ヒーロー */
+.hero{background:linear-gradient(135deg,#003366,#0047AB,#006994);border-radius:16px;padding:28px 20px;margin-bottom:20px;color:#fff;position:relative;overflow:hidden}
+.hero::before{content:'📡';position:absolute;top:-10px;right:-5px;font-size:140px;opacity:.06}
+.hero-badge{display:inline-block;background:#fcd34d;color:#003366;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:12px}
+.hero h1{font-size:21px;font-weight:900;line-height:1.4;margin-bottom:10px}.hero h1 span{color:#67e8f9}
+.hero-sub{font-size:12px;opacity:.85;line-height:1.7;margin-bottom:14px}
+.hero-update{background:rgba(255,255,255,.1);border-radius:8px;padding:8px 12px;font-size:11px;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.hero-stat{text-align:center;background:rgba(255,255,255,.08);border-radius:10px;padding:12px 6px}
+.hero-stat-num{font-size:18px;font-weight:900;color:#fcd34d;font-family:'DM Mono',sans-serif}
+.hero-stat-lbl{font-size:10px;opacity:.7;margin-top:2px;line-height:1.3}
+
+.sec-title{font-size:15px;font-weight:800;margin-bottom:14px;padding-bottom:8px;border-bottom:3px solid var(--cyan);display:flex;align-items:center;gap:8px}
+
+/* 選び方ナビ */
+.nav-tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:16px;padding-bottom:4px}
+.nav-tab{white-space:nowrap;padding:8px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1.5px solid var(--border);background:#fff;cursor:pointer;color:var(--t2);font-family:'Noto Sans JP',sans-serif;transition:all .2s}
+.nav-tab.active,.nav-tab:hover{background:var(--cyan);color:#fff;border-color:var(--cyan)}
+
+/* キャンペーン速報バナー */
+.campaign-banner{background:linear-gradient(90deg,#991b1b,#dc2626);color:#fff;border-radius:10px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.cb-badge{background:#fcd34d;color:#991b1b;font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;white-space:nowrap;flex-shrink:0}
+.cb-text{font-size:12px;line-height:1.5}
+.cb-text strong{color:#fcd34d}
+
+/* プロバイダランキングカード */
+.rank-card{background:var(--paper);border-radius:14px;margin-bottom:14px;border:0.5px solid var(--border);overflow:hidden;transition:box-shadow .2s}
+.rank-card:hover{box-shadow:0 4px 20px rgba(8,145,178,.15)}
+.rank-card.recommended{border:2px solid var(--cyan)}
+.rank-header{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:14px 16px;cursor:pointer}
+.rank-num-wrap{display:flex;flex-direction:column;align-items:center;gap:4px}
+.rank-num{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;flex-shrink:0}
+.r1{background:linear-gradient(135deg,#fcd34d,#f59e0b);color:#92400e}
+.r2{background:linear-gradient(135deg,#e2e8f0,#cbd5e1);color:#475569}
+.r3{background:linear-gradient(135deg,#fed7aa,#fb923c);color:#9a3412}
+.rn{background:#e0f2fe;color:#0e7490}
+.rec-label{font-size:9px;font-weight:700;padding:2px 6px;border-radius:6px;white-space:nowrap;text-align:center;background:#e0f2fe;color:#0e7490}
+.rank-main-info{flex:1}
+.rank-name{font-size:15px;font-weight:900;margin-bottom:2px}
+.rank-provider{font-size:10px;color:var(--t2)}
+.rank-tags{display:flex;gap:4px;flex-wrap:wrap;margin:4px 0}
+.tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:6px}
+.tag-speed{background:#dbeafe;color:#1e40af}
+.tag-cheap{background:#dcfce7;color:#166534}
+.tag-set{background:#f3e8ff;color:#6d28d9}
+.tag-all{background:#cffafe;color:#0e7490}
+.tag-new{background:#fee2e2;color:#991b1b}
+.rank-cb{font-size:14px;font-weight:900;color:var(--red)}
+.rank-cb-lbl{font-size:9px;color:var(--t2)}
+.rank-expand{font-size:14px;color:var(--t3);transition:transform .2s;flex-shrink:0;align-self:flex-start;margin-top:4px}
+.rank-expand.open{transform:rotate(180deg)}
+
+/* 料金ハイライト */
+.fee-highlight{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 16px 12px;border-bottom:1px solid var(--border)}
+@media(max-width:500px){.fee-highlight{grid-template-columns:repeat(2,1fr)}}
+.fee-item{text-align:center;background:#f8fafc;border-radius:8px;padding:8px}
+.fee-lbl{font-size:9px;color:var(--t3);margin-bottom:2px}
+.fee-val{font-size:12px;font-weight:700;color:var(--t1)}
+.fee-val.highlight{color:var(--red);font-size:14px}
+
+/* 詳細展開部分 */
+.rank-detail{display:none;padding:14px 16px}
+.rank-detail.open{display:block}
+.rank-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+@media(max-width:500px){.rank-detail-grid{grid-template-columns:1fr}}
+
+/* メリット・デメリット */
+.merit-box{background:#f0fdf4;border-radius:8px;padding:10px 12px;margin-bottom:8px}
+.merit-title{font-size:11px;font-weight:700;color:#166534;margin-bottom:6px}
+.merit-list{list-style:none;font-size:11px;color:var(--t2);line-height:1.8}
+.merit-list li::before{content:'✅ '}
+.demerit-box{background:#fef9f0;border-radius:8px;padding:10px 12px;margin-bottom:8px}
+.demerit-title{font-size:11px;font-weight:700;color:#92400e;margin-bottom:6px}
+.demerit-list{list-style:none;font-size:11px;color:var(--t2);line-height:1.8}
+.demerit-list li::before{content:'⚠️ '}
+
+/* キャンペーン詳細ボックス */
+.campaign-box{background:linear-gradient(135deg,#003366,#0047AB);color:#fff;border-radius:10px;padding:12px;margin-bottom:10px}
+.campaign-title{font-size:11px;font-weight:700;color:#fcd34d;margin-bottom:8px;display:flex;align-items:center;gap:4px}
+.campaign-list{list-style:none;font-size:11px;line-height:1.8}
+.campaign-list li::before{content:'🎁 '}
+.campaign-expire{font-size:10px;opacity:.7;margin-top:6px}
+
+/* 口コミ */
+.review-list{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.review-card{background:#f8fafc;border-radius:8px;padding:10px;border-left:3px solid var(--cyan)}
+.review-stars{color:#f59e0b;font-size:12px;margin-bottom:3px}
+.review-user{font-size:10px;color:var(--t3);margin-bottom:4px}
+.review-text{font-size:11px;color:var(--t2);line-height:1.6}
+
+/* 定量データ */
+.quant-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
+@media(max-width:500px){.quant-grid{grid-template-columns:repeat(2,1fr)}}
+.quant-item{background:#e0f2fe;border-radius:8px;padding:8px;text-align:center}
+.quant-lbl{font-size:9px;color:#0e7490;margin-bottom:2px}
+.quant-val{font-size:13px;font-weight:700;color:#003366}
+
+/* アフィリエイトボタン */
+.aff-btn{display:block;width:100%;padding:12px;background:linear-gradient(90deg,#dc2626,#b91c1c);color:#fff;border-radius:10px;font-size:14px;font-weight:900;text-align:center;text-decoration:none;transition:all .2s;margin-top:4px}
+.aff-btn:hover{opacity:.9;transform:translateY(-1px)}
+.aff-btn-sub{display:block;text-align:center;font-size:10px;color:var(--t2);margin-top:4px}
+
+/* 比較ツール */
+.compare-tool{background:var(--paper);border-radius:12px;padding:16px;margin-bottom:20px;border:2px solid var(--cyan)}
+.compare-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px}
+@media(max-width:500px){.compare-grid{grid-template-columns:1fr}}
+.sim-lbl{font-size:11px;color:var(--t2);font-weight:600;margin-bottom:4px}
+.sim-select{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:'Noto Sans JP',sans-serif;background:#fff}
+.sim-result{background:linear-gradient(135deg,#003366,#0047AB);color:#fff;border-radius:10px;padding:14px}
+.sim-r-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px}
+.sim-r-box{text-align:center}
+.sim-r-lbl{font-size:10px;opacity:.7;margin-bottom:3px}
+.sim-r-val{font-size:16px;font-weight:900;color:#fcd34d;font-family:'DM Mono',sans-serif}
+
+/* スマホ別おすすめ */
+.phone-guide{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:20px}
+@media(max-width:500px){.phone-guide{grid-template-columns:1fr}}
+.phone-card{background:var(--paper);border-radius:10px;padding:14px;border:0.5px solid var(--border)}
+.phone-icon{font-size:24px;margin-bottom:6px}
+.phone-carrier{font-size:11px;font-weight:700;color:var(--cyan);margin-bottom:4px}
+.phone-rec{font-size:13px;font-weight:700;margin-bottom:4px}
+.phone-reason{font-size:11px;color:var(--t2);line-height:1.5}
+.phone-save{font-size:11px;font-weight:700;color:var(--green);margin-top:4px}
+
+/* 注意点 */
+.caution-box{background:#fffbeb;border:1.5px solid #fcd34d;border-radius:12px;padding:14px;margin-bottom:20px}
+.caution-title{font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px}
+.caution-list{list-style:none;font-size:11px;color:var(--t2);line-height:1.8}
+.caution-list li::before{content:'⚠️ '}
+
+/* フローティングナビ */
+.float-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--border);padding:8px 16px;display:flex;gap:8px;z-index:200}
+.fn-back{flex:1;text-align:center;padding:10px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;background:#e0f2fe;color:var(--cyan);border:1.5px solid var(--cyan)}
+.fn-top{flex:1;text-align:center;padding:10px;border-radius:10px;font-size:13px;font-weight:700;background:var(--cyan);color:#fff;border:none;cursor:pointer;font-family:'Noto Sans JP',sans-serif}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a href="index.html" class="hdr-logo"><span>値上がり</span>予測ドットコム</a>
+  <a href="index.html#forecast-db" class="hdr-back">← 予測DB</a>
+</header>
+
+<div class="main">
+
+<!-- ヒーロー -->
+<div class="hero">
+  <div class="hero-badge" id="hero-badge">📡 2026年4月 最新キャンペーン情報</div>
+  <h1>光回線・プロバイダ<br><span>比較ランキング</span></h1>
+  <p class="hero-sub">キャッシュバック・月額料金・通信速度・口コミを徹底比較。申し込み窓口でキャンペーン額が大きく変わります。今月のお得な申し込み先はここ！</p>
+  <div class="hero-update">
+    <span>🔄</span>
+    <span id="update-date">データ更新日: 2026年4月 ｜ キャンペーン情報は変更される場合があります</span>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">最大90,000円</div><div class="hero-stat-lbl">今月最高<br>キャッシュバック</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">月3,773円〜</div><div class="hero-stat-lbl">最安月額<br>（マンション）</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">10Gbps</div><div class="hero-stat-lbl">最大通信速度<br>NURO光</div></div>
+  </div>
+</div>
+
+<!-- キャンペーン速報 -->
+<div class="campaign-banner">
+  <div class="cb-badge">🔥 今月限定</div>
+  <div class="cb-text">
+    <strong>NURO光：最大90,000円キャッシュバック</strong>実施中！<br>
+    auひかり：フルコミット経由で最大93,000円 ｜ ビッグローブ光：最大85,000円キャッシュバック
+  </div>
+</div>
+
+<!-- スマホ別おすすめナビ -->
+<div class="sec-title">📱 あなたのスマホで選ぶ最適プロバイダ</div>
+<div class="phone-guide">
+  <div class="phone-card">
+    <div class="phone-icon">🔴</div>
+    <div class="phone-carrier">docomo ユーザー</div>
+    <div class="phone-rec">→ ドコモ光がおすすめ</div>
+    <div class="phone-reason">dカードで支払うと月187円割引。セット割でスマホ代も最大1,100円/台割引</div>
+    <div class="phone-save">年間節約額：約13,200円〜</div>
+  </div>
+  <div class="phone-card">
+    <div class="phone-icon">🟠</div>
+    <div class="phone-carrier">au / UQ mobile ユーザー</div>
+    <div class="phone-rec">→ auひかりがおすすめ</div>
+    <div class="phone-reason">auスマートバリューで毎月最大1,100円×台数割引。家族4人で年間5万円超節約も</div>
+    <div class="phone-save">年間節約額：約52,800円（4台）</div>
+  </div>
+  <div class="phone-card">
+    <div class="phone-icon">🟢</div>
+    <div class="phone-carrier">SoftBank / Y!mobile ユーザー</div>
+    <div class="phone-rec">→ ソフトバンク光がおすすめ</div>
+    <div class="phone-reason">おうち割光セットでスマホ最大1,650円/台割引（Y!mobile）。家族割と組み合わせ最強</div>
+    <div class="phone-save">年間節約額：約19,800円〜</div>
+  </div>
+  <div class="phone-card">
+    <div class="phone-icon">💙</div>
+    <div class="phone-carrier">楽天モバイル ユーザー</div>
+    <div class="phone-rec">→ 楽天ひかりがおすすめ</div>
+    <div class="phone-reason">楽天ひかりなら1年間月額無料。楽天市場のポイント還元も2倍になるお得な組み合わせ</div>
+    <div class="phone-save">初年度実質無料！</div>
+  </div>
+  <div class="phone-card">
+    <div class="phone-icon">📶</div>
+    <div class="phone-carrier">キャリア不問・速度重視</div>
+    <div class="phone-rec">→ NURO光がおすすめ</div>
+    <div class="phone-reason">独自回線で最大10Gbps。混雑時でも速度が落ちにくい。ゲーム・4K動画に最適</div>
+    <div class="phone-save">CB最大90,000円！</div>
+  </div>
+  <div class="phone-card">
+    <div class="phone-icon">💚</div>
+    <div class="phone-carrier">キャリア不問・コスパ重視</div>
+    <div class="phone-rec">→ GMOとくとくBB光</div>
+    <div class="phone-reason">全国対応・縛りなし・月額安め。キャッシュバックも高額でトータルコストが最安水準</div>
+    <div class="phone-save">縛りなし・解約金0円</div>
+  </div>
+</div>
+
+<!-- 料金比較ツール -->
+<div class="compare-tool">
+  <div class="sec-title" style="border-bottom-color:var(--cyan)">💰 実質月額料金シミュレーター</div>
+  <div class="compare-grid">
+    <div>
+      <div class="sim-lbl">プロバイダ選択</div>
+      <select class="sim-select" id="sim-provider" onchange="calcProvider()">
+        <option value="nuro">NURO光</option>
+        <option value="au">auひかり</option>
+        <option value="docomo">ドコモ光</option>
+        <option value="softbank">ソフトバンク光</option>
+        <option value="gmo">GMOとくとくBB光</option>
+        <option value="rakuten">楽天ひかり</option>
+        <option value="biglobe">ビッグローブ光</option>
+      </select>
+    </div>
+    <div>
+      <div class="sim-lbl">住宅タイプ</div>
+      <select class="sim-select" id="sim-house" onchange="calcProvider()">
+        <option value="kodate">戸建て</option>
+        <option value="mansion">マンション</option>
+      </select>
+    </div>
+    <div>
+      <div class="sim-lbl">スマホセット割</div>
+      <select class="sim-select" id="sim-set" onchange="calcProvider()">
+        <option value="0">なし</option>
+        <option value="1100">1台（-1,100円/月）</option>
+        <option value="2200">2台（-2,200円/月）</option>
+        <option value="4400">4台（-4,400円/月）</option>
+      </select>
+    </div>
+    <div>
+      <div class="sim-lbl">契約期間</div>
+      <select class="sim-select" id="sim-period" onchange="calcProvider()">
+        <option value="24">2年間</option>
+        <option value="36">3年間</option>
+      </select>
+    </div>
+  </div>
+  <div class="sim-result">
+    <div class="sim-r-grid">
+      <div class="sim-r-box">
+        <div class="sim-r-lbl">基本月額</div>
+        <div class="sim-r-val" id="sim-base">¥5,200</div>
+      </div>
+      <div class="sim-r-box">
+        <div class="sim-r-lbl">セット割後月額</div>
+        <div class="sim-r-val" id="sim-after-set">¥5,200</div>
+      </div>
+      <div class="sim-r-box">
+        <div class="sim-r-lbl">CB込み実質月額</div>
+        <div class="sim-r-val" id="sim-real">¥1,283</div>
+      </div>
+    </div>
+    <div style="font-size:11px;opacity:.7;text-align:center" id="sim-note">NURO光 戸建て 2年間 ｜ CB90,000円含む実質計算</div>
+  </div>
+</div>
+
+<!-- ランキング -->
+<div class="sec-title">🏆 光回線・プロバイダ おすすめランキング 2026年4月</div>
+<p style="font-size:11px;color:var(--t2);margin-bottom:14px">月額料金・通信速度・キャンペーン・口コミ・エリア対応を総合評価。キャンペーン情報は毎月自動更新。</p>
+
+<div id="rank-list"></div>
+
+<!-- 注意点 -->
+<div class="caution-box">
+  <div class="caution-title">⚠️ 光回線を選ぶ前に必ず確認すること</div>
+  <ul class="caution-list">
+    <li><strong>提供エリアを必ず確認</strong>：NURO光・auひかりは独自回線のためエリア外では契約不可</li>
+    <li><strong>実質月額で比較する</strong>：基本月額だけでなく工事費・CB・セット割を含めた総コストで判断</li>
+    <li><strong>キャッシュバックの受取条件を確認</strong>：申請期限（開通後11〜17ヶ月後）を忘れると失効</li>
+    <li><strong>工事費実質無料の落とし穴</strong>：24ヶ月以内の解約で残債が発生するケースが多い</li>
+    <li><strong>申し込み窓口でキャンペーン額が変わる</strong>：公式より代理店・プロバイダ経由の方が高額なことが多い</li>
+    <li><strong>キャンペーン内容は随時変更</strong>：必ず最新情報を公式サイトで確認してから申し込む</li>
+  </ul>
+</div>
+
+<p id="last-updated" style="font-size:10px;color:var(--t2);text-align:center;margin-bottom:4px"></p>
+<p style="font-size:10px;color:var(--t2);text-align:center">
+  ※キャンペーン情報は2026年4月時点。内容は予告なく変更される場合があります。申し込み前に必ず各公式サイトでご確認ください。<br>
+  PR：当サイトはアフィリエイトプログラムに参加しています。
+</p>
+
+</div><!-- main -->
+
+<div class="float-nav">
+  <a href="index.html#forecast-db" class="fn-back">← カテゴリ一覧</a>
+  <button class="fn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲ TOP・ランキングへ</button>
+</div>
+
+<script>
+// ══ プロバイダデータ（毎月更新） ══
+var PROVIDERS = [
+  {
+    id:'nuro', rank:1, name:'NURO光', provider:'So-net（ソニー系）',
+    rec:'速度・CB最強', recCls:'',
+    tags:['tag-speed','tag-new'], tagTxts:['最大10Gbps','CB最高額'],
+    base:{kodate:5200, mansion:2090},
+    cb:{kodate:90000, mansion:60000},
+    speed:{dl:2300, ul:1200}, // 実測Mbps平均
+    contract:24,
+    campaign:[
+      '工事費実質無料（24ヶ月以内解約は残債あり）',
+      '最大90,000円キャッシュバック（戸建て）',
+      '6ヶ月間月額0円キャンペーン（新規申込）',
+      '高性能Wi-Fiルーター無料レンタル',
+    ],
+    campaignExpire:'2026年4月末まで（予定）',
+    reviews:[
+      {stars:5,user:'東京・30代男性',text:'ゲームの遅延が劇的に改善。繁忙期でも速度が落ちないのが最高。工事は2回必要だったが満足度は高い。'},
+      {stars:4,user:'神奈川・40代女性',text:'速度は本当に速い。CBの申請が少し手間だが、もらえると嬉しい。エリア確認は必須。'},
+      {stars:3,user:'大阪・20代男性',text:'速度は最高だが、提供エリアが狭いのが難点。問い合わせ対応も少し遅かった。'},
+    ],
+    merits:[
+      '最大10Gbpsで業界最速水準（実測平均2,300Mbps）',
+      '独自回線のため混雑時でも速度が安定している',
+      '最大90,000円の超高額キャッシュバック',
+      '6ヶ月間月額0円キャンペーンで初期コストを大幅削減',
+      'ソニー製の高性能ONU（光回線終端装置）を無料提供',
+    ],
+    demerits:[
+      '提供エリアが限定的（首都圏・関西圏などの都市部中心）',
+      '工事が屋外・屋内2回必要でやや時間がかかる',
+      'CBは開通後11ヶ月・17ヶ月後に申請が必要',
+      '24ヶ月以内解約で工事費残債が発生',
+    ],
+    quant:{speed:'2,300Mbps', price:'¥5,200/月', cb:'90,000円', area:'主要都市'},
+    url:'https://www.nuro.jp/',  // ← アフィリエイトURL
+  },
+  {
+    id:'au', rank:2, name:'auひかり', provider:'KDDI株式会社',
+    rec:'auユーザー最強', recCls:'',
+    tags:['tag-speed','tag-set'], tagTxts:['独自回線','au割最強'],
+    base:{kodate:5610, mansion:4180},
+    cb:{kodate:93000, mansion:50000},
+    speed:{dl:2000, ul:900},
+    contract:36,
+    campaign:[
+      '最大93,000円キャッシュバック（フルコミット経由）',
+      'auスマートバリューでスマホ最大1,100円/台割引',
+      '超高速10ギガ・5ギガプランスタート割（3年間550円引き）',
+      '工事費実質無料',
+      '他社違約金最大30,000円還元',
+    ],
+    campaignExpire:'2026年4月末まで（予定）',
+    reviews:[
+      {stars:5,user:'愛知・40代男性',text:'家族全員auなのでセット割で月に4,000円以上安くなった。回線速度も申し分なし。'},
+      {stars:4,user:'大阪・30代女性',text:'auスマートバリューがお得。ただしエリア確認が必須。私の家はエリア内で良かった。'},
+      {stars:4,user:'東京・50代男性',text:'CBが最大93,000円で助かった。代理店選びは重要で、フルコミット経由がおすすめ。'},
+    ],
+    merits:[
+      '独自回線で最大10Gbps、混雑しても安定した速度',
+      'auスマートバリューで家族のスマホ代も大幅節約',
+      'フルコミット経由で業界最高水準の93,000円CB',
+      '他社解約違約金を最大30,000円還元',
+      '5G/10Gプランも選択可能',
+    ],
+    demerits:[
+      '提供エリアが限定的（NUROより広いが全国ではない）',
+      'マンションは対応物件が少ない場合がある',
+      '3年契約が基本で短期解約は費用が発生',
+      'CB受取は代理店選びで金額が大きく変わる',
+    ],
+    quant:{speed:'2,000Mbps', price:'¥5,610/月', cb:'93,000円', area:'東名阪中心'},
+    url:'https://www.au.com/internet/',  // ← アフィリエイトURL
+  },
+  {
+    id:'docomo', rank:3, name:'ドコモ光', provider:'NTTドコモ',
+    rec:'ドコモ×全国対応', recCls:'',
+    tags:['tag-all','tag-set'], tagTxts:['全国47都道府県','dカード割引'],
+    base:{kodate:5720, mansion:4400},
+    cb:{kodate:80000, mansion:60000},
+    speed:{dl:400, ul:400},
+    contract:24,
+    campaign:[
+      'GMOとくとくBB経由で最大80,000円CB（優待コード:DCMH）',
+      'ドコモのスマホ最大1,100円/台割引（ドコモ光セット割）',
+      'dカードお支払い割で毎月187円割引',
+      '工事費実質無料',
+      '10ギガプランで月額500円×最大6ヶ月割引',
+    ],
+    campaignExpire:'2026年4月末まで（予定）',
+    reviews:[
+      {stars:4,user:'北海道・40代男性',text:'ドコモユーザーなのでセット割が効いて実質かなり安い。全国対応なのが地方在住者には助かる。'},
+      {stars:3,user:'福岡・30代女性',text:'速度は可もなく不可もなく。ドコモスマホとのセット割が最大のメリット。'},
+      {stars:4,user:'東京・20代男性',text:'GMOとくとくBB経由で申し込んだら80,000円CBもらえた。申請を忘れずに！'},
+    ],
+    merits:[
+      '全国47都道府県対応で地方でも使いやすい',
+      'プロバイダを21社から選べる（他社では選べない）',
+      'ドコモのスマホとセット割で家族全員分の節約効果大',
+      'GMOとくとくBB経由で最大80,000円の高額CB',
+      'dカード払いで毎月187円の永続割引',
+    ],
+    demerits:[
+      '光コラボのためNTT回線を使用、速度はエリアや混雑に依存',
+      'プロバイダ選択が必要で初心者には少し複雑',
+      'GMOとくとくBB経由はGMOのプロバイダ固定になる',
+      'CBの申請を忘れると失効する',
+    ],
+    quant:{speed:'400Mbps', price:'¥5,720/月', cb:'80,000円', area:'全国47都道府県'},
+    url:'https://www.nttdocomo.co.jp/hikari/',  // ← アフィリエイトURL
+  },
+  {
+    id:'gmo', rank:4, name:'GMOとくとくBB光', provider:'GMOインターネットグループ',
+    rec:'縛りなし最強CP', recCls:'',
+    tags:['tag-cheap','tag-all'], tagTxts:['縛りなし','コスパ最強'],
+    base:{kodate:4818, mansion:3773},
+    cb:{kodate:60000, mansion:45000},
+    speed:{dl:350, ul:350},
+    contract:0,
+    campaign:[
+      '最大60,000円キャッシュバック（戸建て）',
+      '縛りなし・解約違約金0円',
+      '工事費実質無料',
+      'v6プラス接続（高速IPoE）無料',
+      'Wi-Fiルーター無料レンタル',
+    ],
+    campaignExpire:'2026年4月末まで（予定）',
+    reviews:[
+      {stars:5,user:'埼玉・30代男性',text:'縛りなしで安心。速度も問題なく、CBも予定通りもらえた。コスパ最高。'},
+      {stars:4,user:'愛知・40代女性',text:'初心者でも申し込みやすい。複雑な条件がないのが良い。速度は普通に快適。'},
+      {stars:4,user:'大阪・20代男性',text:'v6プラスで夜間も速度が落ちにくい。縛りなしなので気軽に試せる。'},
+    ],
+    merits:[
+      '縛りなし・解約違約金0円で気軽に試せる',
+      '全国対応で地域を選ばない',
+      'v6プラス標準対応で夜間でも速度が安定',
+      '月額料金が最安水準（マンション3,773円〜）',
+      'キャンペーン条件がシンプルでわかりやすい',
+    ],
+    demerits:[
+      'スマホセット割が適用できない',
+      '独自回線ではないため混雑時に速度低下の可能性',
+      'CBは開通後一定期間後の申請が必要',
+      '速度重視ならNURO光・auひかりが上',
+    ],
+    quant:{speed:'350Mbps', price:'¥3,773/月', cb:'60,000円', area:'全国47都道府県'},
+    url:'https://gmobb.jp/',  // ← アフィリエイトURL
+  },
+  {
+    id:'softbank', rank:5, name:'ソフトバンク光', provider:'ソフトバンク株式会社',
+    rec:'SB・Y!モバユーザー', recCls:'',
+    tags:['tag-set','tag-all'], tagTxts:['SB最大1,650円割','全国対応'],
+    base:{kodate:5720, mansion:4400},
+    cb:{kodate:40000, mansion:30000},
+    speed:{dl:320, ul:280},
+    contract:24,
+    campaign:[
+      'おうち割光セットでスマホ最大1,100円/台（SB）・1,650円/台（Y!mobile）',
+      '工事費実質無料',
+      '最大40,000円キャッシュバック（代理店経由）',
+      'ソフトバンクでんきとのセット割',
+    ],
+    campaignExpire:'2026年4月末まで（予定）',
+    reviews:[
+      {stars:4,user:'東京・30代女性',text:'Y!mobileユーザーなので毎月1,650円×2台で節約できている。速度は普通に使える。'},
+      {stars:3,user:'大阪・40代男性',text:'SBスマホとのセット割がメリット。速度は可もなく不可もなく。'},
+      {stars:4,user:'神奈川・20代男性',text:'家族全員SBなので月に4,000円以上の節約になっている。コスパは高い。'},
+    ],
+    merits:[
+      'Y!mobileユーザーなら毎月最大1,650円/台割引で最大の節約効果',
+      'ソフトバンク・Y!mobile家族全員でセット割が適用可能',
+      '全国対応でエリアを気にしなくていい',
+      'ソフトバンクでんきとのセット割も可能',
+      'PayPayポイントが貯まるサービスとの連携',
+    ],
+    demerits:[
+      'ソフトバンク・Y!mobile以外のユーザーにはメリットが薄い',
+      '通信速度は独自回線（NURO光・auひかり）より劣る',
+      'CBは他社より低め',
+      '契約期間の縛りあり',
+    ],
+    quant:{speed:'320Mbps', price:'¥5,720/月', cb:'40,000円', area:'全国47都道府県'},
+    url:'https://www.softbank.jp/internet/',  // ← アフィリエイトURL
+  },
+  {
+    id:'rakuten', rank:6, name:'楽天ひかり', provider:'楽天モバイル株式会社',
+    rec:'楽天モバイルユーザー', recCls:'',
+    tags:['tag-cheap','tag-set'], tagTxts:['1年間月額0円','楽天ポイント'],
+    base:{kodate:5280, mansion:4180},
+    cb:{kodate:0, mansion:0},
+    speed:{dl:200, ul:200},
+    contract:12,
+    campaign:[
+      '楽天モバイルとのセット契約で1年間月額無料',
+      '楽天市場のポイント還元が+2倍',
+      '工事費無料キャンペーン',
+      '楽天ポイントで月額支払い可能',
+    ],
+    campaignExpire:'継続実施中',
+    reviews:[
+      {stars:5,user:'東京・30代女性',text:'楽天モバイルとセットで1年間無料はすごいお得。楽天市場もよく使うのでポイント還元も嬉しい。'},
+      {stars:3,user:'埼玉・40代男性',text:'1年後の料金が急に上がる。楽天モバイルとセットで使うことが前提のサービス。'},
+      {stars:4,user:'大阪・20代女性',text:'楽天ユーザーには最高。ポイントもたくさん貯まってお得感がある。'},
+    ],
+    merits:[
+      '楽天モバイルとのセットで1年間月額完全無料（最大63,360円相当）',
+      '楽天市場のポイント還元率が+2倍になる',
+      '楽天ポイントで月額料金の支払いが可能',
+      '楽天経済圏（楽天カード・楽天銀行等）との相乗効果',
+      '工事費無料キャンペーン実施中',
+    ],
+    demerits:[
+      '2年目以降は通常料金に戻り割高になる場合がある',
+      '速度は他社と比べて劣ることがある',
+      '楽天モバイルとのセットが前提のお得さ',
+      '解約・乗り換えの際の手続きが複雑',
+    ],
+    quant:{speed:'200Mbps', price:'¥0/月（初年度）', cb:'0円（月額無料）', area:'全国47都道府県'},
+    url:'https://hikari.rakuten.co.jp/',  // ← アフィリエイトURL
+  },
+  {
+    id:'biglobe', rank:7, name:'ビッグローブ光', provider:'ビッグローブ株式会社（KDDI系）',
+    rec:'au系コスパ', recCls:'',
+    tags:['tag-set','tag-cheap'], tagTxts:['CB最大85,000円','au・UQ割'],
+    base:{kodate:4928, mansion:3828},
+    cb:{kodate:85000, mansion:85000},
+    speed:{dl:280, ul:260},
+    contract:24,
+    campaign:[
+      'au・UQモバイルとのセット割（最大1,100円/台）',
+      '最大85,000円キャッシュバック',
+      '工事費実質無料',
+      'BIGLOBEモバイルとのセット割',
+    ],
+    campaignExpire:'2026年4月末まで（予定）',
+    reviews:[
+      {stars:4,user:'東京・40代男性',text:'UQモバイルユーザーなのでセット割が効いてお得。CBも他社と同水準でもらえた。'},
+      {stars:4,user:'愛知・30代女性',text:'auひかりエリア外だったのでビッグローブ光に。速度は普通に使えている。'},
+    ],
+    merits:[
+      'au・UQモバイルとのセット割でauひかり相当のお得さ',
+      'auひかりエリア外でもKDDI系のサービスを受けられる',
+      '最大85,000円のキャッシュバックはトップクラス',
+      '全国対応でエリアを選ばない',
+    ],
+    demerits:[
+      'auひかりと比べると速度が劣る（光コラボのため）',
+      'CBの申請手続きが必要',
+      'セット割はau・UQモバイルユーザー限定',
+    ],
+    quant:{speed:'280Mbps', price:'¥3,828/月', cb:'85,000円', area:'全国47都道府県'},
+    url:'https://join.biglobe.ne.jp/',  // ← アフィリエイトURL
+  },
+];
+
+// ══ シミュレーターデータ ══
+var SIM_DATA = {
+  nuro:   {kodate:5200, mansion:2090},
+  au:     {kodate:5610, mansion:4180},
+  docomo: {kodate:5720, mansion:4400},
+  softbank:{kodate:5720, mansion:4400},
+  gmo:    {kodate:4818, mansion:3773},
+  rakuten:{kodate:5280, mansion:4180},
+  biglobe:{kodate:4928, mansion:3828},
+};
+var SIM_CB = {
+  nuro:   {kodate:90000, mansion:60000},
+  au:     {kodate:93000, mansion:50000},
+  docomo: {kodate:80000, mansion:60000},
+  softbank:{kodate:40000, mansion:30000},
+  gmo:    {kodate:60000, mansion:45000},
+  rakuten:{kodate:63360, mansion:50160}, // 1年間無料相当
+  biglobe:{kodate:85000, mansion:85000},
+};
+
+function calcProvider(){
+  var p = document.getElementById('sim-provider').value;
+  var h = document.getElementById('sim-house').value;
+  var set = parseInt(document.getElementById('sim-set').value) || 0;
+  var months = parseInt(document.getElementById('sim-period').value);
+
+  var base = SIM_DATA[p] ? SIM_DATA[p][h] : 5000;
+  var cb = SIM_CB[p] ? SIM_CB[p][h] : 0;
+  var afterSet = Math.max(0, base - set);
+  var totalCost = afterSet * months - cb;
+  var realMonthly = Math.max(0, Math.round(totalCost / months));
+
+  document.getElementById('sim-base').textContent = '¥'+base.toLocaleString();
+  document.getElementById('sim-after-set').textContent = '¥'+afterSet.toLocaleString();
+  document.getElementById('sim-real').textContent = '¥'+realMonthly.toLocaleString();
+  document.getElementById('sim-note').textContent =
+    document.getElementById('sim-provider').options[document.getElementById('sim-provider').selectedIndex].text
+    + ' '+h==='kodate'?'戸建て':'マンション' + ' '+months+'ヶ月 ｜ CB'+cb.toLocaleString()+'円含む実質計算';
+}
+
+// ══ ランキング描画 ══
+function renderRanking(){
+  var list = document.getElementById('rank-list');
+  if(!list) return;
+  list.innerHTML = PROVIDERS.map(function(p){
+    var rc = p.rank<=3?'r'+p.rank:'rn';
+    var tags = p.tags.map(function(t,i){return '<span class="tag '+t+'">'+p.tagTxts[i]+'</span>';}).join('');
+    var campaigns = p.campaign.map(function(c){return '<li>'+c+'</li>';}).join('');
+    var reviews = p.reviews.map(function(r){
+      return '<div class="review-card">'
+        +'<div class="review-stars">'+'★'.repeat(r.stars)+'☆'.repeat(5-r.stars)+'</div>'
+        +'<div class="review-user">'+r.user+'</div>'
+        +'<div class="review-text">'+r.text+'</div>'
+        +'</div>';
+    }).join('');
+    var merits = p.merits.map(function(m){return '<li>'+m+'</li>';}).join('');
+    var demerits = p.demerits.map(function(d){return '<li>'+d+'</li>';}).join('');
+
+    return '<div class="rank-card" id="p-'+p.id+'">'
+      // ヘッダー
+      +'<div class="rank-header" onclick="toggleRank(\''+p.id+'\')">'
+      +'<div class="rank-num-wrap"><div class="rank-num '+rc+'">'+p.rank+'</div><div class="rec-label">'+p.rec+'</div></div>'
+      +'<div class="rank-main-info">'
+      +'<div class="rank-name">'+p.name+'</div>'
+      +'<div class="rank-provider">'+p.provider+'</div>'
+      +'<div class="rank-tags">'+tags+'</div>'
+      +'</div>'
+      +'<div style="text-align:right;flex-shrink:0">'
+      +'<div class="rank-cb-lbl">最大CB</div>'
+      +'<div class="rank-cb">'+p.cb.kodate.toLocaleString()+'円</div>'
+      +'</div>'
+      +'<div class="rank-expand" id="ex-'+p.id+'">▼</div>'
+      +'</div>'
+      // 料金ハイライト
+      +'<div class="fee-highlight">'
+      +'<div class="fee-item"><div class="fee-lbl">月額（戸建て）</div><div class="fee-val">¥'+p.base.kodate.toLocaleString()+'</div></div>'
+      +'<div class="fee-item"><div class="fee-lbl">月額（マンション）</div><div class="fee-val">¥'+p.base.mansion.toLocaleString()+'</div></div>'
+      +'<div class="fee-item"><div class="fee-lbl">実測速度（平均）</div><div class="fee-val">'+p.quant.speed+'</div></div>'
+      +'<div class="fee-item"><div class="fee-lbl">CB（戸建て）</div><div class="fee-val highlight">'+p.cb.kodate.toLocaleString()+'円</div></div>'
+      +'<div class="fee-item"><div class="fee-lbl">提供エリア</div><div class="fee-val">'+p.quant.area+'</div></div>'
+      +'<div class="fee-item"><div class="fee-lbl">契約縛り</div><div class="fee-val">'+(p.contract===0?'なし':p.contract+'ヶ月')+'</div></div>'
+      +'</div>'
+      // 詳細展開
+      +'<div class="rank-detail" id="d-'+p.id+'">'
+      // 定量データ
+      +'<div class="quant-grid">'
+      +'<div class="quant-item"><div class="quant-lbl">平均速度</div><div class="quant-val">'+p.quant.speed+'</div></div>'
+      +'<div class="quant-item"><div class="quant-lbl">月額</div><div class="quant-val">'+p.quant.price+'</div></div>'
+      +'<div class="quant-item"><div class="quant-lbl">CB最大額</div><div class="quant-val">'+p.quant.cb+'</div></div>'
+      +'<div class="quant-item"><div class="quant-lbl">エリア</div><div class="quant-val">'+p.quant.area+'</div></div>'
+      +'</div>'
+      // キャンペーン
+      +'<div class="campaign-box"><div class="campaign-title">🎁 今月のキャンペーン</div>'
+      +'<ul class="campaign-list">'+campaigns+'</ul>'
+      +'<div class="campaign-expire">※期限：'+p.campaignExpire+'</div></div>'
+      // メリット・デメリット
+      +'<div class="merit-box"><div class="merit-title">✅ メリット（定性・定量）</div><ul class="merit-list">'+merits+'</ul></div>'
+      +'<div class="demerit-box"><div class="demerit-title">⚠️ デメリット・注意点</div><ul class="demerit-list">'+demerits+'</ul></div>'
+      // 口コミ
+      +'<div style="font-size:11px;font-weight:700;color:var(--cyan);margin-bottom:8px">💬 実際の口コミ</div>'
+      +'<div class="review-list">'+reviews+'</div>'
+      // アフィリエイトボタン
+      +'<a href="'+p.url+'" target="_blank" rel="noopener" class="aff-btn">🔗 '+p.name+' 公式サイトで申し込む →</a>'
+      +'<div class="aff-btn-sub">PR：アフィリエイトリンクです ｜ キャンペーン内容は公式サイトでご確認ください</div>'
+      +'</div>'
+      +'</div>';
+  }).join('');
+}
+
+function toggleRank(id){
+  var d = document.getElementById('d-'+id);
+  var ex = document.getElementById('ex-'+id);
+  if(d.classList.contains('open')){
+    d.classList.remove('open'); ex.classList.remove('open');
+  } else {
+    d.classList.add('open'); ex.classList.add('open');
+  }
+}
+
+// ══ provider-data.jsonから自動読み込み（毎月更新） ══
+function loadProviderData(){
+  fetch('provider-data.json?v='+Date.now())
+    .then(function(r){return r.json();})
+    .then(function(data){
+      if(!data||!data.providers) return;
+      // キャンペーンデータを自動更新
+      PROVIDERS.forEach(function(p){
+        var d = data.providers[p.id];
+        if(!d) return;
+        if(d.cb_kodate) p.cb.kodate = d.cb_kodate;
+        if(d.cb_mansion) p.cb.mansion = d.cb_mansion;
+        if(d.campaign) p.campaign = d.campaign;
+        if(d.expire) p.campaignExpire = d.expire;
+      });
+      // ヒーローのCB最大額を更新
+      var maxCB = Math.max.apply(null, PROVIDERS.map(function(p){return p.cb.kodate;}));
+      var heroStat = document.querySelector('.hero-stat-num');
+      if(heroStat) heroStat.textContent = '最大'+maxCB.toLocaleString()+'円';
+      // 更新日を反映
+      if(data.updated){
+        var u = document.getElementById('update-date');
+        if(u) u.textContent = 'データ更新日: '+data.updated+' ｜ キャンペーン情報は変更される場合があります';
+      }
+      renderRanking();
+    })
+    .catch(function(){
+      // JSONが取得できない場合はデフォルトで描画
+      renderRanking();
+    });
+}
+
+// ══ 初期化 ══
+document.addEventListener('DOMContentLoaded', function(){
+  loadProviderData(); // JSONから自動更新
+  calcProvider();
+  var now = new Date();
+  var b = document.getElementById('hero-badge');
+  if(b) b.textContent = '📡 '+now.getFullYear()+'年'+(now.getMonth()+1)+'月 最新キャンペーン情報';
+  var u = document.getElementById('update-date');
+  if(u) u.textContent = 'データ更新日: '+now.getFullYear()+'年'+(now.getMonth()+1)+'月 ｜ キャンペーン情報は変更される場合があります';
+  var lu = document.getElementById('last-updated');
+  if(lu) lu.textContent = '最終更新: '+now.getFullYear()+'年'+(now.getMonth()+1)+'月'+now.getDate()+'日';
+});
+</script>
+</body>
+</html>
