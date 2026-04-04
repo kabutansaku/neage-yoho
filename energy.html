@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>電気代・ガス代 値上がり予測＆電力会社ランキング 2026 | 値上がり予測ドットコム</title>
+<meta name="description" content="2026年の電気代・ガス代値上がり予測。電力会社おすすめランキング、料金シミュレーション、新電力乗り換えで年間いくら節約できる？">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#002B80;--purple:#6d28d9;--red:#dc2626;--orange:#d97706;--green:#059669;--bg:#f1f5f9;--paper:#fff;--border:#e2e8f0;--t1:#0f172a;--t2:#475569;--t3:#94a3b8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--t1);font-size:14px;line-height:1.6}
+.hdr{background:var(--navy);color:#fff;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.hdr-logo{font-size:16px;font-weight:900;text-decoration:none;color:#fff}.hdr-logo span{color:#fcd34d}
+.hdr-back{color:#fff;text-decoration:none;font-size:12px;background:rgba(255,255,255,.15);padding:5px 12px;border-radius:20px}
+.main{max-width:900px;margin:0 auto;padding:16px 12px 80px}
+.hero{background:linear-gradient(135deg,#0f0035,#1a0060,#2d0090);border-radius:16px;padding:28px 20px;margin-bottom:20px;color:#fff;position:relative;overflow:hidden}
+.hero::before{content:'⚡';position:absolute;top:-20px;right:-10px;font-size:150px;opacity:.05;transform:rotate(15deg)}
+.hero-badge{display:inline-block;background:#fcd34d;color:#1a0060;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:12px}
+.hero h1{font-size:22px;font-weight:900;line-height:1.4;margin-bottom:10px}.hero h1 span{color:#fcd34d}
+.hero-sub{font-size:12px;opacity:.85;line-height:1.7;margin-bottom:14px}
+.hero-alert{background:rgba(220,38,38,.2);border:1px solid rgba(220,38,38,.4);border-radius:8px;padding:10px 12px;font-size:11px;margin-bottom:16px;line-height:1.6}
+.hero-alert strong{color:#fca5a5}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.hero-stat{text-align:center;background:rgba(255,255,255,.08);border-radius:10px;padding:12px 6px}
+.hero-stat-num{font-size:20px;font-weight:900;color:#fcd34d;font-family:'DM Mono',sans-serif}
+.hero-stat-lbl{font-size:10px;opacity:.7;margin-top:2px;line-height:1.3}
+.sec-title{font-size:15px;font-weight:800;margin-bottom:14px;padding-bottom:8px;border-bottom:3px solid var(--purple);display:flex;align-items:center;gap:8px}
+.section{margin-bottom:28px}
+.predict-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(max-width:500px){.predict-grid{grid-template-columns:1fr}}
+.predict-card{background:var(--paper);border-radius:12px;padding:14px;border:0.5px solid var(--border);position:relative;overflow:hidden}
+.predict-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red)}
+.predict-card-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.predict-icon{font-size:24px}
+.predict-name{font-size:13px;font-weight:700}
+.predict-sub{font-size:10px;color:var(--t2)}
+.price-lbl{font-size:10px;color:var(--t2);margin-bottom:2px}
+.price-val{font-family:'DM Mono',sans-serif;font-size:16px;font-weight:700}
+.rbar{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin:6px 0 8px}
+.rbar-fill{height:100%;border-radius:3px}
+.predict-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:8px;display:inline-block;background:#fee2e2;color:#991b1b}
+.chart-wrap{background:var(--paper);border-radius:12px;padding:16px;margin-bottom:20px}
+.month-bars{display:flex;gap:3px;align-items:flex-end;height:90px;margin:10px 0 4px}
+.month-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+.month-bar{width:100%;border-radius:3px 3px 0 0;min-height:6px}
+.month-lbl{font-size:9px;color:var(--t2)}
+.month-val{font-size:8px;font-weight:600}
+.simulator{background:var(--paper);border-radius:12px;padding:18px;margin-bottom:20px;border:2px solid var(--purple)}
+.sim-head{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.sim-head-icon{font-size:24px}
+.sim-head-title{font-size:14px;font-weight:800}
+.sim-head-sub{font-size:11px;color:var(--t2)}
+.sim-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+@media(max-width:500px){.sim-grid{grid-template-columns:1fr}}
+.sim-lbl{font-size:11px;color:var(--t2);font-weight:600;margin-bottom:4px}
+.sim-select{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:'Noto Sans JP',sans-serif;background:#fff}
+.sim-select:focus{outline:none;border-color:var(--purple)}
+.sim-result{background:linear-gradient(135deg,#0f0035,#2d0090);color:#fff;border-radius:12px;padding:16px}
+.sim-result-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.sim-r-box{text-align:center}
+.sim-r-lbl{font-size:10px;opacity:.7;margin-bottom:4px}
+.sim-r-val{font-size:20px;font-weight:900;font-family:'DM Mono',sans-serif;color:#fcd34d}
+.sim-r-sub{font-size:10px;opacity:.6;margin-top:2px}
+.sim-save-box{background:rgba(5,150,105,.25);border-radius:8px;padding:12px;text-align:center}
+.sim-save-lbl{font-size:11px;opacity:.8;margin-bottom:4px}
+.sim-save-val{font-size:24px;font-weight:900;font-family:'DM Mono',sans-serif;color:#6ee7b7}
+.sim-save-sub{font-size:10px;opacity:.6;margin-top:2px}
+.rank-card{background:var(--paper);border-radius:14px;padding:16px;margin-bottom:14px;border:0.5px solid var(--border)}
+.rank-card-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
+.rank-badge-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0}
+.rank-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900}
+.r1{background:linear-gradient(135deg,#fcd34d,#f59e0b);color:#92400e}
+.r2{background:linear-gradient(135deg,#e2e8f0,#cbd5e1);color:#475569}
+.r3{background:linear-gradient(135deg,#fed7aa,#fb923c);color:#9a3412}
+.rn{background:#f1f5f9;color:#64748b}
+.rank-rec{font-size:9px;font-weight:700;padding:2px 6px;border-radius:6px;white-space:nowrap;text-align:center}
+.rec-all{background:#ddd6fe;color:#5b21b6}
+.rec-eco{background:#d1fae5;color:#065f46}
+.rec-cheap{background:#dcfce7;color:#166534}
+.rec-point{background:#fef3c7;color:#92400e}
+.rec-set{background:#dbeafe;color:#1e40af}
+.rank-main{flex:1}
+.rank-name-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.rank-name{font-size:16px;font-weight:900}
+.rank-company{font-size:10px;color:var(--t2)}
+.rank-tags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px}
+.rank-tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:8px}
+.tag-cheap{background:#dcfce7;color:#166534}
+.tag-eco{background:#d1fae5;color:#065f46}
+.tag-point{background:#fef3c7;color:#92400e}
+.tag-set{background:#dbeafe;color:#1e40af}
+.tag-nocost{background:#f3e8ff;color:#7c3aed}
+.tag-area{background:#e0e7ff;color:#3730a3}
+.rank-catch{font-size:13px;font-weight:700;margin-bottom:6px;line-height:1.4}
+.rank-btn{background:var(--purple);color:#fff;border:none;padding:9px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.rank-btn:hover{background:#5b21b6}
+.rank-body{font-size:12px;color:var(--t2);line-height:1.6;margin-bottom:10px}
+.rank-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
+@media(max-width:500px){.rank-specs{grid-template-columns:repeat(2,1fr)}}
+.rank-spec{background:#f8fafc;border-radius:8px;padding:8px;text-align:center}
+.rank-spec-lbl{font-size:9px;color:var(--t3);margin-bottom:2px}
+.rank-spec-val{font-size:12px;font-weight:700}
+.rank-merit{background:#f0fdf4;border-radius:8px;padding:10px 12px;margin-bottom:8px}
+.rank-merit-title{font-size:11px;font-weight:700;color:#166534;margin-bottom:6px}
+.rank-merit ul{padding-left:14px;font-size:11px;color:var(--t2);line-height:1.7}
+.rank-demerit{background:#fef9f0;border-radius:8px;padding:10px 12px;margin-bottom:8px}
+.rank-demerit-title{font-size:11px;font-weight:700;color:#92400e;margin-bottom:6px}
+.rank-demerit ul{padding-left:14px;font-size:11px;color:var(--t2);line-height:1.7}
+.rank-who{background:#eff6ff;border-radius:8px;padding:10px 12px}
+.rank-who-title{font-size:11px;font-weight:700;color:#1e40af;margin-bottom:4px}
+.rank-who-text{font-size:11px;color:var(--t2);line-height:1.6}
+.rank-save-badge{display:inline-block;background:linear-gradient(90deg,#dc2626,#b91c1c);color:#fff;font-size:11px;font-weight:700;padding:5px 10px;border-radius:8px;margin-bottom:8px}
+.rank-expand-btn{width:100%;background:#f8fafc;border:1px solid var(--border);color:var(--t2);padding:8px;border-radius:8px;cursor:pointer;font-size:12px;margin-top:8px;font-family:'Noto Sans JP',sans-serif}
+.rank-detail{display:none;margin-top:10px;border-top:1px solid var(--border);padding-top:10px}
+.rank-detail.open{display:block}
+.guide-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:20px}
+@media(max-width:500px){.guide-grid{grid-template-columns:1fr}}
+.guide-card{background:var(--paper);border-radius:10px;padding:14px;border:0.5px solid var(--border)}
+.guide-type{font-size:11px;font-weight:700;color:var(--purple);margin-bottom:6px}
+.guide-rec{font-size:13px;font-weight:700;margin-bottom:6px}
+.guide-reason{font-size:11px;color:var(--t2);line-height:1.5}
+.form-section{background:linear-gradient(135deg,#0f0035,#2d0090);border-radius:16px;padding:20px;margin-bottom:20px;color:#fff}
+.form-title{font-size:16px;font-weight:900;margin-bottom:4px}
+.form-sub{font-size:11px;opacity:.7;margin-bottom:14px}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:10px}
+@media(max-width:500px){.form-grid{grid-template-columns:1fr}}
+.form-group label{font-size:11px;opacity:.8;display:block;margin-bottom:4px}
+.form-group select{width:100%;padding:10px 12px;border-radius:8px;border:none;font-size:13px;font-family:'Noto Sans JP',sans-serif;background:rgba(255,255,255,.95)}
+.form-btn{width:100%;padding:14px;background:#fcd34d;color:#0f0035;border:none;border-radius:10px;font-size:15px;font-weight:900;cursor:pointer;margin-top:10px;font-family:'Noto Sans JP',sans-serif}
+.form-note{font-size:10px;opacity:.5;text-align:center;margin-top:8px}
+.caution{background:#fffbeb;border:1.5px solid #fcd34d;border-radius:12px;padding:14px;margin-bottom:20px}
+.caution-title{font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px}
+.caution-list{list-style:none;font-size:12px;color:var(--t2);line-height:1.8}
+.caution-list li::before{content:'⚠️ ';font-size:11px}
+.float-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--border);padding:8px 16px;display:flex;gap:8px;z-index:200}
+.fn-back{flex:1;text-align:center;padding:10px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;background:#f1f5f9;color:var(--purple);border:1.5px solid var(--purple)}
+.fn-switch{flex:1;text-align:center;padding:10px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;background:var(--purple);color:#fff}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <a href="index.html" class="hdr-logo"><span>値上がり</span>予測ドットコム</a>
+  <a href="index.html#forecast-db" class="hdr-back">← 予測DB</a>
+</header>
+<div class="main">
+
+<div class="hero">
+  <div class="hero-badge" id="hero-badge">⚡ 2026年4月 最新予測・ランキング</div>
+  <h1>電気代・ガス代<br><span>値上がり予測</span>＆<br>電力会社ランキング</h1>
+  <p class="hero-sub">政府の電気・ガス料金支援が2026年3月で終了。燃料費高騰＋再エネ賦課金増額（4.18円/kWh）が重なり電気代は過去最高水準へ。今すぐ新電力に乗り換えることで年間数万円の節約が可能です。</p>
+  <div class="hero-alert">
+    <strong>⚠️ 2026年4月 電気代値上げ警告</strong><br>
+    再エネ賦課金が2025年度3.98円→2026年度4.18円に増額。政府補助終了と合わせ、標準家庭（400kWh/月）の電気代は月平均<strong style="color:#fca5a5">+2,000〜3,000円</strong>増加の見通し。
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">+15%</div><div class="hero-stat-lbl">2026年前年比<br>予測上昇率</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">年-3万</div><div class="hero-stat-lbl">新電力乗り換えで<br>節約可能額（目安）</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">803社</div><div class="hero-stat-lbl">新電力登録数<br>2026年3月時点</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-title">📈 電気代・ガス代 値上がり予測</div>
+  <div class="predict-grid" id="predict-grid"></div>
+</div>
+
+<div class="chart-wrap">
+  <div class="sec-title">📅 月別電気代指数（年間平均比）</div>
+  <div class="month-bars" id="month-bars"></div>
+  <p style="font-size:10px;color:var(--t2);margin-top:6px">※標準家庭（400kWh/月）の月別電気代相対指数。1.0=年間月平均。冬は暖房・夏はエアコンで使用量増加。</p>
+</div>
+
+<div class="simulator section">
+  <div class="sim-head">
+    <div class="sim-head-icon">💡</div>
+    <div><div class="sim-head-title">電気代 節約シミュレーター</div><div class="sim-head-sub">新電力に乗り換えると年間いくら節約できる？</div></div>
+  </div>
+  <div class="sim-grid">
+    <div><div class="sim-lbl">世帯人数・使用量</div>
+      <select class="sim-select" id="sim-people" onchange="calcSim()">
+        <option value="160">1人暮らし（〜160kWh）</option>
+        <option value="280">2人暮らし（〜280kWh）</option>
+        <option value="380" selected>3人家族（〜380kWh）</option>
+        <option value="480">4人家族以上（〜480kWh）</option>
+      </select>
+    </div>
+    <div><div class="sim-lbl">乗り換え先の電力会社</div>
+      <select class="sim-select" id="sim-new" onchange="calcSim()">
+        <option value="0.12">🐙 オクトパスエナジー（約-12%）</option>
+        <option value="0.10">♻️ Looopでんき（約-10%）</option>
+        <option value="0.10">⚡ シン・エナジー（約-10%）</option>
+        <option value="0.08">🛒 楽天でんき（約-8%）</option>
+        <option value="0.07">📱 ソフトバンクでんき（約-7%）</option>
+        <option value="0.07">☕ CDエナジーダイレクト（約-7%）</option>
+      </select>
+    </div>
+    <div><div class="sim-lbl">現在の電力会社エリア</div>
+      <select class="sim-select" id="sim-area" onchange="calcSim()">
+        <option value="32">関東（東京電力）</option>
+        <option value="30">関西（関西電力）</option>
+        <option value="31">中部（中部電力）</option>
+        <option value="33">九州（九州電力）</option>
+        <option value="31">東北（東北電力）</option>
+      </select>
+    </div>
+    <div><div class="sim-lbl">契約アンペア</div>
+      <select class="sim-select" id="sim-amp" onchange="calcSim()">
+        <option value="858">30A（1〜2人）</option>
+        <option value="1144">40A（2〜3人）</option>
+        <option value="1430" selected>50A（3〜4人）</option>
+        <option value="1716">60A（4人以上）</option>
+      </select>
+    </div>
+  </div>
+  <div class="sim-result">
+    <div class="sim-result-grid">
+      <div class="sim-r-box"><div class="sim-r-lbl">現在の月額（大手電力）</div><div class="sim-r-val" id="sim-current-price">¥13,200</div><div class="sim-r-sub">現在のプラン</div></div>
+      <div class="sim-r-box"><div class="sim-r-lbl">乗り換え後の月額</div><div class="sim-r-val" id="sim-new-price">¥11,616</div><div class="sim-r-sub">新電力プラン</div></div>
+    </div>
+    <div class="sim-save-box">
+      <div class="sim-save-lbl">🎉 年間節約額（目安）</div>
+      <div class="sim-save-val" id="sim-save">▲ 19,008円</div>
+      <div class="sim-save-sub" id="sim-save-sub">月平均 1,584円お得</div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="ranking">
+  <div class="sec-title">🏆 電力会社おすすめランキング 2026</div>
+  <p style="font-size:12px;color:var(--t2);margin-bottom:14px">料金の安さ・料金体系のわかりやすさ・信頼性・特典・解約のしやすさなどを総合評価。※2026年4月時点</p>
+  <div id="rank-list"></div>
+</div>
+
+<div class="section">
+  <div class="sec-title">🧭 あなたにおすすめの電力会社</div>
+  <div class="guide-grid">
+    <div class="guide-card"><div class="guide-type">💰 電気代を最優先で安くしたい</div><div class="guide-rec">→ オクトパスエナジー or シン・エナジー</div><div class="guide-reason">大手電力より年間1〜3万円安くなるケースが多い。シンプルな料金体系で家計管理もしやすい。</div></div>
+    <div class="guide-card"><div class="guide-type">🛒 楽天ポイントをためたい</div><div class="guide-rec">→ 楽天でんき</div><div class="guide-reason">電気料金の支払いで楽天ポイントが貯まり、ポイントを電気代に充当可能。楽天経済圏ユーザーに最適。</div></div>
+    <div class="guide-card"><div class="guide-type">📱 スマホとまとめたい</div><div class="guide-rec">→ ソフトバンクでんき or ドコモでんき</div><div class="guide-reason">携帯電話とセット割で毎月割引。スマホ代と電気代をまとめて管理できる。</div></div>
+    <div class="guide-card"><div class="guide-type">🌱 環境に配慮したい</div><div class="guide-rec">→ オクトパスエナジー or Looopでんき</div><div class="guide-reason">実質再エネ100%の電力を提供。環境価値と料金の安さを両立できる。</div></div>
+    <div class="guide-card"><div class="guide-type">⚡ オール電化住宅</div><div class="guide-rec">→ オクトパスエナジー（オール電化プラン）</div><div class="guide-reason">深夜（1〜6時）が17.48円/kWhと格安。電気温水器・エコキュート世帯に特に有利。</div></div>
+    <div class="guide-card"><div class="guide-type">📊 料金変動リスクを避けたい</div><div class="guide-rec">→ CDエナジーダイレクト or シン・エナジー</div><div class="guide-reason">固定単価型で毎月の電気代が安定。市場連動型より予算管理しやすい。</div></div>
+  </div>
+</div>
+
+<div class="form-section">
+  <div class="form-title">⚡ 電力会社を無料で一括比較</div>
+  <div class="form-sub">今の電力会社と比べて年間いくら節約できる？60秒で無料診断</div>
+  <div class="form-grid">
+    <div class="form-group"><label>お住まいのエリア</label>
+      <select id="f-area">
+        <option>関東（東京電力エリア）</option><option>関西（関西電力エリア）</option>
+        <option>中部（中部電力エリア）</option><option>九州（九州電力エリア）</option>
+        <option>東北（東北電力エリア）</option><option>北海道（北海道電力エリア）</option>
+        <option>中国（中国電力エリア）</option><option>四国（四国電力エリア）</option>
+      </select>
+    </div>
+    <div class="form-group"><label>世帯人数</label>
+      <select id="f-people">
+        <option>1人暮らし</option><option>2人暮らし</option>
+        <option>3人家族</option><option>4人家族以上</option>
+      </select>
+    </div>
+    <div class="form-group"><label>月額電気代（目安）</label>
+      <select id="f-bill">
+        <option>〜5,000円</option><option>5,000〜8,000円</option>
+        <option>8,000〜12,000円</option><option>12,000〜18,000円</option>
+        <option>18,000円以上</option>
+      </select>
+    </div>
+    <div class="form-group"><label>住宅種別</label>
+      <select id="f-house">
+        <option>一般住宅（ガス併用）</option><option>オール電化住宅</option>
+        <option>マンション・アパート</option><option>太陽光発電あり</option>
+      </select>
+    </div>
+  </div>
+  <!-- ↓ アフィリエイトURLをここに設定（エネチェンジ・価格.com等） -->
+  <button class="form-btn" onclick="submitCompare()">⚡ 無料で電気代を一括シミュレーション</button>
+  <p class="form-note">PR：当サイトはアフィリエイトプログラムに参加しています</p>
+</div>
+
+<div class="caution">
+  <div class="caution-title">⚠️ 乗り換え前に確認すべき4つのポイント</div>
+  <ul class="caution-list">
+    <li><strong>使用量料金だけで比較しない</strong>：基本料金＋燃料費調整額＋再エネ賦課金の合計で比較すること</li>
+    <li><strong>解約料・縛り期間を確認</strong>：一部のプランは契約期間中の解約に手数料が発生する</li>
+    <li><strong>供給エリアを確認</strong>：新電力は提供エリアが限定されているものが多い（離島・一部地域は対象外）</li>
+    <li><strong>市場連動型プランのリスク</strong>：電力需要が高まる時期に料金が大幅上昇することがある</li>
+  </ul>
+</div>
+
+<p id="last-updated" style="font-size:10px;color:var(--t2);text-align:center;margin-bottom:4px"></p>
+<p style="font-size:10px;color:var(--t2);text-align:center">
+  ※掲載データは2026年4月時点の各種調査・公表データを元にした予測値です。実際の料金は使用量・エリア・プランにより大きく異なります。<br>
+  PR：当サイトはアフィリエイトプログラムに参加しています。
+</p>
+</div>
+
+<div class="float-nav">
+  <a href="index.html#forecast-db" class="fn-back">← カテゴリ一覧</a>
+  <a href="#ranking" onclick="document.getElementById('ranking').scrollIntoView({behavior:'smooth'});return false" class="fn-switch">⚡ ランキングを見る</a>
+</div>
+
+<script>
+var PREDICT_DATA=[
+  {icon:'⚡',name:'電気代（標準家庭）',sub:'400kWh/月・50A契約',now:13200,r4:14400,r12:15800,rise:9.0},
+  {icon:'🔥',name:'都市ガス代（標準家庭）',sub:'30㎥/月',now:7800,r4:8500,r12:9400,rise:8.5},
+  {icon:'🏠',name:'電気代（一人暮らし）',sub:'160kWh/月・30A契約',now:5800,r4:6300,r12:6900,rise:7.0},
+  {icon:'👨‍👩‍👦',name:'電気代（4人家族）',sub:'500kWh/月・60A契約',now:17500,r4:19200,r12:21500,rise:10.5},
+];
+var MONTH_DATA=[
+  {m:'1月',idx:1.35,c:'#dc2626'},{m:'2月',idx:1.40,c:'#dc2626'},{m:'3月',idx:1.10,c:'#d97706'},
+  {m:'4月',idx:0.85,c:'#16a34a'},{m:'5月',idx:0.80,c:'#16a34a'},{m:'6月',idx:0.88,c:'#16a34a'},
+  {m:'7月',idx:1.10,c:'#d97706'},{m:'8月',idx:1.25,c:'#d97706'},{m:'9月',idx:0.95,c:'#16a34a'},
+  {m:'10月',idx:0.82,c:'#16a34a'},{m:'11月',idx:0.85,c:'#16a34a'},{m:'12月',idx:1.20,c:'#dc2626'},
+];
+var RANK_DATA=[
+  {id:'r1',rank:1,name:'オクトパスエナジー',company:'TGオクトパスエナジー株式会社',rec:'rec-all',recTxt:'全世帯おすすめ',
+   tags:['tag-cheap','tag-eco','tag-nocost'],tagTxts:['料金安い','再エネ100%','解約料0円'],
+   catch:'英国No.1新電力×東京ガス提携。実質再エネ100%で電気代も安い！',
+   save:'年間約24,000円〜36,000円節約（3〜4人世帯の目安）',
+   body:'英国のエネルギーテック企業が東京ガスと合弁で設立。資源エネルギー庁の省エネコミュニケーション・ランキングで最高評価5つ星を獲得（2026年1月）。シンプルな料金体系と実質再生可能エネルギー100%の電力が特徴。アプリで電力使用量をリアルタイム確認でき節電意識も高まると好評。月間300kWh以上の家庭で年間4,000円以上の節約効果が多数報告されている。',
+   specs:[{lbl:'基本料金',val:'あり（低額）'},{lbl:'燃料費調整',val:'あり（上限設定）'},{lbl:'再エネ',val:'実質100%'},{lbl:'解約料',val:'0円'},{lbl:'提供エリア',val:'全国（離島除く）'},{lbl:'支払い',val:'クレカ・楽天Pay'}],
+   merits:['大手電力より電気料金単価が安く設定されており3人家族で年間約2〜3万円節約可能（東京電力エリア試算）','実質再生可能エネルギー100%の「グリーンオクトパス」プランで環境にも配慮','オール電化向け「オール電化オクトパス」は深夜（1〜6時）17.48円/kWhと格安','太陽光発電家庭向け「ソーラーオクトパス」・EV向け「EVオクトパス」など多彩なプラン','アプリで30分ごとの使用量をグラフ確認でき節電行動を促進','友達紹介で8,000円割引の紹介制度あり（紹介者・被紹介者ともに適用）'],
+   demerits:['燃料費調整額の上限が設定されておらずLNG価格高騰時に影響を受ける可能性あり','メールの通知量が多いと一部ユーザーから指摘あり','ガスサービスは現在一部エリアのみ（ガスセット割なし）'],
+   who:'電気代を安くしたい全世帯・環境意識の高い方・オール電化住宅・太陽光発電設置世帯',
+   url:'https://octopusenergy.co.jp/'},
+  {id:'r2',rank:2,name:'Looopでんき',company:'株式会社Looop',rec:'rec-eco',recTxt:'再エネ×安さ',
+   tags:['tag-cheap','tag-eco','tag-nocost'],tagTxts:['市場連動型','再エネ推進','解約料0円'],
+   catch:'基本料金・燃料費調整額0円。再エネを積極活用。日中在宅世帯に',
+   save:'年間約12,000円〜24,000円節約（市場動向・使用パターンによる）',
+   body:'日本の再生可能エネルギーを牽引する新電力大手。市場価格に連動した30分ごとの変動料金が特徴で、太陽光発電が多く発電する日中（特に春・秋）は電気代が安くなる傾向がある。解約手数料0円で気軽に試せる点も魅力。4人以上の家庭で最もお得になる可能性が高いと評価されている。',
+   specs:[{lbl:'基本料金',val:'0円'},{lbl:'燃料費調整',val:'0円（市場連動）'},{lbl:'再エネ',val:'積極活用'},{lbl:'解約料',val:'0円'},{lbl:'提供エリア',val:'全国（離島除く）'},{lbl:'支払い',val:'クレカ'}],
+   merits:['基本料金・燃料費調整額が完全に0円でシンプルな料金計算','日中（太陽光発電が多い時間帯）は電気代が安くなる市場連動型','再生可能エネルギーの普及に積極的な企業姿勢','解約手数料0円でリスクなく試せる','4人以上の使用量が多い家庭でお得になるケースが多い'],
+   demerits:['市場価格に連動するため冬・夏の電力需要高騰時に料金が大幅上昇するリスクあり','夜型・冬季多使用の家庭では予想外に高くなる場合がある','月によって電気代の予測が立てにくい'],
+   who:'日中在宅が多い方・環境意識の高い方・1〜2人世帯・試しに乗り換えたい方',
+   url:'https://looop.co.jp/pr/denki/'},
+  {id:'r3',rank:3,name:'シン・エナジー',company:'シン・エナジー株式会社',rec:'rec-cheap',recTxt:'コスパNo.1',
+   tags:['tag-cheap','tag-area'],tagTxts:['業界最安級','全国対応','省エネ最高評価'],
+   catch:'資源エネルギー庁の省エネランキング最高評価。全国ほぼ対応の業界最安級新電力',
+   save:'年間約15,000円〜30,000円節約（使用量・エリアによる）',
+   body:'関西に本社を置くシン・エナジーは、学校・工場などの法人向け電力供給で豊富な実績を持つ信頼性の高い新電力。資源エネルギー庁の省エネコミュニケーション・ランキングで最高評価を獲得しており、電力単価の安さが業界トップクラス。二人暮らし世帯でとにかく安くしたい場合に特に支持されている。沖縄・離島を除く全国対応。',
+   specs:[{lbl:'基本料金',val:'1,326円〜'},{lbl:'燃料費調整',val:'あり'},{lbl:'再エネ',val:'対応プランあり'},{lbl:'解約料',val:'0円'},{lbl:'提供エリア',val:'全国（沖縄・離島除く）'},{lbl:'支払い',val:'クレカ・口座振替'}],
+   merits:['業界トップクラスの電力量料金単価の安さ（大手比最大-15%程度）','法人向け実績が豊富で信頼性が高い','省エネへの取り組みが資源エネルギー庁に認められている','複数のプランがあり生活スタイルに合った選択が可能','全国ほぼ対応で地方在住者にも選びやすい'],
+   demerits:['Webサイトが少し複雑でプラン選択に時間がかかる場合がある','ポイントサービスやセット割は充実していない','知名度がやや低く情報が少ない'],
+   who:'とにかく電気代の安さを優先したい方・地方在住者・二人暮らし世帯',
+   url:'https://www.shinenergy.co.jp/'},
+  {id:'r4',rank:4,name:'楽天でんき',company:'楽天エナジー株式会社',rec:'rec-point',recTxt:'ポイント派',
+   tags:['tag-point','tag-nocost'],tagTxts:['楽天ポイント付与','基本料金0円','市場連動型'],
+   catch:'楽天経済圏ユーザー必見。電気代でポイントが貯まり、ポイントで払える！',
+   save:'年間約12,000円〜20,000円の節約効果（ポイント含む）',
+   body:'楽天グループが運営する新電力。基本料金0円で使用量に応じた料金体系が特徴。月の電気使用料に対して楽天ポイントが付与され、貯まったポイントを電気代の支払いに充当可能。楽天モバイル・楽天ガスとのセット利用でさらにお得に。東京電力比較で4人世帯では月700円以上・年間9,600円程度安くなるケースも。',
+   specs:[{lbl:'基本料金',val:'0円'},{lbl:'燃料費調整',val:'市場価格調整費'},{lbl:'ポイント',val:'楽天ポイント付与'},{lbl:'解約料',val:'0円'},{lbl:'提供エリア',val:'全国（離島除く）'},{lbl:'支払い',val:'楽天カード推奨'}],
+   merits:['楽天ポイントが電気代の支払いで貯まり、そのままポイントで電気代に充当可能','基本料金0円でシンプルな料金計算','楽天ガスとのセット利用でポイント還元率アップ','楽天経済圏（楽天市場・楽天カード等）との相乗効果が大きい','ファミリー世帯で東京電力比較時に年間9,600円程度の節約ケースも'],
+   demerits:['市場価格連動要素があり電力需要高騰時は料金が上がるリスク','楽天経済圏を使っていない人は恩恵が小さい','オクトパスエナジーやシン・エナジーと比べると純粋な電気料金単価は高めの場合も'],
+   who:'楽天ユーザー・楽天市場をよく使う方・ポイ活をしている方・楽天カード保有者',
+   url:'https://energy.rakuten.co.jp/'},
+  {id:'r5',rank:5,name:'ソフトバンクでんき',company:'SBパワー株式会社',rec:'rec-set',recTxt:'セット割',
+   tags:['tag-set','tag-point'],tagTxts:['スマホセット割','PayPayポイント','自然エネあり'],
+   catch:'ソフトバンク・ワイモバイルユーザーはセット割でスマホ代も電気代もお得に',
+   save:'スマホセット割で月最大550円割引（年間約6,600円）',
+   body:'ソフトバンクグループの電力会社。ソフトバンク・ワイモバイル利用者はスマホとのセット割で毎月割引が適用される。PayPayポイントが貯まるプランもあり、PayPay利用者にとっても魅力的。自然エネルギープランも用意されており、まとめて支払いにも対応している。',
+   specs:[{lbl:'基本料金',val:'あり'},{lbl:'セット割',val:'スマホ+月割引'},{lbl:'ポイント',val:'PayPayポイント'},{lbl:'解約料',val:'0円'},{lbl:'提供エリア',val:'大手電力対応エリア'},{lbl:'支払い',val:'クレカ・まとめて払い'}],
+   merits:['ソフトバンク・ワイモバイルとのセット割でスマホ代も節約','PayPayポイントが電気代に応じて貯まる','まとめて支払いに対応しており請求が一元管理できる','自然エネルギープランで環境配慮も可能','スマホ変更なしで電気だけ乗り換え可能'],
+   demerits:['ソフトバンク・ワイモバイル以外のユーザーはセット割が使えない','純粋な電力単価はトップクラスではない','電力プランの種類がやや多く選択に迷う場合がある'],
+   who:'ソフトバンク・ワイモバイルユーザー・PayPay利用者・スマホとまとめて管理したい方',
+   url:'https://www.softbank.jp/energy/'},
+  {id:'r6',rank:6,name:'CDエナジーダイレクト',company:'CDエナジーダイレクト株式会社',rec:'rec-set',recTxt:'ガスセット',
+   tags:['tag-set','tag-cheap'],tagTxts:['ガスセット割','安定料金','カテエネP'],
+   catch:'大阪ガス×中部電力ミライズ合弁。ガスとセットで関東でも高い節約効果',
+   save:'ガスセット割適用で年間約6,000〜12,000円節約（4人世帯・東京電力比）',
+   body:'大阪ガスと中部電力ミライズが共同設立した新電力。関東エリアで電気とガスの両方を提供しており、セット契約で料金が0.5%割引。Webサービス「カテエネ」登録でポイントも貯まる。4人家族で東京電力比較時に月600円以上・年間12,000円程度お得になるケースが多い。70万件超の契約件数を持つ安定した企業基盤。',
+   specs:[{lbl:'基本料金',val:'あり（プランによる）'},{lbl:'セット割',val:'ガス0.5%割引'},{lbl:'ポイント',val:'カテエネポイント'},{lbl:'解約料',val:'0円'},{lbl:'提供エリア',val:'主に関東'},{lbl:'支払い',val:'クレカ・口座振替'}],
+   merits:['大阪ガス・中部電力という大手2社の合弁で信頼性が高い','電気とガスのセット契約で双方が0.5%割引','ファミリー世帯（4人）で東京電力比較時に年間12,000円以上節約のケースも','カテエネポイントが電気料金の支払いに応じて貯まる','サポート体制が充実しており安心感がある'],
+   demerits:['主に関東エリア中心でエリア外は使えない','ガスも一緒に変更する必要があるため手続きが2段階になる','ポイント還元率は他社のポイントサービスより低め'],
+   who:'関東在住でガスも乗り換えを検討している方・ファミリー世帯・安定した料金を好む方',
+   url:'https://www.cdedirect.co.jp/'},
+  {id:'r7',rank:7,name:'東京ガスの電気',company:'東京ガス株式会社',rec:'rec-set',recTxt:'ガス大手',
+   tags:['tag-set','tag-area'],tagTxts:['都市ガスセット','安心ブランド','関東'],
+   catch:'関東最大手のガス会社が提供。電気・ガスまとめて安心の一社管理',
+   save:'ガスとのセットで年間3,000〜5,000円割引',
+   body:'関東最大手の都市ガス会社が提供する電力サービス。ガスと電気をまとめることで割引が適用される。料金はやや高めだが、東京ガスブランドへの信頼感と万が一のサポート体制が充実している。4人世帯で東京電力の従量電灯Bと比較して月200円以上・年間3,000円程度安くなるケースが多い。',
+   specs:[{lbl:'基本料金',val:'あり'},{lbl:'セット割',val:'ガス込み割引'},{lbl:'ポイント',val:'パッチョポイント'},{lbl:'解約料',val:'0円'},{lbl:'提供エリア',val:'主に関東'},{lbl:'支払い',val:'クレカ・口座振替'}],
+   merits:['東京ガスブランドの信頼性・安心感が高い','電気とガスを一社にまとめることで管理が楽','問い合わせ窓口が充実しており対応が丁寧','パッチョポイントが貯まるキャンペーンが定期的にある','引越し時に電気とガスをまとめて申し込みやすい'],
+   demerits:['純粋な電気料金単価は新電力トップクラスより高め','主に関東（東京ガスエリア）限定のサービス','コスト最優先の方には向いていない'],
+   who:'信頼性・安心感を重視する方・東京ガスのガスを利用中の関東在住者・電力会社変更に不安がある方',
+   url:'https://tm.gas.or.jp/denki/'},
+  {id:'r8',rank:8,name:'ドコモでんき',company:'NTTドコモ',rec:'rec-point',recTxt:'dポイント',
+   tags:['tag-point','tag-set'],tagTxts:['dポイント付与','ドコモセット','Greenあり'],
+   catch:'dポイントをためたいドコモユーザーに最適。Greenプランで環境配慮も',
+   save:'dポイント還元で実質年間3,000〜6,000円節約',
+   body:'NTTドコモが提供する電力サービス。電気料金に応じてdポイントが貯まり、dポイントを電気代や他のショッピングに使える。「Greenプラン」では実質再エネ100%の電力が利用可能。ドコモのスマホ・ネットとまとめて管理でき、ドコモユーザーにとってポイント還元の効果が大きい。',
+   specs:[{lbl:'基本料金',val:'あり'},{lbl:'ポイント',val:'dポイント付与'},{lbl:'再エネ',val:'Greenプランあり'},{lbl:'解約料',val:'0円'},{lbl:'提供エリア',val:'大手電力対応エリア'},{lbl:'支払い',val:'クレカ・ドコモ払い'}],
+   merits:['dポイントが電気料金の支払いに応じて貯まる（Greenプランは還元率アップ）','Greenプランで実質再エネ100%の電気を選択可能','ドコモのスマホ・ネットとまとめて管理しやすい','既存のdアカウントでスムーズに申し込み可能','申し込みからサポートまでドコモの窓口で対応可能'],
+   demerits:['ドコモユーザー以外は恩恵が限定的','電気料金単価は最安値ランクではない','プランの選択肢が少ない'],
+   who:'ドコモユーザー・dポイントを日常的に使っている方・スマホと電気をまとめたい方',
+   url:'https://denki.docomo.ne.jp/'},
+];
+
+function renderPredict(){
+  var g=document.getElementById('predict-grid');
+  if(!g)return;
+  g.innerHTML=PREDICT_DATA.map(function(d){
+    var diff=Math.round((d.r4-d.now)/1000*10)/10;
+    var pct=Math.min(100,d.rise/20*100).toFixed(0);
+    var clr=d.rise>=10?'#dc2626':d.rise>=7?'#d97706':'#16a34a';
+    return '<div class="predict-card"><div class="predict-card-head"><span class="predict-icon">'+d.icon+'</span><div><div class="predict-name">'+d.name+'</div><div class="predict-sub">'+d.sub+'</div></div></div><div class="price-lbl">現在の相場（目安）</div><div class="price-val" style="color:var(--navy)">¥'+d.now.toLocaleString()+'/月</div><div class="rbar"><div class="rbar-fill" style="width:'+pct+'%;background:'+clr+'"></div></div><div class="price-lbl" style="margin-top:4px">4ヶ月後の予測</div><div class="price-val" style="color:var(--red)">¥'+d.r4.toLocaleString()+' <small style="font-size:11px">(+'+diff+'千円)</small></div><div style="margin-top:6px"><span class="predict-badge">🚨急騰 年間+'+d.rise+'%予測</span></div></div>';
+  }).join('');
+}
+
+function renderMonthChart(){
+  var b=document.getElementById('month-bars');
+  if(!b)return;
+  var mx=Math.max.apply(null,MONTH_DATA.map(function(d){return d.idx;}));
+  b.innerHTML=MONTH_DATA.map(function(d){
+    var h=Math.round(d.idx/mx*82);
+    return '<div class="month-col"><div class="month-val" style="color:'+d.c+'">'+d.idx+'</div><div class="month-bar" style="height:'+h+'px;background:'+d.c+'"></div><div class="month-lbl">'+d.m+'</div></div>';
+  }).join('');
+}
+
+function calcSim(){
+  var kwh=parseFloat(document.getElementById('sim-people').value);
+  var unit=parseFloat(document.getElementById('sim-area').value);
+  var basic=parseFloat(document.getElementById('sim-amp').value);
+  var cur=Math.round((kwh*unit+basic+kwh*4.18)/100)*100;
+  var sr=parseFloat(document.getElementById('sim-new').value);
+  var nw=Math.round(cur*(1-sr)/100)*100;
+  var sm=cur-nw;
+  var sy=sm*12;
+  document.getElementById('sim-current-price').textContent='¥'+cur.toLocaleString();
+  document.getElementById('sim-new-price').textContent='¥'+nw.toLocaleString();
+  document.getElementById('sim-save').textContent='▲ '+sy.toLocaleString()+'円';
+  document.getElementById('sim-save-sub').textContent='月平均 '+sm.toLocaleString()+'円お得';
+}
+
+function renderRanking(){
+  var l=document.getElementById('rank-list');
+  if(!l)return;
+  var html=RANK_DATA.map(function(d){
+    var rc=d.rank<=3?'r'+d.rank:'rn';
+    var tags=d.tags.map(function(t,i){return '<span class="rank-tag '+t+'">'+d.tagTxts[i]+'</span>';}).join('');
+    var specs=d.specs.map(function(s){return '<div class="rank-spec"><div class="rank-spec-lbl">'+s.lbl+'</div><div class="rank-spec-val">'+s.val+'</div></div>';}).join('');
+    var merits=d.merits.map(function(m){return '<li>'+m+'</li>';}).join('');
+    var demerits=d.demerits.map(function(m){return '<li>'+m+'</li>';}).join('');
+    return '<div class="rank-card" id="'+d.id+'">'
+      +'<div class="rank-card-top">'
+      +'<div class="rank-badge-wrap"><div class="rank-num '+rc+'">'+d.rank+'</div><div class="rank-rec '+d.rec+'">'+d.recTxt+'</div></div>'
+      +'<div class="rank-main">'
+      +'<div class="rank-name-row"><span class="rank-name">'+d.name+'</span><span class="rank-company">'+d.company+'</span></div>'
+      +'<div class="rank-tags">'+tags+'</div>'
+      +'<div class="rank-catch">'+d.catch+'</div>'
+      +'<div class="rank-save-badge">💰 '+d.save+'</div>'
+      +'</div>'
+      +'<a href="'+d.url+'" target="_blank" rel="noopener" class="rank-btn">公式サイト →</a>'
+      +'</div>'
+      +'<div class="rank-body">'+d.body+'</div>'
+      +'<div class="rank-specs">'+specs+'</div>'
+      +'<button class="rank-expand-btn" onclick="toggleDetail(\''+d.id+'\')" id="btn-'+d.id+'">▼ 詳細（メリット・デメリット・おすすめ対象）を見る</button>'
+      +'<div class="rank-detail" id="detail-'+d.id+'">'
+      +'<div class="rank-merit"><div class="rank-merit-title">✅ メリット</div><ul>'+merits+'</ul></div>'
+      +'<div class="rank-demerit"><div class="rank-demerit-title">⚠️ デメリット・注意点</div><ul>'+demerits+'</ul></div>'
+      +'<div class="rank-who"><div class="rank-who-title">👤 こんな人におすすめ</div><div class="rank-who-text">'+d.who+'</div></div>'
+      +'<a href="'+d.url+'" target="_blank" rel="noopener" class="rank-btn" style="margin-top:10px;display:block;text-align:center">'+d.name+' 公式サイトで詳細を見る →</a>'
+      +'</div></div>';
+  }).join('');
+
+  html+='<div class="rank-card"><div class="sec-title" style="font-size:13px;margin-bottom:12px">9位〜12位：その他おすすめ電力会社</div>'
+    +'<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px">'
+    +['auでんき','エバーグリーン','idemitsuでんき','リミックスでんき'].map(function(n,i){
+      var us=['https://www.au.com/electricity/','https://www.ever-green.jp/','https://idemitsudenki.com/','https://www.remixpoint.co.jp/'];
+      var ds=['KDDI運営・Pontaポイント還元・UQモバイルセット割あり','全国対応・安定供給・法人実績が豊富で信頼性高い','出光興産系・オール電化対応・産油国直接調達でコスト安定','低コスト重視・シンプルプラン・解約料なし・試しやすい'];
+      return '<div style="background:#f8fafc;border-radius:8px;padding:10px"><div style="font-size:12px;font-weight:700;margin-bottom:4px">'+(i+9)+'位 '+n+'</div><div style="font-size:11px;color:var(--t2);margin-bottom:8px">'+ds[i]+'</div><a href="'+us[i]+'" target="_blank" rel="noopener" style="font-size:11px;font-weight:700;color:var(--purple);text-decoration:none">公式サイト →</a></div>';
+    }).join('')
+    +'</div></div>';
+
+  l.innerHTML=html;
+}
+
+function toggleDetail(id){
+  var d=document.getElementById('detail-'+id);
+  var b=document.getElementById('btn-'+id);
+  if(d.classList.contains('open')){d.classList.remove('open');b.textContent='▼ 詳細（メリット・デメリット・おすすめ対象）を見る';}
+  else{d.classList.add('open');b.textContent='▲ 詳細を閉じる';}
+}
+
+function submitCompare(){
+  // ↓ アフィリエイトURLをここに設定（エネチェンジ・価格.com電気比較等）
+  var url='https://enechange.jp/'; // ← ASP承認後に変更
+  window.open(url,'_blank','noopener');
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  renderPredict();renderMonthChart();calcSim();renderRanking();
+  var now=new Date();
+  var b=document.getElementById('hero-badge');
+  if(b)b.textContent='⚡ '+now.getFullYear()+'年'+(now.getMonth()+1)+'月 最新予測・ランキング';
+  var lu=document.getElementById('last-updated');
+  if(lu)lu.textContent='データ更新日: '+now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate();
+});
+</script>
+</body>
+</html>
