@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>学習塾・予備校 費用値上がり予測＆ランキング 2026 | 値上がり予測ドットコム</title>
+<meta name="description" content="2026年の学習塾・予備校費用値上がり予測。小中高生別の月謝相場、おすすめ塾ランキング、無料体験申込。文科省データ根拠あり。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#002B80;--teal:#0d9488;--red:#dc2626;--orange:#d97706;--green:#059669;--bg:#f1f5f9;--paper:#fff;--border:#e2e8f0;--t1:#0f172a;--t2:#475569;--t3:#94a3b8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--t1);font-size:14px;line-height:1.6}
+.hdr{background:var(--navy);color:#fff;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.hdr-logo{font-size:16px;font-weight:900;text-decoration:none;color:#fff}.hdr-logo span{color:#fcd34d}
+.hdr-back{color:#fff;text-decoration:none;font-size:12px;background:rgba(255,255,255,.15);padding:5px 12px;border-radius:20px}
+.main{max-width:900px;margin:0 auto;padding:16px 12px 80px}
+.hero{background:linear-gradient(135deg,#003830,#0d9488,#0f766e);border-radius:16px;padding:28px 20px;margin-bottom:20px;color:#fff;position:relative;overflow:hidden}
+.hero::before{content:'📚';position:absolute;top:-10px;right:-5px;font-size:140px;opacity:.06}
+.hero-badge{display:inline-block;background:#fcd34d;color:#003830;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:12px}
+.hero h1{font-size:21px;font-weight:900;line-height:1.4;margin-bottom:10px}.hero h1 span{color:#fcd34d}
+.hero-sub{font-size:12px;opacity:.85;line-height:1.7;margin-bottom:14px}
+.hero-alert{background:rgba(220,38,38,.2);border:1px solid rgba(220,38,38,.4);border-radius:8px;padding:10px 12px;font-size:11px;margin-bottom:16px;line-height:1.6}
+.hero-alert strong{color:#fca5a5}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.hero-stat{text-align:center;background:rgba(255,255,255,.1);border-radius:10px;padding:12px 6px}
+.hero-stat-num{font-size:20px;font-weight:900;color:#fcd34d;font-family:'DM Mono',sans-serif}
+.hero-stat-lbl{font-size:10px;opacity:.7;margin-top:2px;line-height:1.3}
+.sec-title{font-size:15px;font-weight:800;margin-bottom:14px;padding-bottom:8px;border-bottom:3px solid var(--teal);display:flex;align-items:center;gap:8px}
+.section{margin-bottom:28px}
+/* 費用相場テーブル */
+.grade-tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.grade-tab{padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:1.5px solid var(--teal);color:var(--teal);background:#fff;transition:all .2s}
+.grade-tab.active{background:var(--teal);color:#fff}
+.grade-panel{display:none}.grade-panel.active{display:block}
+.cost-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+@media(max-width:500px){.cost-grid{grid-template-columns:1fr}}
+.cost-card{background:var(--paper);border-radius:12px;padding:14px;border:0.5px solid var(--border);position:relative}
+.cost-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:12px 12px 0 0}
+.cost-card.type-group::before{background:var(--teal)}
+.cost-card.type-individual::before{background:var(--orange)}
+.cost-card.type-online::before{background:var(--navy)}
+.cost-card.type-yobiko::before{background:var(--red)}
+.cost-type{font-size:10px;font-weight:700;margin-bottom:6px}
+.cost-type.group{color:var(--teal)}.cost-type.individual{color:var(--orange)}.cost-type.online{color:var(--navy)}.cost-type.yobiko{color:var(--red)}
+.cost-name{font-size:13px;font-weight:700;margin-bottom:8px}
+.cost-price{font-family:'DM Mono',sans-serif;font-size:18px;font-weight:700;color:var(--t1);margin-bottom:2px}
+.cost-per{font-size:10px;color:var(--t2)}
+.cost-rise{font-size:11px;font-weight:700;margin-top:8px;padding:4px 8px;border-radius:8px;display:inline-block;background:#fee2e2;color:#991b1b}
+/* 年間費用バー */
+.annual-section{background:var(--paper);border-radius:12px;padding:16px;margin-bottom:20px}
+.annual-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.annual-lbl{font-size:12px;font-weight:600;width:120px;flex-shrink:0}
+.annual-bar-wrap{flex:1;background:var(--border);border-radius:4px;overflow:hidden;height:22px;position:relative}
+.annual-bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:11px;font-weight:700;color:#fff;transition:width .5s}
+.annual-val{font-size:12px;font-weight:700;width:70px;text-align:right;flex-shrink:0;font-family:'DM Mono',sans-serif}
+/* 塾ランキング */
+.juku-card{background:var(--paper);border-radius:14px;padding:16px;margin-bottom:14px;border:0.5px solid var(--border)}
+.juku-card-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
+.juku-rank-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0}
+.juku-rank{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900}
+.r1{background:linear-gradient(135deg,#fcd34d,#f59e0b);color:#92400e}
+.r2{background:linear-gradient(135deg,#e2e8f0,#cbd5e1);color:#475569}
+.r3{background:linear-gradient(135deg,#fed7aa,#fb923c);color:#9a3412}
+.rn{background:#f1f5f9;color:#64748b}
+.juku-rec{font-size:9px;font-weight:700;padding:2px 6px;border-radius:6px;white-space:nowrap;text-align:center}
+.rec-all{background:#ccfbf1;color:#0f766e}
+.rec-elem{background:#dbeafe;color:#1e40af}
+.rec-mid{background:#f0fdf4;color:#166534}
+.rec-high{background:#fef3c7;color:#92400e}
+.rec-online{background:#e0e7ff;color:#3730a3}
+.juku-main{flex:1}
+.juku-name{font-size:16px;font-weight:900;margin-bottom:3px}
+.juku-type-badges{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px}
+.juku-type{font-size:10px;font-weight:600;padding:2px 8px;border-radius:8px}
+.type-ko{background:#ccfbf1;color:#0f766e}
+.type-sy{background:#fef3c7;color:#92400e}
+.type-on{background:#e0e7ff;color:#3730a3}
+.type-jk{background:#fee2e2;color:#991b1b}
+.juku-catch{font-size:13px;font-weight:700;margin-bottom:6px;line-height:1.4}
+.juku-fee{display:inline-block;background:linear-gradient(90deg,#0d9488,#0f766e);color:#fff;font-size:11px;font-weight:700;padding:5px 12px;border-radius:8px;margin-bottom:8px}
+.juku-btn{background:var(--teal);color:#fff;border:none;padding:9px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap;flex-shrink:0}
+.juku-btn:hover{background:#0f766e}
+.juku-body{font-size:12px;color:var(--t2);line-height:1.6;margin-bottom:10px}
+.juku-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
+@media(max-width:500px){.juku-specs{grid-template-columns:repeat(2,1fr)}}
+.juku-spec{background:#f8fafc;border-radius:8px;padding:8px;text-align:center}
+.juku-spec-lbl{font-size:9px;color:var(--t3);margin-bottom:2px}
+.juku-spec-val{font-size:12px;font-weight:700}
+.juku-merit{background:#f0fdf4;border-radius:8px;padding:10px 12px;margin-bottom:8px}
+.juku-merit-title{font-size:11px;font-weight:700;color:#166534;margin-bottom:6px}
+.juku-merit ul{padding-left:14px;font-size:11px;color:var(--t2);line-height:1.7}
+.juku-demerit{background:#fef9f0;border-radius:8px;padding:10px 12px;margin-bottom:8px}
+.juku-demerit-title{font-size:11px;font-weight:700;color:#92400e;margin-bottom:6px}
+.juku-demerit ul{padding-left:14px;font-size:11px;color:var(--t2);line-height:1.7}
+.juku-who{background:#f0fdfa;border-radius:8px;padding:10px 12px}
+.juku-who-title{font-size:11px;font-weight:700;color:#0f766e;margin-bottom:4px}
+.juku-who-text{font-size:11px;color:var(--t2)}
+.expand-btn{width:100%;background:#f8fafc;border:1px solid var(--border);color:var(--t2);padding:8px;border-radius:8px;cursor:pointer;font-size:12px;margin-top:8px;font-family:'Noto Sans JP',sans-serif}
+.juku-detail{display:none;margin-top:10px;border-top:1px solid var(--border);padding-top:10px}
+.juku-detail.open{display:block}
+/* シミュレーター */
+.simulator{background:var(--paper);border-radius:12px;padding:18px;margin-bottom:20px;border:2px solid var(--teal)}
+.sim-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+@media(max-width:500px){.sim-grid{grid-template-columns:1fr}}
+.sim-lbl{font-size:11px;color:var(--t2);font-weight:600;margin-bottom:4px}
+.sim-select{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:'Noto Sans JP',sans-serif;background:#fff}
+.sim-select:focus{outline:none;border-color:var(--teal)}
+.sim-result{background:linear-gradient(135deg,#003830,#0d9488);color:#fff;border-radius:12px;padding:16px}
+.sim-result-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px}
+.sim-r-lbl{font-size:10px;opacity:.7;margin-bottom:4px;text-align:center}
+.sim-r-val{font-size:20px;font-weight:900;font-family:'DM Mono',sans-serif;color:#fcd34d;text-align:center}
+.sim-r-sub{font-size:10px;opacity:.6;margin-top:2px;text-align:center}
+.sim-annual{background:rgba(252,211,77,.15);border-radius:8px;padding:12px;text-align:center}
+.sim-annual-val{font-size:26px;font-weight:900;font-family:'DM Mono',sans-serif;color:#fcd34d}
+/* 無料体験フォーム */
+.form-section{background:linear-gradient(135deg,#003830,#0d9488);border-radius:16px;padding:20px;margin-bottom:20px;color:#fff}
+.form-title{font-size:16px;font-weight:900;margin-bottom:4px}
+.form-sub{font-size:11px;opacity:.7;margin-bottom:14px}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:10px}
+@media(max-width:500px){.form-grid{grid-template-columns:1fr}}
+.form-group label{font-size:11px;opacity:.8;display:block;margin-bottom:4px}
+.form-group select{width:100%;padding:10px 12px;border-radius:8px;border:none;font-size:13px;font-family:'Noto Sans JP',sans-serif;background:rgba(255,255,255,.95)}
+.form-btn{width:100%;padding:14px;background:#fcd34d;color:#003830;border:none;border-radius:10px;font-size:15px;font-weight:900;cursor:pointer;margin-top:10px;font-family:'Noto Sans JP',sans-serif}
+.form-note{font-size:10px;opacity:.5;text-align:center;margin-top:8px}
+/* 選び方ガイド */
+.guide-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:20px}
+@media(max-width:500px){.guide-grid{grid-template-columns:1fr}}
+.guide-card{background:var(--paper);border-radius:10px;padding:14px;border:0.5px solid var(--border)}
+.guide-type{font-size:11px;font-weight:700;color:var(--teal);margin-bottom:6px}
+.guide-rec{font-size:13px;font-weight:700;margin-bottom:4px}
+.guide-reason{font-size:11px;color:var(--t2);line-height:1.5}
+/* フローティングナビ */
+.float-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--border);padding:8px 16px;display:flex;gap:8px;z-index:200}
+.fn-back{flex:1;text-align:center;padding:10px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;background:#f1f5f9;color:var(--teal);border:1.5px solid var(--teal)}
+.fn-trial{flex:1;text-align:center;padding:10px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;background:var(--teal);color:#fff}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <a href="index.html" class="hdr-logo"><span>値上がり</span>予測ドットコム</a>
+  <a href="index.html#forecast-db" class="hdr-back">← 予測DB</a>
+</header>
+<div class="main">
+
+<!-- ヒーロー -->
+<div class="hero">
+  <div class="hero-badge" id="hero-badge">📚 2026年 最新予測・ランキング</div>
+  <h1>学習塾・予備校<br><span>費用値上がり予測</span>＆<br>おすすめランキング</h1>
+  <p class="hero-sub">物価高騰・人件費上昇により塾費用は増加傾向。文科省「子供の学習費調査（令和5年度）」では公立中学生の年間塾費用平均34.9万円。無料体験で賢く塾選びをしよう。</p>
+  <div class="hero-alert">
+    <strong>⚠️ 2026年 塾費用値上げ警告</strong><br>
+    明光ネットワーク調査では<strong style="color:#fca5a5">53.9%の塾が物価高騰の影響を受けた</strong>と回答。授業料・教材費の値上げが全国で進行中。早めの体験申込で現行料金を確保しよう。
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">34.9万</div><div class="hero-stat-lbl">公立中学生<br>年間塾費用平均</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">+8%</div><div class="hero-stat-lbl">2026年<br>前年比予測上昇率</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">53.9%</div><div class="hero-stat-lbl">物価高騰影響<br>を受けた塾の割合</div></div>
+  </div>
+</div>
+
+<!-- 学年別費用相場 -->
+<div class="section">
+  <div class="sec-title">💰 学年別 塾費用相場（2026年）</div>
+  <div class="grade-tabs">
+    <button class="grade-tab active" onclick="showGrade('elem')">小学生</button>
+    <button class="grade-tab" onclick="showGrade('mid')">中学生</button>
+    <button class="grade-tab" onclick="showGrade('high')">高校生</button>
+    <button class="grade-tab" onclick="showGrade('ronin')">浪人生・予備校</button>
+  </div>
+
+  <!-- 小学生 -->
+  <div class="grade-panel active" id="grade-elem">
+    <div class="cost-grid">
+      <div class="cost-card type-group">
+        <div class="cost-type group">集団指導塾</div>
+        <div class="cost-name">補習・基礎固め</div>
+        <div class="cost-price">¥8,000〜15,000</div>
+        <div class="cost-per">/月（1〜2科目）</div>
+        <div class="cost-rise">🔴 +6%予測</div>
+      </div>
+      <div class="cost-card type-individual">
+        <div class="cost-type individual">個別指導塾</div>
+        <div class="cost-name">1対2〜3指導</div>
+        <div class="cost-price">¥15,000〜30,000</div>
+        <div class="cost-per">/月（1〜2科目）</div>
+        <div class="cost-rise">🔴 +8%予測</div>
+      </div>
+      <div class="cost-card type-group">
+        <div class="cost-type group">中学受験塾</div>
+        <div class="cost-name">4〜6年生</div>
+        <div class="cost-price">¥27,000〜55,000</div>
+        <div class="cost-per">/月（受験学年は高め）</div>
+        <div class="cost-rise">🚨 +10%予測</div>
+      </div>
+    </div>
+    <div class="annual-section">
+      <div class="sec-title" style="font-size:13px;border-color:#e2e8f0">📊 年間費用比較（文科省調査ベース）</div>
+      <div class="annual-bar-row">
+        <div class="annual-lbl">公立小学生（平均）</div>
+        <div class="annual-bar-wrap"><div class="annual-bar-fill" style="width:35%;background:#0d9488">19.3万</div></div>
+        <div class="annual-val">19.3万円</div>
+      </div>
+      <div class="annual-bar-row">
+        <div class="annual-lbl">中学受験（4〜5年）</div>
+        <div class="annual-bar-wrap"><div class="annual-bar-fill" style="width:60%;background:#d97706">32〜48万</div></div>
+        <div class="annual-val">〜48万円</div>
+      </div>
+      <div class="annual-bar-row">
+        <div class="annual-lbl">中学受験（6年）</div>
+        <div class="annual-bar-wrap"><div class="annual-bar-fill" style="width:85%;background:#dc2626">43〜66万</div></div>
+        <div class="annual-val">〜66万円</div>
+      </div>
+      <p style="font-size:10px;color:var(--t2);margin-top:8px">出典：文部科学省「子供の学習費調査（令和5年度）」・各塾公開データ</p>
+    </div>
+  </div>
+
+  <!-- 中学生 -->
+  <div class="grade-panel" id="grade-mid">
+    <div class="cost-grid">
+      <div class="cost-card type-group">
+        <div class="cost-type group">集団指導塾</div>
+        <div class="cost-name">高校受験対策</div>
+        <div class="cost-price">¥18,000〜35,000</div>
+        <div class="cost-per">/月（2〜5科目）</div>
+        <div class="cost-rise">🔴 +7%予測</div>
+      </div>
+      <div class="cost-card type-individual">
+        <div class="cost-type individual">個別指導塾</div>
+        <div class="cost-name">1対1〜3指導</div>
+        <div class="cost-price">¥20,000〜50,000</div>
+        <div class="cost-per">/月（2〜3科目）</div>
+        <div class="cost-rise">🔴 +8%予測</div>
+      </div>
+      <div class="cost-card type-online">
+        <div class="cost-type online">オンライン塾</div>
+        <div class="cost-name">映像授業・AI</div>
+        <div class="cost-price">¥3,000〜20,000</div>
+        <div class="cost-per">/月（全科目対応も）</div>
+        <div class="cost-rise">🟡 +5%予測</div>
+      </div>
+    </div>
+    <div class="annual-section">
+      <div class="sec-title" style="font-size:13px;border-color:#e2e8f0">📊 年間費用比較</div>
+      <div class="annual-bar-row">
+        <div class="annual-lbl">公立中学生（平均）</div>
+        <div class="annual-bar-wrap"><div class="annual-bar-fill" style="width:52%;background:#0d9488">34.9万</div></div>
+        <div class="annual-val">34.9万円</div>
+      </div>
+      <div class="annual-bar-row">
+        <div class="annual-lbl">集団指導（中3受験）</div>
+        <div class="annual-bar-wrap"><div class="annual-bar-fill" style="width:60%;background:#d97706">40万前後</div></div>
+        <div class="annual-val">〜40万円</div>
+      </div>
+      <div class="annual-bar-row">
+        <div class="annual-lbl">個別指導（中3受験）</div>
+        <div class="annual-bar-wrap"><div class="annual-bar-fill" style="width:75%;background:#dc2626">50万前後</div></div>
+        <div class="annual-val">〜50万円</div>
+      </div>
+      <p style="font-size:10px;color:var(--t2);margin-top:8px">出典：文部科学省「子供の学習費調査（令和5年度）」・各塾公開データ</p>
+    </div>
+  </div>
+
+  <!-- 高校生 -->
+  <div class="grade-panel" id="grade-high">
+    <div class="cost-grid">
+      <div class="cost-card type-group">
+        <div class="cost-type group">集団指導塾</div>
+        <div class="cost-name">大学受験対策</div>
+        <div class="cost-price">¥30,000〜50,000</div>
+        <div class="cost-per">/月（3〜5科目）</div>
+        <div class="cost-rise">🔴 +8%予測</div>
+      </div>
+      <div class="cost-card type-individual">
+        <div class="cost-type individual">個別指導塾</div>
+        <div class="cost-name">マンツーマン指導</div>
+        <div class="cost-price">¥40,000〜80,000</div>
+        <div class="cost-per">/月（2〜3科目）</div>
+        <div class="cost-rise">🚨 +10%予測</div>
+      </div>
+      <div class="cost-card type-online">
+        <div class="cost-type online">オンライン塾</div>
+        <div class="cost-name">映像授業・AI活用</div>
+        <div class="cost-price">¥5,000〜30,000</div>
+        <div class="cost-per">/月（全科目対応も）</div>
+        <div class="cost-rise">🟡 +5%予測</div>
+      </div>
+    </div>
+    <div class="annual-section">
+      <div class="sec-title" style="font-size:13px;border-color:#e2e8f0">📊 年間費用比較</div>
+      <div class="annual-bar-row">
+        <div class="annual-lbl">公立高校生（平均）</div>
+        <div class="annual-bar-wrap"><div class="annual-bar-fill" style="width:57%;background:#0d9488">38.1万</div></div>
+        <div class="annual-val">38.1万円</div>
+      </div>
+      <div class="annual-bar-row">
+        <div class="annual-lbl">大手予備校（現役）</div>
+        <div class="annual-bar-wrap"><div class="annual-bar-fill" style="width:100%;background:#dc2626">70〜120万</div></div>
+        <div class="annual-val">〜120万円</div>
+      </div>
+      <p style="font-size:10px;color:var(--t2);margin-top:8px">出典：文部科学省「子供の学習費調査（令和5年度）」・各予備校公開データ</p>
+    </div>
+  </div>
+
+  <!-- 浪人生 -->
+  <div class="grade-panel" id="grade-ronin">
+    <div class="cost-grid">
+      <div class="cost-card type-yobiko">
+        <div class="cost-type yobiko">河合塾</div>
+        <div class="cost-name">高卒生コース</div>
+        <div class="cost-price">国公立：約124万</div>
+        <div class="cost-per">/年（入学金・講習込み）</div>
+        <div class="cost-rise">🚨 +8%予測</div>
+      </div>
+      <div class="cost-card type-yobiko">
+        <div class="cost-type yobiko">駿台予備校</div>
+        <div class="cost-name">高卒クラス</div>
+        <div class="cost-price">私立：約70〜90万</div>
+        <div class="cost-per">/年（コースによる）</div>
+        <div class="cost-rise">🔴 +7%予測</div>
+      </div>
+      <div class="cost-card type-yobiko">
+        <div class="cost-type yobiko">東進ハイスクール</div>
+        <div class="cost-name">高卒本科</div>
+        <div class="cost-price">約80〜100万</div>
+        <div class="cost-per">/年（受講コマ数による）</div>
+        <div class="cost-rise">🔴 +7%予測</div>
+      </div>
+    </div>
+    <div class="annual-section">
+      <div class="sec-title" style="font-size:13px;border-color:#e2e8f0">📊 主要予備校 年間費用比較（目安）</div>
+      <div class="annual-bar-row">
+        <div class="annual-lbl">四谷学院（国公立）</div>
+        <div class="annual-bar-wrap"><div class="annual-bar-fill" style="width:50%;background:#0d9488">61万</div></div>
+        <div class="annual-val">61万円</div>
+      </div>
+      <div class="annual-bar-row">
+        <div class="annual-lbl">代々木ゼミナール</div>
+        <div class="annual-bar-wrap"><div class="annual-bar-fill" style="width:70%;background:#d97706">80〜100万</div></div>
+        <div class="annual-val">〜100万円</div>
+      </div>
+      <div class="annual-bar-row">
+        <div class="annual-lbl">河合塾（国公立）</div>
+        <div class="annual-bar-wrap"><div class="annual-bar-fill" style="width:100%;background:#dc2626">124万</div></div>
+        <div class="annual-val">124万円</div>
+      </div>
+      <p style="font-size:10px;color:var(--t2);margin-top:8px">出典：各予備校公開データ（2026年度）。入学金・授業料・講習費・諸経費含む概算。</p>
+    </div>
+  </div>
+</div>
+
+<!-- シミュレーター -->
+<div class="simulator section">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+    <div style="font-size:24px">🧮</div>
+    <div><div style="font-size:14px;font-weight:800">塾費用シミュレーター</div><div style="font-size:11px;color:var(--t2)">年間いくらかかる？自動計算</div></div>
+  </div>
+  <div class="sim-grid">
+    <div><div class="sim-lbl">お子さんの学年</div>
+      <select class="sim-select" id="sim-grade" onchange="calcSim()">
+        <option value="elem_low">小学1〜3年生</option>
+        <option value="elem_high">小学4〜6年生（受験なし）</option>
+        <option value="elem_exam">小学4〜6年生（中学受験）</option>
+        <option value="mid" selected>中学生</option>
+        <option value="high">高校生</option>
+        <option value="ronin">浪人生（予備校）</option>
+      </select>
+    </div>
+    <div><div class="sim-lbl">指導形態</div>
+      <select class="sim-select" id="sim-type" onchange="calcSim()">
+        <option value="group">集団指導塾</option>
+        <option value="individual" selected>個別指導塾</option>
+        <option value="online">オンライン塾</option>
+      </select>
+    </div>
+    <div><div class="sim-lbl">受講科目数</div>
+      <select class="sim-select" id="sim-sub" onchange="calcSim()">
+        <option value="1">1科目</option>
+        <option value="2">2科目</option>
+        <option value="3" selected>3科目</option>
+        <option value="5">5科目（全科目）</option>
+      </select>
+    </div>
+    <div><div class="sim-lbl">季節講習の受講</div>
+      <select class="sim-select" id="sim-season" onchange="calcSim()">
+        <option value="none">受けない</option>
+        <option value="all" selected>夏期・冬期・春期すべて</option>
+        <option value="summer">夏期のみ</option>
+      </select>
+    </div>
+  </div>
+  <div class="sim-result">
+    <div class="sim-result-grid">
+      <div><div class="sim-r-lbl">月額授業料（目安）</div><div class="sim-r-val" id="sim-monthly">¥26,000</div><div class="sim-r-sub">月謝・授業料のみ</div></div>
+      <div><div class="sim-r-lbl">季節講習費（年間）</div><div class="sim-r-val" id="sim-season-fee">¥80,000</div><div class="sim-r-sub">夏期・冬期・春期</div></div>
+    </div>
+    <div class="sim-annual">
+      <div style="font-size:11px;opacity:.8;margin-bottom:4px">📅 年間総費用の目安（入会金別）</div>
+      <div class="sim-annual-val" id="sim-annual">¥392,000</div>
+      <div style="font-size:10px;opacity:.6;margin-top:2px" id="sim-note">※入会金・教材費・模試代は別途</div>
+    </div>
+  </div>
+</div>
+
+<!-- 塾ランキング -->
+<div class="section" id="ranking">
+  <div class="sec-title">🏆 学習塾・予備校 おすすめランキング 2026</div>
+  <p style="font-size:12px;color:var(--t2);margin-bottom:14px">費用の安さ・指導品質・合格実績・無料体験の充実度・全国展開などを総合評価。※2026年4月時点</p>
+  <div id="juku-list"></div>
+</div>
+
+<!-- 選び方ガイド -->
+<div class="section">
+  <div class="sec-title">🧭 あなたのお子さんにおすすめの塾</div>
+  <div class="guide-grid">
+    <div class="guide-card"><div class="guide-type">💰 費用を抑えたい</div><div class="guide-rec">→ オンライン塾・映像授業</div><div class="guide-reason">月3,000円〜から受講可能。スタディサプリなら月2,178円〜で全科目対応。通塾費用もゼロ。</div></div>
+    <div class="guide-card"><div class="guide-type">📚 苦手科目を克服したい</div><div class="guide-rec">→ 個別指導塾（1対1〜2）</div><div class="guide-reason">お子さんのペースに合わせた指導でつまずきを解消。明光義塾・トライなど全国展開の塾が充実。</div></div>
+    <div class="guide-card"><div class="guide-type">🏆 難関校・受験対策</div><div class="guide-rec">→ 大手集団指導塾</div><div class="guide-reason">実績豊富な集団塾でライバルと競いながら伸びる。中学受験は日能研・四谷大塚、大学受験は河合塾・駿台など。</div></div>
+    <div class="guide-card"><div class="guide-type">⏰ 部活・習い事と両立</div><div class="guide-rec">→ 個別指導 or オンライン</div><div class="guide-reason">時間帯・曜日を自由に設定できる個別指導やオンライン塾が最適。スキマ時間の活用にも。</div></div>
+    <div class="guide-card"><div class="guide-type">🎯 特定科目だけ強化</div><div class="guide-rec">→ 個別指導塾（1科目から）</div><div class="guide-reason">英語・数学など苦手科目だけ1科目から受講できる塾が多い。費用を最小限に抑えられる。</div></div>
+    <div class="guide-card"><div class="guide-type">🏠 自宅から通いやすい</div><div class="guide-rec">→ 地域密着塾 or オンライン</div><div class="guide-reason">全国1,000校以上の明光義塾・ITTO個別指導など地域密着型も充実。完全オンラインなら交通費ゼロ。</div></div>
+  </div>
+</div>
+
+<!-- 無料体験フォーム -->
+<div class="form-section" id="trial">
+  <div class="form-title">📝 塾の無料体験・資料請求</div>
+  <div class="form-sub">お子さんの学年・目的を選ぶだけ。完全無料で体験できる！</div>
+  <div class="form-grid">
+    <div class="form-group"><label>学年</label>
+      <select id="f-grade">
+        <option>小学1〜3年生</option><option>小学4〜6年生</option>
+        <option>中学1年生</option><option>中学2年生</option><option>中学3年生（受験生）</option>
+        <option>高校1年生</option><option>高校2年生</option><option>高校3年生（受験生）</option>
+        <option>浪人生</option>
+      </select>
+    </div>
+    <div class="form-group"><label>お住まいの都道府県</label>
+      <select id="f-pref">
+        <option>東京都</option><option>神奈川県</option><option>大阪府</option><option>愛知県</option>
+        <option>埼玉県</option><option>千葉県</option><option>兵庫県</option><option>北海道</option>
+        <option>福岡県</option><option>その他の都道府県</option>
+      </select>
+    </div>
+    <div class="form-group"><label>塾の種類</label>
+      <select id="f-type">
+        <option>個別指導塾</option><option>集団指導塾</option>
+        <option>オンライン塾・映像授業</option><option>予備校</option>
+        <option>おすすめを提案してほしい</option>
+      </select>
+    </div>
+    <div class="form-group"><label>目的・ご要望</label>
+      <select id="f-goal">
+        <option>学校の成績アップ</option><option>高校受験対策</option>
+        <option>中学受験対策</option><option>大学受験対策</option>
+        <option>苦手科目の克服</option><option>費用を抑えたい</option>
+      </select>
+    </div>
+  </div>
+  <button class="form-btn" onclick="submitTrial()">🔍 条件に合った塾を探す</button>
+  <div id="trial-result" style="display:none;margin-top:16px">
+    <div style="font-size:12px;opacity:.8;margin-bottom:10px;text-align:center">📋 あなたの条件に合わせたおすすめ塾をご案内します</div>
+    <div style="margin-bottom:10px">
+      <div style="font-size:11px;opacity:.7;margin-bottom:6px">🎯 あなたの条件に最もマッチした塾</div>
+      <div id="best-match-list" style="display:flex;flex-direction:column;gap:6px"></div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.2);padding-top:10px;margin-top:4px">
+      <div style="font-size:11px;opacity:.7;margin-bottom:6px">📊 他の塾も一括で比較したい方はこちら</div>
+      <div id="bulk-compare-list" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+    </div>
+  </div>
+  <p class="form-note">PR：当サイトはアフィリエイトプログラムに参加しています</p>
+</div>
+
+<p id="last-updated" style="font-size:10px;color:var(--t2);text-align:center;margin-bottom:4px"></p>
+<p style="font-size:10px;color:var(--t2);text-align:center">
+  ※掲載データは文科省調査・各塾公開情報を元にした目安です。実際の費用はコース・科目数等により異なります。<br>
+  PR：当サイトはアフィリエイトプログラムに参加しています。
+</p>
+</div>
+
+<div class="float-nav">
+  <a href="index.html#forecast-db" class="fn-back">← カテゴリ一覧</a>
+  <a href="#trial" onclick="document.getElementById('trial').scrollIntoView({behavior:'smooth'});return false" class="fn-trial">📝 無料体験申込</a>
+</div>
+
+<script>
+var JUKU_DATA=[
+  {id:'j1',rank:1,name:'個別教室のトライ',rec:'rec-all',recTxt:'全学年対応',
+   types:['type-ko','type-on'],typeTxts:['個別指導','オンライン対応'],
+   catch:'120万人の指導実績。完全マンツーマンで確実に成績アップ！',
+   fee:'月謝：要問合せ（1対1完全個別）',
+   body:'「家庭教師のトライ」で培った個別指導のノウハウを活かし、完全マンツーマンの個別指導を提供。全国に約750教室を展開し、小学生から高校生・浪人生まで幅広く対応。2026年春期講習は今だけ入会金＋1ヶ月授業料無料キャンペーン実施中。',
+   specs:[{lbl:'対象',val:'小〜高・浪人'},{lbl:'形態',val:'1対1完全個別'},{lbl:'入会金',val:'要問合せ'},{lbl:'解約',val:'いつでも可'},{lbl:'全国展開',val:'約750教室'},{lbl:'オンライン',val:'対応あり'}],
+   merits:['完全マンツーマンで生徒一人ひとりに最適なカリキュラムを作成','小学生から浪人生まで全学年・全科目に対応','120万人以上の指導実績に基づくトライ式学習法','2026年春期講習キャンペーン：入会金＋1ヶ月授業料無料','専用アプリで学習進捗を保護者と共有できる'],
+   demerits:['料金は個別相談制で事前に明確な金額がわかりにくい','マンツーマンのため集団塾より月謝は高め','講師の当たり外れがある場合がある'],
+   who:'苦手科目を徹底克服したい方・自分のペースで学びたい方・受験直前の集中対策',
+   url:getAffUrl('try')},
+  {id:'j2',rank:2,name:'明光義塾',rec:'rec-all',recTxt:'全国No.1個別',
+   types:['type-ko'],typeTxts:['個別指導'],
+   catch:'全国2,100教室以上。個別指導No.1の実績と安心感！',
+   fee:'月謝：約15,000円〜（1科目・週2回）',
+   body:'個別指導塾の草分け的存在で全国2,100教室以上を展開する国内最大の個別指導塾チェーン。「分かる・話す・身につく」の独自メソッドで生徒一人ひとりの学力アップをサポート。2026年2月〜4月入会は入会金0円キャンペーン中。小学生から高校生・大学受験まで幅広く対応。',
+   specs:[{lbl:'対象',val:'小〜高・受験生'},{lbl:'形態',val:'個別指導（1対2）'},{lbl:'入会金',val:'0円（キャンペーン）'},{lbl:'解約',val:'いつでも可'},{lbl:'全国展開',val:'2,100教室以上'},{lbl:'実績',val:'50年超'}],
+   merits:['全国2,100教室以上でどの地域でも通いやすい','2026年4月30日まで入会金0円キャンペーン実施中','独自の学習管理システムで保護者への進捗報告が充実','定期テスト対策「テストターボ」で直前対策も万全','1科目から受講可能で費用を抑えやすい'],
+   demerits:['1対2の指導形式が中心で完全マンツーマンより割安だが個別性はやや低い','フランチャイズ展開のため教室によって品質に差がある場合も','映像授業系と比べると費用は高め'],
+   who:'近くの教室に通いたい方・1科目から始めたい方・定期テスト対策を重視する方',
+   url:getAffUrl('meikou')},
+  {id:'j3',rank:3,name:'スタディサプリ',rec:'rec-online',recTxt:'コスパ最強',
+   types:['type-on'],typeTxts:['オンライン映像'],
+   catch:'月2,178円から全科目。スマホ1台で有名講師の授業が受け放題！',
+   fee:'ベーシック：月2,178円 / 個別指導コース：月10,780円',
+   body:'リクルートが運営するオンライン学習サービス。月2,178円（税込）で小学4年生〜高校3年生の全科目・全単元の映像授業が受け放題。2021年からは個別指導コースも追加し、専任コーチがマンツーマンでサポート。通塾不要でスキマ時間に学べる点が最大の強み。',
+   specs:[{lbl:'対象',val:'小4〜高3・大学受験'},{lbl:'形態',val:'映像授業・オンライン個別'},{lbl:'月額',val:'2,178円〜'},{lbl:'入会金',val:'0円'},{lbl:'解約',val:'いつでも可'},{lbl:'講師',val:'有名予備校講師'}],
+   merits:['月2,178円で全科目・全学年の映像授業が受け放題（圧倒的コスパ）','入会金0円・いつでも解約可能でリスクゼロ','スマホ・タブレット・PCで場所を選ばず学習','有名予備校の人気講師による分かりやすい授業','個別指導コースでは専任コーチが週次でサポート'],
+   demerits:['映像授業のため自律的に学習する習慣がないと続けにくい','リアルタイムで質問できない（個別指導コースは別）','競争環境や友人との切磋琢磨はない'],
+   who:'費用を最小限に抑えたい方・自学自習できるお子さん・通塾が難しい地方在住者',
+   url:getAffUrl('studysapuri')},
+  {id:'j4',rank:4,name:'ITTO個別指導学院',rec:'rec-mid',recTxt:'中高生向け',
+   types:['type-ko'],typeTxts:['個別指導'],
+   catch:'全国1,100校舎以上。リーズナブルな料金で5教科対応！',
+   fee:'月謝：1科目8,000円〜（1対3スタンダード）',
+   body:'全国に1,100校舎以上を展開する個別指導専門塾。1対3のスタンダードプランは集団塾並みの料金を実現しており、コスト重視の家庭に人気。独自の月次模試「ITTO模試」が毎月無料で受けられ、学力を客観的に測定できる点が特徴。定期テスト対策「テストターボ」も好評。',
+   specs:[{lbl:'対象',val:'小〜高・受験生'},{lbl:'形態',val:'個別指導（1対1〜3）'},{lbl:'月謝',val:'8,000円〜'},{lbl:'模試',val:'毎月無料'},{lbl:'全国展開',val:'1,100校舎以上'},{lbl:'特典',val:'テストターボ'}],
+   merits:['1対3のスタンダードプランは個別指導でありながら集団塾並みの低価格','毎月ITTO模試が無料で学力を客観的に測定できる','定期テスト対策「テストターボ」で中学校の過去問分析をもとに指導','1科目から受講可能で必要な科目だけ取れる','全国1,100校舎以上で地域密着'],
+   demerits:['1対3形式では個別性が完全マンツーマンより低い','フランチャイズ展開のため教室によって差がある場合も','大学受験よりも高校受験までが得意分野'],
+   who:'費用を抑えながら個別指導を受けたい方・定期テスト対策を重視する中学生',
+   url:getAffUrl('itto')},
+  {id:'j5',rank:5,name:'スクールIE（やる気スイッチグループ）',rec:'rec-all',recTxt:'個性診断あり',
+   types:['type-ko'],typeTxts:['個別指導'],
+   catch:'独自診断ツールで性格・学力を分析。完全担任制のオーダーメイド指導',
+   fee:'月謝：要問合せ（コース・科目数による）',
+   body:'「やる気スイッチ」でお馴染みのスクールIEは、独自の診断ツールで生徒の性格・学力を分析し最適な指導法を導く。完全担任制・オーダーメイドテキストが特徴で、全国1,000教室以上を展開。曜日・時間帯・科目・コマ数を自由に設定できるフルオーダーメイド制が魅力。',
+   specs:[{lbl:'対象',val:'小〜高・受験生'},{lbl:'形態',val:'完全担任制個別指導'},{lbl:'入会金',val:'要問合せ'},{lbl:'テキスト',val:'オーダーメイド'},{lbl:'全国展開',val:'1,000教室以上'},{lbl:'診断',val:'独自ツールあり'}],
+   merits:['独自の「やる気診断」で性格・学力を分析し最適な指導法を決定','完全担任制で生徒と講師の相性を重視','曜日・時間帯・科目・コマ数を完全に自由設定できる','オーダーメイドテキストで無駄なく学習','部活・習い事と両立しやすいスケジュール対応'],
+   demerits:['料金が事前に明確でなく問い合わせが必要','完全担任制のため担当講師が変わると影響が大きい'],
+   who:'自分のペースや性格に合った指導を求める方・部活と両立したい方・やる気を引き出してほしい方',
+   url:getAffUrl('schoolie')},
+  {id:'j6',rank:6,name:'河合塾',rec:'rec-high',recTxt:'大学受験特化',
+   types:['type-sy','type-jk'],typeTxts:['集団指導','予備校'],
+   catch:'大学受験最大手。圧倒的な合格実績と緻密なカリキュラム！',
+   fee:'現役高校生：年間約90〜120万円 / 浪人生：約90〜124万円',
+   body:'大学受験予備校の最大手。東大・京大・医学部など最難関の合格実績を誇り、緻密なカリキュラムと模試（全統模試）で受験生を徹底サポート。現役生向け「高校グリーンコース」と高卒生向けコースを展開。スカラシップ制度（特待生制度）で優秀者は授業料免除も。',
+   specs:[{lbl:'対象',val:'高校生・浪人生'},{lbl:'形態',val:'集団指導'},{lbl:'年間費用',val:'約90〜124万円'},{lbl:'模試',val:'全統模試（有名）'},{lbl:'特待制度',val:'スカラシップあり'},{lbl:'全国展開',val:'主要都市'}],
+   merits:['大学受験予備校として最大手の知名度と合格実績','全統模試は受験生の学力測定で最も信頼性が高いとされる','緻密な年間カリキュラムで何をいつやるか明確','スカラシップ制度で優秀者は授業料全額・半額免除も','浪人生向けコースの実績と環境が非常に充実'],
+   demerits:['費用が高く年間90〜124万円と家計への負担が大きい','全国展開は主要都市中心で地方では通えない場合も','集団授業のため個人のペースに合わせた指導は限定的'],
+   who:'難関大学を目指す高校生・浪人生・費用より実績重視の方・東大・京大・医学部志望者',
+   url:getAffUrl('kawai')},
+];
+
+function showGrade(g){
+  document.querySelectorAll('.grade-panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.grade-tab').forEach(function(t){t.classList.remove('active');});
+  document.getElementById('grade-'+g).classList.add('active');
+  var tabs=document.querySelectorAll('.grade-tab');
+  var map={elem:0,mid:1,high:2,ronin:3};
+  tabs[map[g]].classList.add('active');
+}
+
+var SIM_BASE={
+  elem_low:{group:8000,individual:15000,online:3000},
+  elem_high:{group:12000,individual:20000,online:5000},
+  elem_exam:{group:35000,individual:45000,online:8000},
+  mid:{group:25000,individual:35000,online:10000},
+  high:{group:40000,individual:55000,online:15000},
+  ronin:{group:80000,individual:100000,online:20000},
+};
+var SEASON_FEE={group:{none:0,summer:30000,all:80000},individual:{none:0,summer:40000,all:110000},online:{none:0,summer:10000,all:25000}};
+
+function calcSim(){
+  var grade=document.getElementById('sim-grade').value;
+  var type=document.getElementById('sim-type').value;
+  var subs=parseInt(document.getElementById('sim-sub').value);
+  var season=document.getElementById('sim-season').value;
+  var base=SIM_BASE[grade][type];
+  var monthly=Math.round(base*Math.sqrt(subs)/100)*100;
+  var sf=SEASON_FEE[type][season];
+  var annual=monthly*12+sf;
+  document.getElementById('sim-monthly').textContent='¥'+monthly.toLocaleString();
+  document.getElementById('sim-season-fee').textContent='¥'+sf.toLocaleString();
+  document.getElementById('sim-annual').textContent='¥'+annual.toLocaleString();
+}
+
+function renderJuku(){
+  var list=document.getElementById('juku-list');
+  if(!list)return;
+  list.innerHTML=JUKU_DATA.map(function(d){
+    var rc=d.rank<=3?'r'+d.rank:'rn';
+    var types=d.types.map(function(t,i){return '<span class="juku-type '+t+'">'+d.typeTxts[i]+'</span>';}).join('');
+    var specs=d.specs.map(function(s){return '<div class="juku-spec"><div class="juku-spec-lbl">'+s.lbl+'</div><div class="juku-spec-val">'+s.val+'</div></div>';}).join('');
+    var merits=d.merits.map(function(m){return '<li>'+m+'</li>';}).join('');
+    var demerits=d.demerits.map(function(m){return '<li>'+m+'</li>';}).join('');
+    return '<div class="juku-card" id="'+d.id+'">'
+      +'<div class="juku-card-top">'
+      +'<div class="juku-rank-wrap"><div class="juku-rank '+rc+'">'+d.rank+'</div><div class="juku-rec '+d.rec+'">'+d.recTxt+'</div></div>'
+      +'<div class="juku-main">'
+      +'<div class="juku-name">'+d.name+'</div>'
+      +'<div class="juku-type-badges">'+types+'</div>'
+      +'<div class="juku-catch">'+d.catch+'</div>'
+      +'<div class="juku-fee">💰 '+d.fee+'</div>'
+      +'</div>'
+      +'<a href="'+d.url+'" target="_blank" rel="noopener" class="juku-btn">無料体験 →</a>'
+      +'</div>'
+      +'<div class="juku-body">'+d.body+'</div>'
+      +'<div class="juku-specs">'+specs+'</div>'
+      +'<button class="expand-btn" onclick="toggleDetail(\''+d.id+'\')" id="btn-'+d.id+'">▼ 詳細（メリット・デメリット・おすすめ対象）を見る</button>'
+      +'<div class="juku-detail" id="detail-'+d.id+'">'
+      +'<div class="juku-merit"><div class="juku-merit-title">✅ メリット</div><ul>'+merits+'</ul></div>'
+      +'<div class="juku-demerit"><div class="juku-demerit-title">⚠️ デメリット・注意点</div><ul>'+demerits+'</ul></div>'
+      +'<div class="juku-who"><div class="juku-who-title">👤 こんな方におすすめ</div><div class="juku-who-text">'+d.who+'</div></div>'
+      +'<a href="'+d.url+'" target="_blank" rel="noopener" class="juku-btn" style="margin-top:10px;display:block;text-align:center">'+d.name+' 無料体験・資料請求 →</a>'
+      +'</div></div>';
+  }).join('');
+}
+
+function toggleDetail(id){
+  var d=document.getElementById('detail-'+id);
+  var b=document.getElementById('btn-'+id);
+  if(d.classList.contains('open')){d.classList.remove('open');b.textContent='▼ 詳細（メリット・デメリット・おすすめ対象）を見る';}
+  else{d.classList.add('open');b.textContent='▲ 詳細を閉じる';}
+}
+
+function submitTrial(){
+  // フォームの入力値を取得
+  var grade  = document.getElementById('f-grade')  ? document.getElementById('f-grade').value  : '';
+  var goal   = document.getElementById('f-goal')   ? document.getElementById('f-goal').value   : '';
+  var style  = document.getElementById('f-style')  ? document.getElementById('f-style').value  : '';
+  var budget = document.getElementById('f-budget') ? document.getElementById('f-budget').value : '';
+  // 都道府県・塾種類も取得（新フォーム項目）
+  var pref   = document.getElementById('f-pref')   ? document.getElementById('f-pref').value   : '';
+  var type   = document.getElementById('f-type')   ? document.getElementById('f-type').value   : '';
+
+  // 学年 → URLパラメータ変換
+  var gradeMap = {
+    '小学1〜3年生':'elementary','小学4〜6年生':'elementary',
+    '中学1年生':'junior_high','中学2年生':'junior_high','中学3年生':'junior_high',
+    '高校1年生':'high_school','高校2年生':'high_school','高校3年生':'high_school',
+    '浪人生':'ronin'
+  };
+  var goalMap = {
+    '学校の補習・成績アップ':'hoshu',
+    '中学受験対策':'juken_mid',
+    '高校受験対策':'juken_high',
+    '大学受験対策':'juken_univ',
+    '難関校・国公立大対策':'juken_top'
+  };
+  var styleMap = {
+    '集団指導（費用重視）':'group',
+    '個別指導（きめ細かい）':'individual',
+    'オンライン（自宅学習）':'online',
+    'どちらでも可':'any'
+  };
+
+  var gradeParam = gradeMap[grade] || '';
+  var goalParam  = goalMap[goal]   || '';
+  var styleParam = styleMap[style] || '';
+
+  // ── 遷移先URLをここで切り替え（ASP承認後にアフィリエイトURLに変更）──
+  var baseUrl = getAffUrl('amejuku'); // デフォルト
+
+  // オンライン希望 → オンライン塾一覧
+  if(styleParam === 'online'){
+    baseUrl = getAffUrl('amejuku_online');
+    // ↓ アフィリエイトURL: baseUrl = 'https://juku.ameba.jp/onlinejuku/?aff=XXXXX';
+  }
+  // 大学受験・予備校 → 予備校一覧
+  else if(goalParam === 'juken_univ' || goalParam === 'juken_top'){
+    baseUrl = getAffUrl('amejuku_yobiko');
+    // ↓ アフィリエイトURL: baseUrl = 'https://juku.ameba.jp/yobiko/?aff=XXXXX';
+  }
+  // 中学受験 → 中学受験塾一覧
+  else if(goalParam === 'juken_mid'){
+    baseUrl = getAffUrl('amejuku_mid');
+    // ↓ アフィリエイトURL: baseUrl = 'https://juku.ameba.jp/?type=juken&aff=XXXXX';
+  }
+  // 高校受験 → 高校受験塾
+  else if(goalParam === 'juken_high'){
+    baseUrl = getAffUrl('amejuku');
+    // ↓ アフィリエイトURL: baseUrl = 'https://juku.ameba.jp/?type=highschool&aff=XXXXX';
+  }
+
+  // パラメータ付与（トラッキング用）
+  var sep = baseUrl.indexOf('?') >= 0 ? '&' : '?';
+  var params = 'grade=' + encodeURIComponent(gradeParam)
+             + '&goal='  + encodeURIComponent(goalParam)
+             + '&style=' + encodeURIComponent(styleParam);
+  // + '&aff=XXXXX'; // ← ASP承認後にアフィリエイトIDを追加
+
+  // ══ ①個別最適マッチング ══
+  // 条件ごとに最適な塾をスコアリング
+  var JUKU_DB = [
+    {name:'スタディサプリ',     shortName:'スタサプ',
+     url:'https://studysapuri.jp/',  // ← アフィリエイトURL
+     match:{online:10, cheap:10, hoshu:8, any:7},
+     label:'月2,178円〜・オンライン'},
+    {name:'明光義塾',           shortName:'明光義塾',
+     url:'https://www.meikonet.co.jp/',  // ← アフィリエイトURL
+     match:{individual:10, hoshu:9, juken_high:8, any:8},
+     label:'個別指導・全国2,100教室'},
+    {name:'個別教室のトライ',   shortName:'トライ',
+     url:'https://www.trygroup.co.jp/',  // ← アフィリエイトURL
+     match:{individual:10, juken_high:9, juken_mid:8, any:8},
+     label:'完全1対1・120万人実績'},
+    {name:'河合塾',             shortName:'河合塾',
+     url:'https://www.kawai-juku.ac.jp/',  // ← アフィリエイトURL
+     match:{group:8, juken_univ:10, juken_top:10, yobiko:10},
+     label:'難関大学受験特化'},
+    {name:'駿台予備校',         shortName:'駿台',
+     url:'https://www.sundai.ac.jp/',  // ← アフィリエイトURL
+     match:{group:8, juken_top:10, ronin:10},
+     label:'東大・医学部合格実績No.1'},
+    {name:'進研ゼミ',           shortName:'進研ゼミ',
+     url:'https://www.shinken.co.jp/',  // ← アフィリエイトURL
+     match:{online:8, cheap:10, hoshu:9, any:9},
+     label:'月3,000円〜・通信教育No.1'},
+    {name:'SAPIX',              shortName:'SAPIX',
+     url:'https://www.sapix.co.jp/',  // ← アフィリエイトURL
+     match:{juken_mid:10, top:10},
+     label:'中学受験最難関特化'},
+    {name:'四谷大塚',           shortName:'四谷大塚',
+     url:'https://www.yotsuyaotsuka.com/',  // ← アフィリエイトURL
+     match:{juken_mid:9, group:8},
+     label:'中学受験四天王・テキスト品質高'},
+    {name:'東進ハイスクール',   shortName:'東進',
+     url:'https://www.toshin.com/',  // ← アフィリエイトURL
+     match:{juken_univ:9, online:8, juken_top:9},
+     label:'映像授業×AI学習・大学受験'},
+    {name:'湘南ゼミナール',     shortName:'湘ゼミ',
+     url:'https://www.shonan-seminar.co.jp/',  // ← アフィリエイトURL
+     match:{juken_high:9, group:8, hoshu:8},
+     label:'高校受験・地域密着型'},
+  ];
+
+  // スコア計算
+  function scoreJuku(j){
+    var s=0;
+    if(styleParam && j.match[styleParam])   s += j.match[styleParam];
+    if(goalParam  && j.match[goalParam])    s += j.match[goalParam];
+    if(gradeParam && j.match[gradeParam])   s += (j.match[gradeParam]||0);
+    if(j.match['any']) s += j.match['any'] * 0.3;
+    return s;
+  }
+
+  var scored = JUKU_DB.map(function(j){ return {j:j, s:scoreJuku(j)}; });
+  scored.sort(function(a,b){ return b.s - a.s; });
+  var top3 = scored.slice(0,3);
+
+  // ①個別最適リストを生成
+  var bestList = document.getElementById('best-match-list');
+  if(bestList){
+    bestList.innerHTML = top3.map(function(item, idx){
+      var icons = ['🥇','🥈','🥉'];
+      return '<a href="'+item.j.url+'" target="_blank" rel="noopener"'
+        +' style="display:flex;align-items:center;justify-content:space-between;'
+        +'background:rgba(255,255,255,.15);border-radius:8px;padding:10px 12px;'
+        +'text-decoration:none;color:#fff;transition:all .2s">'
+        +'<span style="font-size:14px;margin-right:8px">'+icons[idx]+'</span>'
+        +'<span style="flex:1"><span style="font-size:13px;font-weight:700">'+item.j.name+'</span>'
+        +'<br><span style="font-size:10px;opacity:.7">'+item.j.label+'</span></span>'
+        +'<span style="font-size:11px;font-weight:700;background:#fcd34d;color:#001a4d;'
+        +'padding:4px 10px;border-radius:8px;white-space:nowrap">無料体験 →</span>'
+        +'</a>';
+    }).join('');
+  }
+
+  // ②一括比較サイトへのリンクを生成
+  var BULK_SITES = [
+    {name:'アメ塾',   url:'https://juku.ameba.jp/',      // ← アフィリエイトURL
+     desc:'全国塾を一括検索'},
+    {name:'塾シル',   url:'https://jukushiru.com/',       // ← アフィリエイトURL
+     desc:'1万以上の塾を比較'},
+    {name:'塾選',     url:'https://bestjuku.com/',        // ← アフィリエイトURL
+     desc:'目的別塾を厳選'},
+    {name:'スタサプ比較', url:'https://studysapuri.jp/',  // ← アフィリエイトURL
+     desc:'オンライン最安'},
+  ];
+
+  var bulkList = document.getElementById('bulk-compare-list');
+  if(bulkList){
+    // 条件をURLパラメータとして付加
+    var sep = '?';
+    var params2 = 'grade='+encodeURIComponent(gradeParam)+'&goal='+encodeURIComponent(goalParam);
+
+    bulkList.innerHTML = BULK_SITES.map(function(s){
+      var url2 = s.url + sep + params2;
+      return '<a href="'+url2+'" target="_blank" rel="noopener"'
+        +' style="flex:1;min-width:80px;text-align:center;background:rgba(255,255,255,.12);'
+        +'border-radius:8px;padding:8px;text-decoration:none;color:#fff">'
+        +'<div style="font-size:12px;font-weight:700">'+s.name+'</div>'
+        +'<div style="font-size:9px;opacity:.7;margin-top:2px">'+s.desc+'</div>'
+        +'</a>';
+    }).join('');
+  }
+
+  // 結果エリアを表示してスクロール
+  var resultEl = document.getElementById('trial-result');
+  if(resultEl){
+    resultEl.style.display = 'block';
+    resultEl.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  calcSim();renderJuku();
+  var now=new Date();
+  var b=document.getElementById('hero-badge');
+  if(b)b.textContent='📚 '+now.getFullYear()+'年'+(now.getMonth()+1)+'月 最新予測・ランキング';
+  var lu=document.getElementById('last-updated');
+  if(lu)lu.textContent='データ更新日: '+now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate();
+});
+</script>
+</body>
+</html>
